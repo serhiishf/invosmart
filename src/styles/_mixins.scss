@@ -1,0 +1,50 @@
+$breakpoints: (
+  'xs': 320px,
+  'mobile': 360px,
+  'tablet': 1024px,
+  'desktop': 1368px,
+);
+
+
+@mixin for-size-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+
+@mixin for-size-only($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    $next-breakpoint-value: null;
+    $found: false;
+
+    @each $nextBreakpoint, $nextValue in $breakpoints {
+      @if $found {
+        $next-breakpoint-value: $nextValue;
+        $found: false;
+      }
+      @if $nextValue == $breakpoint-value {
+        $found: true;
+      }
+    }
+
+    @if $next-breakpoint-value {
+      @media (min-width: $breakpoint-value) and (max-width: ($next-breakpoint-value - 1)) {
+        @content;
+      }
+    } @else {
+      @media (min-width: $breakpoint-value) {
+        @content;
+      }
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
