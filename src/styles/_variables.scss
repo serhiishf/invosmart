@@ -1,0 +1,62 @@
+// Blue colors
+$_color-blue-100: #30A5E0;
+$_color-blue-200: #2197D1;
+$_color-blue-300: #0689C9;
+$_color-blue-400: #2684B3;
+
+// Sky colors
+$_color-sky-100: #ACDBF3;
+$_color-sky-200: #92CDED;
+$_color-sky-300: #E1EEF7;
+$_color-sky-400: #CEE6F5;
+$_color-sky-500: #BADEF2;
+$_color-sky-600: #EAF6FC;
+$_color-sky-700: #E8F2F5;
+
+// Notification colors
+$_color-danger-600: #FC6180;
+$_color-danger-500: #FFB74E;
+$_color-danger-400: #F6E0E8;
+
+$_color-success-700: #1BA261;
+$_color-success-500: #72C49E;
+
+// Dark colors
+$_color-dark-900: #000000;
+$_color-dark-800: #252932;
+$_color-dark-700: #2E2F31;
+$_color-dark-600: #3B4548;
+$_color-dark-500: #4C5457;
+
+// Light colors
+$_color-light-100: #FFFFFF;
+$_color-light-200: #F5F6FA;
+$_color-light-300: #F5F8F9;
+$_color-light-400: #E9EAF0;
+$_color-light-500: #E9ECF0;
+$_color-light-600: #DEE1E6;
+$_color-light-700: #D8DAE3;
+
+// Grey colors
+$_color-grey-100: #B8C5CB;
+$_color-grey-200: #C2CACD;
+$_color-grey-300: #818E94;
+$_color-grey-400: #727779;
+$_color-grey-500: #979B9D;
+$_color-grey-600: #979797;
+
+/*---Main color----*/
+$color-background: $_color-light-200;
+$color-white: $_color-light-100;
+$color-error: $_color-danger-600;
+$color-success: $_color-success-700;
+
+/*---Field-color---*/
+$color-field-title: $_color-grey-400;
+$color-field-title_error: $_color-danger-600;
+$color-field-border: $_color-main-blue-400;
+$color-field-border_active: $_color-blue-100;
+$color-field-border_error: $_color-danger-600;
+$color-field-text: $_color-dark-700;
+$color-field-placeholder: $_color-grey-500;
+
