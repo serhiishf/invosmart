@@ -1,11 +1,32 @@
+import React from 'react';
 import styles from './FieldWrapper.module.scss';
+import classNames from 'classnames';
 import { FieldWrapperProps } from './types';
 
 function FieldWrapper(props: FieldWrapperProps) {
+  const { label, children, error, active, onFocus, onBlur, setError } = props;
   return (
-    <div className={styles.mainWrap}>
-      {props.label && <div className={styles.label}>{props.label}</div>}
-      <div className={styles.field}>{props.children}</div>
+    <div className={styles.fieldWrapper}>
+      {label && (
+        <div
+          className={classNames(
+            styles.fieldLabel,
+            error && styles.fieldLabel_error,
+            active && styles.fieldLabel_active
+          )}
+        >
+          {label}
+        </div>
+      )}
+      <div
+        className={classNames(
+          styles.fieldBorder,
+          error && styles.fieldBorder_error,
+          active && styles.fieldBorder_active
+        )}
+      >
+        {children && React.cloneElement(children, { onFocus, onBlur, setError })}
+      </div>
     </div>
   );
 }

@@ -1,12 +1,46 @@
+import { useState, ChangeEvent } from 'react';
 import { FieldWrapper } from '../ui';
 import styles from './ShfTestComponent.module.scss';
 
 function ShfTestComponent() {
+  const [value, setValue] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+  const [error, setError] = useState(false);
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setValue(e.target.value);
+    /*     
+    //code for test error state
+    if (e.target.value === '') {
+      setError(true);
+    } else {
+      setError(false);
+    } */
+  }
+
+  function handleFocus() {
+    setIsFocused(true);
+  }
+
+  function handleError(error: boolean) {
+    error ? setError(true) : setError(false);
+  }
+
+  function handleBlur() {
+    setIsFocused(false);
+  }
   return (
     <div className={styles.mainWrap}>
       <div className={styles.parentComponent}>
-        <FieldWrapper label="Name">
-          <div className={styles.testInput}></div>
+        <FieldWrapper
+          label="Email"
+          error={error}
+          active={isFocused}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          setError={handleError}
+        >
+          <input className={styles.testInput} value={value} onChange={handleChange}></input>
         </FieldWrapper>
       </div>
     </div>

@@ -52,8 +52,10 @@ $color-error: $_color-danger-600;
 $color-success: $_color-success-700;
 
 /*---Field-color---*/
-$color-field-title: $_color-grey-400;
-$color-field-title_error: $_color-danger-600;
+$color-field-label: $_color-grey-400;
+$color-field-label-background: $color-white;
+$color-field-label_active: $_color-blue-100;
+$color-field-label_error: $_color-danger-600;
 $color-field-border: $_color-grey-200;
 $color-field-border_active: $_color-blue-100;
 $color-field-border_error: $_color-danger-600;
