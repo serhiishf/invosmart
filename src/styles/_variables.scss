@@ -12,3 +12,12 @@ $line-height-none: 1;
 $line-height-short: 1.25;
 $line-height-base: 1.5;
 $line-height-tall: 2;
+
+// Z-Index Variables
+$z-index-below: -1;
+$z-index-default: 1;
+$z-index-dropdown: 1000;
+$z-index-overlay: 2000;
+$z-index-modal: 3000;
+$z-index-tooltip: 4000;
+$z-index-notification: 5000;
