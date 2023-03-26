@@ -1,3 +1,4 @@
 export interface FieldWrapperProps {
-  title?: string;
+  label?: string;
+  children?: React.ReactNode;
 }
