@@ -23,16 +23,13 @@
     left: 0;
     width: 100%;
     min-height: 45%;
-    background: $color-field-label-background;
+    background: $color-field-background;
   }
   &_error {
     color: $color-field-label_error;
   }
   &_active {
     color: $color-field-label_active;
-  }
-  &:focus {
-    border: 2px solid RED;
   }
 }
 
@@ -48,8 +45,5 @@
   }
   &_active {
     border: 2px solid $color-field-border_active;
-  }
-  &:focus {
-    border: 2px solid RED;
   }
 }
