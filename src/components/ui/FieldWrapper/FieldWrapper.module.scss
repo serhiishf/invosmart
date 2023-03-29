@@ -18,6 +18,7 @@
   left: 20px;
   padding: 0 4px;
   z-index: $z-index-default;
+
   &:after {
     content: '';
     position: absolute;
@@ -28,28 +29,51 @@
     min-height: 45%;
     background: $color-field-background;
   }
+
   &_error {
     color: $color-field-label_error;
   }
+
   &_focus {
-    color: $color-field-label_active;
+    color: $color-field-label_focus;
   }
 }
 
-.fieldBorder {
+.fieldBorderWrap {
   width: 100%;
   height: 100%;
   border: 1px solid $color-field-border;
   border-radius: 6px;
   overflow: hidden;
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: $color-field-background;
+
   &_error {
     border-color: $color-field-label_error;
   }
+
   &_focus {
-    border: 2px solid $color-field-border_active;
+    border: 1px solid $color-field-border_focus;
+    box-shadow: inset 0 0 0 1px $color-field-border_focus;
+  }
+
+  &_disabled {
+    background-color: $color-field-background_disabled;
+  }
+}
+
+.fieldBackgroundWrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &_focus {
+    border: none;
+  }
+
+  &_disabled {
+    background-color: $color-field-background_disabled;
   }
 }

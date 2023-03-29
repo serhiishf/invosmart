@@ -7,13 +7,11 @@
   font-size: $font-size-base;
   font-weight: 500;
   color: $color-field-text;
-  border: 1px solid transparent; //for prevent moving text (compensation FieldWrapper border)
+  background-color: transparent;
+  border: none;
 
   &::placeholder {
     color: $color-field-placeholder;
-  }
-  &:disabled {
-    background-color: $color-field-background_disabled;
   }
 
   &:focus {

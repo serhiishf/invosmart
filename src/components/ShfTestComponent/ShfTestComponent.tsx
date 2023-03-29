@@ -35,13 +35,13 @@ function ShfTestComponent() {
         <FieldWrapper
           label="Email"
           error={error}
-          active={isFocused}
+          focus={isFocused}
+          disabled={false}
           onFocus={handleFocus}
           onBlur={handleBlur}
           setError={handleError}
         >
           <InputBase placeholder="Email" onChange={handleChange} value={value} />
-          {/* <input className={styles.testInput} value={value} onChange={handleChange}></input> */}
         </FieldWrapper>
       </div>
     </div>
