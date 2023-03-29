@@ -12,7 +12,7 @@ function FieldWrapper(props: FieldWrapperProps) {
           className={classNames(
             styles.fieldLabel,
             error && styles.fieldLabel_error,
-            active && styles.fieldLabel_active
+            active && styles.fieldLabel_focus
           )}
         >
           {label}
@@ -22,7 +22,7 @@ function FieldWrapper(props: FieldWrapperProps) {
         className={classNames(
           styles.fieldBorder,
           error && styles.fieldBorder_error,
-          active && styles.fieldBorder_active
+          active && styles.fieldBorder_focus
         )}
       >
         {children && React.cloneElement(children, { onFocus, onBlur, setError })}

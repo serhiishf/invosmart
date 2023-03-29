@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import { FieldWrapper } from '../ui';
+import { FieldWrapper, InputBase } from '../ui';
 import styles from './ShfTestComponent.module.scss';
 
 function ShfTestComponent() {
@@ -40,7 +40,8 @@ function ShfTestComponent() {
           onBlur={handleBlur}
           setError={handleError}
         >
-          <input className={styles.testInput} value={value} onChange={handleChange}></input>
+          <InputBase placeholder="Email" onChange={handleChange} value={value} />
+          {/* <input className={styles.testInput} value={value} onChange={handleChange}></input> */}
         </FieldWrapper>
       </div>
     </div>
