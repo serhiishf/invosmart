@@ -32,7 +32,7 @@ function ShfTestComponent() {
   return (
     <div className={styles.mainWrap}>
       <div className={styles.parentComponent}>
-        <Input disabled={true} />
+        <Input disabled={false} />
         {/* <FieldWrapper
           label="Email"
           error={error}

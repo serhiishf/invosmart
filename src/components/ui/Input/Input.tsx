@@ -8,7 +8,7 @@ function Input(props: InputTypeProps) {
     id,
     type = 'text',
     name,
-    label,
+    label = 'Email',
     value,
     placeholder,
     onChange,
@@ -18,9 +18,19 @@ function Input(props: InputTypeProps) {
     disabled = false,
     readonly = false,
   } = props;
+
+  const [isFocused, setIsFocused] = useState(false);
+  const [error, setError] = useState(false);
+
+  function handleFocus() {
+    setIsFocused(true);
+  }
+  function handleBlur() {
+    setIsFocused(false);
+  }
   return (
-    <FieldWrapper label={label}>
-      <InputBase></InputBase>
+    <FieldWrapper label={label} focus={isFocused}>
+      <InputBase onFocus={handleFocus} onBlur={handleBlur}></InputBase>
     </FieldWrapper>
   );
 }

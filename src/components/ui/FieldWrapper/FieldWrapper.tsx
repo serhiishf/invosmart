@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { FieldWrapperProps } from './types';
 
 function FieldWrapper(props: FieldWrapperProps) {
-  const { label, children, error, focus, disabled, onFocus, onBlur, setError } = props;
+  const { label, children, error, focus, disabled } = props;
   return (
     <div className={styles.fieldWrapper}>
       {label && (
@@ -26,7 +26,7 @@ function FieldWrapper(props: FieldWrapperProps) {
           disabled && styles.fieldBorderWrap_disabled
         )}
       >
-        {children && React.cloneElement(children, { disabled, onFocus, onBlur, setError })}
+        {children}
       </div>
     </div>
   );
