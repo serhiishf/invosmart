@@ -3,6 +3,7 @@ import { InputBaseProps } from './types';
 
 function InputBase(props: InputBaseProps) {
   const {
+    id,
     type = 'text',
     name,
     value,
@@ -12,12 +13,13 @@ function InputBase(props: InputBaseProps) {
     onFocus,
     required = false,
     disabled = false,
+    readonly = false,
   } = props;
   return (
     <input
       type={type}
       name={name}
-      id={name}
+      id={id}
       value={value}
       placeholder={placeholder}
       onChange={onChange}
@@ -26,6 +28,7 @@ function InputBase(props: InputBaseProps) {
       className={styles.baseInput}
       required={required}
       disabled={disabled}
+      readOnly={readonly}
     />
   );
 }
