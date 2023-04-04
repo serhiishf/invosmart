@@ -10,7 +10,4 @@ export interface InputTypeProps {
   required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
-  onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
 }

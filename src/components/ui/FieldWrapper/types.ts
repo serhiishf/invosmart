@@ -1,6 +1,6 @@
 export interface FieldWrapperProps {
   label?: string;
-  children: React.ReactElement;
+  children: React.ReactElement | React.ReactElement[];
   error?: boolean;
   focus?: boolean;
   disabled?: boolean;
