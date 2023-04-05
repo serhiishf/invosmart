@@ -27,7 +27,15 @@ function Input(props: InputTypeProps) {
     setIsFocused(false);
   }
 
-  function handleChange() {}
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    if (type === 'email') {
+      validateEmail(e.target.value);
+    }
+  }
+  function validateEmail(email: string) {
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    setError(!emailRegex.test(email));
+  }
   return (
     <FieldWrapper label={label} focus={isFocused} error={error}>
       <InputBase
