@@ -39,21 +39,23 @@ function Input(props: InputTypeProps) {
   }
 
   return (
-    <FieldWrapper label={label} focus={isFocused} error={error}>
-      <InputBase
-        id={id}
-        type={type}
-        name={name}
-        required={required}
-        disabled={disabled}
-        readonly={readonly}
-        value={value}
-        placeholder={placeholder}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        onChange={handleChange}
-      />
-    </FieldWrapper>
+    <div className={styles.input}>
+      <FieldWrapper label={label} focus={isFocused} error={error}>
+        <InputBase
+          id={id}
+          type={type}
+          name={name}
+          required={required}
+          disabled={disabled}
+          readonly={readonly}
+          value={value}
+          placeholder={placeholder}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+        />
+      </FieldWrapper>
+    </div>
   );
 }
 
