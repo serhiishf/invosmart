@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './FieldWrapper.module.scss';
 import classNames from 'classnames';
 import { FieldWrapperProps } from './types';

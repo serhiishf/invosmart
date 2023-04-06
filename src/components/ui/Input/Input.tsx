@@ -32,10 +32,12 @@ function Input(props: InputTypeProps) {
       validateEmail(e.target.value);
     }
   }
+
   function validateEmail(email: string) {
-    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    const emailRegex = /^(?!\.)(?!\s)(?:(?:"[^"]*")|[^@\s])+@[^@\s]+\.[^@\s.]+(?<!\.)(?<!\s)$/;
     setError(!emailRegex.test(email));
   }
+
   return (
     <FieldWrapper label={label} focus={isFocused} error={error}>
       <InputBase
