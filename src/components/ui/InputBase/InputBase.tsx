@@ -1,5 +1,6 @@
+import classNames from 'classnames';
 import styles from './InputBase.module.scss';
-import { InputBaseProps } from './types';
+import { InputBaseProps, PaddingSizeInputBase } from './types';
 
 function InputBase(props: InputBaseProps) {
   const {
@@ -14,6 +15,8 @@ function InputBase(props: InputBaseProps) {
     required = false,
     disabled = false,
     readonly = false,
+    paddingLeft = PaddingSizeInputBase.default,
+    paddingRight = PaddingSizeInputBase.default,
   } = props;
   return (
     <input
@@ -25,7 +28,11 @@ function InputBase(props: InputBaseProps) {
       onChange={onChange}
       onBlur={onBlur}
       onFocus={onFocus}
-      className={styles.baseInput}
+      className={classNames(
+        styles.baseInput,
+        styles[`paddingLeft_${paddingLeft}`],
+        styles[`paddingRight_${paddingRight}`]
+      )}
       required={required}
       disabled={disabled}
       readOnly={readonly}

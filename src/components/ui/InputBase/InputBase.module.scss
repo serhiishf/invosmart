@@ -21,3 +21,48 @@
     box-shadow: none;
   }
 }
+
+.paddingLeft {
+  &_zero {
+    padding-left: 0;
+  }
+
+  &_small {
+    padding-left: 10px;
+  }
+
+  &_default {
+    padding-left: 26px;
+  }
+
+  &_medium {
+    padding-left: 32px;
+  }
+
+  &_large {
+    padding-left: 54px;
+  }
+}
+
+.paddingRight {
+  &_zero {
+    padding-right: 0;
+  }
+
+  &_small {
+    padding-right: 10px;
+  }
+
+  &_default {
+    padding-right: 26px;
+    background-color: RED;
+  }
+
+  &_medium {
+    padding-right: 32px;
+  }
+
+  &_large {
+    padding-right: 54px;
+  }
+}
