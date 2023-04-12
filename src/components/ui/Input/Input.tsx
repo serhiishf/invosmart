@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { FieldWrapper, InputBase } from '../';
+import { PaddingSizeInputBase } from '../InputBase/types';
 import { InputTypeProps } from './types';
 import styles from './Input.module.scss';
 
@@ -7,6 +8,7 @@ function Input(props: InputTypeProps) {
   const {
     id,
     type = 'text',
+    view = 'default',
     name,
     label,
     value,
@@ -18,6 +20,21 @@ function Input(props: InputTypeProps) {
 
   const [isFocused, setIsFocused] = useState(false);
   const [error, setError] = useState(false);
+  let paddingLeft = PaddingSizeInputBase.default;
+  let paddingRight = PaddingSizeInputBase.default;
+
+  switch (view) {
+    case 'compact':
+      paddingLeft = PaddingSizeInputBase.small;
+      paddingRight = PaddingSizeInputBase.small;
+      break;
+    case 'search':
+      paddingLeft = PaddingSizeInputBase.large;
+      break;
+    case 'password':
+      paddingRight = PaddingSizeInputBase.large;
+      break;
+  }
 
   function handleFocus() {
     setIsFocused(true);
@@ -53,6 +70,8 @@ function Input(props: InputTypeProps) {
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
+          paddingLeft={paddingLeft}
+          paddingRight={paddingRight}
         />
       </FieldWrapper>
     </div>
