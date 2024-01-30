@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState } from 'react';
 import { FieldWrapper, InputBase } from '../';
 import { validateField } from '../../../utils/validationUtils';
 import { PaddingSizeInputBase } from '../InputBase/types';
@@ -37,16 +37,16 @@ function Input(props: InputTypeProps) {
       break;
   }
 
-  function handleFocus() {
+  function onFocusHandler() {
     setIsFocused(true);
   }
 
-  function handleBlur() {
+  function onBlurHandler() {
     setIsFocused(false);
   }
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const isValid = validateField(type, e.target.value);
+  function onChangeHandler(value: string) {
+    const isValid = validateField(type, value);
     setError(!isValid);
   }
 
@@ -62,9 +62,9 @@ function Input(props: InputTypeProps) {
           readonly={readonly}
           value={value}
           placeholder={placeholder}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
+          onFocus={onFocusHandler}
+          onBlur={onBlurHandler}
+          onChange={onChangeHandler}
           paddingLeft={paddingLeft}
           paddingRight={paddingRight}
         />

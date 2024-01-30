@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent } from 'react';
+import { FocusEvent } from 'react';
 
 export interface InputBaseProps {
   id?: string;
@@ -11,7 +11,7 @@ export interface InputBaseProps {
   readonly?: boolean;
   paddingLeft?: PaddingSizeInputBase;
   paddingRight?: PaddingSizeInputBase;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
 }
