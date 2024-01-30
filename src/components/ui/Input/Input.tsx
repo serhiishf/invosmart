@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { FieldWrapper, InputBase } from '../';
+import { validateField } from '../../../utils/validationUtils';
 import { PaddingSizeInputBase } from '../InputBase/types';
 import { InputTypeProps } from './types';
 import styles from './Input.module.scss';
@@ -45,14 +46,8 @@ function Input(props: InputTypeProps) {
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    if (type === 'email') {
-      validateEmail(e.target.value);
-    }
-  }
-
-  function validateEmail(email: string) {
-    const emailRegex = /^(?!\.)(?!\s)(?:(?:"[^"]*")|[^@\s])+@[^@\s]+\.[^@\s.]+(?<!\.)(?<!\s)$/;
-    setError(!emailRegex.test(email));
+    const isValid = validateField(type, e.target.value);
+    setError(!isValid);
   }
 
   return (
