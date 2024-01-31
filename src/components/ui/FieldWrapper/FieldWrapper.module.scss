@@ -5,6 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  &_readOnly {
+  }
 }
 
 .fieldLabel {
@@ -40,6 +42,11 @@
     color: $color-field-label_focus;
     transition: all 0.3s ease;
   }
+  &_readOnly {
+    &:after {
+      background-color: #efefef;
+    }
+  }
 }
 
 .fieldBorderWrap {
@@ -68,6 +75,11 @@
   }
 
   &_disabled {
+    background-color: $color-field-background_disabled;
+  }
+
+  &_readOnly {
+    //background-color: #efefef;
     background-color: $color-field-background_disabled;
   }
 }

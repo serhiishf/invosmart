@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { FieldWrapperProps } from './types';
 
 function FieldWrapper(props: FieldWrapperProps) {
-  const { label, children, error, focus, disabled } = props;
+  const { label, children, error, focus, disabled, readonly } = props;
   return (
     <div className={styles.fieldWrapper}>
       {label && (
@@ -11,7 +11,8 @@ function FieldWrapper(props: FieldWrapperProps) {
           className={classNames(
             styles.fieldLabel,
             error && styles.fieldLabel_error,
-            focus && styles.fieldLabel_focus
+            focus && styles.fieldLabel_focus,
+            readonly && styles.fieldLabel_readOnly
           )}
         >
           {label}
@@ -22,7 +23,8 @@ function FieldWrapper(props: FieldWrapperProps) {
           styles.fieldBorderWrap,
           error && styles.fieldBorderWrap_error,
           focus && styles.fieldBorderWrap_focus,
-          disabled && styles.fieldBorderWrap_disabled
+          disabled && styles.fieldBorderWrap_disabled,
+          readonly && styles.fieldBorderWrap_readOnly
         )}
       >
         {children}
