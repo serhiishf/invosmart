@@ -12,6 +12,7 @@ function FieldWrapper(props: FieldWrapperProps) {
             styles.fieldLabel,
             error && styles.fieldLabel_error,
             focus && styles.fieldLabel_focus,
+            disabled && styles.fieldLabel_disabled,
             readonly && styles.fieldLabel_readOnly
           )}
         >

@@ -5,8 +5,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  &_readOnly {
-  }
 }
 
 .fieldLabel {
@@ -42,9 +40,14 @@
     color: $color-field-label_focus;
     transition: all 0.3s ease;
   }
+  &_disabled {
+    &:after {
+      background-color: $color-field-background_readonly;
+    }
+  }
   &_readOnly {
     &:after {
-      background-color: #efefef;
+      background-color: $color-field-background_readonly;
     }
   }
 }
@@ -75,12 +78,13 @@
   }
 
   &_disabled {
+    border-color: $color-field-border_disabled;
     background-color: $color-field-background_disabled;
   }
 
   &_readOnly {
-    //background-color: #efefef;
-    background-color: $color-field-background_disabled;
+    border-color: $color-field-border_readonly;
+    background-color: $color-field-background_readonly;
   }
 }
 
@@ -93,9 +97,5 @@
 
   &_focus {
     border: none;
-  }
-
-  &_disabled {
-    background-color: $color-field-background_disabled;
   }
 }

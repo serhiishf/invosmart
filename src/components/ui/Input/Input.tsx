@@ -52,7 +52,13 @@ function Input(props: InputTypeProps) {
 
   return (
     <div className={styles.input}>
-      <FieldWrapper label={label} focus={isFocused} error={error} readonly={readonly}>
+      <FieldWrapper
+        label={label}
+        focus={isFocused}
+        error={error}
+        readonly={readonly}
+        disabled={disabled}
+      >
         <InputBase
           id={id}
           type={type}

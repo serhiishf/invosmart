@@ -52,6 +52,9 @@ $color-background: $_color-light-200;
 $color-white: $_color-light-100;
 $color-error: $_color-danger-600;
 $color-success: $_color-success-700;
+$color-text-dark: $_color-dark-700;
+$color-text-grey: $_color-grey-400;
+$color-text-grey-light: $_color-grey-500;
 
 /*---Field-color---*/
 $color-field-label: $_color-grey-400;
@@ -60,7 +63,10 @@ $color-field-label_error: $_color-danger-600;
 $color-field-border: $_color-grey-200;
 $color-field-border_focus: $_color-blue-100;
 $color-field-border_error: $_color-danger-600;
-$color-field-text: $_color-dark-700;
+$color-field-border_disabled: $_color-light-900;
+$color-field-border_readonly: $_color-light-900;
+$color-field-text: $color-text-dark;
 $color-field-placeholder: $_color-grey-500;
 $color-field-background: $color-white;
 $color-field-background_disabled: $_color-light-400;
+$color-field-background_readonly: $_color-light-400;
