@@ -14,12 +14,12 @@ $_color-sky-600: #eaf6fc;
 $_color-sky-700: #e8f2f5;
 
 // Notification colors
-$_color-danger-600: #fc6180;
-$_color-danger-500: #ffb74e;
-$_color-danger-400: #f6e0e8;
-
-$_color-success-700: #1ba261;
-$_color-success-500: #72c49e;
+$_color-notice-error: #fc6180;
+$_color-notice-warning: #ffb74e;
+$_color-notice-light: #f6e0e8;
+$_color-notice-neutral: #e1eef7;
+$_color-notice-success: #1ba261;
+$_color-notice-success-light: #72c49e;
 
 // Dark colors
 $_color-dark-900: #000000;
@@ -47,22 +47,22 @@ $_color-grey-400: #727779;
 $_color-grey-500: #979b9d;
 $_color-grey-600: #979797;
 
-/*---Main color----*/
+/*---Main colors----*/
 $color-background: $_color-light-200;
 $color-white: $_color-light-100;
-$color-error: $_color-danger-600;
-$color-success: $_color-success-700;
+$color-error: $_color-notice-error;
+$color-success: $_color-notice-success;
 $color-text-dark: $_color-dark-700;
 $color-text-grey: $_color-grey-400;
 $color-text-grey-light: $_color-grey-500;
 
-/*---Field-color---*/
-$color-field-label: $_color-grey-400;
+/*---Field-colors---*/
+$color-field-label: $color-text-grey;
 $color-field-label_focus: $_color-blue-100;
-$color-field-label_error: $_color-danger-600;
+$color-field-label_error: $_color-notice-error;
 $color-field-border: $_color-grey-200;
 $color-field-border_focus: $_color-blue-100;
-$color-field-border_error: $_color-danger-600;
+$color-field-border_error: $_color-notice-error;
 $color-field-border_disabled: $_color-light-900;
 $color-field-border_readonly: $_color-light-900;
 $color-field-text: $color-text-dark;
