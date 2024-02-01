@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "dom",
-      "esnext",
-      "dom.iterable"
-    ],
+    "lib": ["dom", "esnext", "dom.iterable"],
     "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
@@ -20,10 +16,7 @@
     "resolveJsonModule": true,
     "noEmit": true
   },
-  "include": [
-    "./src/**/*",
-    "styled.d.ts"
-  ],
+  "include": ["./src/**/*", "styled.d.ts"],
   "references": [
     {
       "path": "./tsconfig.node.json"
