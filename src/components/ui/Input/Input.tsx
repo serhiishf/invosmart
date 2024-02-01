@@ -4,7 +4,7 @@ import { validateField } from '../../../utils/validationUtils';
 import { PaddingSizeInputBase } from '../InputBase/types';
 import { InputTypeProps } from './types';
 import styles from './Input.module.scss';
-import AttentionIcon from '../../../assets/icons/attention.svg?react';
+import AttentionIcon from '../../icons/AttentionIcon';
 
 function Input(props: InputTypeProps) {
   const {
