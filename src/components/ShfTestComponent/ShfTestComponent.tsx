@@ -39,7 +39,14 @@ function ShfTestComponent() {
     <div className={styles.mainWrap}>
       <div className={styles.parentComponent}>
         <form action="" className={styles.form}>
-          <Input label={'Email'} type={'email'} placeholder="Email" required onChange />
+          <Input
+            label={'Email'}
+            type={'email'}
+            placeholder="Email"
+            required
+            isError
+            errorMessage="Email is required!"
+          />
           <Input label={'Password'} type="password" placeholder="Password" required />
           <Input label="Simple input" placeholder="Required=false" />
           <button onClick={handleClick}>Submit</button>

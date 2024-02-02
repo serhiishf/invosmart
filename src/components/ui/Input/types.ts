@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent } from 'react';
 
-export interface InputTypeProps {
+export interface InputProps {
   id?: string;
   type?: string;
   view?: 'default' | 'compact' | 'search' | 'password';
@@ -11,4 +11,8 @@ export interface InputTypeProps {
   required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
+  isValid?: boolean;
+  isError?: boolean;
+  errorMessage?: string;
+  onChange?: (value: string) => void;
 }

@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { FieldWrapper, InputBase } from '../';
-import { validateField } from '../../../utils/validationUtils';
 import { PaddingSizeInputBase } from '../InputBase/types';
-import { InputTypeProps } from './types';
+import { InputProps } from './types';
 import styles from './Input.module.scss';
 import AttentionIcon from '../../../assets/icons/attention.svg?react';
 
-function Input(props: InputTypeProps) {
+function Input(props: InputProps) {
   const {
     id,
     type = 'text',
@@ -18,11 +17,13 @@ function Input(props: InputTypeProps) {
     required = false,
     disabled = false,
     readonly = false,
+    isValid = true,
+    isError,
+    errorMessage,
+    onChange,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [isValid, setIsValid] = useState(true);
 
   let paddingLeft = PaddingSizeInputBase.default;
   let paddingRight = PaddingSizeInputBase.default;
@@ -48,17 +49,12 @@ function Input(props: InputTypeProps) {
     setIsFocused(false);
   }
 
-  function onChangeHandler(value: string) {
-    setIsValid(validateField(type, value));
-    setIsError(!isValid);
-  }
-
   return (
     <div className={styles.input}>
       <FieldWrapper
         label={label}
         focus={isFocused}
-        error={isError}
+        error={!isValid || isError}
         readonly={readonly}
         disabled={disabled}
       >
@@ -73,12 +69,12 @@ function Input(props: InputTypeProps) {
           placeholder={placeholder}
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
-          onChange={onChangeHandler}
+          onChange={onChange}
           paddingLeft={paddingLeft}
           paddingRight={paddingRight}
         />
         <>
-          {!isValid && (
+          {isError && (
             <div className={styles.attentionContainer}>
               <AttentionIcon className={styles.attentionContainer__icon} />
             </div>
