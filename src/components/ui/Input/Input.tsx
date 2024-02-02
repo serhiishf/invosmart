@@ -4,7 +4,7 @@ import { validateField } from '../../../utils/validationUtils';
 import { PaddingSizeInputBase } from '../InputBase/types';
 import { InputTypeProps } from './types';
 import styles from './Input.module.scss';
-import AttentionIcon from '../../icons/AttentionIcon';
+import AttentionIcon from '../../../assets/icons/attention.svg?react';
 
 function Input(props: InputTypeProps) {
   const {
@@ -75,7 +75,9 @@ function Input(props: InputTypeProps) {
           paddingLeft={paddingLeft}
           paddingRight={paddingRight}
         />
-        <AttentionIcon />
+        <div className={styles.attentionContainer}>
+          <AttentionIcon className={styles.attentionContainer__icon} />
+        </div>
       </FieldWrapper>
     </div>
   );

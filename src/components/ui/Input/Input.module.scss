@@ -7,7 +7,12 @@
   }
 }
 
-.iconAttention {
-  fill: green;
-  color: yellow;
+.attentionContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  &__icon {
+    color: $color-field-attention-icon;
+  }
 }
