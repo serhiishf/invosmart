@@ -14,6 +14,6 @@ export function validateField(type: string, value: string) {
     case 'password':
       return validatePassword(value);
     default:
-      return false;
+      return true;
   }
 }

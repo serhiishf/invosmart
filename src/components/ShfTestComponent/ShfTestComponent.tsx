@@ -6,6 +6,7 @@ function ShfTestComponent() {
   const [value, setValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [error, setError] = useState(false);
+  const [email, setEmail] = useState('');
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
@@ -29,21 +30,20 @@ function ShfTestComponent() {
   function handleBlur() {
     setIsFocused(false);
   }
+
+  function handleClick(/* e: React.MouseEvent<HTMLButtonElement> */) {
+    /* e.preventDefault(); */
+  }
+
   return (
     <div className={styles.mainWrap}>
       <div className={styles.parentComponent}>
-        <Input disabled={false} label={'Email'} type={'email'} placeholder="Email" />
-        {/* <FieldWrapper
-          label="Email"
-          error={error}
-          focus={isFocused}
-          disabled={false}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          setError={handleError}
-        >
-          <InputBase placeholder="Email" onChange={handleChange} value={value} />
-        </FieldWrapper> */}
+        <form action="" className={styles.form}>
+          <Input label={'Email'} type={'email'} placeholder="Email" required onChange />
+          <Input label={'Password'} type="password" placeholder="Password" required />
+          <Input label="Simple input" placeholder="Required=false" />
+          <button onClick={handleClick}>Submit</button>
+        </form>
       </div>
     </div>
   );

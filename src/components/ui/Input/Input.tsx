@@ -21,7 +21,9 @@ function Input(props: InputTypeProps) {
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
-  const [error, setError] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isValid, setIsValid] = useState(true);
+
   let paddingLeft = PaddingSizeInputBase.default;
   let paddingRight = PaddingSizeInputBase.default;
 
@@ -47,8 +49,8 @@ function Input(props: InputTypeProps) {
   }
 
   function onChangeHandler(value: string) {
-    const isValid = validateField(type, value);
-    setError(!isValid);
+    setIsValid(validateField(type, value));
+    setIsError(!isValid);
   }
 
   return (
@@ -56,7 +58,7 @@ function Input(props: InputTypeProps) {
       <FieldWrapper
         label={label}
         focus={isFocused}
-        error={error}
+        error={isError}
         readonly={readonly}
         disabled={disabled}
       >
@@ -75,9 +77,13 @@ function Input(props: InputTypeProps) {
           paddingLeft={paddingLeft}
           paddingRight={paddingRight}
         />
-        <div className={styles.attentionContainer}>
-          <AttentionIcon className={styles.attentionContainer__icon} />
-        </div>
+        <>
+          {!isValid && (
+            <div className={styles.attentionContainer}>
+              <AttentionIcon className={styles.attentionContainer__icon} />
+            </div>
+          )}
+        </>
       </FieldWrapper>
     </div>
   );

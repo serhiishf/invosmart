@@ -41,7 +41,6 @@ function InputBase(props: InputBaseProps) {
         styles.baseInput,
         styles[`paddingLeft_${paddingLeft}`],
         styles[`paddingRight_${paddingRight}`]
-        /* readonly && styles.readOnly */
       )}
       required={required}
       disabled={disabled}

@@ -7,3 +7,9 @@
 .parentComponent {
   height: 148px;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+}
