@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FieldWrapper, InputBase } from '../';
-import { PaddingSizeInputBase } from '../InputBase/types';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
 import AttentionIcon from '../../../assets/icons/attention.svg?react';
@@ -10,7 +9,6 @@ function Input(props: InputProps) {
   const {
     id,
     type = 'text',
-    view = 'default',
     name,
     label,
     value,
@@ -26,22 +24,6 @@ function Input(props: InputProps) {
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
-
-  let paddingLeft = PaddingSizeInputBase.default;
-  let paddingRight = PaddingSizeInputBase.default;
-
-  switch (view) {
-    case 'compact':
-      paddingLeft = PaddingSizeInputBase.small;
-      paddingRight = PaddingSizeInputBase.small;
-      break;
-    case 'search':
-      paddingLeft = PaddingSizeInputBase.large;
-      break;
-    case 'password':
-      paddingRight = PaddingSizeInputBase.large;
-      break;
-  }
 
   function onFocusHandler() {
     setIsFocused(true);
@@ -79,8 +61,7 @@ function Input(props: InputProps) {
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
           onChange={onChange}
-          paddingLeft={paddingLeft}
-          paddingRight={paddingRight}
+          className={classNames(!!Icon && styles.inputBaseProps)}
         />
         <>
           {isError && (

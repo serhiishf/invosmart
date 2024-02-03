@@ -1,9 +1,8 @@
-import { ChangeEvent, FocusEvent, ReactElement, FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 export interface InputProps {
   id?: string;
   type?: string;
-  view?: 'default' | 'compact' | 'search' | 'password';
   name?: string;
   label?: string;
   value?: string;

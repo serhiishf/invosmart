@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import styles from './InputBase.module.scss';
-import { InputBaseProps, PaddingSizeInputBase } from './types';
+import { InputBaseProps } from './types';
 
 function InputBase(props: InputBaseProps) {
   const {
@@ -16,8 +16,6 @@ function InputBase(props: InputBaseProps) {
     required = false,
     disabled = false,
     readonly = false,
-    paddingLeft = PaddingSizeInputBase.default,
-    paddingRight = PaddingSizeInputBase.default,
     className,
   } = props;
 
@@ -25,7 +23,9 @@ function InputBase(props: InputBaseProps) {
 
   function onChangeHandler(e: ChangeEvent<HTMLInputElement>) {
     setCurrentValue(e.target.value);
-    onChange(currentValue);
+    if (onChange) {
+      onChange(currentValue);
+    }
   }
 
   return (
@@ -38,11 +38,7 @@ function InputBase(props: InputBaseProps) {
       onChange={onChangeHandler}
       onBlur={onBlur}
       onFocus={onFocus}
-      className={classNames(
-        styles.baseInput,
-        styles[`paddingLeft_${paddingLeft}`],
-        styles[`paddingRight_${paddingRight}`]
-      )}
+      className={classNames(styles.inputBase, className)}
       required={required}
       disabled={disabled}
       readOnly={readonly}

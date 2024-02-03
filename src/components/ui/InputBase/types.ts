@@ -9,18 +9,8 @@ export interface InputBaseProps {
   required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
-  paddingLeft?: PaddingSizeInputBase;
-  paddingRight?: PaddingSizeInputBase;
   className?: string;
   onChange?: (value: string) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
-}
-
-export enum PaddingSizeInputBase {
-  zero = 'zero',
-  small = 'small',
-  default = 'default',
-  medium = 'medium',
-  large = 'large',
 }
