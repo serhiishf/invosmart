@@ -18,6 +18,7 @@ function InputBase(props: InputBaseProps) {
     readonly = false,
     paddingLeft = PaddingSizeInputBase.default,
     paddingRight = PaddingSizeInputBase.default,
+    className,
   } = props;
 
   const [currentValue, setCurrentValue] = useState(value);

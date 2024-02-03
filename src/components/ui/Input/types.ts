@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent } from 'react';
+import { ChangeEvent, FocusEvent, ReactElement, FunctionComponent } from 'react';
 
 export interface InputProps {
   id?: string;
@@ -15,4 +15,5 @@ export interface InputProps {
   isError?: boolean;
   errorMessage?: string;
   onChange?: (value: string) => void;
+  Icon?: FunctionComponent;
 }

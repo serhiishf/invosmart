@@ -16,3 +16,12 @@
     color: $color-field-attention-icon;
   }
 }
+
+.staticIconLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 25px;
+  padding-right: 8px;
+  color: $color-field-static-icon;
+}

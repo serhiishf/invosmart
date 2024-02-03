@@ -11,6 +11,7 @@ export interface InputBaseProps {
   readonly?: boolean;
   paddingLeft?: PaddingSizeInputBase;
   paddingRight?: PaddingSizeInputBase;
+  className?: string;
   onChange?: (value: string) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;

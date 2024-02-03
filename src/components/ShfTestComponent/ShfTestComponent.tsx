@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import { FieldWrapper, InputBase, Input } from '../ui';
 import styles from './ShfTestComponent.module.scss';
+import SearchIcon from '../../assets/icons/search.svg?react';
 
 function ShfTestComponent() {
   const [value, setValue] = useState('');
@@ -46,6 +47,7 @@ function ShfTestComponent() {
             required
             isError
             errorMessage="Email is required!"
+            Icon={SearchIcon}
           />
           <Input label={'Password'} type="password" placeholder="Password" required />
           <Input label="Simple input" placeholder="Required=false" />

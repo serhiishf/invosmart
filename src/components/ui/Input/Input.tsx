@@ -4,6 +4,7 @@ import { PaddingSizeInputBase } from '../InputBase/types';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
 import AttentionIcon from '../../../assets/icons/attention.svg?react';
+import classNames from 'classnames';
 
 function Input(props: InputProps) {
   const {
@@ -21,6 +22,7 @@ function Input(props: InputProps) {
     isError,
     errorMessage,
     onChange,
+    Icon,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -58,6 +60,13 @@ function Input(props: InputProps) {
         readonly={readonly}
         disabled={disabled}
       >
+        <>
+          {Icon && (
+            <div className={styles.staticIconLeft}>
+              <Icon />
+            </div>
+          )}
+        </>
         <InputBase
           id={id}
           type={type}
