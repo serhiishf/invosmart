@@ -1,0 +1,14 @@
+.iconButton {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: $iconButtonBackgroundColorHover;
+  }
+  &:active {
+    background-color: $iconButtonBackgroundColorActive;
+  }
+}
