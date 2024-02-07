@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FieldWrapper, InputBase } from '../';
+import { FieldWrapper, InputBase, Tooltip } from '../';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
 import AttentionIcon from '../../../assets/icons/attention.svg?react';
@@ -67,6 +67,13 @@ function Input(props: InputProps) {
           {isError && (
             <div className={styles.attentionContainer}>
               <AttentionIcon className={styles.attentionContainer__icon} />
+            </div>
+          )}
+        </>
+        <>
+          {errorMessage && (
+            <div className={styles.tooltipContainer}>
+              <Tooltip tooltipMessage={errorMessage} />
             </div>
           )}
         </>
