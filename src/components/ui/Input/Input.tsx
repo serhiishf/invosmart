@@ -73,7 +73,7 @@ function Input(props: InputProps) {
         <>
           {errorMessage && (
             <div className={styles.tooltipContainer}>
-              <Tooltip tooltipMessage={errorMessage} />
+              <Tooltip tooltipMessage={errorMessage} arrow="left" isError={isError} />
             </div>
           )}
         </>

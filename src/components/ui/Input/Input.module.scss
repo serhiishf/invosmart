@@ -18,13 +18,22 @@
   }
 }
 
+.attentionContainer:hover + .tooltipContainer {
+  display: inline-block;
+}
+
 .tooltipContainer {
   position: absolute;
-  display: inline-block;
+  /* display: none; */
   max-width: 260px;
   height: auto;
-  top: 30px;
-  right: 10px;
+  top: 59px;
+  right: -5px;
+  transform: translate(0, -50%);
+  z-index: $z-index-overlay;
+  @include for-size-up(desktop) {
+    top: 54px;
+  }
 }
 
 .staticIconLeft {

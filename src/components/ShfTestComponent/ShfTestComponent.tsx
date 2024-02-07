@@ -46,7 +46,7 @@ function ShfTestComponent() {
             placeholder="Email"
             required
             isError
-            errorMessage="Email is required!"
+            errorMessage="Email is required! Lorem sidjaosd kas aksdf udfk dfsiodfosd"
             Icon={SearchIcon}
           />
           <Input label={'Password'} type="password" placeholder="Password" required />

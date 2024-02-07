@@ -1,31 +1,32 @@
 import styles from './Tooltip.module.scss';
 import { TooltipProps } from './types';
 import classNames from 'classnames';
+import ArrowIcon from '../../../assets/icons/arrow.svg?react';
 
 function Tooltip(props: TooltipProps) {
-  const { tooltipMessage, arrow } = props;
+  const { tooltipMessage, arrow, isError } = props;
 
   const directionClassMap = {
-    left: 'triangleLeft',
-    right: 'triangleRight',
-    topRight: 'triangleTopRight',
-    topLeft: 'triangleTopLeft',
-    bottomRight: 'triangleBottomRight',
-    bottomLeft: 'triangleBottomLeft',
-    none: 'triangleNone',
+    left: 'arrowLeft',
+    right: 'arrowRight',
+    topRight: 'arrowTopRight',
+    topLeft: 'arrowTopLeft',
+    bottomRight: 'arrowBottomRight',
+    bottomLeft: 'arrowBottomLeft',
+    none: 'arrowNone',
   };
 
   const directionKey = arrow ? arrow : 'none';
 
-  const triangleDirectionClass = styles[directionClassMap[directionKey]];
+  const arrowDirectionClass = styles[directionClassMap[directionKey]];
 
   return (
-    <div className={styles.tooltip}>
+    <div className={classNames(styles.tooltip, isError && styles.tooltipIsError)}>
       <div className={styles.tooltipMessage}>{tooltipMessage}</div>
       {arrow && (
-        <div className={styles.triangleContainer}>
-          <div className={classNames(styles.triangle, triangleDirectionClass)}></div>
-        </div>
+        <ArrowIcon
+          className={classNames(styles.arrow, isError && styles.arrowIsError, arrowDirectionClass)}
+        />
       )}
     </div>
   );

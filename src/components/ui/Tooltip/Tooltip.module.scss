@@ -12,58 +12,49 @@
   padding: 8px 12px;
 }
 
-.triangle {
-  width: 0;
-  height: 0;
+.tooltipIsError {
+  background-color: $tooltipColorIsError;
+}
+
+.arrow {
   position: absolute;
 }
 
-.triangleLeft {
-  top: 50%;
-  right: 100%;
-  transform: translate(0, -50%);
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  border-right: 8px solid $tooltipBackground;
+.arrowIsError {
+  color: $tooltipColorIsError;
 }
 
-.triangleRight {
+.arrowLeft {
+  top: 50%;
+  right: 95%;
+  transform: translateX(0) translateY(-50%) rotate(270deg);
+}
+
+.arrowRight {
   top: 50%;
   left: 100%;
-  transform: translate(0, -50%);
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  border-left: 8px solid $tooltipBackground;
+  transform: rotate(90deg);
+  /* transform: translate(0, -50%); */
 }
 
-.triangleTopRight {
-  bottom: 100%;
-  right: 16px;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 8px solid $tooltipBackground;
+.arrowTopRight {
+  bottom: 98%;
+  right: 12px;
 }
 
-.triangleTopLeft {
-  bottom: 100%;
-  left: 16px;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 8px solid $tooltipBackground;
+.arrowTopLeft {
+  bottom: 98%;
+  left: 12px;
 }
 
-.triangleBottomRight {
-  top: 100%;
-  right: 16px;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 8px solid $tooltipBackground;
+.arrowBottomRight {
+  top: 98%;
+  right: 12px;
+  transform: rotate(180deg);
 }
 
-.triangleBottomLeft {
-  top: 100%;
-  left: 16px;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 8px solid $tooltipBackground;
+.arrowBottomLeft {
+  top: 98%;
+  left: 12px;
+  transform: rotate(180deg);
 }
