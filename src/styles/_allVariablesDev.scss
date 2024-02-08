@@ -75,7 +75,7 @@ $line-height-short: 1.25;
 $line-height-base: 1.5;
 $line-height-tall: 2;
 
-/* Z-Index Variables---------------------- */
+/* Z-INDEX---------------------- */
 
 $z-index-below: -1;
 $z-index-default: 1;
@@ -87,6 +87,9 @@ $z-index-notification: 5000;
 
 // Default settings
 $border-radius-base: 6px;
+
+/* ANIMATION--------------------- */
+$animationDefault: 0.3s ease;
 
 /* COMPONENTS---------------------------- */
 
@@ -109,27 +112,13 @@ $fieldWrapperBackgroundColorDisabled: $_color-light-400;
 $fieldWrapperBackgroundColorReadonly: $_color-light-400;
 $fieldWrapperZIndexDefault: $z-index-default;
 $fieldWrapperZIndexBellow: $z-index-below;
+$fieldWrapperAnimation: $animationDefault;
 
 /*---Input component---*/
 $inputAttentionIconColor: $_color-notice-error;
 $inputTooltipZIndex: $z-index-overlay;
 $inputStaticIconColor: $_color-grey-300;
-
-$color-field-label: $color-text-grey;
-$color-field-label_focus: $_color-blue-100;
-$color-field-label_error: $_color-notice-error;
-$color-field-border: $_color-grey-200;
-$color-field-border_focus: $_color-blue-100;
-$color-field-border_error: $_color-notice-error;
-$color-field-border_disabled: $_color-light-900;
-$color-field-border_readonly: $_color-light-900;
-$color-field-text: $color-text-dark;
-$color-field-placeholder: $_color-grey-500;
-$color-field-background: $color-white;
-$color-field-background_disabled: $_color-light-400;
-$color-field-background_readonly: $_color-light-400;
-$color-field-attention-icon: $_color-notice-error;
-$color-field-static-icon: $_color-grey-300;
+$inputAnimation: $animationDefault;
 
 /*----Icon-Button---*/
 $iconButtonBackgroundColorHover: $_color-light-500;
@@ -142,3 +131,9 @@ $tooltipColorIsError: $color-error;
 $tooltipFontSize: 11px;
 $tooltipFontWeight: 600;
 $tooltipFont: $font-family-primary;
+
+/* ---InputBase */
+$inputBaseFontFamily: $font-family-primary;
+$inputBaseFontSize: $font-size-base;
+$inputBaseTextColor: $color-text-dark;
+$inputBasePlaceholderColor: $_color-grey-500;

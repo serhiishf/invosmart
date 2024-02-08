@@ -3,17 +3,17 @@
   height: 100%;
   outline: none;
   box-shadow: none;
-  font-family: $font-family-primary;
-  font-size: $font-size-base;
+  font-family: $inputBaseFontFamily;
+  font-size: $inputBaseFontSize;
   font-weight: 500;
-  color: $color-field-text;
+  color: $inputBaseTextColor;
   background-color: transparent;
   border: none;
   padding-left: 26px;
   padding-right: 26px;
 
   &::placeholder {
-    color: $color-field-placeholder;
+    color: $inputBasePlaceholderColor;
   }
 
   &:focus {

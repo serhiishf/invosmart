@@ -19,17 +19,21 @@
 }
 
 .attentionContainer:hover + .tooltipContainer {
-  display: inline-block;
+  visibility: visible;
+  opacity: 1;
+  transition: all $inputAnimation;
 }
 
 .tooltipContainer {
   position: absolute;
-  /* display: none; */
+  visibility: hidden;
+  opacity: 0;
   max-width: 260px;
   height: auto;
   top: 42px;
   right: -5px;
   z-index: $inputTooltipZIndex;
+  transition: all $inputAnimation;
   @include for-size-up(desktop) {
     top: 38px;
   }
