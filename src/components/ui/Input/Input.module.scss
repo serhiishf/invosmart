@@ -27,12 +27,11 @@
   /* display: none; */
   max-width: 260px;
   height: auto;
-  top: 59px;
+  top: 42px;
   right: -5px;
-  transform: translate(0, -50%);
   z-index: $z-index-overlay;
   @include for-size-up(desktop) {
-    top: 54px;
+    top: 38px;
   }
 }
 
