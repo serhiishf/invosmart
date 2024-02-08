@@ -14,7 +14,7 @@
   padding: 8px;
 
   &__icon {
-    color: $color-field-attention-icon;
+    color: $inputAttentionIconColor;
   }
 }
 
@@ -29,7 +29,7 @@
   height: auto;
   top: 42px;
   right: -5px;
-  z-index: $z-index-overlay;
+  z-index: $inputTooltipZIndex;
   @include for-size-up(desktop) {
     top: 38px;
   }
@@ -41,7 +41,7 @@
   align-items: center;
   padding-left: 25px;
   padding-right: 8px;
-  color: $color-field-static-icon;
+  color: $inputStaticIconColor;
 }
 
 .inputBaseProps {

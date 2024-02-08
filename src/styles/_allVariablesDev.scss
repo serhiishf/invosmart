@@ -1,0 +1,144 @@
+/* COLORS--------------------------------- */
+
+// Blue colors
+$_color-blue-100: #30a5e0;
+$_color-blue-200: #2197d1;
+$_color-blue-300: #0689c9;
+$_color-blue-400: #2684b3;
+
+// Sky colors
+$_color-sky-100: #acdbf3;
+$_color-sky-200: #92cded;
+$_color-sky-300: #e1eef7;
+$_color-sky-400: #cee6f5;
+$_color-sky-500: #badef2;
+$_color-sky-600: #eaf6fc;
+$_color-sky-700: #e8f2f5;
+
+// Notification colors
+$_color-notice-error: #fc6180;
+$_color-notice-warning: #ffb74e;
+$_color-notice-light: #f6e0e8;
+$_color-notice-neutral: #e1eef7;
+$_color-notice-success: #1ba261;
+$_color-notice-success-light: #72c49e;
+
+// Dark colors
+$_color-dark-900: #000000;
+$_color-dark-800: #252932;
+$_color-dark-700: #2e2f31;
+$_color-dark-600: #3b4548;
+$_color-dark-500: #4c5457;
+
+// Light colors
+$_color-light-100: #ffffff;
+$_color-light-200: #f5f6fa;
+$_color-light-300: #f5f8f9;
+$_color-light-400: #efefef;
+$_color-light-500: #e9eaf0;
+$_color-light-600: #e9ecf0;
+$_color-light-700: #dee1e6;
+$_color-light-800: #d8dae3;
+$_color-light-900: #e0e4e6;
+
+// Grey colors
+$_color-grey-100: #b8c5cb;
+$_color-grey-200: #c2cacd;
+$_color-grey-300: #818e94;
+$_color-grey-400: #727779;
+$_color-grey-500: #979b9d;
+$_color-grey-600: #979797;
+
+/*---Main colors----*/
+$color-background: $_color-light-200;
+$color-white: $_color-light-100;
+$color-error: $_color-notice-error;
+$color-success: $_color-notice-success;
+$color-text-dark: $_color-dark-700;
+$color-text-grey: $_color-grey-400;
+$color-text-grey-light: $_color-grey-500;
+
+/* FONTS--------------------------------- */
+
+$font-family-primary: 'Montserrat', sans-serif;
+$font-family-secondary: 'Roboto', sans-serif;
+
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.5rem; // 24px
+$font-size-2xl: 2rem; // 32px
+
+$line-height-none: 1;
+$line-height-short: 1.25;
+$line-height-base: 1.5;
+$line-height-tall: 2;
+
+/* Z-Index Variables---------------------- */
+
+$z-index-below: -1;
+$z-index-default: 1;
+$z-index-dropdown: 1000;
+$z-index-overlay: 2000;
+$z-index-modal: 3000;
+$z-index-tooltip: 4000;
+$z-index-notification: 5000;
+
+// Default settings
+$border-radius-base: 6px;
+
+/* COMPONENTS---------------------------- */
+
+/*---Field Wrapper component---*/
+$fieldWrapperFont: $font-family-primary;
+$fieldWrapperFontSize: $font-size-xs;
+$fieldWrapperLabelColor: $color-text-grey;
+$fieldWrapperLabelBackgroundColor: $color-white;
+$fieldWrapperLabelColorError: $_color-notice-error;
+$fieldWrapperLabelColorFocus: $_color-blue-100;
+$fiedlWrapperLabelBackgroundColorReadonly: $_color-light-400;
+$fieldWrapperBorderColor: $_color-grey-200;
+$fieldWrapperBorderColorError: $_color-notice-error;
+$fieldWrapperBorderColorFocus: $_color-blue-100;
+$fieldWrapperBorderColorDissabled: $_color-light-900;
+$fieldWrapperBorderColorReadonly: $_color-light-900;
+$fieldWrapperBorderRadius: $border-radius-base;
+$fieldWrapperBackgroundColor: $color-white;
+$fieldWrapperBackgroundColorDisabled: $_color-light-400;
+$fieldWrapperBackgroundColorReadonly: $_color-light-400;
+$fieldWrapperZIndexDefault: $z-index-default;
+$fieldWrapperZIndexBellow: $z-index-below;
+
+/*---Input component---*/
+$inputAttentionIconColor: $_color-notice-error;
+$inputTooltipZIndex: $z-index-overlay;
+$inputStaticIconColor: $_color-grey-300;
+
+$color-field-label: $color-text-grey;
+$color-field-label_focus: $_color-blue-100;
+$color-field-label_error: $_color-notice-error;
+$color-field-border: $_color-grey-200;
+$color-field-border_focus: $_color-blue-100;
+$color-field-border_error: $_color-notice-error;
+$color-field-border_disabled: $_color-light-900;
+$color-field-border_readonly: $_color-light-900;
+$color-field-text: $color-text-dark;
+$color-field-placeholder: $_color-grey-500;
+$color-field-background: $color-white;
+$color-field-background_disabled: $_color-light-400;
+$color-field-background_readonly: $_color-light-400;
+$color-field-attention-icon: $_color-notice-error;
+$color-field-static-icon: $_color-grey-300;
+
+/*----Icon-Button---*/
+$iconButtonBackgroundColorHover: $_color-light-500;
+$iconButtonBackgroundColorActive: $_color-light-800;
+
+/*----Tooltip */
+$tooltipBackground: $_color-dark-600;
+$tooltipTextColor: $color-white;
+$tooltipColorIsError: $color-error;
+$tooltipFontSize: 11px;
+$tooltipFontWeight: 600;
+$tooltipFont: $font-family-primary;
