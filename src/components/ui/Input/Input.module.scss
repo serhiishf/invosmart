@@ -12,10 +12,10 @@
   justify-content: center;
   align-items: center;
   padding: 8px;
+}
 
-  &__icon {
-    color: $inputAttentionIconColor;
-  }
+.attentionIcon {
+  color: $inputAttentionIconColor;
 }
 
 .attentionContainer:hover + .tooltipContainer {
@@ -50,4 +50,15 @@
 
 .inputBaseProps {
   padding-left: 0px;
+}
+
+.passwordButtonContainer {
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.passwordButtonWrap {
+  width: 34px;
 }

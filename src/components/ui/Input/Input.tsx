@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { FieldWrapper, InputBase, Tooltip } from '../';
+import { FieldWrapper, InputBase, Tooltip, IconButton } from '../';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
 import AttentionIcon from '../../../assets/icons/attention.svg?react';
+import ShowPasswordIcon from '../../../assets/icons/eye.svg?react';
+import HidePasswordIcon from '../../../assets/icons/eyeSlash.svg?react';
 import classNames from 'classnames';
 
 function Input(props: InputProps) {
@@ -24,6 +26,7 @@ function Input(props: InputProps) {
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   function onFocusHandler() {
     setIsFocused(true);
@@ -64,9 +67,18 @@ function Input(props: InputProps) {
           className={classNames(!!Icon && styles.inputBaseProps)}
         />
         <>
+          {type === 'password' && (
+            <div className={classNames(styles.passwordButtonContainer)}>
+              <div className={classNames(styles.passwordButtonWrap)}>
+                <IconButton Icon={ShowPasswordIcon} />
+              </div>
+            </div>
+          )}
+        </>
+        <>
           {isError && (
             <div className={styles.attentionContainer}>
-              <AttentionIcon className={styles.attentionContainer__icon} />
+              <AttentionIcon className={styles.attentionIcon} />
             </div>
           )}
         </>
