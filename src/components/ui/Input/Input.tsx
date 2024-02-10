@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldWrapper, InputBase, Tooltip, IconButton } from '../';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
@@ -18,15 +18,15 @@ function Input(props: InputProps) {
     required = false,
     disabled = false,
     readonly = false,
-    isValid = true,
-    isError,
+    isError = false,
     errorMessage,
     onChange,
-    Icon,
+    PrefixIcon,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [currentInputType, setCurrentInputType] = useState(type);
 
   function onFocusHandler() {
     setIsFocused(true);
@@ -36,25 +36,40 @@ function Input(props: InputProps) {
     setIsFocused(false);
   }
 
+  function passwordButtonHandler() {
+    setIsPasswordVisible(!isPasswordVisible);
+  }
+
+  useEffect(() => {
+    if (type === 'password') {
+      const newInputType = isPasswordVisible ? 'text' : 'password';
+      setCurrentInputType(newInputType);
+    }
+  }, [isPasswordVisible]);
+
   return (
     <div className={styles.input}>
       <FieldWrapper
         label={label}
         focus={isFocused}
-        error={!isValid || isError}
+        error={isError}
         readonly={readonly}
         disabled={disabled}
       >
         <>
-          {Icon && (
-            <div className={styles.staticIconLeft}>
-              <Icon />
+          {PrefixIcon && (
+            <div className={styles.prefixContainer}>
+              {PrefixIcon && (
+                <div className={styles.staticPrefixIcon}>
+                  <PrefixIcon />
+                </div>
+              )}
             </div>
           )}
         </>
         <InputBase
           id={id}
-          type={type}
+          type={currentInputType}
           name={name}
           required={required}
           disabled={disabled}
@@ -64,30 +79,31 @@ function Input(props: InputProps) {
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
           onChange={onChange}
-          className={classNames(!!Icon && styles.inputBaseProps)}
+          className={classNames(!!PrefixIcon && styles.inputBaseProps)}
         />
         <>
-          {type === 'password' && (
-            <div className={classNames(styles.passwordButtonContainer)}>
-              <div className={classNames(styles.passwordButtonWrap)}>
-                <IconButton Icon={ShowPasswordIcon} />
+          <div className={styles.suffixContainer}>
+            {type === 'password' && (
+              <div className={classNames(styles.passwordButtonContainer)}>
+                <div className={classNames(styles.passwordButtonWrap)}>
+                  <IconButton
+                    Icon={isPasswordVisible ? HidePasswordIcon : ShowPasswordIcon}
+                    onClick={passwordButtonHandler}
+                  />
+                </div>
               </div>
-            </div>
-          )}
-        </>
-        <>
-          {isError && (
-            <div className={styles.attentionContainer}>
-              <AttentionIcon className={styles.attentionIcon} />
-            </div>
-          )}
-        </>
-        <>
-          {errorMessage && (
-            <div className={styles.tooltipContainer}>
-              <Tooltip tooltipMessage={errorMessage} arrow="topRight" isError={isError} />
-            </div>
-          )}
+            )}
+            {errorMessage && (
+              <>
+                <div className={styles.attentionContainer}>
+                  <AttentionIcon className={styles.attentionIcon} />
+                </div>
+                <div className={styles.tooltipContainer}>
+                  <Tooltip tooltipMessage={errorMessage} arrow="topRight" isError={isError} />
+                </div>
+              </>
+            )}
+          </div>
         </>
       </FieldWrapper>
     </div>

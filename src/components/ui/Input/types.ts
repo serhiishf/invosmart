@@ -10,9 +10,8 @@ export interface InputProps {
   required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
-  isValid?: boolean;
   isError?: boolean;
   errorMessage?: string;
   onChange?: (value: string) => void;
-  Icon?: FunctionComponent;
+  PrefixIcon?: FunctionComponent;
 }

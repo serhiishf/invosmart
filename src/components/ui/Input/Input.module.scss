@@ -6,6 +6,34 @@
   }
 }
 
+.prefixContainer {
+  padding-left: 25px;
+  padding-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.staticPrefixIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $inputStaticIconColor;
+}
+
+.inputBaseProps {
+  padding-left: 0px;
+}
+
+.suffixContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 4px;
+  gap: 4px;
+}
+
 .attentionContainer {
   position: relative;
   display: flex;
@@ -39,26 +67,24 @@
   }
 }
 
-.staticIconLeft {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 25px;
-  padding-right: 8px;
-  color: $inputStaticIconColor;
-}
-
-.inputBaseProps {
-  padding-left: 0px;
-}
-
 .passwordButtonContainer {
-  padding: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .passwordButtonWrap {
+  color: $inputPasswordButtonColorDefault;
   width: 34px;
+  transition: all $inputAnimation;
+  &:hover {
+    color: $inputPasswordButtonColorHover;
+    transition: all $inputAnimation;
+  }
+  &:active {
+    color: $inputPasswordButtonColorActive;
+  }
+  @include for-size-up(desktop) {
+    scale: 80%;
+  }
 }

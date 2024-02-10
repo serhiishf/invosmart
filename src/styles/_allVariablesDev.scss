@@ -119,10 +119,14 @@ $inputAttentionIconColor: $_color-notice-error;
 $inputTooltipZIndex: $z-index-overlay;
 $inputStaticIconColor: $_color-grey-300;
 $inputAnimation: $animationDefault;
+$inputPasswordButtonColorDefault: $_color-grey-400;
+$inputPasswordButtonColorHover: $_color-dark-500;
+$inputPasswordButtonColorActive: $_color-dark-700;
 
 /*----Icon-Button---*/
 $iconButtonBackgroundColorHover: $_color-light-500;
 $iconButtonBackgroundColorActive: $_color-light-800;
+$iconButtonAnimation: $animationDefault;
 
 /*----Tooltip */
 $tooltipBackground: $_color-dark-600;
