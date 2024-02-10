@@ -46,24 +46,25 @@
   color: $inputAttentionIconColor;
 }
 
-.attentionContainer:hover + .tooltipContainer {
+.attentionContainer:hover .tooltipWrap {
   visibility: visible;
   opacity: 1;
   transition: all $inputAnimation;
 }
 
-.tooltipContainer {
+.tooltipWrap {
   position: absolute;
   visibility: hidden;
   opacity: 0;
   max-width: 260px;
+  width: max-content;
   height: auto;
-  top: 42px;
+  top: 35px;
   right: -5px;
   z-index: $inputTooltipZIndex;
   transition: all $inputAnimation;
   @include for-size-up(desktop) {
-    top: 38px;
+    top: 35px;
   }
 }
 

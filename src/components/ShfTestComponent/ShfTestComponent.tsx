@@ -55,7 +55,7 @@ function ShfTestComponent() {
             placeholder="Password"
             required
             isError={true}
-            errorMessage='Some text 3 word in row'
+            errorMessage="Some text 3 word in row"
           />
           <Input label="Simple input" placeholder="Required=false" />
           <Tooltip tooltipMessage="Very big long text for yooltip with many many textr containing in this message which helps user understand what is w" />

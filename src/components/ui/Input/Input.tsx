@@ -45,7 +45,7 @@ function Input(props: InputProps) {
       const newInputType = isPasswordVisible ? 'text' : 'password';
       setCurrentInputType(newInputType);
     }
-  }, [isPasswordVisible]);
+  }, [isPasswordVisible, type]);
 
   return (
     <div className={styles.input}>
@@ -89,6 +89,11 @@ function Input(props: InputProps) {
                   <IconButton
                     Icon={isPasswordVisible ? HidePasswordIcon : ShowPasswordIcon}
                     onClick={passwordButtonHandler}
+                    tooltipMessage={
+                      isPasswordVisible
+                        ? 'TRANSLATE Hide passwordTRANSLATE Hide password'
+                        : 'TRANSLATE Show password'
+                    }
                   />
                 </div>
               </div>
@@ -97,9 +102,9 @@ function Input(props: InputProps) {
               <>
                 <div className={styles.attentionContainer}>
                   <AttentionIcon className={styles.attentionIcon} />
-                </div>
-                <div className={styles.tooltipContainer}>
-                  <Tooltip tooltipMessage={errorMessage} arrow="topRight" isError={isError} />
+                  <div className={styles.tooltipWrap}>
+                    <Tooltip tooltipMessage={errorMessage} arrow="topRight" isError={isError} />
+                  </div>
                 </div>
               </>
             )}

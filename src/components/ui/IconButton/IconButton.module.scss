@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   transition: all $iconButtonAnimation;
+  position: relative;
   &:hover {
     background-color: $iconButtonBackgroundColorHover;
     transition: all $iconButtonAnimation;
@@ -14,5 +15,30 @@
   &:active {
     background-color: $iconButtonBackgroundColorActive;
     transition: all $iconButtonAnimation;
+  }
+}
+
+.iconButton:hover .tooltipWrap {
+  visibility: visible;
+  opacity: 1;
+  transition: all $inputAnimation;
+}
+
+.tooltipContainer {
+  position: relative;
+}
+
+.tooltipWrap {
+  position: absolute;
+  width: max-content;
+  visibility: hidden;
+  opacity: 0;
+  top: 42px;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: $inputTooltipZIndex;
+  transition: all $inputAnimation;
+  @include for-size-up(desktop) {
+    top: 39px;
   }
 }
