@@ -28,6 +28,9 @@ function Input(props: InputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [currentInputType, setCurrentInputType] = useState(type);
 
+  const IconButtonContent = isPasswordVisible ? HidePasswordIcon : ShowPasswordIcon;
+  const tooltipMessage = isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password';
+
   function onFocusHandler() {
     setIsFocused(true);
   }
@@ -86,26 +89,22 @@ function Input(props: InputProps) {
             {type === 'password' && (
               <div className={classNames(styles.passwordButtonContainer)}>
                 <div className={classNames(styles.passwordButtonWrap)}>
-                  <IconButton
-                    Icon={isPasswordVisible ? HidePasswordIcon : ShowPasswordIcon}
-                    onClick={passwordButtonHandler}
-                    tooltipMessage={
-                      isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password'
-                    }
-                  />
+                  <IconButton onClick={passwordButtonHandler} tooltipMessage={tooltipMessage}>
+                    <IconButtonContent className={styles.passwordButtonIcon} />
+                  </IconButton>
                 </div>
               </div>
             )}
-            {errorMessage && (
-              <>
+            <>
+              {errorMessage && (
                 <div className={styles.attentionContainer}>
                   <AttentionIcon className={styles.attentionIcon} />
                   <div className={styles.tooltipWrap}>
                     <Tooltip tooltipMessage={errorMessage} arrow="topRight" isError={isError} />
                   </div>
                 </div>
-              </>
-            )}
+              )}
+            </>
           </div>
         </>
       </FieldWrapper>

@@ -37,12 +37,12 @@
   width: max-content;
   visibility: hidden;
   opacity: 0;
-  top: 42px;
+  top: calc(100% + 8px);
   right: 50%;
   transform: translateX(50%);
-  z-index: $iconButtonZIndex;
+  z-index: $inputTooltipZIndex;
   transition: all $iconButtonAnimation;
   @include for-size-up(desktop) {
-    top: 39px;
+    top: calc(100% + 8px);
   }
 }

@@ -1,7 +1,5 @@
-import { FunctionComponent } from 'react';
-
 export interface IconButtonProps {
-  Icon?: FunctionComponent;
   tooltipMessage?: string;
   onClick?: () => void;
+  children?: React.ReactElement | React.ReactElement[];
 }

@@ -84,7 +84,7 @@
 
 .passwordButtonWrap {
   color: $inputPasswordButtonColorDefault;
-  width: 34px;
+  width: 42px;
   transition: all $inputAnimation;
   &:hover {
     color: $inputPasswordButtonColorHover;
@@ -93,6 +93,12 @@
   &:active {
     color: $inputPasswordButtonColorActive;
   }
+  @include for-size-up(desktop) {
+    width: 34px;
+  }
+}
+
+.passwordButtonIcon {
   @include for-size-up(desktop) {
     scale: 80%;
   }
