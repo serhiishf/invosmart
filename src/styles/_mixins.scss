@@ -1,16 +1,15 @@
 $breakpoints: (
-  'xs': 320px,
-  'mobile': 360px,
-  'tablet': 1024px,
-  'desktop': 1368px,
+  'xs': 320,
+  'mobile': 360,
+  'tablet': 768,
+  'desktop': 1024,
 );
-
 
 @mixin for-size-up($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $breakpoint-value: map-get($breakpoints, $breakpoint);
-    
-    @media (min-width: $breakpoint-value) {
+
+    @media (min-width: #{$breakpoint-value}px) {
       @content;
     }
   } @else {
@@ -18,29 +17,28 @@ $breakpoints: (
   }
 }
 
-
 @mixin for-size-only($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $breakpoint-value: map-get($breakpoints, $breakpoint);
     $next-breakpoint-value: null;
-    $found: false;
+    $min-value: null;
 
-    @each $nextBreakpoint, $nextValue in $breakpoints {
-      @if $found {
-        $next-breakpoint-value: $nextValue;
-        $found: false;
-      }
-      @if $nextValue == $breakpoint-value {
-        $found: true;
+    @each $key, $value in $breakpoints {
+      @if $value > $breakpoint-value {
+        @if $min-value == null or $value < $min-value {
+          $min-value: $value;
+        }
       }
     }
 
-    @if $next-breakpoint-value {
-      @media (min-width: $breakpoint-value) and (max-width: ($next-breakpoint-value - 1)) {
+    $next-breakpoint-value: $min-value;
+
+    @if $next-breakpoint-value != null {
+      @media (min-width: #{$breakpoint-value}px) and (max-width: #{$next-breakpoint-value - 1}px) {
         @content;
       }
     } @else {
-      @media (min-width: $breakpoint-value) {
+      @media (min-width: #{$breakpoint-value}px) {
         @content;
       }
     }
@@ -48,3 +46,5 @@ $breakpoints: (
     @warn 'Invalid breakpoint: #{$breakpoint}.';
   }
 }
+
+

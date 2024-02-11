@@ -46,7 +46,15 @@
   color: $inputAttentionIconColor;
 }
 
-.attentionContainer:hover .tooltipWrap {
+@media (pointer: fine) {
+  .attentionContainer:hover .tooltipWrap {
+    visibility: visible;
+    opacity: 1;
+    transition: all $inputAnimation;
+  }
+}
+
+.attentionContainer:active .tooltipWrap {
   visibility: visible;
   opacity: 1;
   transition: all $inputAnimation;

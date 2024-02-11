@@ -10,6 +10,7 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.9",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
     "i18next": "^23.8.2",

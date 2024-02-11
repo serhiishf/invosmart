@@ -90,9 +90,7 @@ function Input(props: InputProps) {
                     Icon={isPasswordVisible ? HidePasswordIcon : ShowPasswordIcon}
                     onClick={passwordButtonHandler}
                     tooltipMessage={
-                      isPasswordVisible
-                        ? 'TRANSLATE Hide passwordTRANSLATE Hide password'
-                        : 'TRANSLATE Show password'
+                      isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password'
                     }
                   />
                 </div>

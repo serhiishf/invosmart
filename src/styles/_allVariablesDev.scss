@@ -116,7 +116,7 @@ $fieldWrapperAnimation: $animationDefault;
 
 /*---Input component---*/
 $inputAttentionIconColor: $_color-notice-error;
-$inputTooltipZIndex: $z-index-overlay;
+$inputTooltipZIndex: $z-index-dropdown;
 $inputStaticIconColor: $_color-grey-300;
 $inputAnimation: $animationDefault;
 $inputPasswordButtonColorDefault: $_color-grey-400;
@@ -127,6 +127,7 @@ $inputPasswordButtonColorActive: $_color-dark-700;
 $iconButtonBackgroundColorHover: $_color-light-500;
 $iconButtonBackgroundColorActive: $_color-light-800;
 $iconButtonAnimation: $animationDefault;
+$iconButtonZIndex: $z-index-dropdown;
 
 /*----Tooltip */
 $tooltipBackground: $_color-dark-600;
