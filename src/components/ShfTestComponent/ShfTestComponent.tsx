@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import { FieldWrapper, InputBase, Input, Tooltip } from '../ui';
+import { Input, Tooltip, Button } from '../ui';
 import styles from './ShfTestComponent.module.scss';
 import SearchIcon from '../../assets/icons/search.svg?react';
 
@@ -59,7 +59,7 @@ function ShfTestComponent() {
           />
           <Input label="Simple input" placeholder="Required=false" />
           <Tooltip tooltipMessage="Very big long text for yooltip with many many textr containing in this message which helps user understand what is w" />
-          <button onClick={handleClick}>Submit</button>
+          <Button>Button component</Button>
         </form>
       </div>
     </div>
