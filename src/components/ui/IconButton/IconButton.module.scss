@@ -42,6 +42,9 @@
   transform: translateX(50%);
   z-index: $inputTooltipZIndex;
   transition: all $iconButtonAnimation;
+  &:hover {
+    display: none;
+  }
   @include for-size-up(desktop) {
     top: calc(100% + 8px);
   }

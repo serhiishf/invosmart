@@ -59,7 +59,14 @@ function ShfTestComponent() {
           />
           <Input label="Simple input" placeholder="Required=false" />
           <Tooltip tooltipMessage="Very big long text for yooltip with many many textr containing in this message which helps user understand what is w" />
-          <Button>Button component</Button>
+          <div className={styles.buttonContainerWidthFull}>
+            <Button isFullWidth={true}>
+              <div>Button component Width</div>
+            </Button>
+          </div>
+          <Button>
+            <div>Button component</div>
+          </Button>
         </form>
       </div>
     </div>
