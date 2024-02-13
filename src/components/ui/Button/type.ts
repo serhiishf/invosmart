@@ -3,7 +3,6 @@ export interface ButtonProps {
   tooltipMessage?: string;
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   isFullWidth?: boolean;
-  isSelected?: boolean;
   isDisabled?: boolean;
   onClick?: () => void;
   borderColor?: 'primary' | 'positive' | 'negative' | 'neutral';
