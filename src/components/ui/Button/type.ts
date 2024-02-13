@@ -6,7 +6,7 @@ export interface ButtonProps {
   isDisabled?: boolean;
   onClick?: () => void;
   borderColor?: 'primary' | 'positive' | 'negative' | 'neutral';
-  color?: 'primary' | 'dark' | 'positive' | 'negative';
+  color?: 'primary' | 'white' | 'dark' | 'positive' | 'negative';
   backgroundPalette?:
     | 'primary'
     | 'secondary'

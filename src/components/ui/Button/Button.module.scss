@@ -8,6 +8,8 @@
   align-items: center;
   width: fit-content;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
 }
 
 .fullWidthMode {
@@ -17,6 +19,7 @@
 .buttonSize {
   &XS {
     height: 30px;
+    font-size: 14px;
   }
   &S {
     height: 40px;
@@ -25,11 +28,73 @@
     height: 48px;
     padding-left: 32px;
     padding-right: 32px;
+    font-size: 16px;
   }
   &L {
-    height: 64px;
-    padding-left: 14px;
-    padding-right: 14px;
+    height: 56px;
+    padding-left: 32px;
+    padding-right: 32px;
     border-radius: 32px;
+    font-size: 18px;
+    @include for-size-up('desktop') {
+      height: 64px;
+    }
+  }
+}
+
+.borderColor {
+  &Primary {
+    border: solid 1px #30a5e0;
+  }
+  &Positive {
+    border: solid 1px #1ba261;
+  }
+  &Negative {
+    border: solid 1px #fc6180;
+  }
+  &Neutral {
+    border: solid 1px #c2cacd;
+  }
+}
+
+.color {
+  &White {
+    color: #ffffff;
+  }
+  &Primary {
+    color: #30a5e0;
+  }
+  &Dark {
+    color: #2e2f31;
+  }
+  &Positive {
+    color: #1ba261;
+  }
+  &Negative {
+    color: #fc6180;
+  }
+}
+
+.backgroundColor {
+  &Primary {
+    background-color: #30a5e0;
+
+    &:hover {
+      background-color: #2197d1;
+    }
+    &:active {
+      background-color: #0689c9;
+    }
+  }
+  &Secondary {
+    background-color: #e1eef7;
+
+    &:hover {
+      background-color: #cee6f5;
+    }
+    &:active {
+      background-color: #badef2;
+    }
+    //TODO add disable state
   }
 }

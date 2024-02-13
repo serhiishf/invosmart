@@ -5,7 +5,17 @@ import { MouseEvent } from 'react';
 import { Tooltip } from '../index';
 
 function Button(props: ButtonProps) {
-  const { children, size = 'l', isFullWidth = false, onClick, tooltipMessage } = props;
+  const {
+    children,
+    size = 'm',
+    isFullWidth,
+    isDisabled,
+    onClick,
+    tooltipMessage,
+    borderColor,
+    color = 'white',
+    backgroundPalette = 'primary',
+  } = props;
 
   const sizeClasses = {
     xs: 'buttonSizeXS',
@@ -13,6 +23,29 @@ function Button(props: ButtonProps) {
     m: 'buttonSizeM',
     l: 'buttonSizeL',
     xl: 'buttonSizeXL',
+  };
+  const borderColorClasses = {
+    primary: 'borderColorPrimary',
+    positive: 'borderColorPositive',
+    negative: 'borderColorNegative',
+    neutral: 'borderColorNeutral',
+  };
+  const colorClasses = {
+    primary: 'colorPrimary',
+    white: 'colorWhite',
+    dark: 'colorDark',
+    positive: 'colorPositive',
+    negative: 'colorNegative',
+  };
+  const backgroundPaletteClasses = {
+    primary: 'backgroundColorPrimary',
+    secondary: 'backgroundColorSecondary',
+    transparentSecondary: 'backgroundColorTransparentSecondary',
+    transparentPositive: 'backgroundColorTransparentPositive',
+    transparentNegative: 'backgroundColorTransparentNegative',
+    transparentNeutral: 'backgroundColorTransparentNeutral',
+    positive: 'backgroundColorPositive',
+    negative: 'backgroundColorNegative',
   };
 
   const onClickHandler = (event: MouseEvent) => {
@@ -27,6 +60,9 @@ function Button(props: ButtonProps) {
       className={classNames(
         styles.button,
         styles[sizeClasses[size]],
+        styles[colorClasses[color]],
+        styles[backgroundPaletteClasses[backgroundPalette]],
+        borderColor && styles[borderColorClasses[borderColor]],
         isFullWidth && styles.fullWidthMode
       )}
       onClick={onClickHandler}
