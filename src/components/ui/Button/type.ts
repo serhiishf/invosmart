@@ -1,10 +1,9 @@
-export interface ButtonProps {
-  children: React.ReactElement | React.ReactElement[];
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode | React.ReactNode[];
   tooltipMessage?: string;
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   isFullWidth?: boolean;
-  isDisabled?: boolean;
-  onClick?: () => void;
+  fontWeight?: 'semiBold' | 'medium';
   borderColor?: 'primary' | 'positive' | 'negative' | 'neutral';
   color?: 'primary' | 'white' | 'dark' | 'positive' | 'negative';
   backgroundPalette?:
@@ -14,6 +13,5 @@ export interface ButtonProps {
     | 'transparentPositive'
     | 'transparentNegative'
     | 'transparentNeutral'
-    | 'positive'
-    | 'negative';
+    | 'positive';
 }

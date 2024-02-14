@@ -1,7 +1,6 @@
 import styles from './Button.module.scss';
 import classNames from 'classnames';
 import { ButtonProps } from './type';
-import { MouseEvent } from 'react';
 import { Tooltip } from '../index';
 
 function Button(props: ButtonProps) {
@@ -9,63 +8,31 @@ function Button(props: ButtonProps) {
     children,
     size = 'm',
     isFullWidth,
-    isDisabled,
-    onClick,
     tooltipMessage,
     borderColor,
     color = 'white',
+    fontWeight = 'semiBold',
     backgroundPalette = 'primary',
+    disabled,
+    type = 'button',
+    ...rest
   } = props;
-
-  const sizeClasses = {
-    xs: 'buttonSizeXS',
-    s: 'buttonSizeS',
-    m: 'buttonSizeM',
-    l: 'buttonSizeL',
-    xl: 'buttonSizeXL',
-  };
-  const borderColorClasses = {
-    primary: 'borderColorPrimary',
-    positive: 'borderColorPositive',
-    negative: 'borderColorNegative',
-    neutral: 'borderColorNeutral',
-  };
-  const colorClasses = {
-    primary: 'colorPrimary',
-    white: 'colorWhite',
-    dark: 'colorDark',
-    positive: 'colorPositive',
-    negative: 'colorNegative',
-  };
-  const backgroundPaletteClasses = {
-    primary: 'backgroundColorPrimary',
-    secondary: 'backgroundColorSecondary',
-    transparentSecondary: 'backgroundColorTransparentSecondary',
-    transparentPositive: 'backgroundColorTransparentPositive',
-    transparentNegative: 'backgroundColorTransparentNegative',
-    transparentNeutral: 'backgroundColorTransparentNeutral',
-    positive: 'backgroundColorPositive',
-    negative: 'backgroundColorNegative',
-  };
-
-  const onClickHandler = (event: MouseEvent) => {
-    event.preventDefault();
-    if (onClick) {
-      onClick();
-    }
-  };
 
   return (
     <button
       className={classNames(
         styles.button,
-        styles[sizeClasses[size]],
-        styles[colorClasses[color]],
-        styles[backgroundPaletteClasses[backgroundPalette]],
-        borderColor && styles[borderColorClasses[borderColor]],
-        isFullWidth && styles.fullWidthMode
+        styles[`button--size-${size}`],
+        styles[`button--color-${color}`],
+        styles[`button--backgroundPalette-${backgroundPalette}`],
+        styles[`button--fontWeight-${fontWeight}`],
+        isFullWidth && styles['button--fullWidthMode'],
+        disabled && styles['button--disabled'],
+        borderColor && [styles['button--border'], styles[`button--border-${borderColor}`]]
       )}
-      onClick={onClickHandler}
+      disabled={disabled}
+      type={type}
+      {...rest}
     >
       {children}
       <>{tooltipMessage && <Tooltip tooltipMessage={tooltipMessage} />}</>

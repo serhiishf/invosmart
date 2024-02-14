@@ -8,93 +8,166 @@
   align-items: center;
   width: fit-content;
   cursor: pointer;
-  font-weight: 600;
   font-size: 15px;
-}
 
-.fullWidthMode {
-  width: 100%;
-}
+  &--fullWidthMode {
+    width: 100%;
+  }
 
-.buttonSize {
-  &XS {
-    height: 30px;
-    font-size: 14px;
-  }
-  &S {
-    height: 40px;
-  }
-  &M {
-    height: 48px;
-    padding-left: 32px;
-    padding-right: 32px;
-    font-size: 16px;
-  }
-  &L {
-    height: 56px;
-    padding-left: 32px;
-    padding-right: 32px;
-    border-radius: 32px;
-    font-size: 18px;
-    @include for-size-up('desktop') {
-      height: 64px;
+  &--size {
+    &-xs {
+      height: 30px;
+      font-size: 14px;
+    }
+    &-s {
+      height: 40px;
+    }
+    &-m {
+      height: 48px;
+      padding-left: 32px;
+      padding-right: 32px;
+      font-size: 16px;
+    }
+    &-l {
+      height: 56px;
+      padding-left: 32px;
+      padding-right: 32px;
+      border-radius: 32px;
+      font-size: 18px;
+
+      @include for-size-up('desktop') {
+        height: 64px;
+      }
     }
   }
-}
 
-.borderColor {
-  &Primary {
-    border: solid 1px #30a5e0;
-  }
-  &Positive {
-    border: solid 1px #1ba261;
-  }
-  &Negative {
-    border: solid 1px #fc6180;
-  }
-  &Neutral {
-    border: solid 1px #c2cacd;
-  }
-}
-
-.color {
-  &White {
-    color: #ffffff;
-  }
-  &Primary {
-    color: #30a5e0;
-  }
-  &Dark {
-    color: #2e2f31;
-  }
-  &Positive {
-    color: #1ba261;
-  }
-  &Negative {
-    color: #fc6180;
-  }
-}
-
-.backgroundColor {
-  &Primary {
-    background-color: #30a5e0;
-
-    &:hover {
-      background-color: #2197d1;
+  &--fontWeight {
+    &-medium {
+      font-weight: 500;
     }
-    &:active {
-      background-color: #0689c9;
+    &-semiBold {
+      font-weight: 600;
     }
   }
-  &Secondary {
-    background-color: #e1eef7;
 
-    &:hover {
-      background-color: #cee6f5;
+  &--border {
+    border: solid 1px;
+
+    &-primary {
+      border-color: #30a5e0;
     }
-    &:active {
-      background-color: #badef2;
+    &-positive {
+      border-color: #1ba261;
     }
-    //TODO add disable state
+    &-negative {
+      border-color: #fc6180;
+    }
+    &-neutral {
+      border-color: #c2cacd;
+    }
+  }
+
+  &--color {
+    &-white {
+      color: #ffffff;
+    }
+    &-primary {
+      color: #30a5e0;
+      &.button--disabled {
+        color: #92cded;
+      }
+    }
+    &-dark {
+      color: #2e2f31;
+    }
+    &-positive {
+      color: #1ba261;
+    }
+    &-negative {
+      color: #fc6180;
+    }
+  }
+
+  &--backgroundPalette {
+    &-primary {
+      background-color: #30a5e0;
+
+      &:hover {
+        background-color: #2197d1;
+      }
+      &:active {
+        background-color: #0689c9;
+      }
+    }
+
+    &-secondary {
+      background-color: #e1eef7;
+
+      &:hover {
+        background-color: #cee6f5;
+      }
+      &:active {
+        background-color: #badef2;
+      }
+      &.button--disabled {
+        background-color: #ebf2f8;
+        &:hover {
+          background-color: #ebf2f8;
+        }
+      }
+    }
+
+    &-transparentSecondary {
+      &:hover {
+        background-color: #e1eef7;
+      }
+      &:active {
+        background-color: #cee6f5;
+      }
+    }
+
+    &-transparentPositive {
+      background-color: transparent;
+
+      &:hover {
+        background-color: #eef8f3;
+      }
+      &:active {
+        background-color: #b9e2ce;
+      }
+    }
+
+    &-transparentNegative {
+      background-color: transparent;
+
+      &:hover {
+        background-color: #f6e7ee;
+      }
+      &:active {
+        background-color: #f6d8e2;
+      }
+    }
+
+    &-transparentNeutral {
+      background-color: transparent;
+
+      &:hover {
+        background-color: #e9eaf0;
+      }
+      &:active {
+        background-color: #d8dae3;
+      }
+    }
+
+    &-positive {
+      background-color: #1ba261;
+
+      &:hover {
+        background-color: #149457;
+      }
+      &:active {
+        background-color: #0e844b;
+      }
+    }
   }
 }
