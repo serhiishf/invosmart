@@ -9,11 +9,11 @@ function FieldWrapper(props: FieldWrapperProps) {
       {label && (
         <div
           className={classNames(
-            styles.fieldLabel,
-            error && styles.fieldLabel_error,
-            focus && styles.fieldLabel_focus,
-            disabled && styles.fieldLabel_disabled,
-            readonly && styles.fieldLabel_readOnly
+            styles.fieldWrapper__label,
+            error && styles['fieldWrapper__label--error'],
+            focus && styles['fieldWrapper__label--focus'],
+            disabled && styles['fieldWrapper__label--disabled'],
+            readonly && styles['fieldWrapper__label--readonly']
           )}
         >
           {label}
@@ -21,11 +21,11 @@ function FieldWrapper(props: FieldWrapperProps) {
       )}
       <div
         className={classNames(
-          styles.fieldBorderWrap,
-          error && styles.fieldBorderWrap_error,
-          focus && styles.fieldBorderWrap_focus,
-          disabled && styles.fieldBorderWrap_disabled,
-          readonly && styles.fieldBorderWrap_readOnly
+          styles.fieldWrapper__border,
+          error && styles['fieldWrapper__border--error'],
+          focus && styles['fieldWrapper__border--focus'],
+          disabled && styles['fieldWrapper__border--disabled'],
+          readonly && styles['fieldWrapper__border--readonly']
         )}
       >
         {children}

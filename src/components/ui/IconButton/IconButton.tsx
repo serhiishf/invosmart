@@ -1,25 +1,17 @@
 import styles from './IconButton.module.scss';
 import { IconButtonProps } from './types';
 import { Tooltip } from '../index';
-import { MouseEvent } from 'react';
 
 function IconButton(props: IconButtonProps) {
-  const { tooltipMessage, onClick, children } = props;
-
-  const onClickHandler = (event: MouseEvent) => {
-    event.preventDefault();
-    if (onClick) {
-      onClick();
-    }
-  };
+  const { tooltipMessage, children, type = 'button', ...rest } = props;
 
   return (
-    <div className={styles.iconButton} onClick={onClickHandler}>
+    <button className={styles.iconButton} type={type} {...rest}>
       {children}
       <div className={styles.tooltipWrap}>
         {tooltipMessage && <Tooltip tooltipMessage={tooltipMessage} />}
       </div>
-    </div>
+    </button>
   );
 }
 

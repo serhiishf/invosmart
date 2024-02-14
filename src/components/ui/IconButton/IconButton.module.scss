@@ -3,11 +3,13 @@
   width: inherit;
   aspect-ratio: 1 / 1;
   cursor: pointer;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all $iconButtonAnimation;
   position: relative;
+  
   @media (pointer: fine) {
     &:hover {
       background-color: $iconButtonBackgroundColorHover;
