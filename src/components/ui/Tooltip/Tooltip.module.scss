@@ -10,51 +10,46 @@
   font-size: $tooltipFontSize;
   font-weight: $tooltipFontWeight;
   padding: 8px 12px;
-}
 
-.tooltipIsError {
-  background-color: $tooltipColorIsError;
-}
+  &__arrow {
+    position: absolute;
+    color: $tooltipBackground;
 
-.arrow {
-  position: absolute;
-  color: $tooltipBackground;
-}
-
-.arrowIsError {
-  color: $tooltipColorIsError;
-}
-
-.arrowLeft {
-  top: 50%;
-  right: 100%;
-  transform: translateX(calc(25% + 1px)) translateY(-50%) rotate(270deg);
-}
-
-.arrowRight {
-  top: 50%;
-  left: 100%;
-  transform: translateX(calc(-25% - 1px)) translateY(-50%) rotate(90deg);
-}
-
-.arrowTopRight {
-  bottom: calc(100% - 1px);
-  right: 12px;
-}
-
-.arrowTopLeft {
-  bottom: calc(100% - 1px);
-  left: 12px;
-}
-
-.arrowBottomRight {
-  top: calc(100% - 1px);
-  right: 12px;
-  transform: rotate(180deg);
-}
-
-.arrowBottomLeft {
-  top: calc(100% - 1px);
-  left: 12px;
-  transform: rotate(180deg);
+    &--left {
+      top: 50%;
+      right: 100%;
+      transform: translateX(calc(25% + 1px)) translateY(-50%) rotate(270deg);
+    }
+    &--right {
+      top: 50%;
+      left: 100%;
+      transform: translateX(calc(-25% - 1px)) translateY(-50%) rotate(90deg);
+    }
+    &--top {
+      bottom: calc(100% - 1px);
+      transform: translateX(-50%);
+    }
+    &--bottom {
+      top: calc(100% - 1px);
+      transform: translateX(-50%) rotate(180deg);
+    }
+    &--topStart {
+      bottom: calc(100% - 1px);
+      left: 12px;
+    }
+    &--topEnd {
+      bottom: calc(100% - 1px);
+      right: 12px;
+    }
+    &--bottomStart {
+      top: calc(100% - 1px);
+      left: 12px;
+      transform: rotate(180deg);
+    }
+    &--bottomEnd {
+      top: calc(100% - 1px);
+      right: 12px;
+      transform: rotate(180deg);
+    }
+  }
 }

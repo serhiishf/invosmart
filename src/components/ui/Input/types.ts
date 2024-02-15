@@ -11,7 +11,6 @@ export interface InputProps {
   disabled?: boolean;
   readonly?: boolean;
   isError?: boolean;
-  errorMessage?: string;
   onChange?: (value: string) => void;
   PrefixIcon?: FunctionComponent;
 }

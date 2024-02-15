@@ -1,5 +1,4 @@
 export interface TooltipProps {
   tooltipMessage: string;
-  arrow?: 'left' | 'right' | 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft' | 'none';
-  isError?: boolean;
+  arrow?: 'left' | 'right' | 'topEnd' | 'topStart' | 'bottomEnd' | 'bottomStart';
 }

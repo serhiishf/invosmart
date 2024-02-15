@@ -34,47 +34,8 @@
   gap: 4px;
 }
 
-.attentionContainer {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-}
 
-.attentionIcon {
-  color: $inputAttentionIconColor;
-}
 
-@media (pointer: fine) {
-  .attentionContainer:hover .tooltipWrap {
-    visibility: visible;
-    opacity: 1;
-    transition: all $inputAnimation;
-  }
-}
-
-.attentionContainer:active .tooltipWrap {
-  visibility: visible;
-  opacity: 1;
-  transition: all $inputAnimation;
-}
-
-.tooltipWrap {
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
-  max-width: 260px;
-  width: max-content;
-  height: auto;
-  top: 35px;
-  right: -5px;
-  z-index: $inputTooltipZIndex;
-  transition: all $inputAnimation;
-  @include for-size-up(desktop) {
-    top: 35px;
-  }
-}
 
 .passwordButtonContainer {
   display: flex;

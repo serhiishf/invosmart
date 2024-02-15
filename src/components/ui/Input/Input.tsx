@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { FieldWrapper, InputBase, Tooltip, IconButton } from '../';
+import { FieldWrapper, InputBase, IconButton } from '../';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
-import AttentionIcon from '../../../assets/icons/attention.svg?react';
 import ShowPasswordIcon from '../../../assets/icons/eye.svg?react';
 import HidePasswordIcon from '../../../assets/icons/eyeSlash.svg?react';
 import classNames from 'classnames';
@@ -19,7 +18,6 @@ function Input(props: InputProps) {
     disabled = false,
     readonly = false,
     isError = false,
-    errorMessage,
     onChange,
     PrefixIcon,
   } = props;
@@ -95,16 +93,6 @@ function Input(props: InputProps) {
                 </div>
               </div>
             )}
-            <>
-              {errorMessage && (
-                <div className={styles.attentionContainer}>
-                  <AttentionIcon className={styles.attentionIcon} />
-                  <div className={styles.tooltipWrap}>
-                    <Tooltip tooltipMessage={errorMessage} arrow="topRight" isError={isError} />
-                  </div>
-                </div>
-              )}
-            </>
           </div>
         </>
       </FieldWrapper>
