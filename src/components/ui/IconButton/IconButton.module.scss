@@ -9,45 +9,40 @@
   justify-content: center;
   transition: all $iconButtonAnimation;
   position: relative;
-  
+
   @media (pointer: fine) {
     &:hover {
       background-color: $iconButtonBackgroundColorHover;
       transition: all $iconButtonAnimation;
+
+      .iconButton__tooltipWrap {
+        visibility: visible;
+        opacity: 1;
+        transition: all $iconButtonAnimation;
+      }
     }
     &:active {
       background-color: $iconButtonBackgroundColorActive;
       transition: all $iconButtonAnimation;
     }
   }
-}
 
-@media (pointer: fine) {
-  .iconButton:hover .tooltipWrap {
-    visibility: visible;
-    opacity: 1;
-    transition: all $iconButtonAnimation;
-  }
-}
-
-.tooltipContainer {
-  position: relative;
-}
-
-.tooltipWrap {
-  position: absolute;
-  width: max-content;
-  visibility: hidden;
-  opacity: 0;
-  top: calc(100% + 8px);
-  right: 50%;
-  transform: translateX(50%);
-  z-index: $inputTooltipZIndex;
-  transition: all $iconButtonAnimation;
-  &:hover {
-    display: none;
-  }
-  @include for-size-up(desktop) {
+  &__tooltipWrap {
+    position: absolute;
+    width: max-content;
+    visibility: hidden;
+    opacity: 0;
     top: calc(100% + 8px);
+    right: 50%;
+    transform: translateX(50%);
+    z-index: $inputTooltipZIndex;
+    transition: all $iconButtonAnimation;
+    &:hover {
+      display: none;
+    }
+    @include for-size-up(desktop) {
+      top: calc(100% + 8px);
+    }
   }
 }
+

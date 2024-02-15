@@ -8,9 +8,11 @@ function IconButton(props: IconButtonProps) {
   return (
     <button className={styles.iconButton} type={type} {...rest}>
       {children}
-      <div className={styles.tooltipWrap}>
-        {tooltipMessage && <Tooltip tooltipMessage={tooltipMessage} />}
-      </div>
+      {tooltipMessage && (
+        <div className={styles.iconButton__tooltipWrap}>
+          <Tooltip tooltipMessage={tooltipMessage} />
+        </div>
+      )}
     </button>
   );
 }
