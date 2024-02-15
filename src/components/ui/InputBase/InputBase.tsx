@@ -1,49 +1,11 @@
-import { useState, ChangeEvent } from 'react';
+import { InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import styles from './InputBase.module.scss';
-import { InputBaseProps } from './types';
 
-function InputBase(props: InputBaseProps) {
-  const {
-    id,
-    type = 'text',
-    name,
-    value = '',
-    placeholder,
-    onChange,
-    onBlur,
-    onFocus,
-    required = false,
-    disabled = false,
-    readonly = false,
-    className,
-  } = props;
+function InputBase(props: InputHTMLAttributes<HTMLInputElement>) {
+  const { className, ...rest } = props;
 
-  const [currentValue, setCurrentValue] = useState(value);
-
-  function onChangeHandler(e: ChangeEvent<HTMLInputElement>) {
-    setCurrentValue(e.target.value);
-    if (onChange) {
-      onChange(currentValue);
-    }
-  }
-
-  return (
-    <input
-      type={type}
-      name={name}
-      id={id}
-      value={currentValue}
-      placeholder={placeholder}
-      onChange={onChangeHandler}
-      onBlur={onBlur}
-      onFocus={onFocus}
-      className={classNames(styles.inputBase, className)}
-      required={required}
-      disabled={disabled}
-      readOnly={readonly}
-    />
-  );
+  return <input className={classNames(styles.inputBase, className)} {...rest} />;
 }
 
 export default InputBase;

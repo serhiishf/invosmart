@@ -44,7 +44,7 @@
         background-color: $fiedlWrapperLabelBackgroundColorReadonly;
       }
     }
-    &--readonly {
+    &--readOnly {
       &:after {
         background-color: $fiedlWrapperLabelBackgroundColorReadonly;
       }
@@ -78,7 +78,7 @@
       background-color: $fieldWrapperBackgroundColorDisabled;
     }
   
-    &--readonly {
+    &--readOnly {
       border-color: $fieldWrapperBorderColorReadonly;
       background-color: $fieldWrapperBackgroundColorReadonly;
     }

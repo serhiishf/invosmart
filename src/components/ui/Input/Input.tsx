@@ -13,13 +13,12 @@ function Input(props: InputProps) {
     name,
     label,
     value,
-    placeholder,
     required = false,
     disabled = false,
-    readonly = false,
+    readOnly = false,
     isError = false,
-    onChange,
     PrefixIcon,
+    ...rest
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -54,7 +53,7 @@ function Input(props: InputProps) {
         label={label}
         focus={isFocused}
         error={isError}
-        readonly={readonly}
+        readOnly={readOnly}
         disabled={disabled}
       >
         <>
@@ -74,13 +73,12 @@ function Input(props: InputProps) {
           name={name}
           required={required}
           disabled={disabled}
-          readonly={readonly}
+          readOnly={readOnly}
           value={value}
-          placeholder={placeholder}
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
-          onChange={onChange}
           className={classNames(!!PrefixIcon && styles.inputBaseProps)}
+          {...rest}
         />
         <>
           <div className={styles.suffixContainer}>

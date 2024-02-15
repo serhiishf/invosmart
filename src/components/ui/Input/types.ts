@@ -1,6 +1,6 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, InputHTMLAttributes } from 'react';
 
-export interface InputProps {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   type?: string;
   name?: string;
@@ -9,8 +9,7 @@ export interface InputProps {
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
-  readonly?: boolean;
+  readOnly?: boolean;
   isError?: boolean;
-  onChange?: (value: string) => void;
   PrefixIcon?: FunctionComponent;
 }

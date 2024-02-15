@@ -4,7 +4,7 @@ export interface FieldWrapperProps {
   error?: boolean;
   focus?: boolean;
   disabled?: boolean;
-  readonly?: boolean;
+  readOnly?: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
   setError?: (error: boolean) => void;
