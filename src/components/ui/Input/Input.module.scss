@@ -4,63 +4,61 @@
   @include for-size-up(desktop) {
     height: 40px;
   }
-}
 
-.prefixContainer {
-  padding-left: 25px;
-  padding-right: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  &__prefixContainer {
+    padding-left: 25px;
+    padding-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.staticPrefixIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $inputStaticIconColor;
+  &__staticPrefixIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $inputStaticIconColor;
+  }
+
+  &__suffixContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 4px;
+    gap: 4px;
+  }
+
+  &__passwordButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__passwordButtonWrap {
+    color: $inputPasswordButtonColorDefault;
+    width: 42px;
+    transition: all $inputAnimation;
+    &:hover {
+      color: $inputPasswordButtonColorHover;
+      transition: all $inputAnimation;
+    }
+    &:active {
+      color: $inputPasswordButtonColorActive;
+    }
+    @include for-size-up(desktop) {
+      width: 34px;
+    }
+  }
+
+  &__passwordButtonIcon {
+    @include for-size-up(desktop) {
+      scale: 80%;
+    }
+  }
 }
 
 .inputBaseProps {
   padding-left: 0px;
 }
 
-.suffixContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 8px;
-  padding-right: 4px;
-  gap: 4px;
-}
-
-
-
-
-.passwordButtonContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.passwordButtonWrap {
-  color: $inputPasswordButtonColorDefault;
-  width: 42px;
-  transition: all $inputAnimation;
-  &:hover {
-    color: $inputPasswordButtonColorHover;
-    transition: all $inputAnimation;
-  }
-  &:active {
-    color: $inputPasswordButtonColorActive;
-  }
-  @include for-size-up(desktop) {
-    width: 34px;
-  }
-}
-
-.passwordButtonIcon {
-  @include for-size-up(desktop) {
-    scale: 80%;
-  }
-}

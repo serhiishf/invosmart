@@ -10,10 +10,7 @@ function Input(props: InputProps) {
   const {
     id,
     type = 'text',
-    name,
     label,
-    value,
-    required = false,
     disabled = false,
     readOnly = false,
     isError = false,
@@ -48,7 +45,7 @@ function Input(props: InputProps) {
   }, [isPasswordVisible, type]);
 
   return (
-    <div className={styles.input}>
+    <div className={styles.input} id={id}>
       <FieldWrapper
         label={label}
         focus={isFocused}
@@ -58,9 +55,9 @@ function Input(props: InputProps) {
       >
         <>
           {PrefixIcon && (
-            <div className={styles.prefixContainer}>
+            <div className={styles.input__prefixContainer}>
               {PrefixIcon && (
-                <div className={styles.staticPrefixIcon}>
+                <div className={styles.input__staticPrefixIcon}>
                   <PrefixIcon />
                 </div>
               )}
@@ -68,23 +65,19 @@ function Input(props: InputProps) {
           )}
         </>
         <InputBase
-          id={id}
           type={currentInputType}
-          name={name}
-          required={required}
           disabled={disabled}
           readOnly={readOnly}
-          value={value}
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
           className={classNames(!!PrefixIcon && styles.inputBaseProps)}
           {...rest}
         />
         <>
-          <div className={styles.suffixContainer}>
+          <div className={styles.input__suffixContainer}>
             {type === 'password' && (
-              <div className={classNames(styles.passwordButtonContainer)}>
-                <div className={classNames(styles.passwordButtonWrap)}>
+              <div className={classNames(styles.input__passwordButtonContainer)}>
+                <div className={classNames(styles.input__passwordButtonWrap)}>
                   <IconButton onClick={passwordButtonHandler} tooltipMessage={tooltipMessage}>
                     <IconButtonContent className={styles.passwordButtonIcon} />
                   </IconButton>

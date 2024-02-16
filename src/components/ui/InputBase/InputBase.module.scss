@@ -9,8 +9,6 @@
   color: $inputBaseTextColor;
   background-color: transparent;
   border: none;
-  padding-left: 26px;
-  padding-right: 26px;
 
   &::placeholder {
     color: $inputBasePlaceholderColor;
@@ -20,5 +18,23 @@
     border: none;
     outline: none;
     box-shadow: none;
+  }
+
+  &--paddingLeft {
+    &-none {
+      padding-left: 0;
+    }
+    &-primary {
+      padding-left: 26px;
+    }
+  }
+
+  &--paddingRight {
+    &-none {
+      padding-right: 0;
+    }
+    &-primary {
+      padding-right: 26px;
+    }
   }
 }
