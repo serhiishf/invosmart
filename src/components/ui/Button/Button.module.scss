@@ -1,9 +1,9 @@
 .button {
   display: flex;
   gap: 16px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 6px;
+  padding-left: $buttonPaddingPrimary;
+  padding-right: $buttonPaddingPrimary;
+  border-radius: $buttonBorderRadiusPrimary;
   justify-content: center;
   align-items: center;
   width: fit-content;
@@ -24,15 +24,15 @@
     }
     &-m {
       height: 48px;
-      padding-left: 32px;
-      padding-right: 32px;
+      padding-left: $buttonPaddingLarge;
+      padding-right: $buttonPaddingLarge;
       font-size: 16px;
     }
     &-l {
       height: 56px;
-      padding-left: 32px;
-      padding-right: 32px;
-      border-radius: 32px;
+      padding-left: $buttonPaddingLarge;
+      padding-right: $buttonPaddingLarge;
+      border-radius: $buttonBorderRadiusLarge;
       font-size: 18px;
 
       @include for-size-up('desktop') {
@@ -54,75 +54,77 @@
     border: solid 1px;
 
     &-primary {
-      border-color: #30a5e0;
+      border-color: $buttonColorPrimary;
     }
     &-positive {
-      border-color: #1ba261;
+      border-color: $buttonColorPositive;
     }
     &-negative {
-      border-color: #fc6180;
+      border-color: $buttonColorNegative;
     }
     &-neutral {
-      border-color: #c2cacd;
+      border-color: $buttonColorNeutral;
     }
   }
 
   &--color {
     &-white {
-      color: #ffffff;
+      color: $buttonColorWhite;
     }
     &-primary {
-      color: #30a5e0;
+      color: $buttonColorPrimary;
       &.button--disabled {
-        color: #92cded;
+        color: $buttonColorPrimaryDissabled;
       }
     }
     &-dark {
-      color: #2e2f31;
+      color: $buttonColorDark;
     }
     &-positive {
-      color: #1ba261;
+      color: $buttonColorPositive;
     }
     &-negative {
-      color: #fc6180;
+      color: $buttonColorNegative;
     }
   }
 
   &--backgroundPalette {
     &-primary {
-      background-color: #30a5e0;
+      background-color: $buttonColorPrimary;
 
       &:hover {
-        background-color: #2197d1;
+        background-color: $buttonColorPrimaryHover;
       }
       &:active {
-        background-color: #0689c9;
+        background-color: $buttonColorPrimaryActive;
       }
     }
 
     &-secondary {
-      background-color: #e1eef7;
+      background-color: $buttonColorSecondary;
 
       &:hover {
-        background-color: #cee6f5;
+        background-color: $buttonColorSecondaryHover;
       }
       &:active {
-        background-color: #badef2;
+        background-color: $buttonColorSecondaryActive;
       }
       &.button--disabled {
-        background-color: #ebf2f8;
+        background-color: $buttonColorSecondaryDissabled;
         &:hover {
-          background-color: #ebf2f8;
+          background-color: $buttonColorSecondaryDissabled;
         }
       }
     }
 
     &-transparentSecondary {
+      background-color: transparent;
+
       &:hover {
-        background-color: #e1eef7;
+        background-color: $buttonColorTranspSecondaryHover;
       }
       &:active {
-        background-color: #cee6f5;
+        background-color: $buttonColorTranspSecondaryActive;
       }
     }
 
@@ -130,10 +132,10 @@
       background-color: transparent;
 
       &:hover {
-        background-color: #eef8f3;
+        background-color: $buttonColorTranspPositiveHover;
       }
       &:active {
-        background-color: #b9e2ce;
+        background-color: $buttonColorTranspPositiveActive;
       }
     }
 
@@ -141,10 +143,10 @@
       background-color: transparent;
 
       &:hover {
-        background-color: #f6e7ee;
+        background-color: $buttonColorTranspNegativeHover;
       }
       &:active {
-        background-color: #f6d8e2;
+        background-color: $buttonColorTranspNegativeActive;
       }
     }
 
@@ -152,21 +154,21 @@
       background-color: transparent;
 
       &:hover {
-        background-color: #e9eaf0;
+        background-color: $buttonColorTranspNeutralHover;
       }
       &:active {
-        background-color: #d8dae3;
+        background-color: $buttonColorTranspNeutralActive;
       }
     }
 
     &-positive {
-      background-color: #1ba261;
+      background-color: $buttonColorPositive;
 
       &:hover {
-        background-color: #149457;
+        background-color: $buttonColorPositiveHover;
       }
       &:active {
-        background-color: #0e844b;
+        background-color: $buttonColorPositiveActive;
       }
     }
   }

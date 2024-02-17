@@ -41,6 +41,19 @@ $_color-light-700: #dee1e6;
 $_color-light-800: #d8dae3;
 $_color-light-900: #e0e4e6;
 
+//light blut colors:
+$_colorLightBlue100: #ebf2f8;
+
+// Green colors
+$_colorGreen100: #eef8f3;
+$_colorGreen200: #b9e2ce;
+$_colorGreen500: #149457;
+$_colorGreen600: #0e844b;
+
+// Red Colors:
+$_colorRed100: #f6e7ee;
+$_colorRed200: #f6d8e2;
+
 // Grey colors
 $_color-grey-100: #b8c5cb;
 $_color-grey-200: #c2cacd;
@@ -87,6 +100,7 @@ $z-index-notification: 5000;
 
 // Default settings
 $border-radius-base: 6px;
+$gridBase: 8px;
 
 /* ANIMATION--------------------- */
 $animationDefault: 0.3s ease;
@@ -141,3 +155,32 @@ $inputBaseFontFamily: $font-family-primary;
 $inputBaseFontSize: $font-size-base;
 $inputBaseTextColor: $color-text-dark;
 $inputBasePlaceholderColor: $_color-grey-500;
+
+/* ---Button */
+$buttonPaddingPrimary: $gridBase * 2;
+$buttonPaddingLarge: $gridBase * 4;
+$buttonBorderRadiusPrimary: $border-radius-base;
+$buttonBorderRadiusLarge: 32px;
+$buttonColorPrimary: $_color-blue-100;
+$buttonColorPrimaryHover: $_color-blue-200;
+$buttonColorPrimaryActive: $_color-blue-300;
+$buttonColorPrimaryDissabled: $_color-sky-200;
+$buttonColorPositive: $_color-notice-success;
+$buttonColorPositiveHover: $_colorGreen500;
+$buttonColorPositiveActive: $_colorGreen600;
+$buttonColorNegative: $_color-notice-error;
+$buttonColorNeutral: $_color-grey-200;
+$buttonColorWhite: $color-white;
+$buttonColorDark: $_color-dark-700;
+$buttonColorSecondary: $_color-sky-300;
+$buttonColorSecondaryHover: $_color-sky-400;
+$buttonColorSecondaryActive: $_color-sky-500;
+$buttonColorSecondaryDissabled: $_colorLightBlue100;
+$buttonColorTranspSecondaryHover: $_color-sky-300;
+$buttonColorTranspSecondaryActive: $_color-sky-400;
+$buttonColorTranspPositiveHover: $_colorGreen100;
+$buttonColorTranspPositiveActive: $_colorGreen200;
+$buttonColorTranspNegativeHover: $_colorRed100;
+$buttonColorTranspNegativeActive: $_colorRed200;
+$buttonColorTranspNeutralHover: $_color-light-500;
+$buttonColorTranspNeutralActive: $_color-light-800;
