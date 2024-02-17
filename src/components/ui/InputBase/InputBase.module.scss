@@ -1,3 +1,7 @@
+$_inputBasePaddingPrimary: 24px;
+$_inputBasePaddingCompact: 16px;
+$_inputBasePaddingMinimal: 8px;
+
 .inputBase {
   width: 100%;
   height: 100%;
@@ -25,7 +29,13 @@
       padding-left: 0;
     }
     &-primary {
-      padding-left: 26px;
+      padding-left: $_inputBasePaddingPrimary;
+    }
+    &-compact {
+      padding-left: $_inputBasePaddingCompact;
+    }
+    &-minimal {
+      padding-left: $_inputBasePaddingMinimal;
     }
   }
 
@@ -34,7 +44,13 @@
       padding-right: 0;
     }
     &-primary {
-      padding-right: 26px;
+      padding-right: $_inputBasePaddingPrimary;
+    }
+    &-compact {
+      padding-right: $_inputBasePaddingCompact;
+    }
+    &-minimal {
+      padding-right: $_inputBasePaddingMinimal;
     }
   }
 }

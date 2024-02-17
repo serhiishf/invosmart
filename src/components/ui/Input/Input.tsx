@@ -24,6 +24,7 @@ function Input(props: InputProps) {
 
   const IconButtonContent = isPasswordVisible ? HidePasswordIcon : ShowPasswordIcon;
   const tooltipMessage = isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password';
+  const isDisplaySuffixContainer = type === 'password';
 
   function onFocusHandler() {
     setIsFocused(true);
@@ -70,21 +71,24 @@ function Input(props: InputProps) {
           readOnly={readOnly}
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
-          className={classNames(!!PrefixIcon && styles.inputBaseProps)}
+          paddingLeft={(PrefixIcon && 'none') || 'primary'}
+          paddingRight="primary"
           {...rest}
         />
         <>
-          <div className={styles.input__suffixContainer}>
-            {type === 'password' && (
-              <div className={classNames(styles.input__passwordButtonContainer)}>
-                <div className={classNames(styles.input__passwordButtonWrap)}>
-                  <IconButton onClick={passwordButtonHandler} tooltipMessage={tooltipMessage}>
-                    <IconButtonContent className={styles.passwordButtonIcon} />
-                  </IconButton>
+          {isDisplaySuffixContainer && (
+            <div className={styles.input__suffixContainer}>
+              {type === 'password' && (
+                <div className={classNames(styles.input__passwordButtonContainer)}>
+                  <div className={classNames(styles.input__passwordButtonWrap)}>
+                    <IconButton onClick={passwordButtonHandler} tooltipMessage={tooltipMessage}>
+                      <IconButtonContent className={styles.input__passwordButtonIcon} />
+                    </IconButton>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </>
       </FieldWrapper>
     </div>

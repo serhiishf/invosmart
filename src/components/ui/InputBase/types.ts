@@ -1,6 +1,8 @@
 import { InputHTMLAttributes } from 'react';
 
+type PaddingOption = 'primary' | 'none' | 'compact' | 'minimal';
+
 export interface InputBaseProps extends InputHTMLAttributes<HTMLInputElement> {
-  paddingLeft?: 'primary' | 'none';
-  paddingRight?: 'primary' | 'none';
+  paddingLeft?: PaddingOption;
+  paddingRight?: PaddingOption;
 }
