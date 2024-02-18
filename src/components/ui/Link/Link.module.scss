@@ -1,0 +1,11 @@
+.link {
+  color: #30a5e0;
+  position: relative;
+
+  &:visited {
+    color: #30a5e0;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}
