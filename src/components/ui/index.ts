@@ -5,3 +5,4 @@ export { default as IconButton } from './IconButton/IconButton';
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as Button } from './Button/Button';
 export { default as Link } from './Link/Link';
+export { default as Select } from './Select/Select';

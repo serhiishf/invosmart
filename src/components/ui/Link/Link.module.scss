@@ -1,9 +1,9 @@
 .link {
-  color: #30a5e0;
+  color: $linkColor;
   position: relative;
 
   &:visited {
-    color: #30a5e0;
+    color: $linkColor;
   }
   &:hover {
     text-decoration: underline;
