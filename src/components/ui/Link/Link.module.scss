@@ -1,6 +1,7 @@
 .link {
   color: $linkColor;
   position: relative;
+  width: fit-content;
 
   &:visited {
     color: $linkColor;

@@ -101,6 +101,8 @@ $z-index-notification: 5000;
 // Default settings
 $border-radius-base: 6px;
 $gridBase: 8px;
+$fieldMinHeightDesktop: 40px;
+$fieldMinHeightMobile: 48px;
 
 /* ANIMATION--------------------- */
 $animationDefault: 0.3s ease;
@@ -136,6 +138,8 @@ $inputAnimation: $animationDefault;
 $inputPasswordButtonColorDefault: $_color-grey-400;
 $inputPasswordButtonColorHover: $_color-dark-500;
 $inputPasswordButtonColorActive: $_color-dark-700;
+$inputHeightDesktop: $fieldMinHeightDesktop;
+$inputHeightMobile: $fieldMinHeightMobile;
 
 /*----Icon-Button---*/
 $iconButtonBackgroundColorHover: $_color-light-500;
@@ -186,4 +190,10 @@ $buttonColorTranspNeutralHover: $_color-light-500;
 $buttonColorTranspNeutralActive: $_color-light-800;
 
 /* ---Link */
-$linkColor: #30a5e0;
+$linkColor: $_color-blue-100;
+
+/* --- Select */
+$selectMinHeightDesktop: $fieldMinHeightDesktop;
+$selectMinHeightMobile: $fieldMinHeightMobile;
+$selectControlBorderRadius: $border-radius-base;
+$selectControlWhiteColor: $color-white;

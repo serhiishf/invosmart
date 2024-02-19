@@ -1,4 +1,4 @@
-import { Input, Tooltip, Button, Link } from '../ui';
+import { Input, Button, Link, Select } from '../ui';
 import styles from './ShfTestComponent.module.scss';
 import SearchIcon from '../../assets/icons/search.svg?react';
 
@@ -23,7 +23,7 @@ function ShfTestComponent() {
             isError={true}
           />
           <Input label="Simple input" placeholder="Required=false" />
-          <Tooltip tooltipMessage="Very big long text for yooltip with many many textr containing in this message which helps user understand what is w" />
+          <Select />
           <Link href="https://www.google.com" target="blank">
             Forgot password?
           </Link>

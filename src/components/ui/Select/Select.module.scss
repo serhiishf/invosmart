@@ -1,0 +1,36 @@
+.select {
+  width: 100%;
+  &__control {
+    min-height: $selectMinHeightMobile;
+    background-color: $selectControlWhiteColor;
+    border-radius: $selectControlBorderRadius;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    @include for-size-up(desktop) {
+      min-height: $selectMinHeightDesktop;
+    }
+  }
+
+  &__valueContainer {
+    display: grid;
+    border: 1px solid red;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__suffixContainer {
+    border: 1px solid blue;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 80%;
+    background-color: green;
+  }
+}
