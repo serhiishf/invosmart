@@ -12,9 +12,15 @@ function Select(props: SelectProps) {
   const [inputValue, setInputValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
+  const wrapperRef = useRef(null);
+
+  const onClickHandler = () => {
+    setIsFocused(true);
+  };
+
   return (
-    <div className={styles.select}>
-      <FieldWrapper isFocused={isFocused} isHoverable>
+    <div className={styles.select} onClick={onClickHandler}>
+      <FieldWrapper isFocused={isFocused} isHoverable={!isFocused}>
         <div
           className={classNames(
             styles.select__control,
