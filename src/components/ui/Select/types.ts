@@ -8,4 +8,5 @@ export interface SelectProps {
   options?: SelectOption[];
   value?: SelectOption;
   onChange?: (value: SelectOption | undefined) => void;
+  placeholder?: string;
 }

@@ -1,7 +1,7 @@
 import styles from './Tooltip.module.scss';
 import { TooltipProps } from './types';
 import classNames from 'classnames';
-import ArrowIcon from '../../../assets/icons/arrow.svg?react';
+import ArrowIcon from '../../../assets/icons/arrowTriangle.svg?react';
 
 function Tooltip(props: TooltipProps) {
   const { tooltipMessage, arrow } = props;
