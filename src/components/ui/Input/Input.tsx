@@ -49,8 +49,8 @@ function Input(props: InputProps) {
     <div className={styles.input} id={id}>
       <FieldWrapper
         label={label}
-        focus={isFocused}
-        error={isError}
+        isFocused={isFocused}
+        isError={isError}
         readOnly={readOnly}
         disabled={disabled}
       >

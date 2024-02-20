@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
@@ -7,17 +7,18 @@ import ArrowIcon from '../../../assets/icons/arrowCheck.svg?react';
 import CloseIcon from '../../../assets/icons/close.svg?react';
 
 function Select(props: SelectProps) {
-  const { isSearchable = true, placeholder = 'Select city' } = props;
+  const { isSearchable = true, isClearable, placeholder = 'Select city' } = props;
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <div className={styles.select}>
-      <FieldWrapper>
+      <FieldWrapper isFocused={isFocused} isHoverable>
         <div
           className={classNames(
             styles.select__control,
-            isOpen && styles['select__control--isOpen']
+            isFocused && styles['select__control--isFocused']
           )}
         >
           <div className={styles.select__valueContainer}>
@@ -27,7 +28,7 @@ function Select(props: SelectProps) {
             </div>
           </div>
           <div className={styles.select__suffixContainer}>
-            {isSearchable && (
+            {isClearable && (
               <div className={styles.select__buttonContainer}>
                 <div className={styles.select__buttonWrap}>
                   <IconButton tooltipMessage="TRANSLATE Clear">

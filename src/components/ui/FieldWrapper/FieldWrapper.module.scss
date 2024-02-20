@@ -29,12 +29,12 @@
       min-height: 45%;
       background: $fieldWrapperLabelBackgroundColor;
     }
-    &--error {
+    &--isError {
       color: $fieldWrapperLabelColorError;
       transition: all $fieldWrapperAnimation;
     }
-  
-    &--focus {
+
+    &--isFocused {
       color: $fieldWrapperLabelColorFocus;
       transition: all $fieldWrapperAnimation;
     }
@@ -62,11 +62,11 @@
     background: $fieldWrapperBackgroundColor;
     transition: all $fieldWrapperAnimation;
 
-    &--error {
+    &--isError {
       border-color: $fieldWrapperBorderColorError;
       transition: all $fieldWrapperAnimation;
     }
-    &--focus {
+    &--isFocused {
       border: 1px solid;
       border-color: $fieldWrapperBorderColorFocus;
       box-shadow: inset 0 0 0 1px $fieldWrapperBorderColorFocus;
@@ -77,10 +77,16 @@
       border-color: $fieldWrapperBorderColorDissabled;
       background-color: $fieldWrapperBackgroundColorDisabled;
     }
-  
+
     &--readOnly {
       border-color: $fieldWrapperBorderColorReadonly;
       background-color: $fieldWrapperBackgroundColorReadonly;
+    }
+    &--isHoverable {
+      &:hover {
+        border-color: $fieldWrapperBorderColorHover;
+        transition: all $fieldWrapperAnimation;
+      }
     }
   }
 }

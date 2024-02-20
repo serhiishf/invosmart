@@ -1,11 +1,12 @@
 export interface FieldWrapperProps {
   label?: string;
   children: React.ReactElement | React.ReactElement[];
-  error?: boolean;
-  focus?: boolean;
+  isError?: boolean;
+  isFocused?: boolean;
+  isHoverable?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
-  setError?: (error: boolean) => void;
+  setIsError?: (error: boolean) => void;
 }
