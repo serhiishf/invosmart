@@ -26,17 +26,17 @@ function Input(props: InputProps) {
   const tooltipMessage = isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password';
   const isDisplaySuffixContainer = type === 'password';
 
-  function handleFocus() {
+  const handleFocus = () => {
     setIsFocused(true);
-  }
+  };
 
-  function handleBlur() {
+  const handleBlur = () => {
     setIsFocused(false);
-  }
+  };
 
-  function handlePasswordButton() {
+  const handlePasswordButton = () => {
     setIsPasswordVisible(!isPasswordVisible);
-  }
+  };
 
   useEffect(() => {
     if (type === 'password') {

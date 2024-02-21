@@ -23,11 +23,9 @@ function Select(props: SelectProps) {
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
-    console.log(wrapperRef, 'WRAPPER');
-    const handleFocusIn = (event: FocusEvent) => {
+    const handleFocusIn = () => {
       setIsFocused(true);
     };
-
     const handleFocusOut = (event: FocusEvent) => {
       if (wrapper && !wrapper.contains(event.relatedTarget as Node)) {
         setIsFocused(false);
