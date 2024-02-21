@@ -8,7 +8,7 @@ import CloseIcon from '../../../assets/icons/close.svg?react';
 
 function Select(props: SelectProps) {
   const {
-    isSearchable = false,
+    isSearchable = true,
     isClearable = true,
     placeholder = 'Select city',
     label = 'Default label',
@@ -23,41 +23,37 @@ function Select(props: SelectProps) {
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
-
+    console.log(wrapperRef, 'WRAPPER');
     const handleFocusIn = (event: FocusEvent) => {
-      // Встановлюємо isFocused у true, коли компонент отримує фокус
       setIsFocused(true);
     };
 
     const handleFocusOut = (event: FocusEvent) => {
-      // Перевірка, чи фокус переміщується поза межі компоненту
       if (wrapper && !wrapper.contains(event.relatedTarget as Node)) {
         setIsFocused(false);
       }
     };
 
-    // Додавання обробників подій focusin та focusout безпосередньо на компонент
     wrapper?.addEventListener('focusin', handleFocusIn);
     wrapper?.addEventListener('focusout', handleFocusOut);
 
-    // Видалення обробників подій при демонтуванні компонента
     return () => {
       wrapper?.removeEventListener('focusin', handleFocusIn);
       wrapper?.removeEventListener('focusout', handleFocusOut);
     };
   }, [wrapperRef]);
 
-  const onClickControlHandler = () => {
+  const handleControlClick = () => {
     setIsFocused(true);
     inputRef.current?.focus();
   };
 
-  const onClickClearButtonHandler = () => {
+  const handleClearButtonClick = () => {
     setInputValue('');
     setSelectedValue('');
   };
 
-  const onChangeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -69,7 +65,7 @@ function Select(props: SelectProps) {
             styles.select__control,
             isFocused && styles['select__control--isFocused']
           )}
-          onClick={onClickControlHandler}
+          onClick={handleControlClick}
         >
           <div className={styles.select__valueContainer}>
             <div className={styles.select__valueItem}></div>
@@ -81,7 +77,7 @@ function Select(props: SelectProps) {
                 autoFocus={isFocused}
                 paddingLeft="none"
                 paddingRight="none"
-                onChange={onChangeInputHandler}
+                onChange={handleInputChange}
                 value={inputValue}
                 ref={inputRef}
                 readOnly={!isSearchable}
@@ -93,10 +89,7 @@ function Select(props: SelectProps) {
               <div className={styles.select__buttonContainer}>
                 {(inputValue || selectedValue) && (
                   <div className={styles.select__clearButtonWrap}>
-                    <IconButton
-                      tooltipMessage="TRANSLATE Clear"
-                      onClick={onClickClearButtonHandler}
-                    >
+                    <IconButton tooltipMessage="TRANSLATE Clear" onClick={handleClearButtonClick}>
                       <CloseIcon className={styles.select__closeIcon} />
                     </IconButton>
                   </div>

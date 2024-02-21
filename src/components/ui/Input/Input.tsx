@@ -26,15 +26,15 @@ function Input(props: InputProps) {
   const tooltipMessage = isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password';
   const isDisplaySuffixContainer = type === 'password';
 
-  function onFocusHandler() {
+  function handleFocus() {
     setIsFocused(true);
   }
 
-  function onBlurHandler() {
+  function handleBlur() {
     setIsFocused(false);
   }
 
-  function passwordButtonHandler() {
+  function handlePasswordButton() {
     setIsPasswordVisible(!isPasswordVisible);
   }
 
@@ -69,8 +69,8 @@ function Input(props: InputProps) {
           type={currentInputType}
           disabled={disabled}
           readOnly={readOnly}
-          onFocus={onFocusHandler}
-          onBlur={onBlurHandler}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           paddingLeft={(PrefixIcon && 'none') || 'primary'}
           paddingRight="primary"
           {...rest}
@@ -81,7 +81,7 @@ function Input(props: InputProps) {
               {type === 'password' && (
                 <div className={classNames(styles.input__passwordButtonContainer)}>
                   <div className={classNames(styles.input__passwordButtonWrap)}>
-                    <IconButton onClick={passwordButtonHandler} tooltipMessage={tooltipMessage}>
+                    <IconButton onClick={handlePasswordButton} tooltipMessage={tooltipMessage}>
                       <IconButtonContent className={styles.input__passwordButtonIcon} />
                     </IconButton>
                   </div>
