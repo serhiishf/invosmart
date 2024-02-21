@@ -10,4 +10,6 @@ export interface SelectProps {
   value?: SelectOption;
   onChange?: (value: SelectOption | undefined) => void;
   placeholder?: string;
+  label?: string;
+  initialValue?: string;
 }
