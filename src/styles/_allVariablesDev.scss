@@ -146,7 +146,7 @@ $inputHeightMobile: $fieldMinHeightMobile;
 $iconButtonBackgroundColorHover: $_color-light-500;
 $iconButtonBackgroundColorActive: $_color-light-800;
 $iconButtonAnimation: $animationDefault;
-$iconButtonZIndex: $z-index-dropdown;
+$iconButtonZIndex: $z-index-tooltip;
 
 /*----Tooltip */
 $tooltipBackground: $_color-dark-600;
@@ -202,3 +202,8 @@ $selectIconColor: $_color-grey-400;
 $selectIconColorHover: $_color-dark-500;
 $selectDividerColor: $_color-grey-200;
 $selectPlaceholderColor: $_color-grey-500;
+$selectOptionsZIndex: $z-index-dropdown;
+$selectControlMinHeightDesktop: $fieldMinHeightDesktop;
+$selectControlMinHeightMobile: $fieldMinHeightMobile;
+$selectOptionsBorderRadius: $border-radius-base;
+$selectOptionsWhiteColor: $color-white;

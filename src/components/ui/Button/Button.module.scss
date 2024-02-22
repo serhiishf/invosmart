@@ -92,7 +92,8 @@
     &-primary {
       background-color: $buttonColorPrimary;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: $buttonColorPrimaryHover;
       }
       &:active {
@@ -103,7 +104,8 @@
     &-secondary {
       background-color: $buttonColorSecondary;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: $buttonColorSecondaryHover;
       }
       &:active {
@@ -111,7 +113,8 @@
       }
       &.button--disabled {
         background-color: $buttonColorSecondaryDissabled;
-        &:hover {
+        &:hover,
+        &:focus {
           background-color: $buttonColorSecondaryDissabled;
         }
       }
@@ -120,7 +123,8 @@
     &-transparentSecondary {
       background-color: transparent;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: $buttonColorTranspSecondaryHover;
       }
       &:active {
@@ -131,7 +135,8 @@
     &-transparentPositive {
       background-color: transparent;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: $buttonColorTranspPositiveHover;
       }
       &:active {
@@ -142,7 +147,8 @@
     &-transparentNegative {
       background-color: transparent;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: $buttonColorTranspNegativeHover;
       }
       &:active {
@@ -153,7 +159,8 @@
     &-transparentNeutral {
       background-color: transparent;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: $buttonColorTranspNeutralHover;
       }
       &:active {
@@ -164,7 +171,8 @@
     &-positive {
       background-color: $buttonColorPositive;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: $buttonColorPositiveHover;
       }
       &:active {

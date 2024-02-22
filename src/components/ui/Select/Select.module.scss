@@ -1,5 +1,20 @@
 .select {
   width: 100%;
+  min-height: $selectControlMinHeightMobile;
+  position: relative;
+
+  @include for-size-up(desktop) {
+    min-height: $selectControlMinHeightDesktop;
+  }
+
+  &__controlContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
   &__control {
     min-height: $selectMinHeightMobile;
     border-radius: $selectControlBorderRadius;
@@ -9,6 +24,7 @@
     width: 100%;
     padding-left: 24px;
     cursor: pointer;
+    position: relative;
 
     &--isFocused {
       cursor: default;
@@ -19,6 +35,11 @@
     }
   }
 
+  &__options {
+    position: absolute;
+    top: 100%;
+  }
+
   &__valueContainer {
     display: flex;
     height: 100%;
@@ -26,17 +47,11 @@
     position: relative;
   }
 
-  &__placeholder {
-    position: absolute;
-    top: 50%;
-    pointer-events: none;
-    transform: translateY(-50%);
-    width: max-content;
-    color: $selectPlaceholderColor;
-  }
-
   &__inputContainer {
     width: 100%;
+    input[readonly] {
+      cursor: pointer;
+    }
   }
 
   &__suffixContainer {
@@ -70,5 +85,19 @@
     &:hover {
       color: $selectIconColorHover;
     }
+  }
+}
+
+.options {
+  max-height: 250px;
+  width: 100%;
+  background-color: $selectOptionsWhiteColor;
+  padding-top: 4px;
+  padding-bottom: 16px;
+  border-bottom-left-radius: $selectOptionsBorderRadius;
+  border-bottom-right-radius: $selectOptionsBorderRadius;
+  padding-left: 24px;
+  &__placeholder {
+    text-align: left;
   }
 }
