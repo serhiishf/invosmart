@@ -12,7 +12,7 @@
 
   @media (pointer: fine) {
     &:hover,
-    &:focus {
+    &:focus-visible {
       background-color: $iconButtonBackgroundColorHover;
       transition: all $iconButtonAnimation;
 
