@@ -1,7 +1,7 @@
 import styles from './Tooltip.module.scss';
 import { TooltipProps } from './types';
 import classNames from 'classnames';
-import ArrowIcon from '../../../assets/icons/arrowTriangle.svg?react';
+import IconArrow from '../../../assets/icons/arrowTriangle.svg?react';
 
 function Tooltip(props: TooltipProps) {
   const { tooltipMessage, arrow } = props;
@@ -10,7 +10,7 @@ function Tooltip(props: TooltipProps) {
     <div className={classNames(styles.tooltip)}>
       <div>{tooltipMessage}</div>
       {arrow && (
-        <ArrowIcon
+        <IconArrow
           className={classNames(styles.tooltip__arrow, styles[`tooltip__arrow--${arrow}`])}
         />
       )}

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { FieldWrapper, InputBase, IconButton } from '../';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
-import ShowPasswordIcon from '../../../assets/icons/eye.svg?react';
-import HidePasswordIcon from '../../../assets/icons/eyeSlash.svg?react';
+import IconShowPassword from '../../../assets/icons/eye.svg?react';
+import IconHidePassword from '../../../assets/icons/eyeSlash.svg?react';
 import classNames from 'classnames';
 
 function Input(props: InputProps) {
@@ -22,7 +22,7 @@ function Input(props: InputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [currentInputType, setCurrentInputType] = useState(type);
 
-  const IconButtonContent = isPasswordVisible ? HidePasswordIcon : ShowPasswordIcon;
+  const IconButtonContent = isPasswordVisible ? IconHidePassword : IconShowPassword;
   const tooltipMessage = isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password';
   const isDisplaySuffixContainer = type === 'password';
 

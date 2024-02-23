@@ -64,13 +64,12 @@
     padding: 0 4px;
   }
 
-  &__clearButtonWrap {
-    width: 32px;
+  &__buttonWrap {
+    width: 42px;
     color: $selectIconColor;
-  }
-
-  &__closeIcon {
-    color: $selectIconColor;
+    @include for-size-up(desktop) {
+      width: 34px;
+    }
   }
 
   &__divider {
@@ -80,7 +79,7 @@
   }
 
   &__iconContainer {
-    width: 32px;
+    width: 42px;
     color: $selectIconColor;
     &:hover {
       color: $selectIconColorHover;
