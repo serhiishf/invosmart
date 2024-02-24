@@ -8,9 +8,9 @@ import IconClose from '../../../assets/icons/close.svg?react';
 
 function Select(props: SelectProps) {
   const {
-    isSearchable = false,
+    isSearchable = true,
     isClearable = true,
-    hasExpandCollapseButton = true,
+    hasExpandCollapseButton = false,
     placeholder = 'Select city',
     label = 'Default label',
   } = props;
