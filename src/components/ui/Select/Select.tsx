@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
@@ -8,7 +8,7 @@ import IconClose from '../../../assets/icons/close.svg?react';
 
 function Select(props: SelectProps) {
   const {
-    isSearchable = true,
+    isSearchable = false,
     isClearable = true,
     hasExpandCollapseButton = true,
     placeholder = 'Select city',
@@ -40,27 +40,29 @@ function Select(props: SelectProps) {
   };
 
   const handleSelectPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    /*     if (isSearchable) {
+    if (!isSearchable) {
       if (
-        event.target instanceof HTMLElement &&
+        event.target instanceof Element &&
         suffixContainerRef.current &&
         suffixContainerRef.current.contains(event.target)
       ) {
-        console.log('PointerDown on expanded button - ignoring select focus logic');
+        console.log('return handleSelectPointerDown');
         return;
       }
 
       setIsExpanded(!isExpanded);
       console.log('handleSelectPointerDown');
-    } */
+    }
   };
 
   const handleSelectBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (selectRef.current && !selectRef.current.contains(event.relatedTarget)) {
-      setIsFocused(false);
-      setIsExpanded(false);
-      setInputValue('');
-      console.log('Focus truly lost');
+      if (event.target !== document.activeElement) {
+        setIsFocused(false);
+        setIsExpanded(false);
+        setInputValue('');
+        console.log('Focus truly lost');
+      }
     } else {
       console.log('Focus not luse');
     }
@@ -78,10 +80,10 @@ function Select(props: SelectProps) {
       setIsFocused(true);
     }
     if (isExpanded) {
-      setIsExpanded(!isExpanded);
+      setIsExpanded(false);
       setInputValue('');
     } else {
-      setIsExpanded(!isExpanded);
+      setIsExpanded(true);
     }
     inputRef.current?.focus();
     console.log('handleExpandedButton');
