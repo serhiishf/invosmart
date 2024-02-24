@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
-import { FieldWrapper, InputBase, IconButton } from '../';
+import { FieldWrapper, InputBase, IconButton } from '..';
 import IconArrow from '../../../assets/icons/arrowCheck.svg?react';
 import IconClose from '../../../assets/icons/close.svg?react';
 
@@ -10,6 +10,7 @@ function Select(props: SelectProps) {
   const {
     isSearchable = true,
     isClearable = true,
+    hasExpandCollapseButton = true,
     placeholder = 'Select city',
     label = 'Default label',
   } = props;
@@ -19,56 +20,70 @@ function Select(props: SelectProps) {
   const [selectedValue, setSelectedValue] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const selectRef = useRef<HTMLDivElement>(null);
+  const suffixContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const currentPlaceholder = !inputValue && !selectedValue ? placeholder : '';
   const toggleSelectTooltip = isExpanded ? 'TRANSLATE Collapse' : 'TRANSLATE Expand';
 
-  useEffect(() => {
-    const wrapper = wrapperRef.current;
-
-    const handleFocusIn = () => {
-      setIsFocused(true);
-      console.log('handleFocusIn');
-    };
-
-    const handleFocusOut = (event: FocusEvent) => {
-      if (wrapper && !wrapper.contains(event.relatedTarget as Node)) {
-        setIsFocused(false);
-        setIsExpanded(false);
-        setInputValue('');
-        console.log('handleFocusOut');
-      }
-    };
-
-    wrapper?.addEventListener('focusin', handleFocusIn);
-    wrapper?.addEventListener('focusout', handleFocusOut);
-
-    return () => {
-      wrapper?.removeEventListener('focusin', handleFocusIn);
-      wrapper?.removeEventListener('focusout', handleFocusOut);
-    };
-  }, []);
-
-  const handleControlClick = () => {
-    setIsFocused(true);
-    console.log('handleControlClick');
-    if (!inputValue) {
-      setIsExpanded(!isExpanded);
-      console.log('handleControlClick if (!inputValue)');
+  const handleSelectFocus = (event: React.FocusEvent<HTMLDivElement>) => {
+    if (suffixContainerRef.current && suffixContainerRef.current.contains(event.target)) {
+      console.log('Focus on expanded button - ignoring select focus logic');
+      return;
     }
-    inputRef.current?.focus();
+    if (!isFocused) {
+      setIsFocused(true);
+      setIsExpanded(true);
+      console.log('handleSelectFocus');
+    }
+  };
+
+  const handleSelectPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    /*     if (isSearchable) {
+      if (
+        event.target instanceof HTMLElement &&
+        suffixContainerRef.current &&
+        suffixContainerRef.current.contains(event.target)
+      ) {
+        console.log('PointerDown on expanded button - ignoring select focus logic');
+        return;
+      }
+
+      setIsExpanded(!isExpanded);
+      console.log('handleSelectPointerDown');
+    } */
+  };
+
+  const handleSelectBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    if (selectRef.current && !selectRef.current.contains(event.relatedTarget)) {
+      setIsFocused(false);
+      setIsExpanded(false);
+      setInputValue('');
+      console.log('Focus truly lost');
+    } else {
+      console.log('Focus not luse');
+    }
   };
 
   const handleClearButtonClick = () => {
     setInputValue('');
     setSelectedValue('');
     console.log('handleClearButtonClick');
+    inputRef.current?.focus();
   };
 
   const handleExpandedButton = () => {
-    setIsExpanded(!isExpanded);
+    if (!isFocused) {
+      setIsFocused(true);
+    }
+    if (isExpanded) {
+      setIsExpanded(!isExpanded);
+      setInputValue('');
+    } else {
+      setIsExpanded(!isExpanded);
+    }
+    inputRef.current?.focus();
     console.log('handleExpandedButton');
   };
 
@@ -79,7 +94,13 @@ function Select(props: SelectProps) {
   };
 
   return (
-    <div className={styles.select} ref={wrapperRef}>
+    <div
+      className={styles.select}
+      ref={selectRef}
+      tabIndex={-1}
+      onFocus={handleSelectFocus}
+      onBlur={handleSelectBlur}
+    >
       <div className={styles.select__controlContainer}>
         <FieldWrapper isFocused={isFocused} isHoverable={!isFocused} label={label}>
           <div
@@ -87,14 +108,13 @@ function Select(props: SelectProps) {
               styles.select__control,
               isFocused && styles['select__control--isFocused']
             )}
-            onClick={handleControlClick}
+            onPointerDown={handleSelectPointerDown}
           >
             <div className={styles.select__valueContainer}>
               <div className={styles.select__valueItem}></div>
               <div className={styles.select__inputContainer}>
                 <InputBase
                   autoFocus={isFocused}
-                  paddingLeft="none"
                   paddingRight="none"
                   onChange={handleInputChange}
                   value={inputValue}
@@ -104,26 +124,38 @@ function Select(props: SelectProps) {
                 />
               </div>
             </div>
-            <div className={styles.select__suffixContainer}>
+            <div className={styles.select__suffixContainer} ref={suffixContainerRef}>
               {isClearable && (
                 <div className={styles.select__buttonContainer}>
                   {(inputValue || selectedValue) && (
                     <div className={styles.select__buttonWrap}>
                       <IconButton tooltipMessage="TRANSLATE Clear" onClick={handleClearButtonClick}>
-                        <IconClose className={styles.select__IconClose} />
+                        <IconClose className={styles.select__iconClose} />
                       </IconButton>
                     </div>
                   )}
                 </div>
               )}
-              <div className={styles.select__divider}></div>
-              <div className={styles.select__buttonContainer}>
-                <div className={styles.select__buttonWrap}>
-                  <IconButton tooltipMessage={toggleSelectTooltip} onClick={handleExpandedButton}>
-                    <IconArrow className={styles.select__IconArrow} />
-                  </IconButton>
-                </div>
-              </div>
+              {hasExpandCollapseButton && (
+                <>
+                  <div className={styles.select__divider}></div>
+                  <div className={styles.select__buttonContainer}>
+                    <div className={styles.select__buttonWrap}>
+                      <IconButton
+                        tooltipMessage={toggleSelectTooltip}
+                        onClick={handleExpandedButton}
+                      >
+                        <IconArrow
+                          className={classNames(
+                            styles.select__iconArrow,
+                            isExpanded && styles['select__iconArrow--isExpanded']
+                          )}
+                        />
+                      </IconButton>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </FieldWrapper>
