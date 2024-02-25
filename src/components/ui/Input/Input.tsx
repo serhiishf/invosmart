@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import { FieldWrapper, InputBase, IconButton } from '../';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
 import IconShowPassword from '../../../assets/icons/eye.svg?react';
 import IconHidePassword from '../../../assets/icons/eyeSlash.svg?react';
-import classNames from 'classnames';
 
 function Input(props: InputProps) {
   const {
@@ -23,7 +23,7 @@ function Input(props: InputProps) {
   const [currentInputType, setCurrentInputType] = useState(type);
 
   const IconButtonContent = isPasswordVisible ? IconHidePassword : IconShowPassword;
-  const tooltipMessage = isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password';
+  const tooltip = isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password';
   const isDisplaySuffixContainer = type === 'password';
 
   const handleFocus = () => {
@@ -81,7 +81,7 @@ function Input(props: InputProps) {
               {type === 'password' && (
                 <div className={classNames(styles.input__passwordButtonContainer)}>
                   <div className={classNames(styles.input__passwordButtonWrap)}>
-                    <IconButton onClick={handlePasswordButton} tooltipMessage={tooltipMessage}>
+                    <IconButton onClick={handlePasswordButton} tooltip={tooltip}>
                       <IconButtonContent className={styles.input__passwordButtonIcon} />
                     </IconButton>
                   </div>

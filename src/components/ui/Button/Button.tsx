@@ -8,7 +8,7 @@ function Button(props: ButtonProps) {
     children,
     size = 'm',
     isFullWidth,
-    tooltipMessage,
+    tooltip,
     borderColor,
     color = 'white',
     fontWeight = 'semiBold',
@@ -35,7 +35,7 @@ function Button(props: ButtonProps) {
       {...rest}
     >
       {children}
-      <>{tooltipMessage && <Tooltip tooltipMessage={tooltipMessage} />}</>
+      <>{tooltip && <Tooltip tooltipMessage={tooltip} />}</>
     </button>
   );
 }

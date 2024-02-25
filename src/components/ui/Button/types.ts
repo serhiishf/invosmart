@@ -1,6 +1,6 @@
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode | React.ReactNode[];
-  tooltipMessage?: string;
+  children: React.ReactNode;
+  tooltip?: string;
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   isFullWidth?: boolean;
   fontWeight?: 'semiBold' | 'medium';

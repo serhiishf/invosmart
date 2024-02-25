@@ -23,7 +23,12 @@ function ShfTestComponent() {
             isError={true}
           />
           <Input label="Simple input" placeholder="Required=false" />
-          <Select />
+          <Select
+            topOptions={[{ label: 'toplabel', value: 'topvalue' }]}
+            options={[{ label: 'label', value: 'value' }]}
+          >
+            <Button tooltip="Tooltip">Add new items</Button>
+          </Select>
           <Link href="https://www.google.com" target="blank">
             Forgot password?
           </Link>

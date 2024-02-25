@@ -13,12 +13,16 @@ function Select(props: SelectProps) {
     hasExpandCollapseButton = false,
     placeholder = 'Select city',
     label = 'Default label',
+    options,
+    topOptions,
+    children,
   } = props;
 
   const [inputValue, setInputValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
+  const [mainOptions, setMainOptions] = useState(options);
 
   const selectRef = useRef<HTMLDivElement>(null);
   const suffixContainerRef = useRef<HTMLDivElement>(null);
@@ -49,7 +53,6 @@ function Select(props: SelectProps) {
         console.log('return handleSelectPointerDown');
         return;
       }
-
       setIsExpanded(!isExpanded);
       console.log('handleSelectPointerDown');
     }
@@ -131,7 +134,7 @@ function Select(props: SelectProps) {
                 <div className={styles.select__buttonContainer}>
                   {(inputValue || selectedValue) && (
                     <div className={styles.select__buttonWrap}>
-                      <IconButton tooltipMessage="TRANSLATE Clear" onClick={handleClearButtonClick}>
+                      <IconButton tooltip="TRANSLATE Clear" onClick={handleClearButtonClick}>
                         <IconClose className={styles.select__iconClose} />
                       </IconButton>
                     </div>
@@ -143,10 +146,7 @@ function Select(props: SelectProps) {
                   <div className={styles.select__divider}></div>
                   <div className={styles.select__buttonContainer}>
                     <div className={styles.select__buttonWrap}>
-                      <IconButton
-                        tooltipMessage={toggleSelectTooltip}
-                        onClick={handleExpandedButton}
-                      >
+                      <IconButton tooltip={toggleSelectTooltip} onClick={handleExpandedButton}>
                         <IconArrow
                           className={classNames(
                             styles.select__iconArrow,
@@ -164,7 +164,50 @@ function Select(props: SelectProps) {
       </div>
       {isExpanded && (
         <div className={classNames(styles.select__options, styles.options)}>
-          <div className={styles.options__placeholder}>No options</div>
+          {options && <div className={styles.options__placeholder}>No options</div>}
+          {options && (
+            <div className={styles.options__lists} role="listbox">
+              {topOptions && (
+                <ul className={styles.options__topList}>
+                  <>
+                    {topOptions.map((option) => {
+                      return (
+                        <li
+                          className={styles.options__optionItem}
+                          role="option"
+                          key={option.value}
+                          data-value={option.value}
+                        >
+                          {option.icon && <div> logo</div>}
+                          <span>{option.label}</span>
+                        </li>
+                      );
+                    })}
+                  </>
+                </ul>
+              )}
+              {mainOptions && (
+                <ul className={styles.options__topList}>
+                  <>
+                    {mainOptions.map((option) => {
+                      return (
+                        <li
+                          className={styles.options__optionItem}
+                          role="option"
+                          key={option.value}
+                          data-value={option.value}
+                        >
+                          {option.icon && <div> logo</div>}
+                          <span>{option.label}</span>
+                        </li>
+                      );
+                    })}
+                  </>
+                </ul>
+              )}
+            </div>
+          )}
+          {children && <div className={styles.options__childrenContainer}>{children}</div>}
         </div>
       )}
     </div>

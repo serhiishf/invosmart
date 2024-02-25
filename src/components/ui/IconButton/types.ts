@@ -1,4 +1,4 @@
 export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  tooltipMessage?: string;
+  tooltip?: string;
   children?: React.ReactElement | React.ReactElement[];
 }
