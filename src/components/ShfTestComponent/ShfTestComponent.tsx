@@ -1,6 +1,7 @@
 import { Input, Button, Link, Select } from '../ui';
 import styles from './ShfTestComponent.module.scss';
-import SearchIcon from '../../assets/icons/search.svg?react';
+import IconSearch from '../../assets/icons/search.svg?react';
+import IconSettings from '../../assets/icons/settings.svg?react';
 
 function ShfTestComponent() {
   return (
@@ -13,7 +14,7 @@ function ShfTestComponent() {
             placeholder="Email"
             required
             isError
-            PrefixIcon={SearchIcon}
+            PrefixIcon={IconSearch}
           />
           <Input
             label={'Password'}
@@ -24,7 +25,7 @@ function ShfTestComponent() {
           />
           <Input label="Simple input" placeholder="Required=false" />
           <Select
-            topOptions={[{ label: 'toplabel', value: 'topvalue' }]}
+            topOptions={[{ label: 'toplabel', value: 'topvalue', icon: { IconSettings } }]}
             options={[{ label: 'label', value: 'value' }]}
           >
             <Button tooltip="Tooltip">Add new items</Button>

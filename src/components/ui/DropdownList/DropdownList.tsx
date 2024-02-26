@@ -13,24 +13,25 @@ function DropdownList(props: DropdownListProps) {
         <div className={styles.dropdownList__lists} role="listbox">
           {topOptions && (
             <ul className={styles.dropdownList__topList}>
-              <>
-                {topOptions.map((option) => {
-                  return (
-                    <DropdownItem key={option.value} label={option.label} value={option.value} />
-                  );
-                })}
-              </>
+              {topOptions.map((option) => {
+                return (
+                  <DropdownItem
+                    key={option.value}
+                    label={option.label}
+                    value={option.value}
+                    role="option"
+                  />
+                );
+              })}
             </ul>
           )}
           {options && (
             <ul className={styles.dropdownList__topList}>
-              <>
-                {options.map((option) => {
-                  return (
-                    <DropdownItem key={option.value} label={option.label} value={option.value} />
-                  );
-                })}
-              </>
+              {options.map((option) => {
+                return (
+                  <DropdownItem key={option.value} label={option.label} value={option.value} />
+                );
+              })}
             </ul>
           )}
         </div>

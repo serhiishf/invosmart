@@ -1,8 +1,9 @@
 import { DropdownOptionBase } from 'types/common';
 
-export interface DropdownItemProps extends DropdownOptionBase {
+export interface DropdownItemProps extends DropdownOptionBase, React.HTMLAttributes<HTMLLIElement> {
   color?: string;
   backgroundPalette?: string;
+  isSelected?: boolean;
 }
 
 interface BaseDropdownListProps {

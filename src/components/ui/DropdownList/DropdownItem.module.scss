@@ -5,6 +5,11 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  cursor: pointer;
+
+  &--isSelected {
+  }
+
   &:hover {
     background-color: #f5fbfd;
   }
