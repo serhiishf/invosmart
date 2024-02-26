@@ -1,0 +1,15 @@
+.dropdownItem {
+  padding-left: 4px;
+  padding-right: 4px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  &:hover {
+    background-color: #f5fbfd;
+  }
+
+  @include for-size-up(desktop) {
+    min-height: 40px;
+  }
+}

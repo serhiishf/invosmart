@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
-import { FieldWrapper, InputBase, IconButton } from '..';
+import { FieldWrapper, InputBase, IconButton, DropdownList } from '..';
 import IconArrow from '../../../assets/icons/arrowCheck.svg?react';
 import IconClose from '../../../assets/icons/close.svg?react';
 
@@ -163,51 +163,10 @@ function Select(props: SelectProps) {
         </FieldWrapper>
       </div>
       {isExpanded && (
-        <div className={classNames(styles.select__options, styles.options)}>
-          {options && <div className={styles.options__placeholder}>No options</div>}
-          {options && (
-            <div className={styles.options__lists} role="listbox">
-              {topOptions && (
-                <ul className={styles.options__topList}>
-                  <>
-                    {topOptions.map((option) => {
-                      return (
-                        <li
-                          className={styles.options__optionItem}
-                          role="option"
-                          key={option.value}
-                          data-value={option.value}
-                        >
-                          {option.icon && <div> logo</div>}
-                          <span>{option.label}</span>
-                        </li>
-                      );
-                    })}
-                  </>
-                </ul>
-              )}
-              {mainOptions && (
-                <ul className={styles.options__topList}>
-                  <>
-                    {mainOptions.map((option) => {
-                      return (
-                        <li
-                          className={styles.options__optionItem}
-                          role="option"
-                          key={option.value}
-                          data-value={option.value}
-                        >
-                          {option.icon && <div> logo</div>}
-                          <span>{option.label}</span>
-                        </li>
-                      );
-                    })}
-                  </>
-                </ul>
-              )}
-            </div>
-          )}
-          {children && <div className={styles.options__childrenContainer}>{children}</div>}
+        <div className={classNames(styles.select__options)}>
+          <DropdownList options={mainOptions} topOptions={topOptions}>
+            {children}
+          </DropdownList>
         </div>
       )}
     </div>
