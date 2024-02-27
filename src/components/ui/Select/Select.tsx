@@ -3,14 +3,14 @@ import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
 import { FieldWrapper, InputBase, IconButton, DropdownList } from '..';
-import IconArrow from '../../../assets/icons/arrowCheck.svg?react';
+import IconDirectionArrow from '../../../assets/icons/directionCheck.svg?react';
 import IconClose from '../../../assets/icons/close.svg?react';
 
 function Select(props: SelectProps) {
   const {
     isSearchable = true,
     isClearable = true,
-    hasExpandCollapseButton = false,
+    hasExpandCollapseButton = true,
     placeholder = 'Select city',
     label = 'Default label',
     options,
@@ -147,10 +147,10 @@ function Select(props: SelectProps) {
                   <div className={styles.select__buttonContainer}>
                     <div className={styles.select__buttonWrap}>
                       <IconButton tooltip={toggleSelectTooltip} onClick={handleExpandedButton}>
-                        <IconArrow
+                        <IconDirectionArrow
                           className={classNames(
-                            styles.select__iconArrow,
-                            isExpanded && styles['select__iconArrow--isExpanded']
+                            styles.select__iconDirectionArrow,
+                            isExpanded && styles['select__iconDirectionArrow--isExpanded']
                           )}
                         />
                       </IconButton>

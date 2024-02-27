@@ -2,8 +2,9 @@ import { DropdownOptionBase } from 'types/common';
 
 export interface DropdownItemProps extends DropdownOptionBase, React.HTMLAttributes<HTMLLIElement> {
   color?: string;
-  backgroundPalette?: string;
+  backgroundPalette?: 'onGrayBackground' | 'onLightBackground';
   isSelected?: boolean;
+  icon?: React.ReactElement;
 }
 
 interface BaseDropdownListProps {

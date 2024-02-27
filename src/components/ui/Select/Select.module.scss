@@ -71,7 +71,7 @@
     }
   }
 
-  &__iconArrow {
+  &__iconDirectionArrow {
     transition: 0.3s ease;
     &--isExpanded {
       transform: rotate(180deg);
@@ -101,7 +101,6 @@
   border-bottom-left-radius: $selectOptionsBorderRadius;
   border-bottom-right-radius: $selectOptionsBorderRadius;
 
-
   &__placeholder {
     text-align: center;
     color: #2e2f31;
@@ -119,5 +118,4 @@
     padding-top: 4px;
     padding-bottom: 4px;
   }
-
 }

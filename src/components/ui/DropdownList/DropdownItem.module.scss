@@ -6,12 +6,47 @@
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+
+  &--backgroundPalette {
+    &-onGrayBackground {
+      &:hover,
+      &:focus-visible {
+        background-color: #ffffff;
+      }
+
+      &:active {
+        background-color: #c1e4f6;
+      }
+    }
+    &-onLightBackground {
+      &:hover,
+      &:focus-visible {
+        background-color: #d6edf9;
+      }
+
+      &:active {
+        background-color: #c1e4f6;
+      }
+    }
+  }
 
   &--isSelected {
   }
 
-  &:hover {
-    background-color: #f5fbfd;
+  &__checkmarkContainer {
+    width: 24px;
+  }
+
+  &__contentContainer {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__iconContainer {
   }
 
   @include for-size-up(desktop) {

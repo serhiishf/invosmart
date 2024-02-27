@@ -25,8 +25,16 @@ function ShfTestComponent() {
           />
           <Input label="Simple input" placeholder="Required=false" />
           <Select
-            topOptions={[{ label: 'toplabel', value: 'topvalue', icon: { IconSettings } }]}
-            options={[{ label: 'label', value: 'value' }]}
+            topOptions={[{ label: 'toplabel', value: 'topvalue', icon: { <IconSettings/> } }]}
+            options={[
+              { label: 'label', value: 'value' },
+              { label: 'label2', value: 'value2' },
+              { label: 'label3', value: 'value3' },
+              {
+                label: 'veryLong text overflow label  veryLong text overflow label',
+                value: 'veryLong text overflow label veryLong text overflow label',
+              },
+            ]}
           >
             <Button tooltip="Tooltip">Add new items</Button>
           </Select>
