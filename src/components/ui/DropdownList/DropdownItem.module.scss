@@ -1,15 +1,12 @@
 .dropdownItem {
   padding-left: 4px;
-  padding-right: 4px;
+  padding-right: 8px;
   min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none; 
-  -ms-user-select: none; 
-  user-select: none; 
+  user-select: none;
 
   &--backgroundPalette {
     &-onGrayBackground {
@@ -20,6 +17,7 @@
 
       &:active {
         background-color: #c1e4f6;
+        transition: all 0.3s ease;
       }
     }
     &-onLightBackground {
@@ -30,23 +28,45 @@
 
       &:active {
         background-color: #c1e4f6;
+        transition: all 0.3s ease;
       }
     }
   }
-
-  &--isSelected {
+  &--color {
+    &-greyBlue {
+      color: #252932;
+    }
+    &-greyDark {
+      color: #2e2f31;
+    }
   }
 
   &__checkmarkContainer {
-    width: 24px;
+    min-width: 24px;
   }
 
   &__contentContainer {
     display: flex;
     gap: 16px;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__label {
+    text-align: left;
+
+    &--wrap {
+    }
+    &--truncate {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   &__iconContainer {
+    display: flex;
+    align-items: center;
   }
 
   @include for-size-up(desktop) {

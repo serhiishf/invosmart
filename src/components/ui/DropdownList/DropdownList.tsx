@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import styles from './DropdownList.module.scss';
 import { DropdownListProps } from './types';
 import DropdownItem from './DropdownItem';
+import IconSetting from '../../../assets/icons/settings.svg?react';
 
 function DropdownList(props: DropdownListProps) {
   const { children, isLoading = false, options, topOptions } = props;
@@ -19,7 +20,7 @@ function DropdownList(props: DropdownListProps) {
                     key={option.value}
                     label={option.label}
                     value={option.value}
-                    role="option"
+                    data-value={option.value}
                   />
                 );
               })}
@@ -29,7 +30,13 @@ function DropdownList(props: DropdownListProps) {
             <ul className={styles.dropdownList__topList}>
               {options.map((option) => {
                 return (
-                  <DropdownItem key={option.value} label={option.label} value={option.value} />
+                  <DropdownItem
+                    key={option.value}
+                    label={option.label}
+                    value={option.value}
+                    icon={<IconSetting />}
+                    data-value={option.value}
+                  />
                 );
               })}
             </ul>

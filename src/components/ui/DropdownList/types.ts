@@ -5,6 +5,7 @@ export interface DropdownItemProps extends DropdownOptionBase, React.HTMLAttribu
   backgroundPalette?: 'onGrayBackground' | 'onLightBackground';
   isSelected?: boolean;
   icon?: React.ReactElement;
+  textOverflow?: 'wrap' | 'truncate';
 }
 
 interface BaseDropdownListProps {

@@ -25,9 +25,9 @@ function ShfTestComponent() {
           />
           <Input label="Simple input" placeholder="Required=false" />
           <Select
-            topOptions={[{ label: 'toplabel', value: 'topvalue', icon: { <IconSettings/> } }]}
+            topOptions={[{ label: 'toplabel', value: 'topvalue' }]}
             options={[
-              { label: 'label', value: 'value' },
+              { label: 'label1', value: 'value1' },
               { label: 'label2', value: 'value2' },
               { label: 'label3', value: 'value3' },
               {
