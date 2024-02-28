@@ -44,6 +44,7 @@ function Select(props: SelectProps) {
   };
 
   const handleSelectPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    console.log(event.target);
     if (!isSearchable) {
       if (
         event.target instanceof Element &&
@@ -59,6 +60,7 @@ function Select(props: SelectProps) {
   };
 
   const handleSelectBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    console.log(document.activeElement);
     if (selectRef.current && !selectRef.current.contains(event.relatedTarget)) {
       if (event.target !== document.activeElement) {
         setIsFocused(false);

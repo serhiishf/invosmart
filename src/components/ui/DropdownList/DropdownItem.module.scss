@@ -8,26 +8,28 @@
   padding-right: 24px;
 
   &--backgroundPalette {
-    &-onGrayBackground {
-      &:hover,
-      &:focus-visible {
-        background-color: $dropdownItemWhiteColor;
-      }
+    @media (pointer: fine) {
+      &-onGrayBackground {
+        &:hover,
+        &:focus-visible {
+          background-color: $dropdownItemWhiteColor;
+        }
 
-      &:active {
-        background-color: $dropdownItemBackgroundColorActive;
-        transition: all 0.15s ease;
+        &:active {
+          background-color: $dropdownItemBackgroundColorActive;
+          transition: all 0.15s ease;
+        }
       }
-    }
-    &-onLightBackground {
-      &:hover,
-      &:focus-visible {
-        background-color: $dropdownItemBackgroundColorHover;
-      }
+      &-onLightBackground {
+        &:hover,
+        &:focus-visible {
+          background-color: $dropdownItemBackgroundColorHover;
+        }
 
-      &:active {
-        background-color: $dropdownItemBackgroundColorActive;
-        transition: all 0.15s ease;
+        &:active {
+          background-color: $dropdownItemBackgroundColorActive;
+          transition: all 0.15s ease;
+        }
       }
     }
   }
