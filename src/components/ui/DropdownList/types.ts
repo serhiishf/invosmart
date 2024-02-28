@@ -1,6 +1,7 @@
-import { DropdownOptionBase } from 'types/common';
-
-export interface DropdownItemProps extends DropdownOptionBase, React.HTMLAttributes<HTMLLIElement> {
+export interface DropdownItemProps extends React.HTMLAttributes<HTMLLIElement> {
+  label: string;
+  value: string;
+  isDisabled?: boolean;
   color?: string;
   backgroundPalette?: 'onGrayBackground' | 'onLightBackground';
   isSelected?: boolean;
@@ -11,16 +12,18 @@ export interface DropdownItemProps extends DropdownOptionBase, React.HTMLAttribu
 interface BaseDropdownListProps {
   children?: React.ReactNode;
   isLoading?: boolean;
+  isHeightUnlimited?: boolean;
+  textOverflow?: 'wrap' | 'truncate';
 }
 
 interface DropdownListWithoutTopProps extends BaseDropdownListProps {
-  options?: DropdownOptionBase[];
+  options?: DropdownItemProps[];
   topOptions?: never;
 }
 
 interface DropdownListWithTopProps extends BaseDropdownListProps {
-  options?: DropdownOptionBase[];
-  topOptions?: DropdownOptionBase[];
+  options?: DropdownItemProps[];
+  topOptions?: DropdownItemProps[];
 }
 
 export type DropdownListProps = DropdownListWithoutTopProps | DropdownListWithTopProps;

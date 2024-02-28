@@ -5,6 +5,8 @@ $_color-blue-100: #30a5e0;
 $_color-blue-200: #2197d1;
 $_color-blue-300: #0689c9;
 $_color-blue-400: #2684b3;
+$_color-blue-500: #c1e4f6;
+$_color-blue-600: #d6edf9;
 
 // Sky colors
 $_color-sky-100: #acdbf3;
@@ -61,6 +63,10 @@ $_color-grey-300: #818e94;
 $_color-grey-400: #727779;
 $_color-grey-500: #979b9d;
 $_color-grey-600: #979797;
+
+// rgba
+
+$_boxShadowColor: rgba(0, 0, 0, 0.15);
 
 /*---Main colors----*/
 $color-background: $_color-light-200;
@@ -202,8 +208,23 @@ $selectIconColor: $_color-grey-400;
 $selectIconColorHover: $_color-dark-500;
 $selectDividerColor: $_color-grey-200;
 $selectPlaceholderColor: $_color-grey-500;
+$selectTooltipZIndex: $z-index-tooltip;
 $selectOptionsZIndex: $z-index-dropdown;
 $selectControlMinHeightDesktop: $fieldMinHeightDesktop;
 $selectControlMinHeightMobile: $fieldMinHeightMobile;
-$selectOptionsBorderRadius: $border-radius-base;
-$selectOptionsWhiteColor: $color-white;
+
+/* ---DropdownList */
+$dropdownListBoxShadowColor: $_boxShadowColor;
+$dropdownListBorderRadius: $border-radius-base;
+$dropdownListBackgroundColorWhite: $color-white;
+$dropdownListPlaceholderColor: $_color-grey-400;
+$dropdownListDividerColor: $_color-grey-200;
+
+/* ---DropdownItem */
+$dropdownItemWhiteColor: $color-white;
+$dropdownItemBackgroundColorActive: $_color-blue-500;
+$dropdownItemBackgroundColorHover: $_color-blue-600;
+$dropdownItemColorGreyBlue: $_color-dark-800;
+$dropdownItemColorGreyDark: $_color-dark-700;
+$dropdownItemMinHeightDesktop: $fieldMinHeightDesktop;
+$dropdownItemMinHeightMobile: $fieldMinHeightMobile;

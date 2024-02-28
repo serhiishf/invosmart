@@ -5,11 +5,31 @@ import DropdownItem from './DropdownItem';
 import IconSetting from '../../../assets/icons/settings.svg?react';
 
 function DropdownList(props: DropdownListProps) {
-  const { children, isLoading = false, options, topOptions } = props;
+  const {
+    children,
+    isLoading = false,
+    options,
+    topOptions,
+    textOverflow = 'wrap',
+    isHeightUnlimited = false,
+  } = props;
+
+  const loadingMessage = 'TRANSLATE Is loading...';
+  const noOptionsMessage = 'TRANSLATE No options';
 
   return (
-    <div className={classNames(styles.dropdownList)}>
-      {options && <div className={styles.dropdownList__placeholder}>No options</div>}
+    <div
+      className={classNames(
+        styles.dropdownList,
+        isHeightUnlimited && styles['dropdownList--isHeightUnlimited']
+      )}
+    >
+      {(!options || isLoading) && (
+        <div className={styles.dropdownList__placeholder}>
+          {isLoading && loadingMessage}
+          {!options && !isLoading && noOptionsMessage}
+        </div>
+      )}
       {options && (
         <div className={styles.dropdownList__lists} role="listbox">
           {topOptions && (
@@ -21,6 +41,7 @@ function DropdownList(props: DropdownListProps) {
                     label={option.label}
                     value={option.value}
                     data-value={option.value}
+                    textOverflow={textOverflow}
                   />
                 );
               })}
@@ -36,6 +57,7 @@ function DropdownList(props: DropdownListProps) {
                     value={option.value}
                     icon={<IconSetting />}
                     data-value={option.value}
+                    textOverflow={textOverflow}
                   />
                 );
               })}

@@ -36,7 +36,10 @@
 
   &__options {
     position: absolute;
+    width: 100%;
+    max-width: 100%;
     top: 100%;
+    z-index: $selectOptionsZIndex;
   }
 
   &__valueContainer {
@@ -91,31 +94,5 @@
     &:hover {
       color: $selectIconColorHover;
     }
-  }
-}
-
-.options {
-  max-height: 250px;
-  width: 100%;
-  background-color: $selectOptionsWhiteColor;
-  border-bottom-left-radius: $selectOptionsBorderRadius;
-  border-bottom-right-radius: $selectOptionsBorderRadius;
-
-  &__placeholder {
-    text-align: center;
-    color: #2e2f31;
-  }
-
-  &__childrenContainer {
-    border-top: 1px solid $selectDividerColor;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    display: flex;
-    justify-content: center;
-  }
-
-  &__lists {
-    padding-top: 4px;
-    padding-bottom: 4px;
   }
 }

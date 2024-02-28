@@ -1,43 +1,42 @@
 .dropdownItem {
-  padding-left: 4px;
-  padding-right: 8px;
-  min-height: 48px;
+  min-height: $dropdownItemMinHeightMobile;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
   user-select: none;
+  padding-right: 24px;
 
   &--backgroundPalette {
     &-onGrayBackground {
       &:hover,
       &:focus-visible {
-        background-color: #ffffff;
+        background-color: $dropdownItemWhiteColor;
       }
 
       &:active {
-        background-color: #c1e4f6;
-        transition: all 0.3s ease;
+        background-color: $dropdownItemBackgroundColorActive;
+        transition: all 0.15s ease;
       }
     }
     &-onLightBackground {
       &:hover,
       &:focus-visible {
-        background-color: #d6edf9;
+        background-color: $dropdownItemBackgroundColorHover;
       }
 
       &:active {
-        background-color: #c1e4f6;
-        transition: all 0.3s ease;
+        background-color: $dropdownItemBackgroundColorActive;
+        transition: all 0.15s ease;
       }
     }
   }
   &--color {
     &-greyBlue {
-      color: #252932;
+      color: $dropdownItemColorGreyBlue;
     }
     &-greyDark {
-      color: #2e2f31;
+      color: $dropdownItemColorGreyDark;
     }
   }
 
@@ -70,6 +69,6 @@
   }
 
   @include for-size-up(desktop) {
-    min-height: 40px;
+    min-height: $dropdownItemMinHeightDesktop;
   }
 }

@@ -7,10 +7,10 @@ function DropdownItem(props: DropdownItemProps) {
   const {
     label,
     icon,
-    isSelected,
+    isSelected = false,
     color = 'greyBlue',
-    backgroundPalette = 'onGrayBackground',
-    textOverflow = 'truncate',
+    backgroundPalette = 'onLightBackground',
+    textOverflow = 'wrap',
     ...rest
   } = props;
   return (
@@ -29,7 +29,7 @@ function DropdownItem(props: DropdownItemProps) {
         {isSelected && <IconCheckmark />}
       </div>
       <div className={styles.dropdownItem__contentContainer}>
-        <div className={styles.dropdownItem__iconContainer}>{icon}</div>
+        {icon && <div className={styles.dropdownItem__iconContainer}>{icon}</div>}
         <div
           className={classNames(
             styles.dropdownItem__label,

@@ -1,29 +1,37 @@
 .dropdownList {
-  max-height: 250px;
+  max-height: 280px;
   width: 100%;
-  background-color: $selectOptionsWhiteColor;
-  border-bottom-left-radius: $selectOptionsBorderRadius;
-  border-bottom-right-radius: $selectOptionsBorderRadius;
+  max-width: 100%;
+  background-color: $dropdownListBackgroundColorWhite;
+  border-bottom-left-radius: $dropdownListBorderRadius;
+  border-bottom-right-radius: $dropdownListBorderRadius;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 15px 0 $dropdownListBoxShadowColor;
 
-  //test code
-  width: 340px;
-  background-color: #f5f6fa;
-
-  &__placeholder {
-    text-align: center;
-    color: #2e2f31;
+  &--isHeightUnlimited {
+    max-height: 100%;
   }
 
-  &__childrenContainer {
-    border-top: 1px solid $selectDividerColor;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    display: flex;
-    justify-content: center;
+  &__placeholder {
+    padding: 16px 0;
+    text-align: center;
+    color: $dropdownListPlaceholderColor;
   }
 
   &__lists {
     padding-top: 4px;
     padding-bottom: 4px;
+    overflow-y: auto;
+    flex-grow: 1;
+    overscroll-behavior: contain;
+  }
+
+  &__childrenContainer {
+    border-top: 1px solid $dropdownListDividerColor;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    display: flex;
+    justify-content: center;
   }
 }
