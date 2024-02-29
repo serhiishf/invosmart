@@ -35,7 +35,11 @@ function Button(props: ButtonProps) {
       {...rest}
     >
       {children}
-      <>{tooltip && <Tooltip tooltipMessage={tooltip} />}</>
+      {tooltip && (
+        <div className={styles.button__tooltipWrap}>
+          <Tooltip tooltipMessage={tooltip} />
+        </div>
+      )}
     </button>
   );
 }

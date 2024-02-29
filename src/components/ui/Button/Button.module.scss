@@ -11,11 +11,36 @@
   font-size: 15px;
   padding-top: 8px;
   padding-bottom: 8px;
-
+  position: relative;
   transition: background-color $buttonAnimation;
 
   &--fullWidthMode {
     width: 100%;
+  }
+
+  @media (pointer: fine) {
+    &:hover {
+      .button__tooltipWrap {
+        visibility: visible;
+        opacity: 1;
+        transition: all $buttonAnimation;
+      }
+    }
+  }
+
+  &__tooltipWrap {
+    position: absolute;
+    width: max-content;
+    visibility: hidden;
+    opacity: 0;
+    top: calc(100% + 8px);
+    right: 50%;
+    transform: translateX(50%);
+    transition: all $iconButtonAnimation;
+    z-index: $iconButtonZIndex;
+    &:hover {
+      display: none;
+    }
   }
 
   &--size {
