@@ -25,6 +25,21 @@ function ShfTestComponent() {
           />
           <Input label="Simple input" placeholder="Required=false" />
           <Select></Select>
+          <Select></Select>
+          <Input
+            label={'Password'}
+            type="password"
+            placeholder="Password"
+            required
+            isError={true}
+          />
+          <Input
+            label={'Password'}
+            type="password"
+            placeholder="Password"
+            required
+            isError={true}
+          />
           <Select
             topOptions={[{ label: 'toplabel', value: 'topvalue' }]}
             options={[

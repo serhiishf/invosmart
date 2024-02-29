@@ -9,6 +9,10 @@
   width: fit-content;
   cursor: pointer;
   font-size: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  transition: background-color $buttonAnimation;
 
   &--fullWidthMode {
     width: 100%;
@@ -16,14 +20,14 @@
 
   &--size {
     &-xs {
-      height: 30px;
+      min-height: 30px;
       font-size: 14px;
     }
     &-s {
-      height: 40px;
+      min-height: 40px;
     }
     &-m {
-      height: 48px;
+      min-height: 48px;
       padding-left: $buttonPaddingLarge;
       padding-right: $buttonPaddingLarge;
       font-size: 16px;
@@ -36,7 +40,7 @@
       font-size: 18px;
 
       @include for-size-up('desktop') {
-        height: 64px;
+        min-height: 64px;
       }
     }
   }
@@ -92,30 +96,38 @@
     &-primary {
       background-color: $buttonColorPrimary;
 
-      &:hover,
-      &:focus-visible {
-        background-color: $buttonColorPrimaryHover;
-      }
-      &:active {
-        background-color: $buttonColorPrimaryActive;
+      @media (pointer: fine) {
+        &:hover,
+        &:focus-visible {
+          background-color: $buttonColorPrimaryHover;
+        }
+        &:active {
+          background-color: $buttonColorPrimaryActive;
+        }
       }
     }
 
     &-secondary {
       background-color: $buttonColorSecondary;
 
-      &:hover,
-      &:focus-visible {
-        background-color: $buttonColorSecondaryHover;
-      }
-      &:active {
-        background-color: $buttonColorSecondaryActive;
-      }
-      &.button--disabled {
-        background-color: $buttonColorSecondaryDissabled;
+      @media (pointer: fine) {
         &:hover,
         &:focus-visible {
-          background-color: $buttonColorSecondaryDissabled;
+          background-color: $buttonColorSecondaryHover;
+        }
+        &:active {
+          background-color: $buttonColorSecondaryActive;
+        }
+      }
+
+      &.button--disabled {
+        background-color: $buttonColorSecondaryDissabled;
+
+        @media (pointer: fine) {
+          &:hover,
+          &:focus-visible {
+            background-color: $buttonColorSecondaryDissabled;
+          }
         }
       }
     }
@@ -123,60 +135,70 @@
     &-transparentSecondary {
       background-color: transparent;
 
-      &:hover,
-      &:focus-visible {
-        background-color: $buttonColorTranspSecondaryHover;
-      }
-      &:active {
-        background-color: $buttonColorTranspSecondaryActive;
+      @media (pointer: fine) {
+        &:hover,
+        &:focus-visible {
+          background-color: $buttonColorTranspSecondaryHover;
+        }
+        &:active {
+          background-color: $buttonColorTranspSecondaryActive;
+        }
       }
     }
 
     &-transparentPositive {
       background-color: transparent;
 
-      &:hover,
-      &:focus-visible {
-        background-color: $buttonColorTranspPositiveHover;
-      }
-      &:active {
-        background-color: $buttonColorTranspPositiveActive;
+      @media (pointer: fine) {
+        &:hover,
+        &:focus-visible {
+          background-color: $buttonColorTranspPositiveHover;
+        }
+        &:active {
+          background-color: $buttonColorTranspPositiveActive;
+        }
       }
     }
 
     &-transparentNegative {
       background-color: transparent;
 
-      &:hover,
-      &:focus-visible {
-        background-color: $buttonColorTranspNegativeHover;
-      }
-      &:active {
-        background-color: $buttonColorTranspNegativeActive;
+      @media (pointer: fine) {
+        &:hover,
+        &:focus-visible {
+          background-color: $buttonColorTranspNegativeHover;
+        }
+        &:active {
+          background-color: $buttonColorTranspNegativeActive;
+        }
       }
     }
 
     &-transparentNeutral {
       background-color: transparent;
 
-      &:hover,
-      &:focus-visible {
-        background-color: $buttonColorTranspNeutralHover;
-      }
-      &:active {
-        background-color: $buttonColorTranspNeutralActive;
+      @media (pointer: fine) {
+        &:hover,
+        &:focus-visible {
+          background-color: $buttonColorTranspNeutralHover;
+        }
+        &:active {
+          background-color: $buttonColorTranspNeutralActive;
+        }
       }
     }
 
     &-positive {
       background-color: $buttonColorPositive;
 
-      &:hover,
-      &:focus-visible {
-        background-color: $buttonColorPositiveHover;
-      }
-      &:active {
-        background-color: $buttonColorPositiveActive;
+      @media (pinter: fine) {
+        &:hover,
+        &:focus-visible {
+          background-color: $buttonColorPositiveHover;
+        }
+        &:active {
+          background-color: $buttonColorPositiveActive;
+        }
       }
     }
   }
