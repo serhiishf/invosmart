@@ -1,4 +1,4 @@
-export interface DropdownItemProps extends React.HTMLAttributes<HTMLLIElement> {
+export interface DropdownOptionProps extends React.HTMLAttributes<HTMLLIElement> {
   label: string;
   value: string;
   isDisabled?: boolean;
@@ -14,16 +14,17 @@ interface BaseDropdownListProps {
   isLoading?: boolean;
   isHeightUnlimited?: boolean;
   textOverflow?: 'wrap' | 'truncate';
+  isMenu?: boolean;
 }
 
 interface DropdownListWithoutTopProps extends BaseDropdownListProps {
-  options?: DropdownItemProps[];
+  options?: DropdownOptionProps[];
   topOptions?: never;
 }
 
 interface DropdownListWithTopProps extends BaseDropdownListProps {
-  options?: DropdownItemProps[];
-  topOptions?: DropdownItemProps[];
+  options?: DropdownOptionProps[];
+  topOptions?: DropdownOptionProps[];
 }
 
 export type DropdownListProps = DropdownListWithoutTopProps | DropdownListWithTopProps;

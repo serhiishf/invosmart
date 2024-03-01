@@ -2,6 +2,7 @@ import { Input, Button, Link, Select } from '../ui';
 import styles from './ShfTestComponent.module.scss';
 import IconSearch from '../../assets/icons/search.svg?react';
 import IconSettings from '../../assets/icons/settings.svg?react';
+import dropdownData from './mockData';
 
 function ShfTestComponent() {
   return (
@@ -24,7 +25,7 @@ function ShfTestComponent() {
             isError={true}
           />
           <Input label="Simple input" placeholder="Required=false" />
-          <Select></Select>
+          <Select options={dropdownData}></Select>
           <Select></Select>
           <Input
             label={'Password'}
@@ -40,18 +41,7 @@ function ShfTestComponent() {
             required
             isError={true}
           />
-          <Select
-            topOptions={[{ label: 'toplabel', value: 'topvalue' }]}
-            options={[
-              { label: 'label1', value: 'value1' },
-              { label: 'label2', value: 'value2' },
-              { label: 'label3', value: 'value3' },
-              {
-                label: 'veryLong text overflow label  veryLong text overflow label',
-                value: 'veryLong text overflow label veryLong text overflow label',
-              },
-            ]}
-          >
+          <Select topOptions={[{ label: 'valuesdo', value: 'valuesdo' }]} options={dropdownData}>
             <Button tooltip="Tooltip">Add new items</Button>
           </Select>
 

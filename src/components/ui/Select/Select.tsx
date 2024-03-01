@@ -128,6 +128,8 @@ function Select(props: SelectProps) {
                   ref={inputRef}
                   readOnly={!isSearchable}
                   placeholder={currentPlaceholder}
+                  role="combobox"
+                  aria-expanded={isExpanded}
                 />
               </div>
             </div>

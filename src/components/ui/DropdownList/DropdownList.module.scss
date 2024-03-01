@@ -27,6 +27,22 @@
     overscroll-behavior: contain;
   }
 
+  &__divider {
+    min-height: 1px;
+    height: 1px;
+    position: relative;
+
+    &:after {
+      content: '';
+      background-color: $dropdownListDividerColor;
+      height: 100%;
+      width: calc(100% - 32px);
+      position: absolute;
+      top: 0;
+      left: 16px;
+    }
+  }
+
   &__childrenContainer {
     border-top: 1px solid $dropdownListDividerColor;
     padding-top: 16px;

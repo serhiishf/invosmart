@@ -1,5 +1,5 @@
-.dropdownItem {
-  min-height: $dropdownItemMinHeightMobile;
+.dropdownOption {
+  min-height: $dropdownOptionMinHeightMobile;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -12,22 +12,22 @@
       &-onGrayBackground {
         &:hover,
         &:focus-visible {
-          background-color: $dropdownItemWhiteColor;
+          background-color: $dropdownOptionWhiteColor;
         }
 
         &:active {
-          background-color: $dropdownItemBackgroundColorActive;
+          background-color: $dropdownOptionBackgroundColorActive;
           transition: all 0.15s ease;
         }
       }
       &-onLightBackground {
         &:hover,
         &:focus-visible {
-          background-color: $dropdownItemBackgroundColorHover;
+          background-color: $dropdownOptionBackgroundColorHover;
         }
 
         &:active {
-          background-color: $dropdownItemBackgroundColorActive;
+          background-color: $dropdownOptionBackgroundColorActive;
           transition: all 0.15s ease;
         }
       }
@@ -35,10 +35,10 @@
   }
   &--color {
     &-greyBlue {
-      color: $dropdownItemColorGreyBlue;
+      color: $dropdownOptionColorGreyBlue;
     }
     &-greyDark {
-      color: $dropdownItemColorGreyDark;
+      color: $dropdownOptionColorGreyDark;
     }
   }
 
@@ -56,8 +56,6 @@
   &__label {
     text-align: left;
 
-    &--wrap {
-    }
     &--truncate {
       white-space: nowrap;
       overflow: hidden;
@@ -71,6 +69,6 @@
   }
 
   @include for-size-up(desktop) {
-    min-height: $dropdownItemMinHeightDesktop;
+    min-height: $dropdownOptionMinHeightDesktop;
   }
 }
