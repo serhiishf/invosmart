@@ -7,26 +7,30 @@
   user-select: none;
   padding-right: 24px;
 
+  &:focus {
+    outline: none;
+  }
+
   &--backgroundPalette {
     @media (pointer: fine) {
       &-onGrayBackground {
-        &:hover,
-        &:focus-visible {
+        &:hover{
           background-color: $dropdownOptionWhiteColor;
         }
 
-        &:active {
+        &:active,
+        &-isHighlighted {
           background-color: $dropdownOptionBackgroundColorActive;
           transition: all 0.15s ease;
         }
       }
       &-onLightBackground {
-        &:hover,
-        &:focus-visible {
+        &:hover{
           background-color: $dropdownOptionBackgroundColorHover;
         }
 
-        &:active {
+        &:active,
+        &-isHighlighted {
           background-color: $dropdownOptionBackgroundColorActive;
           transition: all 0.15s ease;
         }

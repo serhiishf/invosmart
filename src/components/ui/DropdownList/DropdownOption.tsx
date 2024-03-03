@@ -1,9 +1,10 @@
+import { forwardRef } from 'react';
 import classNames from 'classnames';
 import styles from './DropdownOption.module.scss';
 import { DropdownOptionProps } from './types';
 import IconCheckmark from '../../../assets/icons/checkmark.svg?react';
 
-function DropdownOption(props: DropdownOptionProps) {
+function DropdownOption(props: DropdownOptionProps, ref: React.Ref<HTMLLIElement>) {
   const {
     label,
     icon,
@@ -11,8 +12,10 @@ function DropdownOption(props: DropdownOptionProps) {
     color = 'greyBlue',
     backgroundPalette = 'onLightBackground',
     textOverflow = 'wrap',
+    isHighlighted = false,
     ...rest
   } = props;
+
   return (
     <li
       tabIndex={-1}
@@ -20,9 +23,11 @@ function DropdownOption(props: DropdownOptionProps) {
         styles.dropdownOption,
         isSelected && styles['dropdownOption--isSelected'],
         styles[`dropdownOption--color-${color}`],
-        styles[`dropdownOption--backgroundPalette-${backgroundPalette}`]
+        styles[`dropdownOption--backgroundPalette-${backgroundPalette}`],
+        isHighlighted &&
+          styles[`dropdownOption--backgroundPalette-${backgroundPalette}-isHighlighted`]
       )}
-      onClick={() => console.log('li click')}
+      ref={ref}
       {...rest}
     >
       <div className={styles.dropdownOption__checkmarkContainer}>
@@ -43,4 +48,4 @@ function DropdownOption(props: DropdownOptionProps) {
   );
 }
 
-export default DropdownOption;
+export default forwardRef(DropdownOption);

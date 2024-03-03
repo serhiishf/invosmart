@@ -2,6 +2,7 @@ export interface DropdownOptionProps extends React.HTMLAttributes<HTMLLIElement>
   label: string;
   value: string;
   isDisabled?: boolean;
+  isHighlighted?: boolean;
   color?: string;
   backgroundPalette?: 'onGrayBackground' | 'onLightBackground';
   isSelected?: boolean;
@@ -15,6 +16,7 @@ interface BaseDropdownListProps {
   isHeightUnlimited?: boolean;
   textOverflow?: 'wrap' | 'truncate';
   isMenu?: boolean;
+  keyEvent?: { key: string; timeStamp: number };
 }
 
 interface DropdownListWithoutTopProps extends BaseDropdownListProps {

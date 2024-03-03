@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
@@ -23,6 +23,7 @@ function Select(props: SelectProps) {
   const [selectedValue, setSelectedValue] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   const [mainOptions, setMainOptions] = useState(options);
+  const [keyEvent, setKeyEvent] = useState({ key: '', timeStamp: 0 });
 
   const selectRef = useRef<HTMLDivElement>(null);
   const suffixContainerRef = useRef<HTMLDivElement>(null);
@@ -91,7 +92,6 @@ function Select(props: SelectProps) {
       setIsExpanded(true);
     }
     inputRef.current?.focus();
-    console.log('handleExpandedButton');
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,6 +100,13 @@ function Select(props: SelectProps) {
     console.log('handleInputChange');
   };
 
+  const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
+    if (event) {
+      if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter')
+        setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
+    }
+  }, []);
+
   return (
     <div
       className={styles.select}
@@ -107,6 +114,7 @@ function Select(props: SelectProps) {
       tabIndex={-1}
       onFocus={handleSelectFocus}
       onBlur={handleSelectBlur}
+      onKeyDown={handleKeyDown}
     >
       <div className={styles.select__controlContainer}>
         <FieldWrapper isFocused={isFocused} isHoverable={!isFocused} label={label}>
@@ -168,7 +176,7 @@ function Select(props: SelectProps) {
       </div>
       {isExpanded && (
         <div className={classNames(styles.select__options)}>
-          <DropdownList options={mainOptions} topOptions={topOptions}>
+          <DropdownList options={mainOptions} topOptions={topOptions} keyEvent={keyEvent}>
             {children}
           </DropdownList>
         </div>
