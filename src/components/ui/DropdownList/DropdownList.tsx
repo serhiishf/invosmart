@@ -12,14 +12,16 @@ function DropdownList(props: DropdownListProps) {
     topOptions,
     textOverflow = 'wrap',
     isHeightUnlimited = false,
-    isMenu = false,
+    isMenu = true,
     keyEvent,
+    initialSelected,
+    isSelectedHighlighted = true,
   } = props;
 
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [optionFocusedIndex, setOptionFocusedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(initialSelected);
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
 
   const combinedOptions = [...(topOptions ?? []), ...(options ?? [])];
@@ -30,20 +32,20 @@ function DropdownList(props: DropdownListProps) {
   const handleNavigationKeyPress = (key: string) => {
     if (key === 'ArrowUp') {
       switch (true) {
-        case highlightedIndex > 0:
-          setHighlightedIndex(highlightedIndex - 1);
+        case optionFocusedIndex > 0:
+          setOptionFocusedIndex(optionFocusedIndex - 1);
           break;
-        case highlightedIndex === 0:
-          setHighlightedIndex(combinedOptions.length - 1);
+        case optionFocusedIndex === 0:
+          setOptionFocusedIndex(combinedOptions.length - 1);
           break;
       }
     } else if (key === 'ArrowDown') {
       switch (true) {
-        case highlightedIndex < combinedOptions.length - 1:
-          setHighlightedIndex(highlightedIndex + 1);
+        case optionFocusedIndex < combinedOptions.length - 1:
+          setOptionFocusedIndex(optionFocusedIndex + 1);
           break;
-        case highlightedIndex === combinedOptions.length - 1:
-          setHighlightedIndex(0);
+        case optionFocusedIndex === combinedOptions.length - 1:
+          setOptionFocusedIndex(0);
           break;
       }
     }
@@ -66,14 +68,14 @@ function DropdownList(props: DropdownListProps) {
   }, [keyEvent]);
 
   useEffect(() => {
-    if (highlightedIndex >= 0 && optionRefs.current[highlightedIndex]) {
-      optionRefs.current[highlightedIndex].current?.scrollIntoView({
-        behavior: 'auto',
-        block: 'center',
+    if (optionFocusedIndex >= 0 && optionRefs.current[optionFocusedIndex]) {
+      optionRefs.current[optionFocusedIndex].current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
         inline: 'start',
       });
     }
-  }, [highlightedIndex]);
+  }, [optionFocusedIndex]);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     console.log(event);
@@ -84,27 +86,21 @@ function DropdownList(props: DropdownListProps) {
     }
   };
 
-  const handleOptionAction = (event: React.SyntheticEvent) => {
-    const dataIndex = event.currentTarget.getAttribute('data-index');
-    const index = dataIndex ? parseInt(dataIndex, 10) : null;
-    if (index !== null) {
-      setHighlightedIndex(index);
-    }
-  };
-
   const handleMouseDown = (event: React.MouseEvent) => {
     const dataIndex = event.currentTarget.getAttribute('data-index');
     const index = dataIndex ? parseInt(dataIndex, 10) : null;
     if (index !== null) {
-      setHighlightedIndex(index);
+      setOptionFocusedIndex(index);
     }
   };
 
   const handlePointerDown = (event: React.PointerEvent) => {
     const dataIndex = event.currentTarget.getAttribute('data-index');
     const index = dataIndex ? parseInt(dataIndex, 10) : null;
+    console.log('click enter', index);
     if (index !== null) {
-      setHighlightedIndex(index);
+      setOptionFocusedIndex(-1);
+      setSelectedIndex(index);
     }
   };
 
@@ -126,7 +122,6 @@ function DropdownList(props: DropdownListProps) {
       onFocus={handleFocus}
       onBlur={handleBlur}
       onMouseDown={handleMouseDown}
-      onPointerDown={handlePointerDown}
     >
       {(!options || isLoading) && (
         <div className={styles.dropdownList__placeholder}>
@@ -142,7 +137,7 @@ function DropdownList(props: DropdownListProps) {
               return (
                 <>
                   <DropdownOption
-                    tabIndex={index === highlightedIndex ? 0 : -1}
+                    tabIndex={index === optionFocusedIndex ? 0 : -1}
                     //TODO: UNIQUE KEY
                     key={option.value}
                     label={option.label}
@@ -153,7 +148,9 @@ function DropdownList(props: DropdownListProps) {
                     role={isMenu ? 'menuitem' : 'option'}
                     data-index={index}
                     ref={optionRefs.current[index]}
-                    isHighlighted={index === highlightedIndex}
+                    isFocused={index === optionFocusedIndex}
+                    onPointerDown={handlePointerDown}
+                    isSelected={isSelectedHighlighted ? index === selectedIndex : false}
                   />
                   {isBoundary && <li className={styles.dropdownList__divider}></li>}
                 </>

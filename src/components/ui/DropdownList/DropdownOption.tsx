@@ -12,7 +12,7 @@ function DropdownOption(props: DropdownOptionProps, ref: React.Ref<HTMLLIElement
     color = 'greyBlue',
     backgroundPalette = 'onLightBackground',
     textOverflow = 'wrap',
-    isHighlighted = false,
+    isFocused = false,
     ...rest
   } = props;
 
@@ -24,8 +24,7 @@ function DropdownOption(props: DropdownOptionProps, ref: React.Ref<HTMLLIElement
         isSelected && styles['dropdownOption--isSelected'],
         styles[`dropdownOption--color-${color}`],
         styles[`dropdownOption--backgroundPalette-${backgroundPalette}`],
-        isHighlighted &&
-          styles[`dropdownOption--backgroundPalette-${backgroundPalette}-isHighlighted`]
+        isFocused && styles[`dropdownOption--backgroundPalette-${backgroundPalette}-isFocused`]
       )}
       ref={ref}
       {...rest}

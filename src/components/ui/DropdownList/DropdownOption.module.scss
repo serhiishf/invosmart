@@ -14,23 +14,23 @@
   &--backgroundPalette {
     @media (pointer: fine) {
       &-onGrayBackground {
-        &:hover{
+        &:hover {
           background-color: $dropdownOptionWhiteColor;
         }
 
         &:active,
-        &-isHighlighted {
+        &-isFocused {
           background-color: $dropdownOptionBackgroundColorActive;
           transition: all 0.15s ease;
         }
       }
       &-onLightBackground {
-        &:hover{
+        &:hover {
           background-color: $dropdownOptionBackgroundColorHover;
         }
 
         &:active,
-        &-isHighlighted {
+        &-isFocused {
           background-color: $dropdownOptionBackgroundColorActive;
           transition: all 0.15s ease;
         }
