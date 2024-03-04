@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, createRef, RefObject } from 'react';
+import { useEffect, useRef, useState, createRef, RefObject, useCallback } from 'react';
 import classNames from 'classnames';
 import styles from './DropdownList.module.scss';
 import { DropdownListProps } from './types';
@@ -17,7 +17,9 @@ function DropdownList(props: DropdownListProps) {
   } = props;
 
   const [typedText, setTypedText] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
 
   const combinedOptions = [...(topOptions ?? []), ...(options ?? [])];
@@ -46,9 +48,9 @@ function DropdownList(props: DropdownListProps) {
       }
     }
   };
-
   useEffect(() => {
     const timer = setTimeout(() => setTypedText(''), 1000);
+    console.log(`typedText: ${typedText}`);
     return () => clearTimeout(timer);
   }, [typedText]);
 
@@ -57,13 +59,23 @@ function DropdownList(props: DropdownListProps) {
   }, [combinedOptions]);
 
   useEffect(() => {
-    if (keyEvent) {
+    if (keyEvent && !isFocused) {
       console.log(`Key pressed: ${keyEvent.key}`);
       handleNavigationKeyPress(keyEvent.key);
     }
   }, [keyEvent]);
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  useEffect(() => {
+    if (highlightedIndex >= 0 && optionRefs.current[highlightedIndex]) {
+      optionRefs.current[highlightedIndex].current?.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+        inline: 'start',
+      });
+    }
+  }, [highlightedIndex]);
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
     console.log(event);
     const key = event.key;
     if (key === 'ArrowUp' || key === 'ArrowDown') {
@@ -72,13 +84,36 @@ function DropdownList(props: DropdownListProps) {
     }
   };
 
-  const handleOptionAction = (event: React.SyntheticEvent<HTMLLIElement>) => {
+  const handleOptionAction = (event: React.SyntheticEvent) => {
     const dataIndex = event.currentTarget.getAttribute('data-index');
     const index = dataIndex ? parseInt(dataIndex, 10) : null;
     if (index !== null) {
       setHighlightedIndex(index);
     }
-    console.log('DELETE DropdownOption click or Enter');
+  };
+
+  const handleMouseDown = (event: React.MouseEvent) => {
+    const dataIndex = event.currentTarget.getAttribute('data-index');
+    const index = dataIndex ? parseInt(dataIndex, 10) : null;
+    if (index !== null) {
+      setHighlightedIndex(index);
+    }
+  };
+
+  const handlePointerDown = (event: React.PointerEvent) => {
+    const dataIndex = event.currentTarget.getAttribute('data-index');
+    const index = dataIndex ? parseInt(dataIndex, 10) : null;
+    if (index !== null) {
+      setHighlightedIndex(index);
+    }
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
   };
 
   return (
@@ -88,6 +123,10 @@ function DropdownList(props: DropdownListProps) {
         isHeightUnlimited && styles['dropdownList--isHeightUnlimited']
       )}
       onKeyDown={handleKeyDown}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onMouseDown={handleMouseDown}
+      onPointerDown={handlePointerDown}
     >
       {(!options || isLoading) && (
         <div className={styles.dropdownList__placeholder}>

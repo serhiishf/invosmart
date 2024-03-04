@@ -97,15 +97,19 @@ function Select(props: SelectProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setIsExpanded(true);
-    console.log('handleInputChange');
+    console.log(`handleInputChange ${isExpanded}`);
   };
 
-  const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
-    if (event) {
-      if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter')
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if (event && isExpanded) {
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter')
+          event.preventDefault();
         setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
-    }
-  }, []);
+      }
+    },
+    [isExpanded]
+  );
 
   return (
     <div
