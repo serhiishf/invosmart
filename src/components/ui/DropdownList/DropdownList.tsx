@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, createRef, RefObject, useCallback } from 'react';
 import classNames from 'classnames';
+import firstMatchFinder from '../../../utils/searchUtils';
 import styles from './DropdownList.module.scss';
 import { DropdownListProps } from './types';
 import DropdownOption from './DropdownOption';
@@ -18,9 +19,11 @@ function DropdownList(props: DropdownListProps) {
     isSelectedHighlighted = true,
   } = props;
 
+  const INDEX_NOT_SET = -1;
+
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const [optionFocusedIndex, setOptionFocusedIndex] = useState(-1);
+  const [optionFocusedIndex, setOptionFocusedIndex] = useState(INDEX_NOT_SET);
   const [selectedIndex, setSelectedIndex] = useState(initialSelected);
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
 
@@ -54,6 +57,10 @@ function DropdownList(props: DropdownListProps) {
   };
 
   useEffect(() => {
+    if (combinedOptions.length && typedText) {
+      const searchArray = combinedOptions.map((option) => option.label);
+      setOptionFocusedIndex(firstMatchFinder(typedText, searchArray, 'startString'));
+    }
     const timer = setTimeout(() => setTypedText(''), 1000);
     console.log(`typedText: ${typedText}`);
     return () => clearTimeout(timer);
@@ -65,8 +72,7 @@ function DropdownList(props: DropdownListProps) {
 
   useEffect(() => {
     if (keyEvent && !isFocused) {
-      console.log(keyEvent);
-      console.log(`Key pressed: ${keyEvent.key}`);
+      // console.log(`Key pressed: ${keyEvent.key}`);
       handleNavigationKeyPress(keyEvent.key);
     }
   }, [keyEvent]);

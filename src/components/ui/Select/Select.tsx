@@ -107,8 +107,6 @@ function Select(props: SelectProps) {
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       if (event && isExpanded) {
-        console.log(event);
-        console.log('event work');
         if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter')
           event.preventDefault();
         setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
