@@ -48,8 +48,11 @@ function DropdownList(props: DropdownListProps) {
           setOptionFocusedIndex(0);
           break;
       }
+    } else if (key === 'Enter') {
+      setSelectedIndex(optionFocusedIndex);
     }
   };
+
   useEffect(() => {
     const timer = setTimeout(() => setTypedText(''), 1000);
     console.log(`typedText: ${typedText}`);
@@ -62,6 +65,7 @@ function DropdownList(props: DropdownListProps) {
 
   useEffect(() => {
     if (keyEvent && !isFocused) {
+      console.log(keyEvent);
       console.log(`Key pressed: ${keyEvent.key}`);
       handleNavigationKeyPress(keyEvent.key);
     }
@@ -70,19 +74,24 @@ function DropdownList(props: DropdownListProps) {
   useEffect(() => {
     if (optionFocusedIndex >= 0 && optionRefs.current[optionFocusedIndex]) {
       optionRefs.current[optionFocusedIndex].current?.scrollIntoView({
-        behavior: 'smooth',
+        behavior: 'auto',
         block: 'nearest',
         inline: 'start',
       });
     }
   }, [optionFocusedIndex]);
 
+  const handleTypedText = (event: React.KeyboardEvent) => {
+    setTypedText(typedText + event.key);
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    console.log(event);
     const key = event.key;
-    if (key === 'ArrowUp' || key === 'ArrowDown') {
+    if (key === 'ArrowUp' || key === 'ArrowDown' || key === 'Enter') {
       event.preventDefault();
       handleNavigationKeyPress(key);
+    } else if (event.key.length === 1) {
+      handleTypedText(event);
     }
   };
 
@@ -99,7 +108,7 @@ function DropdownList(props: DropdownListProps) {
     const index = dataIndex ? parseInt(dataIndex, 10) : null;
     console.log('click enter', index);
     if (index !== null) {
-      setOptionFocusedIndex(-1);
+      setOptionFocusedIndex(index);
       setSelectedIndex(index);
     }
   };
