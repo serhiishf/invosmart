@@ -19,6 +19,7 @@ interface BaseDropdownListProps {
   keyEvent?: { key: string; timeStamp: number };
   initialSelected?: number;
   isSelectedHighlighted?: boolean;
+  typedSearchMatchType?: 'startString' | 'startWord' | 'anyMatch';
 }
 
 interface DropdownListWithoutTopProps extends BaseDropdownListProps {

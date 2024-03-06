@@ -26,6 +26,6 @@ function firstMatchFinder(
 
 export default firstMatchFinder;
 
-function escapeRegExp(string) {
+function escapeRegExp(string: string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

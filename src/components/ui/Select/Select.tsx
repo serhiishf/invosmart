@@ -20,6 +20,7 @@ function Select(props: SelectProps) {
 
   const [inputValue, setInputValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
   const [mainOptions, setMainOptions] = useState(options);
@@ -106,14 +107,19 @@ function Select(props: SelectProps) {
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
-      if (event && isExpanded) {
+      if (event && isExpanded && isInputFocused) {
+        console.log(isInputFocused, 'IS INPUT FOCUSED');
         if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter')
           event.preventDefault();
         setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
         setTimeout(clearKeyEvent, 0);
+      } else if (event && !isExpanded) {
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+          setIsExpanded(true);
+        }
       }
     },
-    [isExpanded]
+    [isExpanded, isInputFocused]
   );
 
   return (
@@ -147,6 +153,8 @@ function Select(props: SelectProps) {
                   placeholder={currentPlaceholder}
                   role="combobox"
                   aria-expanded={isExpanded}
+                  onFocus={() => setIsInputFocused(true)}
+                  onBlur={() => setIsInputFocused(false)}
                 />
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, createRef, RefObject, useCallback } from 'react';
+import { useEffect, useRef, useState, createRef, RefObject, useMemo, useCallback } from 'react';
 import classNames from 'classnames';
 import firstMatchFinder from '../../../utils/searchUtils';
 import styles from './DropdownList.module.scss';
@@ -17,54 +17,58 @@ function DropdownList(props: DropdownListProps) {
     keyEvent,
     initialSelected,
     isSelectedHighlighted = true,
+    typedSearchMatchType = 'startString',
   } = props;
-
-  const INDEX_NOT_SET = -1;
 
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const [optionFocusedIndex, setOptionFocusedIndex] = useState(INDEX_NOT_SET);
+  const [optionFocusedIndex, setOptionFocusedIndex] = useState(initialSelected ?? 0);
   const [selectedIndex, setSelectedIndex] = useState(initialSelected);
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
 
-  const combinedOptions = [...(topOptions ?? []), ...(options ?? [])];
+  const combinedOptions = useMemo(() => {
+    return [...(topOptions ?? []), ...(options ?? [])];
+  }, [options, topOptions]);
 
   const loadingMessage = 'TRANSLATE Is loading...';
   const noOptionsMessage = 'TRANSLATE No options';
 
-  const handleNavigationKeyPress = (key: string) => {
-    if (key === 'ArrowUp') {
-      switch (true) {
-        case optionFocusedIndex > 0:
-          setOptionFocusedIndex(optionFocusedIndex - 1);
-          break;
-        case optionFocusedIndex === 0:
-          setOptionFocusedIndex(combinedOptions.length - 1);
-          break;
+  const handleNavigationKeyPress = useCallback(
+    (key: string) => {
+      if (key === 'ArrowUp') {
+        switch (true) {
+          case optionFocusedIndex > 0:
+            setOptionFocusedIndex(optionFocusedIndex - 1);
+            break;
+          case optionFocusedIndex === 0:
+            setOptionFocusedIndex(combinedOptions.length - 1);
+            break;
+        }
+      } else if (key === 'ArrowDown') {
+        switch (true) {
+          case optionFocusedIndex < combinedOptions.length - 1:
+            setOptionFocusedIndex(optionFocusedIndex + 1);
+            break;
+          case optionFocusedIndex === combinedOptions.length - 1:
+            setOptionFocusedIndex(0);
+            break;
+        }
+      } else if (key === 'Enter') {
+        setSelectedIndex(optionFocusedIndex);
       }
-    } else if (key === 'ArrowDown') {
-      switch (true) {
-        case optionFocusedIndex < combinedOptions.length - 1:
-          setOptionFocusedIndex(optionFocusedIndex + 1);
-          break;
-        case optionFocusedIndex === combinedOptions.length - 1:
-          setOptionFocusedIndex(0);
-          break;
-      }
-    } else if (key === 'Enter') {
-      setSelectedIndex(optionFocusedIndex);
-    }
-  };
+    },
+    [optionFocusedIndex, combinedOptions]
+  );
 
   useEffect(() => {
     if (combinedOptions.length && typedText) {
       const searchArray = combinedOptions.map((option) => option.label);
-      setOptionFocusedIndex(firstMatchFinder(typedText, searchArray, 'startString'));
+      setOptionFocusedIndex(firstMatchFinder(typedText, searchArray, typedSearchMatchType));
     }
     const timer = setTimeout(() => setTypedText(''), 1000);
     console.log(`typedText: ${typedText}`);
     return () => clearTimeout(timer);
-  }, [typedText]);
+  }, [typedText, combinedOptions, typedSearchMatchType]);
 
   useEffect(() => {
     optionRefs.current = combinedOptions.map((_, i) => optionRefs.current[i] || createRef());
@@ -72,10 +76,9 @@ function DropdownList(props: DropdownListProps) {
 
   useEffect(() => {
     if (keyEvent && !isFocused) {
-      // console.log(`Key pressed: ${keyEvent.key}`);
       handleNavigationKeyPress(keyEvent.key);
     }
-  }, [keyEvent]);
+  }, [keyEvent, isFocused, handleNavigationKeyPress]);
 
   useEffect(() => {
     if (optionFocusedIndex >= 0 && optionRefs.current[optionFocusedIndex]) {
