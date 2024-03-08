@@ -1,3 +1,5 @@
+import { SearchStrategy } from 'utils/searchUtils';
+
 export interface DropdownOptionProps extends React.HTMLAttributes<HTMLLIElement> {
   label: string;
   value: string;
@@ -19,7 +21,7 @@ interface BaseDropdownListProps {
   keyEvent?: { key: string; timeStamp: number };
   initialSelected?: number;
   isSelectedHighlighted?: boolean;
-  typedSearchMatchType?: 'startString' | 'startWord' | 'anyMatch';
+  typedSearchStrategy?: SearchStrategy;
 }
 
 interface DropdownListWithoutTopProps extends BaseDropdownListProps {

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, createRef, RefObject, useMemo, useCallback } from 'react';
 import classNames from 'classnames';
-import firstMatchFinder from '../../../utils/searchUtils';
+import { firstMatchFinder, SearchStrategy } from 'utils/searchUtils';
 import styles from './DropdownList.module.scss';
 import { DropdownListProps } from './types';
 import DropdownOption from './DropdownOption';
@@ -17,7 +17,7 @@ function DropdownList(props: DropdownListProps) {
     keyEvent,
     initialSelected,
     isSelectedHighlighted = true,
-    typedSearchMatchType = 'startString',
+    typedSearchStrategy = SearchStrategy.StartWord,
   } = props;
 
   const [typedText, setTypedText] = useState('');
@@ -63,12 +63,12 @@ function DropdownList(props: DropdownListProps) {
   useEffect(() => {
     if (combinedOptions.length && typedText) {
       const searchArray = combinedOptions.map((option) => option.label);
-      setOptionFocusedIndex(firstMatchFinder(typedText, searchArray, typedSearchMatchType));
+      setOptionFocusedIndex(firstMatchFinder(typedText, searchArray, typedSearchStrategy));
     }
     const timer = setTimeout(() => setTypedText(''), 1000);
     console.log(`typedText: ${typedText}`);
     return () => clearTimeout(timer);
-  }, [typedText, combinedOptions, typedSearchMatchType]);
+  }, [typedText, combinedOptions, typedSearchStrategy]);
 
   useEffect(() => {
     optionRefs.current = combinedOptions.map((_, i) => optionRefs.current[i] || createRef());
