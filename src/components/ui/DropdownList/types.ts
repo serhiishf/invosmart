@@ -1,14 +1,19 @@
 import { SearchStrategy } from 'utils/searchUtils';
 
-export interface DropdownOptionProps extends React.HTMLAttributes<HTMLLIElement> {
+interface DropdownOptionType {
   label: string;
   value: string;
+  icon?: React.ReactElement;
+}
+
+export interface DropdownOptionProps
+  extends DropdownOptionType,
+    React.HTMLAttributes<HTMLLIElement> {
   isDisabled?: boolean;
   isFocused?: boolean;
   color?: string;
   backgroundPalette?: 'onGrayBackground' | 'onLightBackground';
   isSelected?: boolean;
-  icon?: React.ReactElement;
   textOverflow?: 'wrap' | 'truncate';
 }
 
@@ -20,8 +25,9 @@ interface BaseDropdownListProps {
   isMenu?: boolean;
   keyEvent?: { key: string; timeStamp: number };
   initialSelected?: number;
-  isSelectedHighlighted?: boolean;
+  isSelectedMarked?: boolean;
   typedSearchStrategy?: SearchStrategy;
+  onOptionSelect?: (selectedOption: DropdownOptionType) => void;
 }
 
 interface DropdownListWithoutTopProps extends BaseDropdownListProps {
