@@ -23,11 +23,13 @@ function DropdownList(props: DropdownListProps) {
     topOptions,
     textOverflow = 'wrap',
     isHeightUnlimited = false,
-    isMenu = true,
+    isMenu,
     keyEvent,
     initialSelected,
     isSelectedMarked = true,
     typedSearchStrategy = SearchStrategy.StartWord,
+    ariaLabel,
+    backgroundColor = 'grey',
     onOptionSelect,
   } = props;
 
@@ -36,6 +38,7 @@ function DropdownList(props: DropdownListProps) {
   const [optionFocusedIndex, setOptionFocusedIndex] = useState(initialSelected ?? 0);
   const [selectedIndex, setSelectedIndex] = useState(initialSelected);
   const [selectedOption, setSelectedOption] = useState<DropdownOptionProps | undefined>();
+
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
 
   const combinedOptions = useMemo(() => {
@@ -48,29 +51,17 @@ function DropdownList(props: DropdownListProps) {
   const handleNavigationKeyPress = useCallback(
     (key: string) => {
       if (key === Key.ArrowUp) {
-        switch (true) {
-          case optionFocusedIndex > 0:
-            setOptionFocusedIndex(optionFocusedIndex - 1);
-            break;
-          case optionFocusedIndex === 0:
-            setOptionFocusedIndex(combinedOptions.length - 1);
-            break;
-        }
+        setOptionFocusedIndex(
+          (prevIndex) => (prevIndex - 1 + combinedOptions.length) % combinedOptions.length
+        );
       } else if (key === Key.ArrowDown) {
-        switch (true) {
-          case optionFocusedIndex < combinedOptions.length - 1:
-            setOptionFocusedIndex(optionFocusedIndex + 1);
-            break;
-          case optionFocusedIndex === combinedOptions.length - 1:
-            setOptionFocusedIndex(0);
-            break;
-        }
+        setOptionFocusedIndex((prevIndex) => (prevIndex + 1) % combinedOptions.length);
       } else if (key === Key.Enter) {
         setSelectedIndex(optionFocusedIndex);
         setSelectedOption(combinedOptions[optionFocusedIndex]);
       }
     },
-    [optionFocusedIndex, combinedOptions]
+    [combinedOptions, optionFocusedIndex]
   );
 
   useEffect(() => {
@@ -128,15 +119,18 @@ function DropdownList(props: DropdownListProps) {
     }
   };
 
-  const handlePointerDown = (event: React.PointerEvent) => {
-    const dataIndex = event.currentTarget.getAttribute('data-index');
-    const index = dataIndex ? parseInt(dataIndex, 10) : null;
-    if (index !== null) {
-      setOptionFocusedIndex(index);
-      setSelectedIndex(index);
-      setSelectedOption(combinedOptions[index]);
-    }
-  };
+  const handlePointerDown = useCallback(
+    (event: React.PointerEvent) => {
+      const dataIndex = event.currentTarget.getAttribute('data-index');
+      if (dataIndex !== null) {
+        const index = parseInt(dataIndex, 10);
+        setOptionFocusedIndex(index);
+        setSelectedIndex(index);
+        setSelectedOption(combinedOptions[index]);
+      }
+    },
+    [combinedOptions]
+  );
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -163,7 +157,20 @@ function DropdownList(props: DropdownListProps) {
         </div>
       )}
       {options && (
-        <ul className={styles.dropdownList__list} role={isMenu ? 'menu' : 'listbox'}>
+        <ul
+          className={styles.dropdownList__list}
+          role={isMenu ? 'menu' : 'listbox'}
+          aria-label={ariaLabel}
+          onMouseDown={(event) => {
+            /*
+             * Prevents focus loss when clicking on the scroll area with the mouse.
+             * This ensures that focus remains within the dropdown during scrolling interactions,
+             * allowing users to continue using keyboard navigation (up/down arrows)
+             * to move between options regardless of where the focus is.
+             */
+            event.preventDefault();
+          }}
+        >
           {combinedOptions.map((option, index) => {
             const isTopOption = index < (topOptions?.length ?? 0);
             const keyPrefix = isTopOption ? 'top-' : 'general-';
@@ -184,6 +191,10 @@ function DropdownList(props: DropdownListProps) {
                   isFocused={index === optionFocusedIndex}
                   onPointerDown={handlePointerDown}
                   isSelected={isSelectedMarked ? index === selectedIndex : false}
+                  aria-selected={index === selectedIndex}
+                  backgroundPalette={
+                    backgroundColor === 'grey' ? 'onGrayBackground' : 'onLightBackground'
+                  }
                 />
                 {isBoundary && <li className={styles.dropdownList__divider} key="divider"></li>}
               </Fragment>

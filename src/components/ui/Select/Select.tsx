@@ -72,6 +72,7 @@ function Select(props: SelectProps) {
       }
     } else {
       console.log('Focus not luse');
+      console.log(event);
     }
   };
 

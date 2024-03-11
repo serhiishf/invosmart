@@ -1,10 +1,10 @@
-import { forwardRef } from 'react';
+import { forwardRef, memo } from 'react';
 import classNames from 'classnames';
 import styles from './DropdownOption.module.scss';
 import { DropdownOptionProps } from './types';
 import IconCheckmark from '../../../assets/icons/checkmark.svg?react';
 
-function DropdownOption(props: DropdownOptionProps, ref: React.Ref<HTMLLIElement>) {
+const DropdownOption = forwardRef((props: DropdownOptionProps, ref: React.Ref<HTMLLIElement>) => {
   const {
     label,
     icon,
@@ -45,6 +45,6 @@ function DropdownOption(props: DropdownOptionProps, ref: React.Ref<HTMLLIElement
       </div>
     </li>
   );
-}
+});
 
-export default forwardRef(DropdownOption);
+export default memo(DropdownOption);

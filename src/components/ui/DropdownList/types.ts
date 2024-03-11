@@ -27,6 +27,8 @@ interface BaseDropdownListProps {
   initialSelected?: number;
   isSelectedMarked?: boolean;
   typedSearchStrategy?: SearchStrategy;
+  ariaLabel?: string;
+  backgroundColor?: 'grey' | 'light';
   onOptionSelect?: (selectedOption: DropdownOptionType) => void;
 }
 
