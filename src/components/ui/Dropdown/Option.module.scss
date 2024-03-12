@@ -1,11 +1,12 @@
-.dropdownOption {
-  min-height: $dropdownOptionMinHeightMobile;
+.option {
+  min-height: $optionMinHeightMobile;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
   user-select: none;
-  padding-right: 24px;
+  padding-right: $gridBase * 3;
+  color: $optionColorGreyBlue;
 
   &:focus {
     outline: none;
@@ -13,46 +14,38 @@
 
   &--backgroundPalette {
     @media (pointer: fine) {
-      &-onGrayBackground {
+      &-onGreyBackground {
         &:hover {
-          background-color: $dropdownOptionWhiteColor;
+          background-color: $optionWhiteColor;
         }
 
         &:active,
         &-isFocused {
-          background-color: $dropdownOptionBackgroundColorActive;
-          transition: all 0.15s ease;
+          background-color: $optionLightColor;
+          transition: all $optionAnimation;
         }
       }
       &-onLightBackground {
         &:hover {
-          background-color: $dropdownOptionBackgroundColorHover;
+          background-color: $optionBackgroundColorHover;
         }
 
         &:active,
         &-isFocused {
-          background-color: $dropdownOptionBackgroundColorActive;
-          transition: all 0.15s ease;
+          background-color: $optionBackgroundColorActive;
+          transition: all $optionAnimation;
         }
       }
     }
   }
-  &--color {
-    &-greyBlue {
-      color: $dropdownOptionColorGreyBlue;
-    }
-    &-greyDark {
-      color: $dropdownOptionColorGreyDark;
-    }
-  }
 
   &__checkmarkContainer {
-    min-width: 24px;
+    min-width: $gridBase * 3;
   }
 
   &__contentContainer {
     display: flex;
-    gap: 16px;
+    gap: $gridBase * 2;
     align-items: center;
     overflow: hidden;
   }
@@ -73,6 +66,6 @@
   }
 
   @include for-size-up(desktop) {
-    min-height: $dropdownOptionMinHeightDesktop;
+    min-height: $optionMinHeightDesktop;
   }
 }

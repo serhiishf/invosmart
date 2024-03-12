@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
-import { FieldWrapper, InputBase, IconButton, DropdownList } from '..';
+import { FieldWrapper, InputBase, IconButton, Dropdown } from '..';
 import IconDirectionArrow from '../../../assets/icons/directionCheck.svg?react';
 import IconClose from '../../../assets/icons/close.svg?react';
 
@@ -194,9 +194,9 @@ function Select(props: SelectProps) {
       </div>
       {isExpanded && (
         <div className={classNames(styles.select__options)}>
-          <DropdownList options={mainOptions} topOptions={topOptions} keyEvent={keyEvent}>
+          <Dropdown options={mainOptions} topOptions={topOptions} keyEvent={keyEvent}>
             {children}
-          </DropdownList>
+          </Dropdown>
         </div>
       )}
     </div>

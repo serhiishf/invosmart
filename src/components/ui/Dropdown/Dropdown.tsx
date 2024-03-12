@@ -1,4 +1,4 @@
-import {
+import React, {
   useEffect,
   useRef,
   useState,
@@ -6,22 +6,22 @@ import {
   RefObject,
   useMemo,
   useCallback,
-  Fragment,
 } from 'react';
 import classNames from 'classnames';
 import { firstMatchFinder, SearchStrategy } from 'utils/searchUtils';
+import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { Key } from 'utils/keyboard';
-import styles from './DropdownList.module.scss';
-import { DropdownListProps, DropdownOptionProps } from './types';
-import DropdownOption from './DropdownOption';
+import { DropdownProps, OptionProps, OptionTheme } from './types';
+import styles from './Dropdown.module.scss';
+import Option from './Option';
 
-function DropdownList(props: DropdownListProps) {
+const Dropdown = (props: DropdownProps) => {
   const {
     children,
     isLoading = false,
     options,
     topOptions,
-    textOverflow = 'wrap',
+    textOverflow = TextOverflow.Wrap,
     isHeightUnlimited = false,
     isMenu,
     keyEvent,
@@ -29,15 +29,15 @@ function DropdownList(props: DropdownListProps) {
     isSelectedMarked = true,
     typedSearchStrategy = SearchStrategy.StartWord,
     ariaLabel,
-    backgroundColor = 'grey',
+    backgroundColor = ComponentTheme.Grey,
     onOptionSelect,
   } = props;
 
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const [optionFocusedIndex, setOptionFocusedIndex] = useState(initialSelected ?? 0);
+  const [optionFocusedIndex, setOptionFocusedIndex] = useState(initialSelected || isMenu ? -1 : 0);
   const [selectedIndex, setSelectedIndex] = useState(initialSelected);
-  const [selectedOption, setSelectedOption] = useState<DropdownOptionProps | undefined>();
+  const [selectedOption, setSelectedOption] = useState<OptionProps | undefined>();
 
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
 
@@ -51,9 +51,13 @@ function DropdownList(props: DropdownListProps) {
   const handleNavigationKeyPress = useCallback(
     (key: string) => {
       if (key === Key.ArrowUp) {
-        setOptionFocusedIndex(
-          (prevIndex) => (prevIndex - 1 + combinedOptions.length) % combinedOptions.length
-        );
+        setOptionFocusedIndex((prevIndex) => {
+          if (prevIndex === -1) {
+            return combinedOptions.length - 1;
+          } else {
+            return (prevIndex - 1 + combinedOptions.length) % combinedOptions.length;
+          }
+        });
       } else if (key === Key.ArrowDown) {
         setOptionFocusedIndex((prevIndex) => (prevIndex + 1) % combinedOptions.length);
       } else if (key === Key.Enter) {
@@ -132,33 +136,26 @@ function DropdownList(props: DropdownListProps) {
     [combinedOptions]
   );
 
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-
   return (
     <div
       className={classNames(
-        styles.dropdownList,
-        isHeightUnlimited && styles['dropdownList--isHeightUnlimited']
+        styles.dropdown,
+        isHeightUnlimited && styles['dropdown--isHeightUnlimited'],
+        styles[`dropdown--backgroundColor-${backgroundColor}`]
       )}
       onKeyDown={handleKeyDown}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
     >
       {(!options || isLoading) && (
-        <div className={styles.dropdownList__placeholder}>
+        <div className={styles.dropdown__placeholder}>
           {isLoading && loadingMessage}
           {!options && !isLoading && noOptionsMessage}
         </div>
       )}
-      {options && (
+      {options && !isLoading && (
         <ul
-          className={styles.dropdownList__list}
+          className={styles.dropdown__list}
           role={isMenu ? 'menu' : 'listbox'}
           aria-label={ariaLabel}
           onMouseDown={(event) => {
@@ -177,8 +174,8 @@ function DropdownList(props: DropdownListProps) {
             const uniqueKey = `${keyPrefix}${option.value}`;
             const isBoundary = topOptions && index === topOptions.length - 1;
             return (
-              <Fragment key={uniqueKey}>
-                <DropdownOption
+              <React.Fragment key={uniqueKey}>
+                <Option
                   tabIndex={index === optionFocusedIndex ? 0 : -1}
                   label={option.label}
                   value={option.value}
@@ -193,18 +190,20 @@ function DropdownList(props: DropdownListProps) {
                   isSelected={isSelectedMarked ? index === selectedIndex : false}
                   aria-selected={index === selectedIndex}
                   backgroundPalette={
-                    backgroundColor === 'grey' ? 'onGrayBackground' : 'onLightBackground'
+                    backgroundColor === ComponentTheme.Grey
+                      ? OptionTheme.OnGreyBackground
+                      : OptionTheme.OnLightBackground
                   }
                 />
-                {isBoundary && <li className={styles.dropdownList__divider} key="divider"></li>}
-              </Fragment>
+                {isBoundary && <li className={styles.dropdown__divider} key="divider"></li>}
+              </React.Fragment>
             );
           })}
         </ul>
       )}
-      {children && <div className={styles.dropdownList__childrenContainer}>{children}</div>}
+      {children && <div className={styles.dropdown__childrenContainer}>{children}</div>}
     </div>
   );
-}
+};
 
-export default DropdownList;
+export default Dropdown;
