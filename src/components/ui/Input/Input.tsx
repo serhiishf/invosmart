@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import { FieldWrapper, InputBase, IconButton } from '../';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
-import IconShowPassword from '../../../assets/icons/eye.svg?react';
-import IconHidePassword from '../../../assets/icons/eyeSlash.svg?react';
+import IconShowPassword from 'assets/icons/eye.svg?react';
+import IconHidePassword from 'assets/icons/eyeSlash.svg?react';
 
 function Input(props: InputProps) {
   const {

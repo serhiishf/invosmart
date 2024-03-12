@@ -36,7 +36,7 @@ interface BaseDropdownProps {
   isSelectedMarked?: boolean;
   typedSearchStrategy?: SearchStrategy;
   ariaLabel?: string;
-  backgroundColor?: ComponentTheme;
+  componentTheme?: ComponentTheme;
   onOptionSelect?: (selectedOption: OptionType) => void;
 }
 

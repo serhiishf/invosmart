@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
-      "utils/*": ["utils/*"]
+      "utils/*": ["utils/*"],
+      "assets/*": ["assets/*"],
+      "constants/*": ["constants/*"],
+      "types/*": ["types/*"],
+      "components": ["components/*"],
+      "styles/*": ["styles/*"],
+      "locales/*": ["locales/*"],
+      "routers/*": ["routers/*"]
     },
     "resolveJsonModule": true,
     "noEmit": true

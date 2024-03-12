@@ -29,7 +29,7 @@ const Dropdown = (props: DropdownProps) => {
     isSelectedMarked = true,
     typedSearchStrategy = SearchStrategy.StartWord,
     ariaLabel,
-    backgroundColor = ComponentTheme.Grey,
+    componentTheme = ComponentTheme.Grey,
     onOptionSelect,
   } = props;
 
@@ -69,13 +69,13 @@ const Dropdown = (props: DropdownProps) => {
   );
 
   useEffect(() => {
-    if (combinedOptions.length && typedText) {
-      const searchArray = combinedOptions.map((option) => option.label);
-      const searchMatchIndex = firstMatchFinder(typedText, searchArray, typedSearchStrategy);
-      if (searchMatchIndex !== -1) {
-        setOptionFocusedIndex(searchMatchIndex);
-      }
+    if (!(combinedOptions.length && typedText)) return;
+    const searchArray = combinedOptions.map((option) => option.label);
+    const searchMatchIndex = firstMatchFinder(typedText, searchArray, typedSearchStrategy);
+    if (searchMatchIndex !== -1) {
+      setOptionFocusedIndex(searchMatchIndex);
     }
+
     const timer = setTimeout(() => setTypedText(''), 1000);
     return () => clearTimeout(timer);
   }, [typedText, combinedOptions, typedSearchStrategy]);
@@ -141,7 +141,7 @@ const Dropdown = (props: DropdownProps) => {
       className={classNames(
         styles.dropdown,
         isHeightUnlimited && styles['dropdown--isHeightUnlimited'],
-        styles[`dropdown--backgroundColor-${backgroundColor}`]
+        styles[`dropdown--backgroundColor-${componentTheme}`]
       )}
       onKeyDown={handleKeyDown}
       onFocus={() => setIsFocused(true)}
@@ -190,7 +190,7 @@ const Dropdown = (props: DropdownProps) => {
                   isSelected={isSelectedMarked ? index === selectedIndex : false}
                   aria-selected={index === selectedIndex}
                   backgroundPalette={
-                    backgroundColor === ComponentTheme.Grey
+                    componentTheme === ComponentTheme.Grey
                       ? OptionTheme.OnGreyBackground
                       : OptionTheme.OnLightBackground
                   }

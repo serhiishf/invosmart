@@ -3,12 +3,12 @@ import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
 import { FieldWrapper, InputBase, IconButton, Dropdown } from '..';
-import IconDirectionArrow from '../../../assets/icons/directionCheck.svg?react';
-import IconClose from '../../../assets/icons/close.svg?react';
+import IconDirectionArrow from 'assets/icons/directionCheck.svg?react';
+import IconClose from 'assets/icons/close.svg?react';
 
 function Select(props: SelectProps) {
   const {
-    isSearchable = true,
+    isSearchable = false,
     isClearable = true,
     hasExpandCollapseButton = true,
     placeholder = 'Select city',
@@ -35,7 +35,7 @@ function Select(props: SelectProps) {
 
   const handleSelectFocus = (event: React.FocusEvent<HTMLDivElement>) => {
     if (suffixContainerRef.current && suffixContainerRef.current.contains(event.target)) {
-      console.log('Focus on expanded button - ignoring select focus logic');
+      console.log('Focus on expanded button');
       return;
     }
     if (!isFocused) {
@@ -46,23 +46,23 @@ function Select(props: SelectProps) {
   };
 
   const handleSelectPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    console.log(event.target);
-    if (!isSearchable) {
-      if (
-        event.target instanceof Element &&
+    console.log(event);
+    if (
+      isSearchable ||
+      (event.target instanceof Element &&
         suffixContainerRef.current &&
-        suffixContainerRef.current.contains(event.target)
-      ) {
-        console.log('return handleSelectPointerDown');
-        return;
-      }
-      setIsExpanded(!isExpanded);
-      console.log('handleSelectPointerDown');
+        suffixContainerRef.current.contains(event.target))
+    ) {
+      console.log('return handleSelectPointerDown');
+      return;
     }
+    setIsExpanded(!isExpanded);
+    console.log('handleSelectPointerDown');
   };
 
   const handleSelectBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     console.log(document.activeElement);
+    console.log(event);
     if (selectRef.current && !selectRef.current.contains(event.relatedTarget)) {
       if (event.target !== document.activeElement) {
         setIsFocused(false);
