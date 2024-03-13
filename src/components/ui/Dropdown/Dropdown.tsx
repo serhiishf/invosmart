@@ -40,6 +40,7 @@ const Dropdown = (props: DropdownProps) => {
   const [selectedOption, setSelectedOption] = useState<OptionProps | undefined>();
 
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
+  const lastHandledTimestamp = useRef<number | null>(null);
 
   const combinedOptions = useMemo(() => {
     return [...(topOptions ?? []), ...(options ?? [])];
@@ -50,7 +51,6 @@ const Dropdown = (props: DropdownProps) => {
 
   const handleArrowKeyPress = useCallback(
     (key: string) => {
-      console.log('handle arrowKeyPress   :' + key);
       if (key === KeyboardKey.ArrowUp) {
         setOptionFocusedIndex((prevIndex) => {
           if (prevIndex === -1) {
@@ -68,7 +68,6 @@ const Dropdown = (props: DropdownProps) => {
 
   const handleEnterKeyPress = useCallback(
     (key: string) => {
-      console.log('handleEnterKeyPres');
       if (key === KeyboardKey.Enter) {
         setSelectedIndex(optionFocusedIndex);
         setSelectedOption(combinedOptions[optionFocusedIndex]);
@@ -102,7 +101,6 @@ const Dropdown = (props: DropdownProps) => {
 
   const handleKeyDown = useCallback(
     (key: string, event?: React.KeyboardEvent) => {
-      console.log('handleKeyDowMAIN-FUNCTION');
       if (key === KeyboardKey.ArrowUp || key === KeyboardKey.ArrowDown) {
         event?.preventDefault();
         handleArrowKeyPress(key);
@@ -120,11 +118,14 @@ const Dropdown = (props: DropdownProps) => {
   );
 
   useEffect(() => {
-    if (keyEvent && !isFocused) {
-      console.log('useEffect :' + keyEvent);
-      handleKeyDown(keyEvent.key);
+    if (keyEvent?.timeStamp !== lastHandledTimestamp.current && !isFocused) {
+      console.log('Обробка події клавіатури:', keyEvent);
+      if (keyEvent) {
+        handleKeyDown(keyEvent.key);
+        lastHandledTimestamp.current = keyEvent?.timeStamp;
+      }
     }
-  }, [handleKeyDown, keyEvent, isFocused]);
+  }, [keyEvent, isFocused, handleKeyDown]);
 
   useEffect(() => {
     if (optionFocusedIndex >= 0 && optionRefs.current[optionFocusedIndex]) {

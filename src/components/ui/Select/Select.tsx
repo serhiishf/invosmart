@@ -92,6 +92,7 @@ function Select(props: SelectProps) {
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
+      console.log('reset in select keyborad event');
       if (isExpanded && isInputFocused) {
         if (
           event.key === KeyboardKey.ArrowUp ||
