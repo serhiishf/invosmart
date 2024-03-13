@@ -2,13 +2,14 @@ import { useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
+import { KeyboardKey } from 'utils/keyboard';
 import { FieldWrapper, InputBase, IconButton, Dropdown } from '..';
 import IconDirectionArrow from 'assets/icons/directionCheck.svg?react';
 import IconClose from 'assets/icons/close.svg?react';
 
 function Select(props: SelectProps) {
   const {
-    isSearchable = false,
+    isSearchable = true,
     isClearable = true,
     hasExpandCollapseButton = true,
     placeholder = 'Select city',
@@ -33,73 +34,56 @@ function Select(props: SelectProps) {
   const currentPlaceholder = !inputValue && !selectedValue ? placeholder : '';
   const toggleSelectTooltip = isExpanded ? 'TRANSLATE Collapse' : 'TRANSLATE Expand';
 
-  const handleSelectFocus = (event: React.FocusEvent<HTMLDivElement>) => {
-    if (suffixContainerRef.current && suffixContainerRef.current.contains(event.target)) {
-      console.log('Focus on expanded button');
+  const handleSelectFocus = (event: React.FocusEvent<Element>) => {
+    // Ignore initial focus event to prevent duplicate handling.
+    if (isFocused) return;
+    // Ignore event if it originates from suffix container (has its own handling).
+    if (suffixContainerRef.current?.contains(event.target)) {
       return;
     }
-    if (!isFocused) {
-      setIsFocused(true);
-      setIsExpanded(true);
-      console.log('handleSelectFocus');
-    }
+    setIsFocused(true);
+    setIsExpanded(true);
   };
 
-  const handleSelectPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    console.log(event);
-    if (
-      isSearchable ||
-      (event.target instanceof Element &&
-        suffixContainerRef.current &&
-        suffixContainerRef.current.contains(event.target))
-    ) {
-      console.log('return handleSelectPointerDown');
+  const handleSelectPointerDown = (event: React.PointerEvent<Element>) => {
+    // Ignoring these events because they have their own handlers.
+    if (isSearchable) return;
+    if (event.target instanceof Element && suffixContainerRef.current?.contains(event.target)) {
       return;
     }
     setIsExpanded(!isExpanded);
-    console.log('handleSelectPointerDown');
   };
 
-  const handleSelectBlur = (event: React.FocusEvent<HTMLDivElement>) => {
-    console.log(document.activeElement);
-    console.log(event);
-    if (selectRef.current && !selectRef.current.contains(event.relatedTarget)) {
-      if (event.target !== document.activeElement) {
-        setIsFocused(false);
-        setIsExpanded(false);
-        setInputValue('');
-        console.log('Focus truly lost');
-      }
-    } else {
-      console.log('Focus not luse');
-      console.log(event);
+  const handleSelectBlur = (event: React.FocusEvent<Element>) => {
+    if (
+      selectRef.current?.contains(event.relatedTarget) ||
+      event.target === document.activeElement
+    ) {
+      return;
     }
+    setIsFocused(false);
+    setIsExpanded(false);
+    setInputValue('');
   };
 
   const handleClearButtonClick = () => {
     setInputValue('');
     setSelectedValue('');
-    console.log('handleClearButtonClick');
     inputRef.current?.focus();
   };
 
   const handleExpandedButton = () => {
-    if (!isFocused) {
-      setIsFocused(true);
-    }
-    if (isExpanded) {
-      setIsExpanded(false);
-      setInputValue('');
-    } else {
-      setIsExpanded(true);
-    }
+    setIsFocused(true);
+    setIsExpanded((prevState) => {
+      if (prevState) setInputValue('');
+      return !prevState;
+    });
     inputRef.current?.focus();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setIsExpanded(true);
-    console.log(`handleInputChange ${isExpanded}`);
   };
 
   const clearKeyEvent = () => {
@@ -108,14 +92,17 @@ function Select(props: SelectProps) {
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
-      if (event && isExpanded && isInputFocused) {
-        console.log(isInputFocused, 'IS INPUT FOCUSED');
-        if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter')
+      if (isExpanded && isInputFocused) {
+        if (
+          event.key === KeyboardKey.ArrowUp ||
+          event.key === KeyboardKey.ArrowDown ||
+          event.key === KeyboardKey.Enter
+        )
           event.preventDefault();
         setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
-        setTimeout(clearKeyEvent, 0);
-      } else if (event && !isExpanded) {
-        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+        /*         setTimeout(clearKeyEvent, 0); */
+      } else if (!isExpanded) {
+        if (event.key === KeyboardKey.ArrowUp || event.key === KeyboardKey.ArrowDown) {
           setIsExpanded(true);
         }
       }

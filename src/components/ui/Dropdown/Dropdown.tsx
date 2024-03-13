@@ -10,7 +10,7 @@ import React, {
 import classNames from 'classnames';
 import { firstMatchFinder, SearchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
-import { Key } from 'utils/keyboard';
+import { KeyboardKey } from 'utils/keyboard';
 import { DropdownProps, OptionProps, OptionTheme } from './types';
 import styles from './Dropdown.module.scss';
 import Option from './Option';
@@ -23,7 +23,7 @@ const Dropdown = (props: DropdownProps) => {
     topOptions,
     textOverflow = TextOverflow.Wrap,
     isHeightUnlimited = false,
-    isMenu,
+    isMenu = true,
     keyEvent,
     initialSelected,
     isSelectedMarked = true,
@@ -48,9 +48,10 @@ const Dropdown = (props: DropdownProps) => {
   const loadingMessage = 'TRANSLATE Is loading...';
   const noOptionsMessage = 'TRANSLATE No options';
 
-  const handleNavigationKeyPress = useCallback(
+  const handleArrowKeyPress = useCallback(
     (key: string) => {
-      if (key === Key.ArrowUp) {
+      console.log('handle arrowKeyPress   :' + key);
+      if (key === KeyboardKey.ArrowUp) {
         setOptionFocusedIndex((prevIndex) => {
           if (prevIndex === -1) {
             return combinedOptions.length - 1;
@@ -58,14 +59,22 @@ const Dropdown = (props: DropdownProps) => {
             return (prevIndex - 1 + combinedOptions.length) % combinedOptions.length;
           }
         });
-      } else if (key === Key.ArrowDown) {
+      } else if (key === KeyboardKey.ArrowDown) {
         setOptionFocusedIndex((prevIndex) => (prevIndex + 1) % combinedOptions.length);
-      } else if (key === Key.Enter) {
+      }
+    },
+    [combinedOptions]
+  );
+
+  const handleEnterKeyPress = useCallback(
+    (key: string) => {
+      console.log('handleEnterKeyPres');
+      if (key === KeyboardKey.Enter) {
         setSelectedIndex(optionFocusedIndex);
         setSelectedOption(combinedOptions[optionFocusedIndex]);
       }
     },
-    [combinedOptions, optionFocusedIndex]
+    [optionFocusedIndex, combinedOptions]
   );
 
   useEffect(() => {
@@ -84,11 +93,38 @@ const Dropdown = (props: DropdownProps) => {
     optionRefs.current = combinedOptions.map((_, i) => optionRefs.current[i] || createRef());
   }, [combinedOptions]);
 
+  const handleTypedText = useCallback(
+    (key: string) => {
+      setTypedText(typedText + key);
+    },
+    [typedText]
+  );
+
+  const handleKeyDown = useCallback(
+    (key: string, event?: React.KeyboardEvent) => {
+      console.log('handleKeyDowMAIN-FUNCTION');
+      if (key === KeyboardKey.ArrowUp || key === KeyboardKey.ArrowDown) {
+        event?.preventDefault();
+        handleArrowKeyPress(key);
+      } else if (key === KeyboardKey.Enter) {
+        event?.preventDefault();
+        handleEnterKeyPress(key);
+      } else if (key === KeyboardKey.Space) {
+        event?.preventDefault();
+        handleTypedText(key);
+      } else if (key.length === 1) {
+        handleTypedText(key);
+      }
+    },
+    [handleArrowKeyPress, handleTypedText, handleEnterKeyPress]
+  );
+
   useEffect(() => {
     if (keyEvent && !isFocused) {
-      handleNavigationKeyPress(keyEvent.key);
+      console.log('useEffect :' + keyEvent);
+      handleKeyDown(keyEvent.key);
     }
-  }, [keyEvent, isFocused, handleNavigationKeyPress]);
+  }, [handleKeyDown, keyEvent, isFocused]);
 
   useEffect(() => {
     if (optionFocusedIndex >= 0 && optionRefs.current[optionFocusedIndex]) {
@@ -105,23 +141,6 @@ const Dropdown = (props: DropdownProps) => {
       onOptionSelect(selectedOption);
     }
   }, [selectedOption, onOptionSelect]);
-
-  const handleTypedText = (key: string) => {
-    setTypedText(typedText + key);
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    const { key } = event;
-    if (key === Key.ArrowUp || key === Key.ArrowDown || key === Key.Enter) {
-      event.preventDefault();
-      handleNavigationKeyPress(key);
-    } else if (key === Key.Space) {
-      event.preventDefault();
-      handleTypedText(key);
-    } else if (key.length === 1) {
-      handleTypedText(key);
-    }
-  };
 
   const handlePointerDown = useCallback(
     (event: React.PointerEvent) => {
@@ -143,7 +162,7 @@ const Dropdown = (props: DropdownProps) => {
         isHeightUnlimited && styles['dropdown--isHeightUnlimited'],
         styles[`dropdown--backgroundColor-${componentTheme}`]
       )}
-      onKeyDown={handleKeyDown}
+      onKeyDown={(event) => handleKeyDown(event.key, event)}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
@@ -159,12 +178,7 @@ const Dropdown = (props: DropdownProps) => {
           role={isMenu ? 'menu' : 'listbox'}
           aria-label={ariaLabel}
           onMouseDown={(event) => {
-            /*
-             * Prevents focus loss when clicking on the scroll area with the mouse.
-             * This ensures that focus remains within the dropdown during scrolling interactions,
-             * allowing users to continue using keyboard navigation (up/down arrows)
-             * to move between options regardless of where the focus is.
-             */
+            // Prevent focus loss on scroll area click, maintaining keyboard navigation.
             event.preventDefault();
           }}
         >
