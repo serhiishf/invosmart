@@ -51,16 +51,19 @@ const Dropdown = (props: DropdownProps) => {
 
   const handleArrowKeyPress = useCallback(
     (key: string) => {
-      if (key === KeyboardKey.ArrowUp) {
-        setOptionFocusedIndex((prevIndex) => {
-          if (prevIndex === -1) {
-            return combinedOptions.length - 1;
-          } else {
-            return (prevIndex - 1 + combinedOptions.length) % combinedOptions.length;
-          }
-        });
-      } else if (key === KeyboardKey.ArrowDown) {
-        setOptionFocusedIndex((prevIndex) => (prevIndex + 1) % combinedOptions.length);
+      switch (key) {
+        case KeyboardKey.ArrowUp:
+          setOptionFocusedIndex((prevIndex) => {
+            if (prevIndex === -1) {
+              return combinedOptions.length - 1;
+            } else {
+              return (prevIndex - 1 + combinedOptions.length) % combinedOptions.length;
+            }
+          });
+          break;
+        case KeyboardKey.ArrowDown:
+          setOptionFocusedIndex((prevIndex) => (prevIndex + 1) % combinedOptions.length);
+          break;
       }
     },
     [combinedOptions]
@@ -68,10 +71,9 @@ const Dropdown = (props: DropdownProps) => {
 
   const handleEnterKeyPress = useCallback(
     (key: string) => {
-      if (key === KeyboardKey.Enter) {
-        setSelectedIndex(optionFocusedIndex);
-        setSelectedOption(combinedOptions[optionFocusedIndex]);
-      }
+      if (key !== KeyboardKey.Enter) return;
+      setSelectedIndex(optionFocusedIndex);
+      setSelectedOption(combinedOptions[optionFocusedIndex]);
     },
     [optionFocusedIndex, combinedOptions]
   );
@@ -83,7 +85,6 @@ const Dropdown = (props: DropdownProps) => {
     if (searchMatchIndex !== -1) {
       setOptionFocusedIndex(searchMatchIndex);
     }
-
     const timer = setTimeout(() => setTypedText(''), 1000);
     return () => clearTimeout(timer);
   }, [typedText, combinedOptions, typedSearchStrategy]);
@@ -101,57 +102,57 @@ const Dropdown = (props: DropdownProps) => {
 
   const handleKeyDown = useCallback(
     (key: string, event?: React.KeyboardEvent) => {
-      if (key === KeyboardKey.ArrowUp || key === KeyboardKey.ArrowDown) {
-        event?.preventDefault();
-        handleArrowKeyPress(key);
-      } else if (key === KeyboardKey.Enter) {
-        event?.preventDefault();
-        handleEnterKeyPress(key);
-      } else if (key === KeyboardKey.Space) {
-        event?.preventDefault();
-        handleTypedText(key);
-      } else if (key.length === 1) {
-        handleTypedText(key);
+      switch (key) {
+        case KeyboardKey.ArrowUp:
+        case KeyboardKey.ArrowDown:
+          event?.preventDefault();
+          handleArrowKeyPress(key);
+          break;
+        case KeyboardKey.Enter:
+          event?.preventDefault();
+          handleEnterKeyPress(key);
+          break;
+        case KeyboardKey.Space:
+          event?.preventDefault();
+          handleTypedText(key);
+          break;
+        default:
+          if (key.length === 1) {
+            handleTypedText(key);
+          }
       }
     },
     [handleArrowKeyPress, handleTypedText, handleEnterKeyPress]
   );
 
   useEffect(() => {
-    if (keyEvent?.timeStamp !== lastHandledTimestamp.current && !isFocused) {
-      console.log('Обробка події клавіатури:', keyEvent);
-      if (keyEvent) {
-        handleKeyDown(keyEvent.key);
-        lastHandledTimestamp.current = keyEvent?.timeStamp;
-      }
-    }
+    if (keyEvent?.timeStamp === lastHandledTimestamp.current || isFocused || !keyEvent) return;
+    handleKeyDown(keyEvent.key);
+    lastHandledTimestamp.current = keyEvent.timeStamp;
   }, [keyEvent, isFocused, handleKeyDown]);
 
   useEffect(() => {
-    if (optionFocusedIndex >= 0 && optionRefs.current[optionFocusedIndex]) {
-      optionRefs.current[optionFocusedIndex].current?.scrollIntoView({
-        behavior: 'auto',
-        block: 'nearest',
-        inline: 'start',
-      });
-    }
+    if (optionFocusedIndex < 0) return;
+    optionRefs.current[optionFocusedIndex].current?.scrollIntoView({
+      behavior: 'auto',
+      block: 'nearest',
+      inline: 'start',
+    });
   }, [optionFocusedIndex]);
 
   useEffect(() => {
-    if (onOptionSelect && selectedOption) {
-      onOptionSelect(selectedOption);
-    }
+    if (!onOptionSelect || !selectedOption) return;
+    onOptionSelect(selectedOption);
   }, [selectedOption, onOptionSelect]);
 
   const handlePointerDown = useCallback(
     (event: React.PointerEvent) => {
       const dataIndex = event.currentTarget.getAttribute('data-index');
-      if (dataIndex !== null) {
-        const index = parseInt(dataIndex, 10);
-        setOptionFocusedIndex(index);
-        setSelectedIndex(index);
-        setSelectedOption(combinedOptions[index]);
-      }
+      if (!dataIndex) return;
+      const index = parseInt(dataIndex, 10);
+      setOptionFocusedIndex(index);
+      setSelectedIndex(index);
+      setSelectedOption(combinedOptions[index]);
     },
     [combinedOptions]
   );

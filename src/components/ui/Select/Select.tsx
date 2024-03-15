@@ -9,7 +9,7 @@ import IconClose from 'assets/icons/close.svg?react';
 
 function Select(props: SelectProps) {
   const {
-    isSearchable = true,
+    isSearchable = false,
     isClearable = true,
     hasExpandCollapseButton = true,
     placeholder = 'Select city',
@@ -92,23 +92,31 @@ function Select(props: SelectProps) {
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
+      const key = event.key;
       console.log('reset in select keyborad event');
       if (isExpanded && isInputFocused) {
         if (
           event.key === KeyboardKey.ArrowUp ||
           event.key === KeyboardKey.ArrowDown ||
           event.key === KeyboardKey.Enter
-        )
+        ) {
           event.preventDefault();
-        setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
-        /*         setTimeout(clearKeyEvent, 0); */
+          setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
+          setTimeout(clearKeyEvent, 0);
+        }
+        if (!isSearchable && (key.length === 1 || key === KeyboardKey.Space)) {
+          setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
+        }
       } else if (!isExpanded) {
         if (event.key === KeyboardKey.ArrowUp || event.key === KeyboardKey.ArrowDown) {
           setIsExpanded(true);
         }
       }
+      if (key === KeyboardKey.Escape) {
+        setIsExpanded(false);
+      }
     },
-    [isExpanded, isInputFocused]
+    [isExpanded, isInputFocused, isSearchable]
   );
 
   return (
@@ -138,12 +146,14 @@ function Select(props: SelectProps) {
                   onChange={handleInputChange}
                   value={inputValue}
                   ref={inputRef}
-                  readOnly={!isSearchable}
+                  isReadOnlyMode={!isSearchable}
                   placeholder={currentPlaceholder}
+                  inputMode="none"
                   role="combobox"
-                  aria-expanded={isExpanded}
                   onFocus={() => setIsInputFocused(true)}
                   onBlur={() => setIsInputFocused(false)}
+                  aria-expanded={isExpanded}
+                  aria-haspopup="true"
                 />
               </div>
             </div>

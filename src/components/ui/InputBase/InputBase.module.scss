@@ -14,6 +14,11 @@ $_inputBasePaddingMinimal: 8px;
   background-color: transparent;
   border: none;
 
+  &--readOnlyMode {
+    caret-color: transparent;
+    cursor: default;
+  }
+
   &::placeholder {
     color: $inputBasePlaceholderColor;
   }
