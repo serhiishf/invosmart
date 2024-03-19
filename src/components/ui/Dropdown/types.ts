@@ -37,7 +37,8 @@ interface BaseDropdownProps {
   typedSearchStrategy?: SearchStrategy;
   ariaLabel?: string;
   componentTheme?: ComponentTheme;
-  onOptionSelect?: (selectedOption: OptionType) => void;
+  selectedValue?: string;
+  onOptionSelect: (selectedOption: OptionType) => void;
 }
 
 interface DropdownWithoutTopProps extends BaseDropdownProps {

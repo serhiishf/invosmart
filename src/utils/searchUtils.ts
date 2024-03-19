@@ -8,7 +8,11 @@ function escapeRegExp(string: string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-export function firstMatchFinder(phrase: string, searchArray: string[], maxDepth: SearchStrategy) {
+export function firstMatchDepthFinder(
+  phrase: string,
+  searchArray: string[],
+  maxDepth: SearchStrategy
+) {
   /**
    * Searches for the first occurrence in an array of strings that matches the given phrase
    * according to a specified search strategy. The function uses a cascading approach to match
@@ -27,22 +31,22 @@ export function firstMatchFinder(phrase: string, searchArray: string[], maxDepth
 
   const NOT_FOUND = -1;
   const escapePhrase = escapeRegExp(phrase);
-
   const patterns = [];
-  if (maxDepth === SearchStrategy.AnyMatch) {
-    patterns.push(escapePhrase);
-  }
+  const startStringRegExp = new RegExp(`^${escapePhrase}`, 'i');
+
+  patterns.push(startStringRegExp);
   if (maxDepth === SearchStrategy.StartWord || maxDepth === SearchStrategy.AnyMatch) {
-    patterns.push(`\\b${escapePhrase}`);
+    const startWordRegExp = new RegExp(`\\b${escapePhrase}`, 'i');
+    patterns.push(startWordRegExp);
   }
-  patterns.push(`^${escapePhrase}`);
+  if (maxDepth === SearchStrategy.AnyMatch) {
+    const anyMatchRegExp = new RegExp(escapePhrase, 'i');
+    patterns.push(anyMatchRegExp);
+  }
 
-  const patternsInOrder = patterns.reverse();
-
-  for (const pattern of patternsInOrder) {
-    const regExp = new RegExp(pattern, 'i');
+  for (const patternRegExp of patterns) {
     for (let i = 0; i < searchArray.length; i++) {
-      if (regExp.test(searchArray[i])) {
+      if (patternRegExp.test(searchArray[i])) {
         return i;
       }
     }

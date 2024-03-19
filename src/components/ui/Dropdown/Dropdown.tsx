@@ -8,9 +8,9 @@ import React, {
   useCallback,
 } from 'react';
 import classNames from 'classnames';
-import { firstMatchFinder, SearchStrategy } from 'utils/searchUtils';
+import { firstMatchDepthFinder, SearchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
-import { KeyboardKey } from 'utils/keyboard';
+import { KeyboardKey } from 'constants/keyboard';
 import { DropdownProps, OptionProps, OptionTheme } from './types';
 import styles from './Dropdown.module.scss';
 import Option from './Option';
@@ -31,6 +31,7 @@ const Dropdown = (props: DropdownProps) => {
     ariaLabel,
     componentTheme = ComponentTheme.Grey,
     onOptionSelect,
+    selectedValue,
   } = props;
 
   const [typedText, setTypedText] = useState('');
@@ -81,7 +82,7 @@ const Dropdown = (props: DropdownProps) => {
   useEffect(() => {
     if (!(combinedOptions.length && typedText)) return;
     const searchArray = combinedOptions.map((option) => option.label);
-    const searchMatchIndex = firstMatchFinder(typedText, searchArray, typedSearchStrategy);
+    const searchMatchIndex = firstMatchDepthFinder(typedText, searchArray, typedSearchStrategy);
     if (searchMatchIndex !== -1) {
       setOptionFocusedIndex(searchMatchIndex);
     }
@@ -189,6 +190,7 @@ const Dropdown = (props: DropdownProps) => {
             const keyPrefix = isTopOption ? 'top-' : 'general-';
             const uniqueKey = `${keyPrefix}${option.value}`;
             const isBoundary = topOptions && index === topOptions.length - 1;
+            const isOptionSelected = option.value === selectedValue;
             return (
               <React.Fragment key={uniqueKey}>
                 <Option
@@ -203,8 +205,8 @@ const Dropdown = (props: DropdownProps) => {
                   ref={optionRefs.current[index]}
                   isFocused={index === optionFocusedIndex}
                   onPointerDown={handlePointerDown}
-                  isSelected={isSelectedMarked ? index === selectedIndex : false}
-                  aria-selected={index === selectedIndex}
+                  isSelected={isSelectedMarked ? isOptionSelected : false}
+                  aria-selected={isOptionSelected}
                   backgroundPalette={
                     componentTheme === ComponentTheme.Grey
                       ? OptionTheme.OnGreyBackground

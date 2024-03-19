@@ -2,14 +2,14 @@ import { useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
-import { KeyboardKey } from 'utils/keyboard';
+import { KeyboardKey } from 'constants/keyboard';
 import { FieldWrapper, InputBase, IconButton, Dropdown } from '..';
 import IconDirectionArrow from 'assets/icons/directionCheck.svg?react';
 import IconClose from 'assets/icons/close.svg?react';
 
 function Select(props: SelectProps) {
   const {
-    isSearchable = false,
+    isSearchable = true,
     isClearable = true,
     hasExpandCollapseButton = true,
     placeholder = 'Select city',
@@ -42,15 +42,15 @@ function Select(props: SelectProps) {
       return;
     }
     setIsFocused(true);
-    setIsExpanded(true);
   };
 
   const handleSelectPointerDown = (event: React.PointerEvent<Element>) => {
-    // Ignoring these events because they have their own handlers.
-    if (isSearchable) return;
     if (event.target instanceof Element && suffixContainerRef.current?.contains(event.target)) {
       return;
+    } else {
+      if (!isExpanded) setIsExpanded(!isExpanded);
     }
+    if (isSearchable) return;
     setIsExpanded(!isExpanded);
   };
 
@@ -110,6 +110,8 @@ function Select(props: SelectProps) {
       } else if (!isExpanded) {
         if (event.key === KeyboardKey.ArrowUp || event.key === KeyboardKey.ArrowDown) {
           setIsExpanded(true);
+        } else if (event.key === KeyboardKey.Enter && isInputFocused) {
+          setIsExpanded(true);
         }
       }
       if (key === KeyboardKey.Escape) {
@@ -154,6 +156,8 @@ function Select(props: SelectProps) {
                   onBlur={() => setIsInputFocused(false)}
                   aria-expanded={isExpanded}
                   aria-haspopup="true"
+                  aria-autocomplete="list"
+                  aria-readonly={!isSearchable}
                 />
               </div>
             </div>
@@ -192,7 +196,12 @@ function Select(props: SelectProps) {
       </div>
       {isExpanded && (
         <div className={classNames(styles.select__options)}>
-          <Dropdown options={mainOptions} topOptions={topOptions} keyEvent={keyEvent}>
+          <Dropdown
+            options={mainOptions}
+            topOptions={topOptions}
+            keyEvent={keyEvent}
+            onOptionSelect={(selectedValue) => setSelectedValue(selectedValue.value)}
+          >
             {children}
           </Dropdown>
         </div>
