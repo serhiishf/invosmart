@@ -11,7 +11,8 @@ import classNames from 'classnames';
 import { firstMatchDepthFinder, SearchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { KeyboardKey } from 'constants/keyboard';
-import { DropdownProps, OptionProps, OptionTheme } from './types';
+import { DropdownProps, OptionTheme } from './types';
+import { OptionType } from 'types/common';
 import styles from './Dropdown.module.scss';
 import Option from './Option';
 
@@ -37,8 +38,6 @@ const Dropdown = (props: DropdownProps) => {
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [optionFocusedIndex, setOptionFocusedIndex] = useState(initialSelected || isMenu ? -1 : 0);
-  const [selectedIndex, setSelectedIndex] = useState(initialSelected);
-  const [selectedOption, setSelectedOption] = useState<OptionProps | undefined>();
 
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
   const lastHandledTimestamp = useRef<number | null>(null);
@@ -73,10 +72,9 @@ const Dropdown = (props: DropdownProps) => {
   const handleEnterKeyPress = useCallback(
     (key: string) => {
       if (key !== KeyboardKey.Enter) return;
-      setSelectedIndex(optionFocusedIndex);
-      setSelectedOption(combinedOptions[optionFocusedIndex]);
+      onOptionSelect(combinedOptions[optionFocusedIndex]);
     },
-    [optionFocusedIndex, combinedOptions]
+    [optionFocusedIndex, combinedOptions, onOptionSelect]
   );
 
   useEffect(() => {
@@ -141,21 +139,15 @@ const Dropdown = (props: DropdownProps) => {
     });
   }, [optionFocusedIndex]);
 
-  useEffect(() => {
-    if (!onOptionSelect || !selectedOption) return;
-    onOptionSelect(selectedOption);
-  }, [selectedOption, onOptionSelect]);
-
   const handlePointerDown = useCallback(
-    (event: React.PointerEvent) => {
+    (event: React.PointerEvent, option: OptionType) => {
       const dataIndex = event.currentTarget.getAttribute('data-index');
       if (!dataIndex) return;
       const index = parseInt(dataIndex, 10);
       setOptionFocusedIndex(index);
-      setSelectedIndex(index);
-      setSelectedOption(combinedOptions[index]);
+      onOptionSelect(option);
     },
-    [combinedOptions]
+    [onOptionSelect]
   );
 
   return (
@@ -204,7 +196,7 @@ const Dropdown = (props: DropdownProps) => {
                   data-index={index}
                   ref={optionRefs.current[index]}
                   isFocused={index === optionFocusedIndex}
-                  onPointerDown={handlePointerDown}
+                  onPointerDown={(event) => handlePointerDown(event, option)}
                   isSelected={isSelectedMarked ? isOptionSelected : false}
                   aria-selected={isOptionSelected}
                   backgroundPalette={

@@ -1,5 +1,6 @@
 import { SearchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
+import { OptionType } from 'types/common';
 
 export enum OptionTheme {
   OnGreyBackground = 'onGreyBackground',
@@ -10,12 +11,6 @@ type KeyEvent = {
   key: string;
   timeStamp: number;
 };
-
-interface OptionType {
-  label: string;
-  value: string;
-  icon?: React.ReactElement;
-}
 
 export interface OptionProps extends OptionType, React.HTMLAttributes<HTMLLIElement> {
   isDisabled?: boolean;

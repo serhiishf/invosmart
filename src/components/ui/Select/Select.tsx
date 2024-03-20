@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
+import { OptionType } from 'types/common';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
 import { KeyboardKey } from 'constants/keyboard';
@@ -22,7 +23,7 @@ function Select(props: SelectProps) {
   const [inputValue, setInputValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedOption, setSelectedOption] = useState<OptionType | undefined>();
   const [isExpanded, setIsExpanded] = useState(false);
   const [mainOptions, setMainOptions] = useState(options);
   const [keyEvent, setKeyEvent] = useState({ key: '', timeStamp: 0 });
@@ -31,7 +32,7 @@ function Select(props: SelectProps) {
   const suffixContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const currentPlaceholder = !inputValue && !selectedValue ? placeholder : '';
+  const currentPlaceholder = !inputValue && !selectedOption?.value ? placeholder : '';
   const toggleSelectTooltip = isExpanded ? 'TRANSLATE Collapse' : 'TRANSLATE Expand';
 
   const handleSelectFocus = (event: React.FocusEvent<Element>) => {
@@ -63,21 +64,21 @@ function Select(props: SelectProps) {
     }
     setIsFocused(false);
     setIsExpanded(false);
-    setInputValue('');
+    setInputValue(selectedOption?.label ?? '');
   };
 
   const handleClearButtonClick = () => {
+    setSelectedOption(undefined);
     setInputValue('');
-    setSelectedValue('');
     inputRef.current?.focus();
   };
 
   const handleExpandedButton = () => {
     setIsFocused(true);
     setIsExpanded((prevState) => {
-      if (prevState) setInputValue('');
       return !prevState;
     });
+    setInputValue(selectedOption?.label ?? '');
     inputRef.current?.focus();
   };
 
@@ -90,27 +91,32 @@ function Select(props: SelectProps) {
     setKeyEvent({ key: '', timeStamp: 0 });
   };
 
+  const handleOptionSelect = (selectedOption: OptionType) => {
+    setSelectedOption(selectedOption);
+    setInputValue(selectedOption.label);
+    setIsExpanded(false);
+  };
+
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       const key = event.key;
-      console.log('reset in select keyborad event');
       if (isExpanded && isInputFocused) {
         if (
-          event.key === KeyboardKey.ArrowUp ||
-          event.key === KeyboardKey.ArrowDown ||
-          event.key === KeyboardKey.Enter
+          key === KeyboardKey.ArrowUp ||
+          key === KeyboardKey.ArrowDown ||
+          key === KeyboardKey.Enter
         ) {
           event.preventDefault();
-          setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
+          setKeyEvent({ key: key, timeStamp: event.timeStamp });
           setTimeout(clearKeyEvent, 0);
         }
         if (!isSearchable && (key.length === 1 || key === KeyboardKey.Space)) {
-          setKeyEvent({ key: event.key, timeStamp: event.timeStamp });
+          setKeyEvent({ key: key, timeStamp: event.timeStamp });
         }
       } else if (!isExpanded) {
-        if (event.key === KeyboardKey.ArrowUp || event.key === KeyboardKey.ArrowDown) {
+        if (key === KeyboardKey.ArrowUp || key === KeyboardKey.ArrowDown) {
           setIsExpanded(true);
-        } else if (event.key === KeyboardKey.Enter && isInputFocused) {
+        } else if (key === KeyboardKey.Enter && isInputFocused) {
           setIsExpanded(true);
         }
       }
@@ -162,9 +168,9 @@ function Select(props: SelectProps) {
               </div>
             </div>
             <div className={styles.select__suffixContainer} ref={suffixContainerRef}>
-              {isClearable && (
+              {isClearable && isExpanded && (
                 <div className={styles.select__buttonContainer}>
-                  {(inputValue || selectedValue) && (
+                  {(inputValue || selectedOption?.value) && (
                     <div className={styles.select__buttonWrap}>
                       <IconButton tooltip="TRANSLATE Clear" onClick={handleClearButtonClick}>
                         <IconClose className={styles.select__iconClose} />
@@ -200,7 +206,8 @@ function Select(props: SelectProps) {
             options={mainOptions}
             topOptions={topOptions}
             keyEvent={keyEvent}
-            onOptionSelect={(selectedValue) => setSelectedValue(selectedValue.value)}
+            onOptionSelect={handleOptionSelect}
+            selectedValue={selectedOption?.value}
           >
             {children}
           </Dropdown>
