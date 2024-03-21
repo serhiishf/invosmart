@@ -1,46 +1,58 @@
-export enum SearchStrategy {
+import { OptionType } from 'types/common';
+
+export enum MatchStrategy {
   StartString = 'startString',
   StartWord = 'startWord',
   AnyMatch = 'anyMatch',
 }
 
-function escapeRegExp(string: string) {
+export const escapeForRegExp = (string: string) => {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
+};
 
-export function firstMatchDepthFinder(
+const createSearchRegExp = (phrase: string, matchStrategy: MatchStrategy) => {
+  const escapePhrase = escapeForRegExp(phrase);
+  switch (matchStrategy) {
+    case MatchStrategy.StartString:
+      return new RegExp(`^${escapePhrase}`, 'i');
+    case MatchStrategy.StartWord:
+      return new RegExp(`\\b${escapePhrase}`, 'i');
+    case MatchStrategy.AnyMatch:
+      return new RegExp(escapePhrase, 'i');
+  }
+};
+
+export const findFirstMatchDepth = (
   phrase: string,
   searchArray: string[],
-  maxDepth: SearchStrategy
-) {
+  maxDepth: MatchStrategy
+) => {
   /**
-   * Searches for the first occurrence in an array of strings that matches the given phrase
-   * according to a specified search strategy. The function uses a cascading approach to match
-   * the phrase with the array elements, starting from the strictest criterion to the least strict.
+   * Performs a search for the first index in a string array where the element matches a given phrase,
+   * beginning with the strictest search criterion and gradually becoming more lenient if no match is
+   * found, regardless of the initially specified `maxDepth`. This means the search starts with the most
+   * strict level ('startString') and progresses through 'startWord' to 'anyMatch' until a match is found
+   * or all levels are exhausted.
    *
-   * @param {string} phrase - The phrase to search for in the array.
-   * @param {string[]} searchArray - The array of strings to search within.
-   * @param {SearchStrategy} maxDepth - The maximum depth of the search, which determines how
-   *        lenient the matching should be. It can be 'startString' for matches that start with
-   *        the phrase, 'startWord' for matches where the phrase starts at the beginning of any
-   *        word in the string, and 'anyMatch' for any occurrence of the phrase within the string.
-   *
-   * @returns {number} The index of the first matching element in the array. If no match is found,
-   *         the function returns -1.
+   * @param {string} phrase - The phrase to search for.
+   * @param {string[]} searchArray - Array of strings to search.
+   * @param {MatchStrategy} maxDepth - Determines the initial leniency of the match, but the search starts
+   *        at the highest strictness and decreases if no match is found.
+   * @returns {number} Index of the first match according to the cascading search criteria, or -1 if no match is found.
    */
 
   const NOT_FOUND = -1;
-  const escapePhrase = escapeRegExp(phrase);
   const patterns = [];
-  const startStringRegExp = new RegExp(`^${escapePhrase}`, 'i');
+  const startStringRegExp = createSearchRegExp(phrase, MatchStrategy.StartString);
+  patterns.push(startStringRegExp);
 
   patterns.push(startStringRegExp);
-  if (maxDepth === SearchStrategy.StartWord || maxDepth === SearchStrategy.AnyMatch) {
-    const startWordRegExp = new RegExp(`\\b${escapePhrase}`, 'i');
+  if (maxDepth === MatchStrategy.StartWord || maxDepth === MatchStrategy.AnyMatch) {
+    const startWordRegExp = createSearchRegExp(phrase, MatchStrategy.StartWord);
     patterns.push(startWordRegExp);
   }
-  if (maxDepth === SearchStrategy.AnyMatch) {
-    const anyMatchRegExp = new RegExp(escapePhrase, 'i');
+  if (maxDepth === MatchStrategy.AnyMatch) {
+    const anyMatchRegExp = createSearchRegExp(phrase, MatchStrategy.AnyMatch);
     patterns.push(anyMatchRegExp);
   }
 
@@ -53,4 +65,15 @@ export function firstMatchDepthFinder(
   }
 
   return NOT_FOUND;
-}
+};
+
+export const filterOptions = (
+  phrase: string,
+  options: OptionType[],
+  matchStrategy: MatchStrategy
+) => {
+  const patternRegExp = createSearchRegExp(phrase, matchStrategy);
+  return options.filter((option) => {
+    return patternRegExp.test(option.label);
+  });
+};

@@ -8,7 +8,7 @@ import React, {
   useCallback,
 } from 'react';
 import classNames from 'classnames';
-import { firstMatchDepthFinder, SearchStrategy } from 'utils/searchUtils';
+import { findFirstMatchDepth, MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { KeyboardKey } from 'constants/keyboard';
 import { DropdownProps, OptionTheme } from './types';
@@ -28,7 +28,7 @@ const Dropdown = (props: DropdownProps) => {
     keyEvent,
     initialSelected,
     isSelectedMarked = true,
-    typedSearchStrategy = SearchStrategy.StartWord,
+    typedMatchStrategy = MatchStrategy.StartWord,
     ariaLabel,
     componentTheme = ComponentTheme.Grey,
     onOptionSelect,
@@ -72,6 +72,7 @@ const Dropdown = (props: DropdownProps) => {
   const handleEnterKeyPress = useCallback(
     (key: string) => {
       if (key !== KeyboardKey.Enter) return;
+      if (optionFocusedIndex === -1) return;
       onOptionSelect(combinedOptions[optionFocusedIndex]);
     },
     [optionFocusedIndex, combinedOptions, onOptionSelect]
@@ -80,13 +81,13 @@ const Dropdown = (props: DropdownProps) => {
   useEffect(() => {
     if (!(combinedOptions.length && typedText)) return;
     const searchArray = combinedOptions.map((option) => option.label);
-    const searchMatchIndex = firstMatchDepthFinder(typedText, searchArray, typedSearchStrategy);
+    const searchMatchIndex = findFirstMatchDepth(typedText, searchArray, typedMatchStrategy);
     if (searchMatchIndex !== -1) {
       setOptionFocusedIndex(searchMatchIndex);
     }
     const timer = setTimeout(() => setTypedText(''), 1000);
     return () => clearTimeout(timer);
-  }, [typedText, combinedOptions, typedSearchStrategy]);
+  }, [typedText, combinedOptions, typedMatchStrategy]);
 
   useEffect(() => {
     optionRefs.current = combinedOptions.map((_, i) => optionRefs.current[i] || createRef());
@@ -161,10 +162,10 @@ const Dropdown = (props: DropdownProps) => {
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
-      {(!options || isLoading) && (
+      {(options?.length === 0 || isLoading) && (
         <div className={styles.dropdown__placeholder}>
           {isLoading && loadingMessage}
-          {!options && !isLoading && noOptionsMessage}
+          {options?.length === 0 && !isLoading && noOptionsMessage}
         </div>
       )}
       {options && !isLoading && (

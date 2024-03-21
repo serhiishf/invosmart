@@ -7,6 +7,7 @@ import { KeyboardKey } from 'constants/keyboard';
 import { FieldWrapper, InputBase, IconButton, Dropdown } from '..';
 import IconDirectionArrow from 'assets/icons/directionCheck.svg?react';
 import IconClose from 'assets/icons/close.svg?react';
+import { MatchStrategy, filterOptions } from 'utils/searchUtils';
 
 function Select(props: SelectProps) {
   const {
@@ -25,7 +26,8 @@ function Select(props: SelectProps) {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [selectedOption, setSelectedOption] = useState<OptionType | undefined>();
   const [isExpanded, setIsExpanded] = useState(false);
-  const [mainOptions, setMainOptions] = useState(options);
+  const [currentTopOptions, setCurrentTopOptions] = useState(topOptions);
+  const [currentOptions, setCurrentOptions] = useState(options);
   const [keyEvent, setKeyEvent] = useState({ key: '', timeStamp: 0 });
 
   const selectRef = useRef<HTMLDivElement>(null);
@@ -64,12 +66,16 @@ function Select(props: SelectProps) {
     }
     setIsFocused(false);
     setIsExpanded(false);
+    setCurrentOptions(options);
+    setCurrentTopOptions(topOptions);
     setInputValue(selectedOption?.label ?? '');
   };
 
   const handleClearButtonClick = () => {
     setSelectedOption(undefined);
     setInputValue('');
+    setCurrentOptions(options);
+    setCurrentTopOptions(topOptions);
     inputRef.current?.focus();
   };
 
@@ -83,8 +89,29 @@ function Select(props: SelectProps) {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    const currentInputValue = e.target.value;
+    setInputValue(currentInputValue);
     setIsExpanded(true);
+    console.log(currentInputValue, selectedOption?.label);
+    if (/* currentInputValue !== selectedOption?.label && */ options) {
+      const filteredOptions = filterOptions(currentInputValue, options, MatchStrategy.AnyMatch);
+      console.log('filter options');
+      if (topOptions) {
+        const filteredTopOptions = filterOptions(
+          currentInputValue,
+          topOptions,
+          MatchStrategy.AnyMatch
+        );
+        setCurrentTopOptions(filteredTopOptions);
+      }
+
+      setCurrentOptions(filteredOptions);
+    }
+    if (currentInputValue === '') {
+      setSelectedOption(undefined);
+      setCurrentOptions(options);
+      setCurrentTopOptions(topOptions);
+    }
   };
 
   const clearKeyEvent = () => {
@@ -203,8 +230,8 @@ function Select(props: SelectProps) {
       {isExpanded && (
         <div className={classNames(styles.select__options)}>
           <Dropdown
-            options={mainOptions}
-            topOptions={topOptions}
+            options={currentOptions}
+            topOptions={currentTopOptions}
             keyEvent={keyEvent}
             onOptionSelect={handleOptionSelect}
             selectedValue={selectedOption?.value}

@@ -1,4 +1,4 @@
-import { SearchStrategy } from 'utils/searchUtils';
+import { MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { OptionType } from 'types/common';
 
@@ -29,7 +29,7 @@ interface BaseDropdownProps {
   keyEvent?: KeyEvent;
   initialSelected?: number;
   isSelectedMarked?: boolean;
-  typedSearchStrategy?: SearchStrategy;
+  typedMatchStrategy?: MatchStrategy;
   ariaLabel?: string;
   componentTheme?: ComponentTheme;
   selectedValue?: string;
