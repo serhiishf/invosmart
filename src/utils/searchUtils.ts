@@ -10,7 +10,7 @@ export const escapeForRegExp = (string: string) => {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 };
 
-const createSearchRegExp = (phrase: string, matchStrategy: MatchStrategy) => {
+export const createSearchRegExp = (phrase: string, matchStrategy: MatchStrategy) => {
   const escapePhrase = escapeForRegExp(phrase);
   switch (matchStrategy) {
     case MatchStrategy.StartString:
