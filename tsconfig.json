@@ -23,10 +23,11 @@
       "locales/*": ["locales/*"],
       "routers/*": ["routers/*"]
     },
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "resolveJsonModule": true,
     "noEmit": true
   },
-  "include": ["./src/**/*", "styled.d.ts"],
+  "include": ["./src/**/*", "styled.d.ts", "tests"],
   "references": [
     {
       "path": "./tsconfig.node.json"
