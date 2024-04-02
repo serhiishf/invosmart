@@ -22,7 +22,7 @@ export const createSearchRegExp = (phrase: string, matchStrategy: MatchStrategy)
   }
 };
 
-export const findFirstMatchDepth = (
+export const findMatchByIncreasingDepth = (
   phrase: string,
   searchArray: string[],
   maxDepth: MatchStrategy

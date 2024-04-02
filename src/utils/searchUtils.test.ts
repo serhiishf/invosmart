@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { MatchStrategy, escapeForRegExp, createSearchRegExp } from './searchUtils';
+import {
+  MatchStrategy,
+  escapeForRegExp,
+  createSearchRegExp,
+  findMatchByIncreasingDepth,
+} from './searchUtils';
 
 describe('escapeForRegExp', () => {
   it('should escape special RegExp characters', () => {
@@ -121,6 +126,115 @@ describe('createSearchRegExp', () => {
       const searchRegExp = createSearchRegExp(phrase, MatchStrategy.StartWord);
       expect('Match Start here').toMatch(searchRegExp);
       expect('Please notStart here').not.toMatch(searchRegExp);
+    });
+  });
+});
+
+describe('findMatchByIncreasingDepth', () => {
+  const stringsArray = [
+    'Excom OU',
+    'Alex Daimler',
+    'testree',
+    'flower computer',
+    'second tree tree',
+    'nbH',
+    'dog markable',
+    'yNl',
+    'dave@simple.com',
+    'dave@easy.com',
+    '+1 448 498 5104',
+    'deephouse',
+    'tree flower',
+    '+1(679)858-7409',
+    'carol@simple.com',
+    'book house',
+    'vRi',
+    'alice@simple.com',
+    '123alice@email.com',
+    'flower',
+    'bob@simple.com',
+    'alice@simple.com',
+    'C',
+    '+18211856731',
+    'some email startWord@email.com',
+  ];
+
+  describe('with empty array', () => {
+    const matchTypes = [MatchStrategy.AnyMatch, MatchStrategy.StartWord, MatchStrategy.StartString];
+
+    test.each(matchTypes)(
+      'should return "-1" for maxDepth: %s with an empty array',
+      (matchType) => {
+        expect(findMatchByIncreasingDepth('some text', [], matchType)).toEqual(-1);
+      }
+    );
+  });
+
+  describe('preference for starting string matches', () => {
+    const testCases = [MatchStrategy.AnyMatch, MatchStrategy.StartWord, MatchStrategy.StartString];
+
+    test.each(testCases)(
+      'should prioritize match at the start of the string for maxDepth: %s',
+      (maxDepth) => {
+        expect(findMatchByIncreasingDepth('tree', stringsArray, maxDepth)).toEqual(12);
+      }
+    );
+  });
+
+  describe('Max depth: Any match', () => {
+    const maxDepth = MatchStrategy.AnyMatch;
+
+    it('should find first match: Start word', () => {
+      expect(findMatchByIncreasingDepth('house', stringsArray, maxDepth)).toEqual(15);
+    });
+
+    it('should find first match: Any', () => {
+      expect(findMatchByIncreasingDepth('xcom', stringsArray, maxDepth)).toEqual(0);
+    });
+
+    it('should not find any match and return "-1"', () => {
+      expect(findMatchByIncreasingDepth('not match', stringsArray, maxDepth)).toEqual(-1);
+    });
+
+    it('should find middle part email correctly', () => {
+      expect(findMatchByIncreasingDepth('ob@simple', stringsArray, maxDepth)).toEqual(20);
+    });
+
+    it('should find middle part telephone number correctly', () => {
+      expect(findMatchByIncreasingDepth('858', stringsArray, maxDepth)).toEqual(13);
+    });
+  });
+
+  describe('Max depth: Start word', () => {
+    const maxDepth = MatchStrategy.StartWord;
+
+    it('should find first match: Start word', () => {
+      expect(findMatchByIncreasingDepth('house', stringsArray, maxDepth)).toEqual(15);
+    });
+
+    it('should return "-1" when no matches start with the query string or word', () => {
+      expect(findMatchByIncreasingDepth('xcom', stringsArray, maxDepth)).toEqual(-1);
+    });
+
+    it('should find start email correctly', () => {
+      expect(findMatchByIncreasingDepth('startWord@e', stringsArray, maxDepth)).toEqual(24);
+    });
+
+    it('should find a segment of a formatted telephone number', () => {
+      expect(findMatchByIncreasingDepth('740', stringsArray, maxDepth)).toEqual(13);
+      expect(findMatchByIncreasingDepth('18211', stringsArray, maxDepth)).toEqual(23);
+    });
+  });
+
+  describe('Max depth: Start String', () => {
+    const maxDepth = MatchStrategy.StartString;
+
+    it('should return "-1" when no matches start with the query string', () => {
+      expect(findMatchByIncreasingDepth('house', stringsArray, maxDepth)).toEqual(-1);
+    });
+
+    it('should find string starting from email', () => {
+      expect(findMatchByIncreasingDepth('dave@simple', stringsArray, maxDepth)).toEqual(8);
     });
   });
 });
