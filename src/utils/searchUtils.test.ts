@@ -12,40 +12,40 @@ describe('escapeForRegExp', () => {
   it('should escape special RegExp characters', () => {
     const specialChars = '.*+?^${}()|[]\\';
     const escapedSpecialChars = '\\.\\*\\+\\?\\^\\$\\{\\}\\(\\)\\|\\[\\]\\\\';
-    expect(escapeForRegExp(specialChars)).toEqual(escapedSpecialChars);
+    expect(escapeForRegExp(specialChars)).toBe(escapedSpecialChars);
   });
 
   it('should return the same string if no special characters are present', () => {
     const normalString = 'Hello World';
-    expect(escapeForRegExp(normalString)).toEqual(normalString);
+    expect(escapeForRegExp(normalString)).toBe(normalString);
   });
 
   it('should escape a string with mixed special and normal characters', () => {
     const mixedString = 'Hello.*+?^${}()|[]\\World';
     const escapedMixedString = 'Hello\\.\\*\\+\\?\\^\\$\\{\\}\\(\\)\\|\\[\\]\\\\World';
-    expect(escapeForRegExp(mixedString)).toEqual(escapedMixedString);
+    expect(escapeForRegExp(mixedString)).toBe(escapedMixedString);
   });
 
   it('should correctly handle empty strings', () => {
     const emptyString = '';
-    expect(escapeForRegExp(emptyString)).toEqual(emptyString);
+    expect(escapeForRegExp(emptyString)).toBe(emptyString);
   });
 
   it('should correctly handle string start with space', () => {
     const stringStartEscape = ' String';
-    expect(escapeForRegExp(stringStartEscape)).toEqual(stringStartEscape);
+    expect(escapeForRegExp(stringStartEscape)).toBe(stringStartEscape);
   });
 
   it('should correctly escape string with mobile phone', () => {
     const telephoneString = '+3726543210';
     const escapedTelephoneString = '\\+3726543210';
-    expect(escapeForRegExp(telephoneString)).toEqual(escapedTelephoneString);
+    expect(escapeForRegExp(telephoneString)).toBe(escapedTelephoneString);
   });
 
   it('should correctly escape string with email', () => {
     const emailString = 'test@email.com';
     const escapedEmailString = 'test@email\\.com';
-    expect(escapeForRegExp(emailString)).toEqual(escapedEmailString);
+    expect(escapeForRegExp(emailString)).toBe(escapedEmailString);
   });
 });
 
@@ -136,7 +136,7 @@ describe('findMatchByIncreasingDepth', () => {
     ];
 
     test.each(matchingDepthStrategies)('should return index "-1" for maxDepth: %s', (maxDepth) => {
-      expect(findMatchByIncreasingDepth('some text', [], maxDepth)).toEqual(-1);
+      expect(findMatchByIncreasingDepth('some text', [], maxDepth)).toBe(-1);
     });
   });
 
@@ -158,7 +158,7 @@ describe('findMatchByIncreasingDepth', () => {
     test.each(matchingDepthStrategies)(
       '%s strategy should correctly prioritize "StartString" matches by returning index 4',
       (maxDepth) => {
-        expect(findMatchByIncreasingDepth('phrase', testStringsArray, maxDepth)).toEqual(4);
+        expect(findMatchByIncreasingDepth('phrase', testStringsArray, maxDepth)).toBe(4);
       }
     );
   });
@@ -195,23 +195,23 @@ describe('findMatchByIncreasingDepth', () => {
     const maxDepth = MatchStrategy.AnyMatch;
 
     it('should find first match: Start word and return index', () => {
-      expect(findMatchByIncreasingDepth('house', stringsArray, maxDepth)).toEqual(15);
+      expect(findMatchByIncreasingDepth('house', stringsArray, maxDepth)).toBe(15);
     });
 
     it('should find first match: Any and return index', () => {
-      expect(findMatchByIncreasingDepth('xcom', stringsArray, maxDepth)).toEqual(0);
+      expect(findMatchByIncreasingDepth('xcom', stringsArray, maxDepth)).toBe(0);
     });
 
     it('should not find any match and return index "-1"', () => {
-      expect(findMatchByIncreasingDepth('not match', stringsArray, maxDepth)).toEqual(-1);
+      expect(findMatchByIncreasingDepth('not match', stringsArray, maxDepth)).toBe(-1);
     });
 
     it('should find middle part email correctly and return index', () => {
-      expect(findMatchByIncreasingDepth('ob@simple', stringsArray, maxDepth)).toEqual(20);
+      expect(findMatchByIncreasingDepth('ob@simple', stringsArray, maxDepth)).toBe(20);
     });
 
     it('should find middle part telephone number correctly and return index', () => {
-      expect(findMatchByIncreasingDepth('858', stringsArray, maxDepth)).toEqual(13);
+      expect(findMatchByIncreasingDepth('858', stringsArray, maxDepth)).toBe(13);
     });
   });
 
@@ -219,20 +219,20 @@ describe('findMatchByIncreasingDepth', () => {
     const maxDepth = MatchStrategy.StartWord;
 
     it('should find first match: Start word and return index', () => {
-      expect(findMatchByIncreasingDepth('house', stringsArray, maxDepth)).toEqual(15);
+      expect(findMatchByIncreasingDepth('house', stringsArray, maxDepth)).toBe(15);
     });
 
     it('should return index "-1" when no matches start with the query string or word', () => {
-      expect(findMatchByIncreasingDepth('xcom', stringsArray, maxDepth)).toEqual(-1);
+      expect(findMatchByIncreasingDepth('xcom', stringsArray, maxDepth)).toBe(-1);
     });
 
     it('should find start email correctly and return index', () => {
-      expect(findMatchByIncreasingDepth('startWord@e', stringsArray, maxDepth)).toEqual(24);
+      expect(findMatchByIncreasingDepth('startWord@e', stringsArray, maxDepth)).toBe(24);
     });
 
     it('should find a segment of a formatted telephone number and return index', () => {
-      expect(findMatchByIncreasingDepth('740', stringsArray, maxDepth)).toEqual(13);
-      expect(findMatchByIncreasingDepth('18211', stringsArray, maxDepth)).toEqual(23);
+      expect(findMatchByIncreasingDepth('740', stringsArray, maxDepth)).toBe(13);
+      expect(findMatchByIncreasingDepth('18211', stringsArray, maxDepth)).toBe(23);
     });
   });
 
@@ -240,11 +240,11 @@ describe('findMatchByIncreasingDepth', () => {
     const maxDepth = MatchStrategy.StartString;
 
     it('should return index "-1" when no matches start with the query string', () => {
-      expect(findMatchByIncreasingDepth('house', stringsArray, maxDepth)).toEqual(-1);
+      expect(findMatchByIncreasingDepth('house', stringsArray, maxDepth)).toBe(-1);
     });
 
     it('should find string starting from email and return index', () => {
-      expect(findMatchByIncreasingDepth('dave@simple', stringsArray, maxDepth)).toEqual(8);
+      expect(findMatchByIncreasingDepth('dave@simple', stringsArray, maxDepth)).toBe(8);
     });
   });
 });

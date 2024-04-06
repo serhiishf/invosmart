@@ -14,6 +14,6 @@ export const validateField = (type: string, value: string) => {
     case 'password':
       return validatePassword(value);
     default:
-      return true;
+      return false;
   }
 };
