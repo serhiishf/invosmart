@@ -1,9 +1,8 @@
 import { InputHTMLAttributes } from 'react';
-
-type PaddingOption = 'primary' | 'none' | 'compact' | 'minimal';
+import { PaddingInput } from 'constants/theme';
 
 export interface InputBaseProps extends InputHTMLAttributes<HTMLInputElement> {
-  paddingLeft?: PaddingOption;
-  paddingRight?: PaddingOption;
+  paddingLeft?: PaddingInput;
+  paddingRight?: PaddingInput;
   isReadOnlyMode?: boolean;
 }

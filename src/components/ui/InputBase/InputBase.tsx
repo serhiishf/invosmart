@@ -1,19 +1,28 @@
 import classNames from 'classnames';
-import { forwardRef } from 'react';
+import { forwardRef, useState, useEffect } from 'react';
 import styles from './InputBase.module.scss';
 import { InputBaseProps } from './types';
+import { PaddingInput } from 'constants/theme';
 
 const InputBase = (props: InputBaseProps, ref: React.Ref<HTMLInputElement>) => {
   const {
-    paddingLeft = 'primary',
-    paddingRight = 'primary',
+    paddingLeft = PaddingInput.Default,
+    paddingRight = PaddingInput.Default,
     isReadOnlyMode,
+    value = '',
     onChange,
     ...rest
   } = props;
 
+  const [inputValue, setInputValue] = useState(value);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
+
   const handleChangeIfAllowed = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!onChange || isReadOnlyMode) return;
+    setInputValue(event.target.value);
     onChange(event);
   };
 
@@ -27,6 +36,7 @@ const InputBase = (props: InputBaseProps, ref: React.Ref<HTMLInputElement>) => {
       )}
       onChange={handleChangeIfAllowed}
       ref={ref}
+      value={inputValue}
       {...rest}
     />
   );
