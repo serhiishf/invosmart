@@ -17,7 +17,7 @@ function Input(props: InputProps) {
     isError = false,
     PrefixIcon,
     ...rest
-  } = props;
+  }: InputProps = props;
 
   const [isFocused, setIsFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

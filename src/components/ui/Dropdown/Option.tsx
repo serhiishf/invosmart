@@ -14,7 +14,7 @@ const Option = forwardRef((props: OptionProps, ref: React.Ref<HTMLLIElement>) =>
     textOverflow = TextOverflow.Wrap,
     isFocused = false,
     ...rest
-  } = props;
+  }: OptionProps = props;
 
   return (
     <li

@@ -20,7 +20,7 @@ function Select(props: SelectProps) {
     options,
     topOptions,
     children,
-  } = props;
+  }: SelectProps = props;
 
   const [inputValue, setInputValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);

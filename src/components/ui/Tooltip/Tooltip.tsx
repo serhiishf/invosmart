@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import IconArrow from '../../../assets/icons/arrowTriangle.svg?react';
 
 function Tooltip(props: TooltipProps) {
-  const { tooltipMessage, arrow } = props;
+  const { tooltipMessage, arrow }: TooltipProps = props;
 
   return (
     <div className={classNames(styles.tooltip)}>

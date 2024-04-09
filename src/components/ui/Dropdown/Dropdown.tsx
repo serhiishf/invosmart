@@ -8,7 +8,7 @@ import React, {
   useCallback,
 } from 'react';
 import classNames from 'classnames';
-import { findMatchByIncreasingDepth , MatchStrategy } from 'utils/searchUtils';
+import { findMatchByIncreasingDepth, MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { KeyboardKey } from 'constants/keyboard';
 import { DropdownProps, OptionTheme } from './types';
@@ -33,7 +33,7 @@ const Dropdown = (props: DropdownProps) => {
     componentTheme = ComponentTheme.Grey,
     onOptionSelect,
     selectedValue,
-  } = props;
+  }: DropdownProps = props;
 
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -81,7 +81,7 @@ const Dropdown = (props: DropdownProps) => {
   useEffect(() => {
     if (!(combinedOptions.length && typedText)) return;
     const searchArray = combinedOptions.map((option) => option.label);
-    const searchMatchIndex = findMatchByIncreasingDepth (typedText, searchArray, typedMatchStrategy);
+    const searchMatchIndex = findMatchByIncreasingDepth(typedText, searchArray, typedMatchStrategy);
     if (searchMatchIndex !== -1) {
       setOptionFocusedIndex(searchMatchIndex);
     }

@@ -16,7 +16,7 @@ function Button(props: ButtonProps) {
     disabled,
     type = 'button',
     ...rest
-  } = props;
+  }: ButtonProps = props;
 
   return (
     <button

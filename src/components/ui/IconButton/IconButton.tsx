@@ -3,7 +3,7 @@ import { IconButtonProps } from './types';
 import { Tooltip } from '../index';
 
 function IconButton(props: IconButtonProps) {
-  const { tooltip, children, type = 'button', ...rest } = props;
+  const { tooltip, children, type = 'button', ...rest }: IconButtonProps = props;
 
   return (
     <button className={styles.iconButton} type={type} {...rest}>

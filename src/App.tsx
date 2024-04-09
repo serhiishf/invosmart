@@ -1,12 +1,7 @@
 import './App.scss';
-import ShfTestComponent from './components/ShfTestComponent/ShfTestComponent';
 
 function App() {
-  return (
-    <div className="App">
-      <ShfTestComponent />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;

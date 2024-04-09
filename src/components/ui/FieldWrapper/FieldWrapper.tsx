@@ -3,7 +3,15 @@ import classNames from 'classnames';
 import { FieldWrapperProps } from './types';
 
 function FieldWrapper(props: FieldWrapperProps) {
-  const { label, children, isError, isFocused, disabled, readOnly, isHoverable } = props;
+  const {
+    label,
+    children,
+    isError,
+    isFocused,
+    disabled,
+    readOnly,
+    isHoverable,
+  }: FieldWrapperProps = props;
   return (
     <div className={styles.fieldWrapper}>
       {label && (

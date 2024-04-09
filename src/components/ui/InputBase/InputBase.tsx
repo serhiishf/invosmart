@@ -12,7 +12,7 @@ const InputBase = (props: InputBaseProps, ref: React.Ref<HTMLInputElement>) => {
     value = '',
     onChange,
     ...rest
-  } = props;
+  }: InputBaseProps = props;
 
   const [inputValue, setInputValue] = useState(value);
 
