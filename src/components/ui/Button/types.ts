@@ -6,6 +6,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   fontWeight?: 'semiBold' | 'medium';
   borderColor?: 'primary' | 'positive' | 'negative' | 'neutral';
   color?: 'primary' | 'white' | 'dark' | 'positive' | 'negative';
+  type?: 'submit' | 'reset' | 'button';
   backgroundPalette?:
     | 'primary'
     | 'secondary'

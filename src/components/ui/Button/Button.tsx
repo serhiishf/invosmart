@@ -3,21 +3,19 @@ import classNames from 'classnames';
 import { ButtonProps } from './types';
 import { Tooltip } from '../index';
 
-function Button(props: ButtonProps) {
-  const {
-    children,
-    size = 'm',
-    isFullWidth,
-    tooltip,
-    borderColor,
-    color = 'white',
-    fontWeight = 'semiBold',
-    backgroundPalette = 'primary',
-    disabled,
-    type = 'button',
-    ...rest
-  }: ButtonProps = props;
-
+function Button({
+  children,
+  size = 'm',
+  isFullWidth,
+  tooltip,
+  borderColor,
+  color = 'white',
+  fontWeight = 'semiBold',
+  backgroundPalette = 'primary',
+  disabled,
+  type = 'button',
+  ...rest
+}: ButtonProps) {
   return (
     <button
       className={classNames(
