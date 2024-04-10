@@ -5,7 +5,6 @@ import { InputProps } from './types';
 import styles from './Input.module.scss';
 import IconShowPassword from 'assets/icons/eye.svg?react';
 import IconHidePassword from 'assets/icons/eyeSlash.svg?react';
-import { PaddingInput } from 'constants/theme';
 
 function Input(props: InputProps) {
   const {
@@ -72,8 +71,8 @@ function Input(props: InputProps) {
           readOnly={readOnly}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          paddingLeft={(PrefixIcon && PaddingInput.None) || PaddingInput.Default}
-          paddingRight={PaddingInput.Default}
+          paddingLeft={(PrefixIcon && 'none') || 'default'}
+          paddingRight={'default'}
           {...rest}
         />
         <>

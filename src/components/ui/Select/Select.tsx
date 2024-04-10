@@ -8,7 +8,6 @@ import { FieldWrapper, InputBase, IconButton, Dropdown } from '..';
 import IconDirectionArrow from 'assets/icons/directionCheck.svg?react';
 import IconClose from 'assets/icons/close.svg?react';
 import { MatchStrategy, filterOptions } from 'utils/searchUtils';
-import { PaddingInput } from 'constants/theme';
 
 function Select(props: SelectProps) {
   const {
@@ -178,7 +177,7 @@ function Select(props: SelectProps) {
               <div className={styles.select__inputContainer}>
                 <InputBase
                   autoFocus={isFocused}
-                  paddingRight={PaddingInput.None}
+                  paddingRight={'none'}
                   onChange={handleInputChange}
                   value={inputValue}
                   ref={inputRef}

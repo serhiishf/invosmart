@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import InputBase from './InputBase';
-import { PaddingInput } from 'constants/theme';
 
 const meta = {
   title: 'components/UI/InputBase',
@@ -10,10 +9,6 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    paddingLeft: { control: 'radio', options: PaddingInput },
-    paddingRight: { control: 'radio', options: PaddingInput },
-  },
   args: {
     onChange: fn(),
   },

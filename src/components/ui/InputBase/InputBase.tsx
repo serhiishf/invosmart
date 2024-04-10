@@ -2,13 +2,12 @@ import classNames from 'classnames';
 import { forwardRef, useState, useEffect } from 'react';
 import styles from './InputBase.module.scss';
 import { InputBaseProps } from './types';
-import { PaddingInput } from 'constants/theme';
 
 const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
   (
     {
-      paddingLeft = PaddingInput.Default,
-      paddingRight = PaddingInput.Default,
+      paddingLeft = 'default',
+      paddingRight = 'default',
       isReadOnlyMode = false,
       value,
       onChange,
