@@ -4,9 +4,8 @@ import { ButtonProps } from './types';
 import { Tooltip } from '../index';
 
 function Button({
-  children,
   size = 'm',
-  isFullWidth,
+  isFullWidth = false,
   tooltip,
   borderColor,
   color = 'white',
@@ -14,6 +13,8 @@ function Button({
   backgroundPalette = 'primary',
   disabled,
   type = 'button',
+  Icon,
+  label,
   ...rest
 }: ButtonProps) {
   return (
@@ -32,7 +33,12 @@ function Button({
       type={type}
       {...rest}
     >
-      {children}
+      {Icon && (
+        <div className={styles.button__iconContainer}>
+          <Icon />
+        </div>
+      )}
+      {label}
       {tooltip && (
         <div className={styles.button__tooltipWrap}>
           <Tooltip tooltipMessage={tooltip} />

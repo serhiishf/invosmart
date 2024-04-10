@@ -1,5 +1,4 @@
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
   tooltip?: string;
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   isFullWidth?: boolean;
@@ -7,6 +6,9 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   borderColor?: 'primary' | 'positive' | 'negative' | 'neutral';
   color?: 'primary' | 'white' | 'dark' | 'positive' | 'negative';
   type?: 'submit' | 'reset' | 'button';
+  Icon?: React.FunctionComponent;
+  label?: string;
+  onClick?: () => void;
   backgroundPalette?:
     | 'primary'
     | 'secondary'
