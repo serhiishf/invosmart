@@ -3,12 +3,13 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   isFullWidth?: boolean;
   fontWeight?: 'semiBold' | 'medium';
-  borderColor?: 'primary' | 'positive' | 'negative' | 'neutral';
-  color?: 'primary' | 'white' | 'dark' | 'positive' | 'negative';
+  isBordered?: boolean;
+  /*   borderColor?: 'primary' | 'positive' | 'negative' | 'neutral'; */
   type?: 'submit' | 'reset' | 'button';
   Icon?: React.FunctionComponent;
   label?: string;
   onClick?: () => void;
+  disabled?: boolean;
   backgroundPalette?:
     | 'primary'
     | 'secondary'

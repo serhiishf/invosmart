@@ -7,8 +7,8 @@ function Button({
   size = 'm',
   isFullWidth = false,
   tooltip,
+  isBordered = false,
   borderColor,
-  color = 'white',
   fontWeight = 'semiBold',
   backgroundPalette = 'primary',
   disabled,
@@ -22,12 +22,11 @@ function Button({
       className={classNames(
         styles.button,
         styles[`button--size-${size}`],
-        styles[`button--color-${color}`],
         styles[`button--backgroundPalette-${backgroundPalette}`],
         styles[`button--fontWeight-${fontWeight}`],
         isFullWidth && styles['button--fullWidthMode'],
         disabled && styles['button--disabled'],
-        borderColor && [styles['button--border'], styles[`button--border-${borderColor}`]]
+        isBordered && styles['button--border']
       )}
       disabled={disabled}
       type={type}
