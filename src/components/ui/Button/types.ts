@@ -4,7 +4,6 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   isFullWidth?: boolean;
   fontWeight?: 'semiBold' | 'medium';
   isBordered?: boolean;
-  /*   borderColor?: 'primary' | 'positive' | 'negative' | 'neutral'; */
   type?: 'submit' | 'reset' | 'button';
   Icon?: React.FunctionComponent;
   label?: string;

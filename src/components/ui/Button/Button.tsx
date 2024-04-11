@@ -8,7 +8,6 @@ function Button({
   isFullWidth = false,
   tooltip,
   isBordered = false,
-  borderColor,
   fontWeight = 'semiBold',
   backgroundPalette = 'primary',
   disabled,
