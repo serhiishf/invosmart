@@ -9,7 +9,7 @@ function Button({
   tooltip,
   isBordered = false,
   fontWeight = 'semiBold',
-  backgroundPalette = 'primary',
+  buttonPalette = 'primary',
   disabled,
   type = 'button',
   Icon,
@@ -21,7 +21,7 @@ function Button({
       className={classNames(
         styles.button,
         styles[`button--size-${size}`],
-        styles[`button--backgroundPalette-${backgroundPalette}`],
+        styles[`button--buttonPalette-${buttonPalette}`],
         styles[`button--fontWeight-${fontWeight}`],
         isFullWidth && styles['button--fullWidthMode'],
         disabled && styles['button--disabled'],

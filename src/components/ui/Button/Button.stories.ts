@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import Button from './Button';
 import IconPlaceholder from 'assets/icons/placeholder.svg?react';
-import IconSettings from 'assets/icons/settings.svg?react';
 
 const meta = {
   title: 'components/UI/Button',
@@ -13,6 +12,8 @@ const meta = {
     onClick: fn(),
     label: 'Button',
     isFullWidth: false,
+    isBordered: false,
+    disabled: false,
   },
 } satisfies Meta<typeof Button>;
 
@@ -28,21 +29,28 @@ export const Disabled: Story = {
   },
 };
 
-export const WithIcon: Story = {
+export const LabelAndIcon: Story = {
   args: {
     Icon: IconPlaceholder,
   },
 };
 
-export const LongTextLabel: Story = {
+export const LongLabel: Story = {
   args: {
     label: 'Interdum et malesuada fames ac ante ipsum primis in faucibus',
   },
 };
 
-export const LongTextLabelWithIcon: Story = {
+export const LongLabelAndIcon: Story = {
   args: {
     Icon: IconPlaceholder,
     label: 'Interdum et malesuada fames ac ante ipsum primis in faucibus',
+  },
+};
+
+export const OnlyIcon: Story = {
+  args: {
+    Icon: IconPlaceholder,
+    label: '',
   },
 };

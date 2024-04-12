@@ -9,7 +9,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   label?: string;
   onClick?: () => void;
   disabled?: boolean;
-  backgroundPalette?:
+  buttonPalette?:
     | 'primary'
     | 'secondary'
     | 'transparentSecondary'

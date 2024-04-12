@@ -1,4 +1,4 @@
-@mixin backgroundPalette($bgColor, $hoverBgColor, $activeBgColor, $color) {
+@mixin buttonPalette($bgColor, $hoverBgColor, $activeBgColor, $color) {
   background-color: $bgColor;
   color: $color;
 
@@ -39,9 +39,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    & svg {
-      /* height: 20px; */
-    }
   }
 
   @media (pointer: fine) {
@@ -112,9 +109,9 @@
     border: solid 1px;
   }
 
-  &--backgroundPalette {
+  &--buttonPalette {
     &-primary {
-      @include backgroundPalette(
+      @include buttonPalette(
         $buttonColorPrimary,
         $buttonColorPrimaryHover,
         $buttonColorPrimaryActive,
@@ -123,7 +120,7 @@
     }
 
     &-secondary {
-      @include backgroundPalette(
+      @include buttonPalette(
         $buttonColorSecondary,
         $buttonColorSecondaryHover,
         $buttonColorSecondaryActive,
@@ -132,7 +129,7 @@
     }
 
     &-positive {
-      @include backgroundPalette(
+      @include buttonPalette(
         $buttonColorPositive,
         $buttonColorPositiveHover,
         $buttonColorPositiveActive,
@@ -141,7 +138,7 @@
     }
 
     &-transparentSecondary {
-      @include backgroundPalette(
+      @include buttonPalette(
         transparent,
         $buttonColorTranspSecondaryHover,
         $buttonColorTranspSecondaryActive,
@@ -150,7 +147,7 @@
     }
 
     &-transparentPositive {
-      @include backgroundPalette(
+      @include buttonPalette(
         transparent,
         $buttonColorTranspPositiveHover,
         $buttonColorTranspPositiveActive,
@@ -159,7 +156,7 @@
     }
 
     &-transparentNegative {
-      @include backgroundPalette(
+      @include buttonPalette(
         transparent,
         $buttonColorTranspNegativeHover,
         $buttonColorTranspNegativeActive,
@@ -168,7 +165,7 @@
     }
 
     &-transparentNeutral {
-      @include backgroundPalette(
+      @include buttonPalette(
         transparent,
         $buttonColorTranspNeutralHover,
         $buttonColorTranspNeutralActive,
