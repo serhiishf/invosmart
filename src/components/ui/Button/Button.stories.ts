@@ -20,7 +20,14 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    label: 'Button',
+    isFullWidth: false,
+    isBordered: false,
+    disabled: false,
+  },
+};
 
 export const Disabled: Story = {
   args: {
