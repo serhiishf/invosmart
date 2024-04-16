@@ -3,7 +3,8 @@
 exports[`InputBase > Default Initialization > should matches the snapshot with default props 1`] = `
 <DocumentFragment>
   <input
-    class="_inputBase_6ca9ba _inputBase--paddingLeft-primary_6ca9ba _inputBase--paddingRight-primary_6ca9ba"
+    class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+    value=""
   />
 </DocumentFragment>
 `;

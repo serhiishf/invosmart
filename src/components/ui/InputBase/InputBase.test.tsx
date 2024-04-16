@@ -21,6 +21,4 @@ describe('InputBase', () => {
       expect(input).not.toHaveAttribute('placeholder');
     });
   });
-
-  describe('Initizalization with props', () => {});
 });
