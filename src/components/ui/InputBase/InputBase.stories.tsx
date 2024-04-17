@@ -5,6 +5,13 @@ import InputBase from './InputBase';
 const meta = {
   title: 'components/UI/InputBase',
   component: InputBase,
+  decorators: [
+    (Story) => (
+      <div style={{ border: '1px dashed pink' }}>
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     layout: 'centered',
   },
@@ -17,10 +24,24 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
-export const Default: Story = {
+export const Default: Story = {};
+
+export const InitialValue: Story = {
   args: {
     placeholder: 'Placeholder',
     value: 'Value',
-    isReadOnlyMode: false,
+  },
+};
+
+export const Placeholder: Story = {
+  args: {
+    placeholder: 'Placeholder',
+  },
+};
+
+export const Readonly: Story = {
+  args: {
+    value: 'Readonly mode',
+    isReadOnlyMode: true,
   },
 };
