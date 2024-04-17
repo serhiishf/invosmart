@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import Input from './Input';
 
-
 const meta = {
   title: 'components/UI/Input',
   component: Input,
@@ -40,9 +39,10 @@ export const Error: Story = {
   },
 };
 
-export const ReadOnlyMode: Story = {
+export const ReadonlyMode: Story = {
   args: {
-    label: 'Readonly mode',
+    label: 'Readonly mode placeholder',
+    value: 'Readonly mode',
     placeholder: 'readOnly',
     readOnly: true,
   },

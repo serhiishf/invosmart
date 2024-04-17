@@ -36,7 +36,7 @@ export const Placeholder: Story = {
   },
 };
 
-export const Readonly: Story = {
+export const ReadonlyMode: Story = {
   args: {
     value: 'Readonly mode',
     isReadOnlyMode: true,

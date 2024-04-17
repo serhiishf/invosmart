@@ -1,7 +1,6 @@
-import { FunctionComponent } from 'react';
-import { InputBaseProps } from '../InputBase/types';
+import { FunctionComponent, InputHTMLAttributes } from 'react';
 
-export interface InputProps extends InputBaseProps {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   type?: string;
   name?: string;
