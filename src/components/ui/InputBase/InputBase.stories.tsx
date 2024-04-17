@@ -12,9 +12,6 @@ const meta = {
       </div>
     ),
   ],
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   args: {
     onChange: fn(),

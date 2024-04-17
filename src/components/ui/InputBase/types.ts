@@ -6,7 +6,7 @@ export interface InputBaseProps extends InputHTMLAttributes<HTMLInputElement> {
   paddingLeft?: InputPadding;
   paddingRight?: InputPadding;
   /**
-   * The isReadOnlyMode prop is used to keep inputs focusable and part of the tab order on iOS Safari, where the readonly attribute would otherwise remove them.
+   * The isReadOnlyMode prop is used instead readonly attribute to keep inputs focusable and part of the tab order on iOS Safari, where the readonly attribute would otherwise remove them.
    */
   isReadOnlyMode?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;

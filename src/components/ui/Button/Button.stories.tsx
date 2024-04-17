@@ -2,12 +2,17 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import Button from './Button';
 import IconPlaceholder from 'assets/icons/placeholder.svg?react';
+import { iconSelectConfig } from 'config/storybookIconConfig';
 
 const meta = {
   title: 'components/UI/Button',
   component: Button,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    Icon: {
+      ...iconSelectConfig,
+    },
+  },
   args: {
     onClick: fn(),
     label: 'Button',

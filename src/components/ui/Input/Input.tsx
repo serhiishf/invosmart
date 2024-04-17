@@ -6,18 +6,16 @@ import styles from './Input.module.scss';
 import IconShowPassword from 'assets/icons/eye.svg?react';
 import IconHidePassword from 'assets/icons/eyeSlash.svg?react';
 
-function Input(props: InputProps) {
-  const {
-    id,
-    type = 'text',
-    label,
-    disabled = false,
-    readOnly = false,
-    isError = false,
-    PrefixIcon,
-    ...rest
-  }: InputProps = props;
-
+function Input({
+  id,
+  type = 'text',
+  label,
+  disabled = false,
+  readOnly = false,
+  isError = false,
+  PrefixIcon,
+  ...rest
+}: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [currentInputType, setCurrentInputType] = useState(type);
@@ -47,13 +45,7 @@ function Input(props: InputProps) {
 
   return (
     <div className={styles.input} id={id}>
-      <FieldWrapper
-        label={label}
-        isFocused={isFocused}
-        isError={isError}
-        readOnly={readOnly}
-        disabled={disabled}
-      >
+      <FieldWrapper label={label} isFocused={isFocused} isError={isError} disabled={disabled}>
         <>
           {PrefixIcon && (
             <div className={styles.input__prefixContainer}>
@@ -68,7 +60,7 @@ function Input(props: InputProps) {
         <InputBase
           type={currentInputType}
           disabled={disabled}
-          readOnly={readOnly}
+          isReadOnlyMode={readOnly}
           onFocus={handleFocus}
           onBlur={handleBlur}
           paddingLeft={(PrefixIcon && 'none') || 'default'}

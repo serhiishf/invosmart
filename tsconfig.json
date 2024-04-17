@@ -21,7 +21,8 @@
       "components": ["components/*"],
       "styles/*": ["styles/*"],
       "locales/*": ["locales/*"],
-      "routers/*": ["routers/*"]
+      "routers/*": ["routers/*"],
+      "config/*": ["config/*"]
     },
     "types": ["vitest/globals", "@testing-library/jest-dom"],
     "resolveJsonModule": true,

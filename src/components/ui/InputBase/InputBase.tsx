@@ -22,8 +22,9 @@ const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
     }, [value]);
 
     const handleChangeIfAllowed = (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!onChange || isReadOnlyMode) return;
+      if (isReadOnlyMode) return;
       setInputValue(event.target.value);
+      if (!onChange) return;
       onChange(event);
     };
 

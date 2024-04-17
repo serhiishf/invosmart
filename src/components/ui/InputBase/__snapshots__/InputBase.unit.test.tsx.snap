@@ -9,25 +9,7 @@ exports[`InputBase > Default Initialization > should match the snapshot with def
 </DocumentFragment>
 `;
 
-exports[`InputBase > Default Initialization > should matches the snapshot with default props 1`] = `
-<DocumentFragment>
-  <input
-    class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
-    value=""
-  />
-</DocumentFragment>
-`;
-
 exports[`InputBase > initialization with props > should match the snapshot when isReadOnlyMode is enabled 1`] = `
-<DocumentFragment>
-  <input
-    class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _inputBase--readOnlyMode_6ca9ba"
-    value=""
-  />
-</DocumentFragment>
-`;
-
-exports[`InputBase > initizalization with props > should matches the snapshot with isReadOnlyMode - emulating readonly attribute 1`] = `
 <DocumentFragment>
   <input
     class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _inputBase--readOnlyMode_6ca9ba"

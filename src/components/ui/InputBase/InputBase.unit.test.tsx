@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import InputBase from './InputBase';
 
 describe('InputBase', () => {
@@ -21,10 +22,11 @@ describe('InputBase', () => {
       expect(input).not.toHaveAttribute('placeholder');
     });
 
-    it('should update the value on user input', () => {
+    it('should update the value on user input', async () => {
       render(<InputBase />);
       const input = screen.getByRole('textbox');
-      fireEvent.change(input, { target: { value: 'typed text' } });
+      await userEvent.type(input, 'typed text');
+      expect(input).toHaveValue('typed text');
     });
   });
 
@@ -41,17 +43,17 @@ describe('InputBase', () => {
       expect(input).toHaveValue('initial value');
     });
 
-    it('should not allow typing in an empty input when isReadOnlyMode is enabled', () => {
+    it('should not allow typing in an empty input when isReadOnlyMode is enabled', async () => {
       render(<InputBase isReadOnlyMode={true} />);
       const input = screen.getByRole('textbox');
-      fireEvent.change(input, { target: { value: 'typed text' } });
+      await userEvent.type(input, 'typed text');
       expect(input).toHaveValue('');
     });
 
-    it('should not allow typing in an input with an initial value when isReadOnlyMode is enabled', () => {
+    it('should not allow typing in an input with an initial value when isReadOnlyMode is enabled', async () => {
       render(<InputBase isReadOnlyMode={true} value="some text" />);
       const input = screen.getByRole('textbox');
-      fireEvent.change(input, { target: { value: 'typed text' } });
+      await userEvent.type(input, 'typed text');
       expect(input).toHaveValue('some text');
     });
 

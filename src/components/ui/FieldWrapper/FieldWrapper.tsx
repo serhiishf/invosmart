@@ -2,16 +2,14 @@ import styles from './FieldWrapper.module.scss';
 import classNames from 'classnames';
 import { FieldWrapperProps } from './types';
 
-function FieldWrapper(props: FieldWrapperProps) {
-  const {
-    label,
-    children,
-    isError,
-    isFocused,
-    disabled,
-    readOnly,
-    isHoverable,
-  }: FieldWrapperProps = props;
+function FieldWrapper({
+  label,
+  children,
+  isError,
+  isFocused,
+  disabled,
+  isHoverable,
+}: FieldWrapperProps) {
   return (
     <div className={styles.fieldWrapper}>
       {label && (
@@ -20,8 +18,7 @@ function FieldWrapper(props: FieldWrapperProps) {
             styles.fieldWrapper__label,
             isError && styles['fieldWrapper__label--isError'],
             isFocused && styles['fieldWrapper__label--isFocused'],
-            disabled && styles['fieldWrapper__label--disabled'],
-            readOnly && styles['fieldWrapper__label--readOnly']
+            disabled && styles['fieldWrapper__label--disabled']
           )}
         >
           {label}
@@ -33,7 +30,6 @@ function FieldWrapper(props: FieldWrapperProps) {
           isError && styles['fieldWrapper__border--isError'],
           isFocused && styles['fieldWrapper__border--isFocused'],
           disabled && styles['fieldWrapper__border--disabled'],
-          readOnly && styles['fieldWrapper__border--readOnly'],
           isHoverable && styles['fieldWrapper__border--isHoverable']
         )}
       >
