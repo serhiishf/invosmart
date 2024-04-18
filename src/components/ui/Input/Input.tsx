@@ -44,7 +44,7 @@ function Input({
   }, [isPasswordVisible, type]);
 
   return (
-    <div className={styles.input} id={id}>
+    <div className={styles.input} id={id} data-testid="input-component">
       <FieldWrapper label={label} isFocused={isFocused} isError={isError} disabled={disabled}>
         <>
           {PrefixIcon && (

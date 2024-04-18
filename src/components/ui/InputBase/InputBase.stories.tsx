@@ -42,3 +42,10 @@ export const ReadonlyMode: Story = {
     isReadOnlyMode: true,
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    value: 'Disabled',
+    disabled: true,
+  },
+};

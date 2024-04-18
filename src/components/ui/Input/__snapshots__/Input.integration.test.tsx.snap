@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Input > default Initialization > should match the snapshot with default props 1`] = `
+<DocumentFragment>
+  <div
+    class="_input_ab7e9c"
+    data-testid="input-component"
+  >
+    <div
+      class="_fieldWrapper_3d96c9"
+    >
+      <div
+        class="_fieldWrapper__border_3d96c9"
+      >
+        <input
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

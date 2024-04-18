@@ -3,11 +3,14 @@ import userEvent from '@testing-library/user-event';
 import Input from './Input';
 
 describe('Input', () => {
-  describe('Default Initialization', () => {
-    it('should do something', () => {
-      render(<Input />);
-      const input = screen.getByRole('textbox');
-      console.log(input);
+  describe('default Initialization', () => {
+    it('should match the snapshot with default props', () => {
+      const { asFragment } = render(<Input />);
+      expect(asFragment()).toMatchSnapshot();
     });
+  });
+
+  describe('initialization with props', () => {
+    it('default', () => {});
   });
 });

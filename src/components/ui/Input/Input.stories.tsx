@@ -48,6 +48,15 @@ export const ReadonlyMode: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    label: 'Disabled',
+    value: 'Disabled value',
+    placeholder: 'Placeholder',
+    disabled: true,
+  },
+};
+
 export const WithPrefixIcon: Story = {
   args: {
     label: 'With Prefix Icon',

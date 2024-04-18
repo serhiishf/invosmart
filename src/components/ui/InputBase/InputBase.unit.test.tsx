@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import InputBase from './InputBase';
 
 describe('InputBase', () => {
-  describe('Default Initialization', () => {
+  describe('default Initialization', () => {
     it('should render correctly with default props', () => {
       render(<InputBase />);
       const input = screen.getByRole('textbox');
@@ -11,14 +11,10 @@ describe('InputBase', () => {
       expect(input).not.toHaveValue();
     });
 
-    it('should match the snapshot with default props', () => {
-      const { asFragment } = render(<InputBase />);
-      expect(asFragment()).toMatchSnapshot();
-    });
-
-    it('should not have a placeholder attribute', () => {
+    it('should not have value and placeholder attribute', () => {
       render(<InputBase />);
       const input = screen.getByRole('textbox');
+      expect(input).not.toHaveValue();
       expect(input).not.toHaveAttribute('placeholder');
     });
 
@@ -27,6 +23,11 @@ describe('InputBase', () => {
       const input = screen.getByRole('textbox');
       await userEvent.type(input, 'typed text');
       expect(input).toHaveValue('typed text');
+    });
+
+    it('should match the snapshot with default props', () => {
+      const { asFragment } = render(<InputBase />);
+      expect(asFragment()).toMatchSnapshot();
     });
   });
 
