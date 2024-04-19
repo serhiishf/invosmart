@@ -9,11 +9,13 @@ function FieldWrapper({
   isFocused,
   disabled,
   isHoverable,
+  labelTargetId,
 }: FieldWrapperProps) {
   return (
     <div className={styles.fieldWrapper}>
       {label && (
-        <div
+        <label
+          htmlFor={labelTargetId}
           className={classNames(
             styles.fieldWrapper__label,
             isError && styles['fieldWrapper__label--isError'],
@@ -22,7 +24,7 @@ function FieldWrapper({
           )}
         >
           {label}
-        </div>
+        </label>
       )}
       <div
         className={classNames(

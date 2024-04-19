@@ -14,6 +14,100 @@ exports[`Input > default Initialization > should match the snapshot with default
       >
         <input
           class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          id=":r3:"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Input > initial with props > should match the snapshot with label, placeholder and value props 1`] = `
+<DocumentFragment>
+  <div
+    class="_input_ab7e9c"
+    data-testid="input-component"
+  >
+    <div
+      class="_fieldWrapper_3d96c9"
+    >
+      <label
+        class="_fieldWrapper__label_3d96c9"
+        for=":r6:"
+      >
+        Label text
+      </label>
+      <div
+        class="_fieldWrapper__border_3d96c9"
+      >
+        <input
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          id=":r6:"
+          placeholder="Placeholder"
+          type="text"
+          value="Initial value"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Input > initial with props > should match the snapshot with label, placeholder, value and isError=true 1`] = `
+<DocumentFragment>
+  <div
+    class="_input_ab7e9c"
+    data-testid="input-component"
+  >
+    <div
+      class="_fieldWrapper_3d96c9"
+    >
+      <label
+        class="_fieldWrapper__label_3d96c9 _fieldWrapper__label--isError_3d96c9"
+        for=":r7:"
+      >
+        Label text
+      </label>
+      <div
+        class="_fieldWrapper__border_3d96c9 _fieldWrapper__border--isError_3d96c9"
+      >
+        <input
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          id=":r7:"
+          placeholder="Placeholder"
+          type="text"
+          value="Initial value"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Input > initial with props > should match the snapshot with placeholder and label props 1`] = `
+<DocumentFragment>
+  <div
+    class="_input_ab7e9c"
+    data-testid="input-component"
+  >
+    <div
+      class="_fieldWrapper_3d96c9"
+    >
+      <label
+        class="_fieldWrapper__label_3d96c9"
+        for=":r5:"
+      >
+        Label text
+      </label>
+      <div
+        class="_fieldWrapper__border_3d96c9"
+      >
+        <input
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          id=":r5:"
+          placeholder="Placeholder"
           type="text"
           value=""
         />

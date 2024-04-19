@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useId } from 'react';
 import classNames from 'classnames';
 import { FieldWrapper, InputBase, IconButton } from '../';
 import { InputProps } from './types';
@@ -24,6 +24,8 @@ function Input({
   const tooltip = isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password';
   const isDisplaySuffixContainer = type === 'password';
 
+  const inputBaseId = useId();
+
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -45,7 +47,13 @@ function Input({
 
   return (
     <div className={styles.input} id={id} data-testid="input-component">
-      <FieldWrapper label={label} isFocused={isFocused} isError={isError} disabled={disabled}>
+      <FieldWrapper
+        label={label}
+        isFocused={isFocused}
+        isError={isError}
+        disabled={disabled}
+        labelTargetId={inputBaseId}
+      >
         <>
           {PrefixIcon && (
             <div className={styles.input__prefixContainer}>
@@ -65,6 +73,7 @@ function Input({
           onBlur={handleBlur}
           paddingLeft={(PrefixIcon && 'none') || 'default'}
           paddingRight={'default'}
+          id={inputBaseId}
           {...rest}
         />
         <>
