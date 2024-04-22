@@ -44,21 +44,46 @@ describe('InputBase', () => {
       expect(input).toHaveValue('initial value');
     });
 
-    it('should not allow typing in an empty input when isReadOnlyMode is enabled', async () => {
+    it('should mark the input as aria-readonly and prevent typing when isReadOnlyMode is true', async () => {
       render(<InputBase isReadOnlyMode={true} />);
       const input = screen.getByRole('textbox');
+
+      // Ensure the input is marked as read-only for accessibility
+      expect(input).toHaveAttribute('aria-readonly', 'true');
+
+      // Attempt to type into the input and check that the input value is unchanged
       await userEvent.type(input, 'typed text');
       expect(input).toHaveValue('');
     });
 
-    it('should not allow typing in an input with an initial value when isReadOnlyMode is enabled', async () => {
+    it('should retain the initial value and prevent typing when isReadOnlyMode is true', async () => {
       render(<InputBase isReadOnlyMode={true} value="some text" />);
       const input = screen.getByRole('textbox');
+
+      // Ensure the input is marked as read-only for accessibility
+      expect(input).toHaveAttribute('aria-readonly', 'true');
+
+      // Attempt to type into the input and check that the initial value is unchanged
       await userEvent.type(input, 'typed text');
       expect(input).toHaveValue('some text');
     });
 
-    it('should match the snapshot when isReadOnlyMode is enabled', () => {
+    it('should have attribute aria-invalid="true" when isError=true', () => {
+      render(<InputBase isReadOnlyMode={true} value="some text" isError={true} />);
+      const input = screen.getByRole('textbox');
+
+      expect(input).toHaveAttribute('aria-invalid', 'true');
+    });
+
+    it('should render disabled input and prevent any typing', async () => {
+      render(<InputBase disabled={true} />);
+      const input = screen.getByRole('textbox');
+      expect(input).toBeDisabled();
+      await userEvent.type(input, 'Some text');
+      expect(input).not.toHaveValue();
+    });
+
+    it('should match the snapshot when isReadOnlyMode is true', () => {
       const { asFragment } = render(<InputBase isReadOnlyMode={true} />);
       expect(asFragment()).toMatchSnapshot();
     });

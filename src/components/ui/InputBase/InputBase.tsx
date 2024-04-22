@@ -11,6 +11,7 @@ const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
       isReadOnlyMode = false,
       value,
       onChange,
+      isError,
       ...rest
     }: InputBaseProps,
     ref
@@ -39,6 +40,8 @@ const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
         onChange={handleChangeIfAllowed}
         ref={ref}
         value={inputValue}
+        aria-invalid={isError}
+        aria-readonly={isReadOnlyMode}
         {...rest}
       />
     );

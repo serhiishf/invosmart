@@ -1,26 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`InputBase > Default Initialization > should match the snapshot with default props 1`] = `
-<DocumentFragment>
-  <input
-    class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
-    value=""
-  />
-</DocumentFragment>
-`;
-
 exports[`InputBase > default Initialization > should match the snapshot with default props 1`] = `
 <DocumentFragment>
   <input
+    aria-readonly="false"
     class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
     value=""
   />
 </DocumentFragment>
 `;
 
-exports[`InputBase > initialization with props > should match the snapshot when isReadOnlyMode is enabled 1`] = `
+exports[`InputBase > initialization with props > should match the snapshot when isReadOnlyMode is true 1`] = `
 <DocumentFragment>
   <input
+    aria-readonly="true"
     class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _inputBase--readOnlyMode_6ca9ba"
     value=""
   />

@@ -73,6 +73,7 @@ function Input({
           onBlur={handleBlur}
           paddingLeft={(PrefixIcon && 'none') || 'default'}
           paddingRight={'default'}
+          isError={isError}
           id={inputBaseId}
           {...rest}
         />
