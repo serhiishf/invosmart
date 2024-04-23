@@ -115,7 +115,7 @@ describe('Input', () => {
       expect(inputBase).not.toHaveValue();
     });
 
-    it('should handle different props appropriately', () => {
+    it('should match expected snapshots when rendered with various props', () => {
       const { asFragment, rerender } = render(<Input />);
       expect(asFragment()).toMatchSnapshot('default props');
 

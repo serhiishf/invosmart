@@ -10,7 +10,7 @@ exports[`Input > default Initialization > should match the snapshot with default
       class="_fieldWrapper_3d96c9"
     >
       <div
-        class="_fieldWrapper__border_3d96c9"
+        class="_fieldWrapper__main_3d96c9"
       >
         <input
           aria-invalid="false"
@@ -26,7 +26,7 @@ exports[`Input > default Initialization > should match the snapshot with default
 </DocumentFragment>
 `;
 
-exports[`Input > initial with props > should handle different props appropriately > default props 1`] = `
+exports[`Input > initial with props > should match expected snapshots when rendered with various props > default props 1`] = `
 <DocumentFragment>
   <div
     class="_input_ab7e9c"
@@ -36,7 +36,7 @@ exports[`Input > initial with props > should handle different props appropriatel
       class="_fieldWrapper_3d96c9"
     >
       <div
-        class="_fieldWrapper__border_3d96c9"
+        class="_fieldWrapper__main_3d96c9"
       >
         <input
           aria-invalid="false"
@@ -52,7 +52,7 @@ exports[`Input > initial with props > should handle different props appropriatel
 </DocumentFragment>
 `;
 
-exports[`Input > initial with props > should handle different props appropriately > disabled state 1`] = `
+exports[`Input > initial with props > should match expected snapshots when rendered with various props > disabled state 1`] = `
 <DocumentFragment>
   <div
     class="_input_ab7e9c"
@@ -62,7 +62,7 @@ exports[`Input > initial with props > should handle different props appropriatel
       class="_fieldWrapper_3d96c9"
     >
       <div
-        class="_fieldWrapper__border_3d96c9 _fieldWrapper__border--disabled_3d96c9"
+        class="_fieldWrapper__main_3d96c9 _fieldWrapper__main--disabled_3d96c9"
       >
         <input
           aria-invalid="false"
@@ -79,7 +79,7 @@ exports[`Input > initial with props > should handle different props appropriatel
 </DocumentFragment>
 `;
 
-exports[`Input > initial with props > should handle different props appropriately > error state 1`] = `
+exports[`Input > initial with props > should match expected snapshots when rendered with various props > error state 1`] = `
 <DocumentFragment>
   <div
     class="_input_ab7e9c"
@@ -89,7 +89,7 @@ exports[`Input > initial with props > should handle different props appropriatel
       class="_fieldWrapper_3d96c9"
     >
       <div
-        class="_fieldWrapper__border_3d96c9 _fieldWrapper__border--isError_3d96c9"
+        class="_fieldWrapper__main_3d96c9 _fieldWrapper__main--isError_3d96c9"
       >
         <input
           aria-invalid="true"
@@ -105,7 +105,7 @@ exports[`Input > initial with props > should handle different props appropriatel
 </DocumentFragment>
 `;
 
-exports[`Input > initial with props > should handle different props appropriately > read-only state 1`] = `
+exports[`Input > initial with props > should match expected snapshots when rendered with various props > read-only state 1`] = `
 <DocumentFragment>
   <div
     class="_input_ab7e9c"
@@ -115,7 +115,7 @@ exports[`Input > initial with props > should handle different props appropriatel
       class="_fieldWrapper_3d96c9"
     >
       <div
-        class="_fieldWrapper__border_3d96c9"
+        class="_fieldWrapper__main_3d96c9"
       >
         <input
           aria-invalid="false"
@@ -131,7 +131,7 @@ exports[`Input > initial with props > should handle different props appropriatel
 </DocumentFragment>
 `;
 
-exports[`Input > initial with props > should handle different props appropriately > with PrefixIcon 1`] = `
+exports[`Input > initial with props > should match expected snapshots when rendered with various props > with PrefixIcon 1`] = `
 <DocumentFragment>
   <div
     class="_input_ab7e9c"
@@ -141,7 +141,7 @@ exports[`Input > initial with props > should handle different props appropriatel
       class="_fieldWrapper_3d96c9"
     >
       <div
-        class="_fieldWrapper__border_3d96c9"
+        class="_fieldWrapper__main_3d96c9"
       >
         <div
           class="_input__prefixContainer_ab7e9c"
@@ -179,7 +179,7 @@ exports[`Input > initial with props > should handle different props appropriatel
 </DocumentFragment>
 `;
 
-exports[`Input > initial with props > should handle different props appropriately > with placeholder and label 1`] = `
+exports[`Input > initial with props > should match expected snapshots when rendered with various props > with placeholder and label 1`] = `
 <DocumentFragment>
   <div
     class="_input_ab7e9c"
@@ -195,7 +195,7 @@ exports[`Input > initial with props > should handle different props appropriatel
         Label text
       </label>
       <div
-        class="_fieldWrapper__border_3d96c9"
+        class="_fieldWrapper__main_3d96c9"
       >
         <input
           aria-invalid="false"
@@ -212,7 +212,7 @@ exports[`Input > initial with props > should handle different props appropriatel
 </DocumentFragment>
 `;
 
-exports[`Input > initial with props > should handle different props appropriately > with value 1`] = `
+exports[`Input > initial with props > should match expected snapshots when rendered with various props > with value 1`] = `
 <DocumentFragment>
   <div
     class="_input_ab7e9c"
@@ -228,7 +228,7 @@ exports[`Input > initial with props > should handle different props appropriatel
         Label text
       </label>
       <div
-        class="_fieldWrapper__border_3d96c9"
+        class="_fieldWrapper__main_3d96c9"
       >
         <input
           aria-invalid="false"
