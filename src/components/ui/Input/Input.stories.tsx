@@ -27,7 +27,7 @@ export const Password: Story = {
   args: {
     label: 'Password',
     type: 'password',
-    placeholder: 'Enter password placeholder',
+    placeholder: 'Enter password',
   },
 };
 
@@ -57,11 +57,19 @@ export const Disabled: Story = {
   },
 };
 
-export const WithPrefixIcon: Story = {
+export const PrefixIcon: Story = {
   args: {
-    label: 'With Prefix Icon',
+    label: 'Prefix Icon',
     placeholder: 'Placeholder',
     PrefixIcon: IconSearch,
+  },
+};
+
+export const HelperText: Story = {
+  args: {
+    label: 'Label',
+    placeholder: 'Placeholder',
+    helperText: 'Helper text',
   },
 };
 
@@ -76,5 +84,6 @@ export const ThemeBackground: Story = {
   args: {
     label: 'Theme bg',
     placeholder: 'Placeholder',
+    helperText: 'Helper text',
   },
 };

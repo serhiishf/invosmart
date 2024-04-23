@@ -31,6 +31,7 @@ $_color-dark-800: #252932;
 $_color-dark-700: #2e2f31;
 $_color-dark-600: #3b4548;
 $_color-dark-500: #4c5457;
+$_color-dark-400: #666666;
 
 // Light colors
 $_color-light-100: #ffffff;
@@ -121,10 +122,11 @@ $animationShort: 0.15s ease;
 /*---Field Wrapper component---*/
 $fieldWrapperFont: $font-family-primary;
 $fieldWrapperFontSize: $font-size-xs;
-$fieldWrapperLabelColor: $color-text-grey;
+$fieldWrapperLabelColor: $_color-dark-500;
 $fieldWrapperLabelBackgroundColor: $color-white;
 $fieldWrapperLabelColorError: $_color-notice-error;
 $fieldWrapperLabelColorFocus: $_color-blue-100;
+$fieldWrapperLabelColorDissabled: $_color-grey-400;
 $fiedlWrapperLabelBackgroundColorReadonly: $_color-light-400;
 $fieldWrapperBorderColor: $_color-grey-200;
 $fieldWrapperBorderColorError: $_color-notice-error;
@@ -139,7 +141,7 @@ $fieldWrapperBackgroundColorReadonly: $_color-light-400;
 $fieldWrapperZIndexDefault: $z-index-default;
 $fieldWrapperZIndexBellow: $z-index-below;
 $fieldWrapperAnimation: $animationDefault;
-$fieldWrapperHelperTextColor: $_color-grey-500;
+$fieldWrapperHelperTextColor: $_color-dark-400;
 $fieldWrapperHelperTextErrorColor: $_color-notice-error;
 
 /*---Input component---*/
@@ -171,6 +173,7 @@ $inputBaseFontFamily: $font-family-primary;
 $inputBaseFontSize: $font-size-base;
 $inputBaseTextColor: $color-text-dark;
 $inputBasePlaceholderColor: $_color-grey-500;
+$inputBaseDisabledColor: $_color-grey-500;
 
 /* ---Button */
 $buttonPaddingPrimary: $gridBase * 2;

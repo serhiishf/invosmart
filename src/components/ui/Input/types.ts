@@ -12,4 +12,5 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   readOnly?: boolean;
   isError?: boolean;
   PrefixIcon?: FunctionComponent;
+  helperText?: string;
 }

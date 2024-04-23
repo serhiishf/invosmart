@@ -14,6 +14,7 @@ function Input({
   readOnly = false,
   isError = false,
   PrefixIcon,
+  helperText,
   ...rest
 }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
@@ -53,6 +54,7 @@ function Input({
         isError={isError}
         disabled={disabled}
         labelTargetId={inputBaseId}
+        helperText={helperText}
       >
         <>
           {PrefixIcon && (

@@ -13,6 +13,9 @@ $_inputBasePaddingMinimal: 8px;
   color: $inputBaseTextColor;
   background-color: transparent;
   border: none;
+  &:disabled {
+    color: $inputBaseDisabledColor;
+  }
 
   &--readOnlyMode {
     caret-color: transparent;

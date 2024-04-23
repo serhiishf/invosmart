@@ -31,11 +31,11 @@ function FieldWrapper({
         )}
         <div
           className={classNames(
-            styles.fieldWrapper__border,
-            isError && styles['fieldWrapper__border--isError'],
-            isFocused && styles['fieldWrapper__border--isFocused'],
-            disabled && styles['fieldWrapper__border--disabled'],
-            isHoverable && styles['fieldWrapper__border--isHoverable']
+            styles.fieldWrapper__main,
+            isError && styles['fieldWrapper__main--isError'],
+            isFocused && styles['fieldWrapper__main--isFocused'],
+            disabled && styles['fieldWrapper__main--disabled'],
+            isHoverable && styles['fieldWrapper__main--isHoverable']
           )}
         >
           {children}
