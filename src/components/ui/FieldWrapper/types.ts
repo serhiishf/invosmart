@@ -6,6 +6,8 @@ export interface FieldWrapperProps {
   isHoverable?: boolean;
   disabled?: boolean;
   labelTargetId?: string;
+  helperText?: string;
+  helperTextPosition?: 'left' | 'right';
   onFocus?: () => void;
   onBlur?: () => void;
   setIsError?: (error: boolean) => void;

@@ -83,3 +83,20 @@
     }
   }
 }
+
+.helperText {
+  padding: 4px 8px 4px 26px;
+  width: 100%;
+  color: $fieldWrapperHelperTextColor;
+  font-family: $fieldWrapperFont;
+  font-size: $fieldWrapperFontSize;
+  &--isError {
+    color: $fieldWrapperHelperTextErrorColor;
+  }
+  &--left {
+    text-align: left;
+  }
+  &--right {
+    text-align: right;
+  }
+}

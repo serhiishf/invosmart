@@ -139,6 +139,8 @@ $fieldWrapperBackgroundColorReadonly: $_color-light-400;
 $fieldWrapperZIndexDefault: $z-index-default;
 $fieldWrapperZIndexBellow: $z-index-below;
 $fieldWrapperAnimation: $animationDefault;
+$fieldWrapperHelperTextColor: $_color-grey-500;
+$fieldWrapperHelperTextErrorColor: $_color-notice-error;
 
 /*---Input component---*/
 $inputAttentionIconColor: $_color-notice-error;
