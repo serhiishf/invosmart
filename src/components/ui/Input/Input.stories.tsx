@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn, userEvent, within, expect } from '@storybook/test';
+import { fn, userEvent, within, expect, waitFor } from '@storybook/test';
 import Input from './Input';
 import { iconSelectConfig } from 'config/storybookIconConfig';
 import IconSearch from 'assets/icons/search.svg?react';
@@ -97,8 +97,8 @@ export const Interaction: Story = {
 
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Input {...args} helperText="" />
-      <Input {...args} placeholder="Another Placeholder" />
+      <Input {...args} helperText="" placeholder="Enter email" data-testid="email-input" />
+      <Input {...args} placeholder="Another Placeholder" data-testid="emailError-input" />
       <Input {...args} helperText="Different helper text" />
     </div>
   ),
@@ -106,9 +106,10 @@ export const Interaction: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    // 👇 Simulate interactions with the component
-    const input = canvas.getByRole('textbox');
-    await userEvent.type(input, 'Typed text');
-    expect(input).toHaveValue('Typed text');
+    const inputEmail = canvas.getByTestId('email-input');
+    const inputEmailError = canvas.getByTestId('emailError-input');
+    await userEvent.type(inputEmail, 'Typed text');
+    await inputEmailError.focus();
+    expect(inputEmail).toHaveValue('Typed text');
   },
 };

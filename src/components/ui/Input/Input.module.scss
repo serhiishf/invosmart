@@ -1,8 +1,12 @@
 .input {
   width: 100%;
-  height: $inputHeightMobile;
-  @include for-size-up(desktop) {
-    height: $inputHeightDesktop;
+  padding: 8px;
+
+  &__inputBase {
+    height: $inputHeightMobile;
+    @include for-size-up(desktop) {
+      height: $inputHeightDesktop;
+    }
   }
 
   &__prefixContainer {

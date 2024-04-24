@@ -81,6 +81,7 @@ function Input({
           paddingRight={'default'}
           isError={isError}
           id={inputBaseId}
+          className={styles['input__inputBase']}
           {...rest}
         />
         <>

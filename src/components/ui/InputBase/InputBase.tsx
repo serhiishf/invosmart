@@ -12,6 +12,7 @@ const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
       value,
       onChange,
       isError,
+      className,
       ...rest
     }: InputBaseProps,
     ref
@@ -35,7 +36,8 @@ const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           styles.inputBase,
           styles[`inputBase--paddingLeft-${paddingLeft}`],
           styles[`inputBase--paddingRight-${paddingRight}`],
-          isReadOnlyMode && styles['inputBase--readOnlyMode']
+          isReadOnlyMode && styles['inputBase--readOnlyMode'],
+          className
         )}
         onChange={handleChangeIfAllowed}
         ref={ref}
