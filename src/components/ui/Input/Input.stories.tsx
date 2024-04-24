@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn, userEvent, within, expect } from '@storybook/test';
 import Input from './Input';
 import { iconSelectConfig } from 'config/storybookIconConfig';
 import IconSearch from 'assets/icons/search.svg?react';
@@ -85,5 +85,30 @@ export const ThemeBackground: Story = {
     label: 'Theme bg',
     placeholder: 'Placeholder',
     helperText: 'Helper text',
+  },
+};
+
+export const Interaction: Story = {
+  args: {
+    label: 'Label',
+    placeholder: 'Placeholder',
+    helperText: 'Helper text',
+  },
+
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <Input {...args} helperText="" />
+      <Input {...args} placeholder="Another Placeholder" />
+      <Input {...args} helperText="Different helper text" />
+    </div>
+  ),
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // 👇 Simulate interactions with the component
+    const input = canvas.getByRole('textbox');
+    await userEvent.type(input, 'Typed text');
+    expect(input).toHaveValue('Typed text');
   },
 };

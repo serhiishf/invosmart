@@ -47,7 +47,11 @@ function Input({
   }, [isPasswordVisible, type]);
 
   return (
-    <div className={styles.input} id={id} data-testid="input-component">
+    <div
+      className={classNames(styles.input, styles['input--safetyTopPadding'])}
+      id={id}
+      data-testid="input-component"
+    >
       <FieldWrapper
         label={label}
         isFocused={isFocused}
