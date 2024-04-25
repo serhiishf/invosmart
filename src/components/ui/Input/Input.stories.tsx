@@ -65,14 +65,6 @@ export const PrefixIcon: Story = {
   },
 };
 
-export const HelperText: Story = {
-  args: {
-    label: 'Label',
-    placeholder: 'Placeholder',
-    helperText: 'Helper text',
-  },
-};
-
 export const ThemeBackground: Story = {
   decorators: [
     (Story) => (
@@ -86,6 +78,51 @@ export const ThemeBackground: Story = {
     placeholder: 'Placeholder',
     helperText: 'Helper text',
   },
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+      <Input {...args} />
+      <Input {...args} isError={true} placeholder="Error state" />
+      <Input {...args} placeholder="Dissabled" disabled />
+    </div>
+  ),
+};
+
+export const InputPropsDemonstration: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: '**Various configurations of the Input component demonstrating different props.**',
+      },
+    },
+    a11y: {
+      disable: true,
+    },
+    controls: {
+      disable: true,
+    },
+  },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+      <h4>Label</h4>
+      <Input label="Label" />
+      <h4>Placeholder</h4>
+      <Input placeholder="Placeholder" />
+      <h4>Helper text</h4>
+      <Input helperText="Helper text" />
+      <h4>Filled value</h4>
+      <Input value="Filled value" />
+      <h4>Password</h4>
+      <Input type="password" />
+      <h4>Error state</h4>
+      <Input isError={true} />
+      <h4>ReadOnly state - prefilled</h4>
+      <Input readOnly value="Prefilled readonly" />
+      <h4>Dissabled state - prefilled</h4>
+      <Input disabled value="Prefilled disabled" />
+      <h4>PrefixIcon</h4>
+      <Input PrefixIcon={IconSearch} />
+    </div>
+  ),
 };
 
 export const Interaction: Story = {
