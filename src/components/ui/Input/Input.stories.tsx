@@ -29,6 +29,53 @@ export const Password: Story = {
     label: 'Password',
     type: 'password',
     placeholder: 'Enter password',
+    helperText: 'Helper text',
+  },
+};
+
+export const PasswordInteractions: Story = {
+  args: {
+    label: 'Password',
+    type: 'password',
+    placeholder: 'Enter password',
+    helperText: 'Helper text',
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <Input
+        {...args}
+        label="Hidden password"
+        placeholder="Hidden password"
+        data-testid="hidden-password"
+      />
+      <Input
+        {...args}
+        label="Vissible password"
+        placeholder="Vissible password"
+        data-testid="vissible-password"
+      />
+      <Input
+        {...args}
+        label="Toggle button focused"
+        placeholder="Toggle button focused"
+        data-testid="toggle-button-focused"
+      />
+    </div>
+  ),
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const hiddenPasword = canvas.getByTestId('hidden-password');
+    const vissiblePassword = canvas.getByTestId('vissible-password');
+    const toggleBtnFocused = canvas.getByTestId('toggle-button-focused');
+    await userEvent.type(hiddenPasword, 'hidden password');
+    await vissiblePassword.focus();
+    await userEvent.type(vissiblePassword, 'Vissible password 123');
+    await userEvent.tab();
+    await userEvent.keyboard('[Enter]');
+    await userEvent.type(toggleBtnFocused, 'some password');
+    await userEvent.tab();
   },
 };
 
@@ -37,6 +84,28 @@ export const Error: Story = {
     label: 'Error state',
     placeholder: 'Placeholder',
     isError: true,
+    helperText: 'Helper text',
+  },
+};
+
+export const ErrorInteraction: Story = {
+  args: {
+    label: 'Error interaction',
+    placeholder: 'Placeholder',
+    isError: true,
+    helperText: 'Helper text',
+  },
+
+  render: (args) => (
+    <Input {...args} isError={true} placeholder="Error state" data-testid="emailError-input" />
+  ),
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const inputEmailError = canvas.getByTestId('emailError-input');
+    await inputEmailError.focus();
+    await userEvent.type(inputEmailError, 'Typed with error state');
+    expect(inputEmailError).toHaveValue('Typed with error state');
   },
 };
 
@@ -49,12 +118,49 @@ export const ReadonlyMode: Story = {
   },
 };
 
+export const ReadonlyModeInteraction: Story = {
+  args: {
+    label: 'Readonly mode interaction',
+    value: 'Try to type something',
+    placeholder: 'Placeholder',
+    readOnly: true,
+  },
+
+  render: (args) => <Input {...args} data-testid="readOnly-input" />,
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const readonlyInput = canvas.getByTestId('readOnly-input');
+    await userEvent.type(readonlyInput, 'Typed text');
+    expect(readonlyInput).toHaveValue('Try to type something');
+  },
+};
+
 export const Disabled: Story = {
   args: {
     label: 'Disabled',
     value: 'Disabled value',
     placeholder: 'Placeholder',
     disabled: true,
+  },
+};
+
+export const DisabledInteraction: Story = {
+  args: {
+    label: 'Disabled no change, no focus',
+    value: 'Disabled value',
+    placeholder: 'Placeholder',
+    disabled: true,
+  },
+
+  render: (args) => <Input {...args} data-testid="dissabled-input" />,
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const dissabledInput = canvas.getByTestId('dissabled-input');
+    await dissabledInput.focus();
+    await userEvent.type(dissabledInput, 'Some text');
+    expect(dissabledInput).toHaveValue('Disabled value');
   },
 };
 
@@ -66,26 +172,20 @@ export const PrefixIcon: Story = {
   },
 };
 
-export const ThemeBackground: Story = {
-  decorators: [
-    (Story) => (
-      <div style={{ background: '#f5f6fa', padding: '50px' }}>
-        <Story />
-      </div>
-    ),
-  ],
+export const PrefixIconInteraction: Story = {
   args: {
-    label: 'Theme bg',
+    label: 'Prefix Icon focus',
     placeholder: 'Placeholder',
-    helperText: 'Helper text',
+    PrefixIcon: IconSearch,
   },
-  render: (args) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-      <Input {...args} />
-      <Input {...args} isError={true} placeholder="Error state" />
-      <Input {...args} placeholder="Dissabled" disabled />
-    </div>
-  ),
+
+  render: (args) => <Input {...args} data-testid="prefixIcon-input" />,
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const prefixIconInput = canvas.getByTestId('prefixIcon-input');
+    await prefixIconInput.focus();
+  },
 };
 
 export const InputPropsDemonstration: Story = {
@@ -124,30 +224,4 @@ export const InputPropsDemonstration: Story = {
       <Input PrefixIcon={IconSearch} />
     </div>
   ),
-};
-
-export const Interaction: Story = {
-  args: {
-    label: 'Label',
-    placeholder: 'Placeholder',
-    helperText: 'Helper text',
-  },
-
-  render: (args) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Input {...args} helperText="" placeholder="Enter email" data-testid="email-input" />
-      <Input {...args} placeholder="Another Placeholder" data-testid="emailError-input" />
-      <Input {...args} helperText="Different helper text" />
-    </div>
-  ),
-
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    const inputEmail = canvas.getByTestId('email-input');
-    const inputEmailError = canvas.getByTestId('emailError-input');
-    await userEvent.type(inputEmail, 'Typed text');
-    await inputEmailError.focus();
-    expect(inputEmail).toHaveValue('Typed text');
-  },
 };
