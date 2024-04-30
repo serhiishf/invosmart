@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn, userEvent, within, expect, waitFor } from '@storybook/test';
+import { fn, userEvent, within, expect } from '@storybook/test';
 import Input from './Input';
-import { iconSelectConfig } from 'config/storybookIconConfig';
-import IconSearch from 'assets/icons/search.svg?react';
+import { Search as IconSearch } from 'assets/icons/';
+import * as icons from 'assets/icons';
 
 const meta = {
   title: 'components/UI/Input',
@@ -10,7 +10,8 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     PrefixIcon: {
-      ...iconSelectConfig,
+      options: ['None', ...Object.keys(icons)],
+      mapping: { None: undefined, ...icons },
     },
   },
   args: {

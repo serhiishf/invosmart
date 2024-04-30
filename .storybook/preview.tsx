@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react';
+import React from 'react';
 
 const preview: Preview = {
   parameters: {
@@ -13,7 +14,6 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <div style={{ fontFamily: 'sans-serif', color: '#333333' }}>
-        {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
         <Story />
       </div>
     ),
