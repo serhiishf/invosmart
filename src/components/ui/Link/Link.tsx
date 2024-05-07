@@ -1,9 +1,16 @@
 import styles from './Link.module.scss';
 import { LinkProps } from './types';
+import classNames from 'classnames';
 
-function Link({ label, href, ...rest }: LinkProps) {
+function Link({ label, href, target, isInternalLink = false, className, ...rest }: LinkProps) {
   return (
-    <a href={href} className={styles.link} {...rest}>
+    <a
+      href={href}
+      className={classNames(styles.link, className)}
+      target={target}
+      rel={target === '_blank' && !isInternalLink ? 'noopener noreferrer' : undefined}
+      {...rest}
+    >
       {label}
     </a>
   );

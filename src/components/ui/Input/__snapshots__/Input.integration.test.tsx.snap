@@ -3,7 +3,7 @@
 exports[`Input > default Initialization > should match the snapshot with default props 1`] = `
 <DocumentFragment>
   <div
-    class="_input_ab7e9c"
+    class="_input_ab7e9c _input--safetyTopPadding_ab7e9c"
     data-testid="input-component"
   >
     <div
@@ -15,7 +15,7 @@ exports[`Input > default Initialization > should match the snapshot with default
         <input
           aria-invalid="false"
           aria-readonly="false"
-          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _input__inputBase_ab7e9c"
           id="mocked-id"
           type="text"
           value=""
@@ -29,7 +29,7 @@ exports[`Input > default Initialization > should match the snapshot with default
 exports[`Input > initial with props > should match expected snapshots when rendered with various props > default props 1`] = `
 <DocumentFragment>
   <div
-    class="_input_ab7e9c"
+    class="_input_ab7e9c _input--safetyTopPadding_ab7e9c"
     data-testid="input-component"
   >
     <div
@@ -41,7 +41,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
         <input
           aria-invalid="false"
           aria-readonly="false"
-          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _input__inputBase_ab7e9c"
           id="mocked-id"
           type="text"
           value=""
@@ -55,7 +55,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
 exports[`Input > initial with props > should match expected snapshots when rendered with various props > disabled state 1`] = `
 <DocumentFragment>
   <div
-    class="_input_ab7e9c"
+    class="_input_ab7e9c _input--safetyTopPadding_ab7e9c"
     data-testid="input-component"
   >
     <div
@@ -67,7 +67,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
         <input
           aria-invalid="false"
           aria-readonly="false"
-          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _input__inputBase_ab7e9c"
           disabled=""
           id="mocked-id"
           type="text"
@@ -82,7 +82,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
 exports[`Input > initial with props > should match expected snapshots when rendered with various props > error state 1`] = `
 <DocumentFragment>
   <div
-    class="_input_ab7e9c"
+    class="_input_ab7e9c _input--safetyTopPadding_ab7e9c"
     data-testid="input-component"
   >
     <div
@@ -94,7 +94,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
         <input
           aria-invalid="true"
           aria-readonly="false"
-          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _input__inputBase_ab7e9c"
           id="mocked-id"
           type="text"
           value=""
@@ -108,7 +108,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
 exports[`Input > initial with props > should match expected snapshots when rendered with various props > read-only state 1`] = `
 <DocumentFragment>
   <div
-    class="_input_ab7e9c"
+    class="_input_ab7e9c _input--safetyTopPadding_ab7e9c"
     data-testid="input-component"
   >
     <div
@@ -120,7 +120,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
         <input
           aria-invalid="false"
           aria-readonly="true"
-          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _inputBase--readOnlyMode_6ca9ba"
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _inputBase--readOnlyMode_6ca9ba _input__inputBase_ab7e9c"
           id="mocked-id"
           type="text"
           value=""
@@ -134,7 +134,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
 exports[`Input > initial with props > should match expected snapshots when rendered with various props > with PrefixIcon 1`] = `
 <DocumentFragment>
   <div
-    class="_input_ab7e9c"
+    class="_input_ab7e9c _input--safetyTopPadding_ab7e9c"
     data-testid="input-component"
   >
     <div
@@ -168,7 +168,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
         <input
           aria-invalid="false"
           aria-readonly="false"
-          class="_inputBase_6ca9ba _inputBase--paddingLeft-none_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-none_6ca9ba _inputBase--paddingRight-default_6ca9ba _input__inputBase_ab7e9c"
           id="mocked-id"
           type="text"
           value=""
@@ -182,7 +182,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
 exports[`Input > initial with props > should match expected snapshots when rendered with various props > with placeholder and label 1`] = `
 <DocumentFragment>
   <div
-    class="_input_ab7e9c"
+    class="_input_ab7e9c _input--safetyTopPadding_ab7e9c"
     data-testid="input-component"
   >
     <div
@@ -200,7 +200,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
         <input
           aria-invalid="false"
           aria-readonly="false"
-          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _input__inputBase_ab7e9c"
           id="mocked-id"
           placeholder="Placeholder"
           type="text"
@@ -215,7 +215,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
 exports[`Input > initial with props > should match expected snapshots when rendered with various props > with value 1`] = `
 <DocumentFragment>
   <div
-    class="_input_ab7e9c"
+    class="_input_ab7e9c _input--safetyTopPadding_ab7e9c"
     data-testid="input-component"
   >
     <div
@@ -233,7 +233,7 @@ exports[`Input > initial with props > should match expected snapshots when rende
         <input
           aria-invalid="false"
           aria-readonly="false"
-          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba"
+          class="_inputBase_6ca9ba _inputBase--paddingLeft-default_6ca9ba _inputBase--paddingRight-default_6ca9ba _input__inputBase_ab7e9c"
           id="mocked-id"
           placeholder="Placeholder"
           type="text"
