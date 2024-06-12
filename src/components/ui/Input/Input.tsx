@@ -5,6 +5,7 @@ import { InputProps } from './types';
 import styles from './Input.module.scss';
 import IconShowPassword from 'assets/icons/eye.svg?react';
 import IconHidePassword from 'assets/icons/eyeSlash.svg?react';
+import { useTranslation } from 'react-i18next';
 
 function Input({
   id,
@@ -21,8 +22,9 @@ function Input({
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [currentInputType, setCurrentInputType] = useState(type);
 
+  const { t } = useTranslation(['ui']);
   const IconButtonContent = isPasswordVisible ? IconHidePassword : IconShowPassword;
-  const tooltip = isPasswordVisible ? 'TRANSLATE Hide password' : 'TRANSLATE Show password';
+  const tooltip = isPasswordVisible ? t('input.hide_password') : 'TRANSLATE Show password';
   const isDisplaySuffixContainer = type === 'password';
 
   const inputBaseId = useId();

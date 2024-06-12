@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import Backend from 'i18next-http-backend';
 import translationEN from './locales/en/translation.json';
 import translationUA from './locales/ua/translation.json';
 import translationRU from './locales/ru/translation.json';
@@ -36,8 +37,14 @@ const languageDetectorOptions = {
 i18n
   .use(initReactI18next)
   .use(new LanguageDetector(languageDetectorOptions))
+  .use(Backend)
   .init({
-    resources,
+    backend: {
+      loadPath: '/locales/{{lng}}/{{ns}}.json', // Path to your translation files
+    },
+    ns: ['common', 'header', 'footer', 'ui'], // List your namespaces here
+    defaultNS: 'common',
+    /* resources, */
     returnNull: false,
     /* lng: localStorage.getItem('LOCALE') || 'ua', */
     fallbackLng: ['en', 'ee', 'ru', 'ua'],
