@@ -7,7 +7,7 @@ function App() {
       {' '}
       <Input label="Label" />
       <InputBase />
-      <Input label="Label" />
+      <Input label="Password" type="password" />
     </div>
   );
 }

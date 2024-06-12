@@ -1,0 +1,6 @@
+{
+  "actions": {
+    "show_password": "Показати пароль",
+    "hide_password": "Приховати пароль"
+  }
+}

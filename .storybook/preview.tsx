@@ -1,5 +1,7 @@
-import type { Preview } from '@storybook/react';
 import React from 'react';
+import type { Preview } from '@storybook/react';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../src/i18n';
 
 const preview: Preview = {
   parameters: {
@@ -13,9 +15,11 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div style={{ fontFamily: 'sans-serif', color: '#333333' }}>
-        <Story />
-      </div>
+      <I18nextProvider i18n={i18n}>
+        <div style={{ fontFamily: 'sans-serif', color: '#333333' }}>
+          <Story />
+        </div>
+      </I18nextProvider>
     ),
   ],
 };

@@ -22,9 +22,9 @@ function Input({
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [currentInputType, setCurrentInputType] = useState(type);
 
-  const { t } = useTranslation(['ui']);
+  const { t } = useTranslation();
   const IconButtonContent = isPasswordVisible ? IconHidePassword : IconShowPassword;
-  const tooltip = isPasswordVisible ? t('input.hide_password') : 'TRANSLATE Show password';
+  const tooltip = isPasswordVisible ? t('actions.hide_password') : t('actions.show_password');
   const isDisplaySuffixContainer = type === 'password';
 
   const inputBaseId = useId();
