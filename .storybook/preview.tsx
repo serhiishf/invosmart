@@ -4,6 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '../src/i18n';
 
 const preview: Preview = {
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
     controls: {
