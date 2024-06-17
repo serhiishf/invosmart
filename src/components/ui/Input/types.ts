@@ -2,7 +2,6 @@ import { FunctionComponent, InputHTMLAttributes } from 'react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id?: string;
-  type?: string;
   name?: string;
   label?: string;
   value?: string;
@@ -13,4 +12,5 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
   PrefixIcon?: FunctionComponent;
   helperText?: string;
+  isPasswordVisibleInitially?: boolean;
 }

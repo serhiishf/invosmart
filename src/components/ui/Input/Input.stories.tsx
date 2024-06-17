@@ -24,6 +24,20 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
+export const DefaultInteractions: Story = {
+  args: {},
+
+  render: (args) => <Input {...args} data-testid="default-input" />,
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const defaultInput = canvas.getByTestId('default-input');
+    await defaultInput.focus();
+    await userEvent.type(defaultInput, 'Typed in default input');
+    expect(defaultInput).toHaveValue('Typed in default input');
+  },
+};
+
 export const Password: Story = {
   args: {
     label: 'Password',
@@ -71,10 +85,10 @@ export const PasswordInteractions: Story = {
     const toggleBtnFocused = canvas.getByTestId('toggle-button-focused');
     await userEvent.type(hiddenPasword, 'hidden password');
     await vissiblePassword.focus();
-    await userEvent.type(vissiblePassword, 'Vissible password 123');
+    await userEvent.type(vissiblePassword, 'Vissible very very long password 123');
     await userEvent.tab();
     await userEvent.keyboard('[Enter]');
-    await userEvent.type(toggleBtnFocused, 'some password');
+    await userEvent.type(toggleBtnFocused, 'some password very long some password very long');
     await userEvent.tab();
   },
 };
@@ -186,6 +200,31 @@ export const PrefixIconInteraction: Story = {
     const prefixIconInput = canvas.getByTestId('prefixIcon-input');
     await prefixIconInput.focus();
   },
+};
+
+export const LongText: Story = {
+  args: {
+    value:
+      'A very long text value that exceeds the typical length to test the input handling and see how it manages overflow and performance. This should be long enough to trigger any potential issues with long input values.',
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <Input {...args} label="Default" />
+      <Input
+        {...args}
+        label="Long helper Text"
+        helperText="A very long text value that exceeds the typical length to test the input handling and see how it manages overflow and performance. This should be long enough to trigger any potential issues with long input values."
+      />
+      <Input {...args} label="Hidden password" placeholder="Hidden password" type="password" />
+      <Input
+        {...args}
+        label="Vissible password"
+        placeholder="Vissible password"
+        type="password"
+        isPasswordVisibleInitially={true}
+      />
+    </div>
+  ),
 };
 
 export const InputPropsDemonstration: Story = {

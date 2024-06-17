@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn, within, expect, userEvent } from '@storybook/test';
 import InputBase from './InputBase';
 
 const meta = {
@@ -36,6 +36,21 @@ export const Placeholder: Story = {
   },
 };
 
+export const PlaceholderInteractions: Story = {
+  args: {
+    placeholder: 'Interactions',
+  },
+
+  render: (args) => <InputBase {...args} />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const inputBase = canvas.getByRole('textbox');
+    await inputBase.focus();
+    await userEvent.type(inputBase, 'Typing');
+    await expect(inputBase).toHaveValue('Typing');
+  },
+};
+
 export const ReadonlyMode: Story = {
   args: {
     value: 'Readonly mode',
@@ -47,5 +62,11 @@ export const Disabled: Story = {
   args: {
     value: 'Disabled',
     disabled: true,
+  },
+};
+
+export const LongTextValue: Story = {
+  args: {
+    value: 'A very long text value that exceeds the typical length to test the input handling',
   },
 };

@@ -16,10 +16,11 @@ function Input({
   isError = false,
   PrefixIcon,
   helperText,
+  isPasswordVisibleInitially,
   ...rest
 }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(isPasswordVisibleInitially);
   const [currentInputType, setCurrentInputType] = useState(type);
 
   const { t } = useTranslation();
