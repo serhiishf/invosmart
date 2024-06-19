@@ -67,6 +67,7 @@ export const Disabled: Story = {
 
 export const LongTextValue: Story = {
   args: {
-    value: 'A very long text value that exceeds the typical length to test the input handling',
+    value:
+      'A very long text value that exceeds the typical length to test the input handling and see how it manages overflow and performance. This should be long enough to trigger any potential issues with long input values.',
   },
 };

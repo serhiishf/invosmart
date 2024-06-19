@@ -15,13 +15,22 @@
     height: 18px;
     max-height: 18px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     top: -9px;
     left: 22px;
     padding: 0 4px;
     z-index: $fieldWrapperZIndexDefault;
     transition: all $fieldWrapperAnimation;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 44px);
+    
+/* 
+    border: 1px solid red; 
+    background: yellow; 
+*/
 
     &:after {
       content: '';
@@ -85,11 +94,13 @@
 }
 
 .helperText {
-  padding: 4px 8px 4px 26px;
+  padding: 4px 26px 4px 26px;
   width: 100%;
+  max-width: 100%;
   color: $fieldWrapperHelperTextColor;
   font-family: $fieldWrapperFont;
   font-size: $fieldWrapperFontSize;
+
   &--isError {
     color: $fieldWrapperHelperTextErrorColor;
   }
