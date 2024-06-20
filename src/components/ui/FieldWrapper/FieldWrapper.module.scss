@@ -11,37 +11,20 @@
     font-family: $fieldWrapperFont;
     font-size: $fieldWrapperFontSize;
     color: $fieldWrapperLabelColor;
-    min-height: 18px;
-    height: 18px;
-    max-height: 18px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    top: -9px;
-    left: 22px;
+    top: 0;
+    left: 0;
     padding: 0 4px;
+    pointer-events: none;
     z-index: $fieldWrapperZIndexDefault;
     transition: all $fieldWrapperAnimation;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: calc(100% - 44px);
-    
-/* 
-    border: 1px solid red; 
-    background: yellow; 
-*/
+    transform: translate(14px, -9px) scale(1);
 
-    &:after {
-      content: '';
-      position: absolute;
-      z-index: $fieldWrapperZIndexBellow;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      min-height: 9px;
-      background: $fieldWrapperLabelBackgroundColor;
-    }
     &--isError {
       color: $fieldWrapperLabelColorError;
       transition: all $fieldWrapperAnimation;
@@ -64,7 +47,6 @@
     height: 100%;
     display: flex;
     position: relative;
-    border: 1px solid $fieldWrapperBorderColor;
     border-radius: $fieldWrapperBorderRadius;
     box-sizing: border-box;
     background: $fieldWrapperBackgroundColor;
@@ -90,6 +72,71 @@
         transition: all $fieldWrapperAnimation;
       }
     }
+  }
+
+  &__fieldset {
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: -5px;
+    left: 0;
+    margin: 0;
+    padding: 0 8px;
+    pointer-events: none;
+    border-radius: inherit;
+    border-radius: $fieldWrapperBorderRadius;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    min-width: 0%;
+    border-color: $fieldWrapperBorderColor;
+
+    &--isError {
+      border-color: $fieldWrapperBorderColorError;
+      transition: all $fieldWrapperAnimation;
+    }
+    &--isFocused {
+      border: 1px solid;
+      border-color: $fieldWrapperBorderColorFocus;
+      transition: all $fieldWrapperAnimation;
+    }
+    &--disabled {
+      border-color: $fieldWrapperBorderColorDissabled;
+      background-color: $fieldWrapperBackgroundColorDisabled;
+    }
+
+    &--isHoverable {
+      &:hover {
+        border-color: $fieldWrapperBorderColorHover;
+        transition: all $fieldWrapperAnimation;
+      }
+    }
+  }
+
+  &__legend {
+    float: unset;
+    width: auto;
+    overflow: hidden;
+    display: block;
+    padding: 0;
+    height: 11px;
+    visibility: hidden;
+    max-width: 100%;
+    white-space: nowrap;
+
+    &--hidden {
+      visibility: hidden;
+      max-width: 0%;
+    }
+  }
+
+  &__legend-span {
+    padding-left: 2px;
+    padding-right: 2px;
+    display: inline-block;
+    opacity: 0;
+    visibility: visible;
   }
 }
 

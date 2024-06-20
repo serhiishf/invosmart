@@ -29,17 +29,25 @@ function FieldWrapper({
             {label}
           </label>
         )}
-        <div
+        <div className={styles.fieldWrapper__main}>{children}</div>
+        <fieldset
           className={classNames(
-            styles.fieldWrapper__main,
-            isError && styles['fieldWrapper__main--isError'],
-            isFocused && styles['fieldWrapper__main--isFocused'],
-            disabled && styles['fieldWrapper__main--disabled'],
-            isHoverable && styles['fieldWrapper__main--isHoverable']
+            styles.fieldWrapper__fieldset,
+            isError && styles['fieldWrapper__fieldset--isError'],
+            isFocused && styles['fieldWrapper__fieldset--isFocused'],
+            disabled && styles['fieldWrapper__fieldset--disabled'],
+            isHoverable && styles['fieldWrapper__fieldset--isHoverable']
           )}
         >
-          {children}
-        </div>
+          <legend
+            className={classNames(
+              styles.fieldWrapper__legend,
+              !label && styles['fieldWrapper__legend--hidden']
+            )}
+          >
+            <span className={styles['fieldWrapper__legend-span']}>{label}</span>
+          </legend>
+        </fieldset>
       </div>
       {helperText && (
         <p
