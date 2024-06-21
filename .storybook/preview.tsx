@@ -16,7 +16,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <I18nextProvider i18n={i18n}>
-        <div style={{ fontFamily: 'sans-serif', color: '#0689c9' }}>
+        <div style={{ fontFamily: 'sans-serif', color: '#2e3438' }}>
           <Story />
         </div>
       </I18nextProvider>
