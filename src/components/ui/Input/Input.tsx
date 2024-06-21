@@ -81,7 +81,7 @@ function Input({
           onFocus={handleFocus}
           onBlur={handleBlur}
           paddingLeft={(PrefixIcon && 'none') || 'default'}
-          paddingRight={'default'}
+          paddingRight={(type === 'password' && 'none') || 'default'}
           isError={isError}
           id={inputBaseId}
           className={styles['input__inputBase']}

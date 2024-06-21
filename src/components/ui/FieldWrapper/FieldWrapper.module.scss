@@ -16,14 +16,16 @@
     align-items: center;
     top: 0;
     left: 0;
-    padding: 0 4px;
+    padding: 0 11px;
     pointer-events: none;
     z-index: $fieldWrapperZIndexDefault;
     transition: all $fieldWrapperAnimation;
+    max-width: calc(100% - 26px);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    transform: translate(14px, -9px) scale(1);
+    transform: translate(14px, -8px);
+    display: block;
 
     &--isError {
       color: $fieldWrapperLabelColorError;
@@ -82,7 +84,7 @@
     top: -5px;
     left: 0;
     margin: 0;
-    padding: 0 8px;
+    padding: 0 20px;
     pointer-events: none;
     border-radius: inherit;
     border-radius: $fieldWrapperBorderRadius;
@@ -132,9 +134,11 @@
   }
 
   &__legend-span {
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
     display: inline-block;
+    font-family: $fieldWrapperFont;
+    font-size: $fieldWrapperFontSize;
     opacity: 0;
     visibility: visible;
   }
