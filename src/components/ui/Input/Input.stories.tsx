@@ -7,7 +7,6 @@ import * as icons from 'assets/icons';
 const meta = {
   title: 'components/UI/Input',
   component: Input,
-  tags: ['autodocs'],
   argTypes: {
     PrefixIcon: {
       options: ['None', ...Object.keys(icons)],
