@@ -1,12 +1,26 @@
 import styles from './IconButton.module.scss';
 import { IconButtonProps } from './types';
 import { Tooltip } from '../index';
+import classNames from 'classnames';
 
-function IconButton(props: IconButtonProps) {
-  const { tooltip, children, type = 'button', ...rest }: IconButtonProps = props;
-
+function IconButton({
+  tooltip,
+  children,
+  type = 'button',
+  size = 'm',
+  shape = 'circle',
+  ...rest
+}: IconButtonProps) {
   return (
-    <button className={styles.iconButton} type={type} {...rest}>
+    <button
+      className={classNames(
+        styles.iconButton,
+        styles[`iconButton--size-${size}`],
+        styles[`iconButton--shape-${shape}`]
+      )}
+      type={type}
+      {...rest}
+    >
       {children}
       {tooltip && (
         <div className={styles.iconButton__tooltipWrap}>

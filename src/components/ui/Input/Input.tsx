@@ -93,7 +93,7 @@ function Input({
               {type === 'password' && (
                 <div className={classNames(styles.input__passwordButtonContainer)}>
                   <div className={classNames(styles.input__passwordButtonWrap)}>
-                    <IconButton onClick={handlePasswordButton} tooltip={tooltip}>
+                    <IconButton onClick={handlePasswordButton} tooltip={tooltip} size="auto">
                       <IconButtonContent className={styles.input__passwordButtonIcon} />
                     </IconButton>
                   </div>

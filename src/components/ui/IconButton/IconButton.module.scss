@@ -1,6 +1,4 @@
 .iconButton {
-  border-radius: 50%;
-  width: inherit;
   aspect-ratio: 1 / 1;
   cursor: pointer;
   background-color: transparent;
@@ -9,6 +7,36 @@
   justify-content: center;
   transition: all $iconButtonAnimation;
   position: relative;
+
+  &--size {
+    &-xs {
+      width: 1.5rem;
+    }
+    &-s {
+      width: 1.875rem;
+    }
+    &-m {
+      width: 2.125rem;
+    }
+    &-l {
+      width: 2.375rem;
+    }
+    &-xl {
+      width: 2.875rem;
+    }
+    &-auto {
+      width: inherit;
+    }
+  }
+
+  &--shape {
+    &-circle {
+      border-radius: 50%;
+    }
+    &-square {
+      border-radius: $iconButtonSquareBorderRadius;
+    }
+  }
 
   @media (pointer: fine) {
     &:hover,
