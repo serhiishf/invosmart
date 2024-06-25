@@ -27,17 +27,19 @@ export const PseudoStates: Story = {
 
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Link {...args} id="one" label="Default link" href="https://some-random-address.com" />
-      <Link {...args} id="two" label="Visited link" />
-      <Link {...args} id="three" label="Hovered link" />
+      <Link {...args} id="unvisited" label="Default link" href="https://some-random-address.com" />
+      <Link {...args} id="visited" label="Visited link" />
+      <Link {...args} id="hover" label="Hovered link" />
+      <Link {...args} id="active" label="Active link" />
     </div>
   ),
 
   parameters: {
     pseudo: {
-      unvisited: '#one',
-      visited: '#two',
-      hover: '#three',
+      unvisited: '#unvisited',
+      visited: '#visited',
+      hover: '#hover',
+      active: '#active',
     },
     controls: {
       disable: true, // This disables all controls for this story

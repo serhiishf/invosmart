@@ -1,31 +1,37 @@
 .iconButton {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: auto 1 / 1;
   cursor: pointer;
   background-color: transparent;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all $iconButtonAnimation;
   position: relative;
+  padding: 5px;
 
   &--size {
     &-xs {
+      height: 1.5rem;
       width: 1.5rem;
     }
     &-s {
+      height: 1.875rem;
       width: 1.875rem;
     }
     &-m {
+      height: 2.125rem;
       width: 2.125rem;
     }
     &-l {
+      height: 2.375rem;
       width: 2.375rem;
     }
     &-xl {
+      height: 2.875rem;
       width: 2.875rem;
     }
     &-auto {
-      width: inherit;
+      width: 100%;
     }
   }
 
