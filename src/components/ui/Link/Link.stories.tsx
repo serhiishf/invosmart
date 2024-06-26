@@ -42,7 +42,7 @@ export const PseudoStates: Story = {
       active: '#active',
     },
     controls: {
-      disable: true, // This disables all controls for this story
+      disable: true,
     },
   },
 };

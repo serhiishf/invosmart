@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import IconButton from './IconButton';
 import * as Icons from 'assets/icons';
+import { CSSProperties } from 'react';
+import { IconButtonProps } from './types';
 
 const meta = {
   title: 'components/UI/IconButton',
@@ -15,9 +17,18 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const sizes = ['xs', 's', 'm', 'l', 'xl', 'auto'];
-/* const blockStylesFlexColumn = { display: 'flex', flexDirection: 'column', gap: '20px' } */
-//TODO - set padding style and flex column for all blocks
+type ButtonSize = IconButtonProps['size'];
+const sizes: ButtonSize[] = ['xs', 's', 'm', 'l', 'xl', 'auto'];
+const stylesFlex: CSSProperties = {
+  display: 'flex',
+  gap: '20px',
+  alignItems: 'center',
+};
+const stylesFlexColumn: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px',
+};
 
 export const Default: Story = {
   render: (args) => (
@@ -27,27 +38,37 @@ export const Default: Story = {
   ),
 };
 
+export const SizeAuto: Story = {
+  render: (args) => (
+    <div style={{ height: '100px' }}>
+      <IconButton aria-label="Close" size="auto" {...args}>
+        <Icons.Close />
+      </IconButton>
+    </div>
+  ),
+};
+
 export const PseudoStates: Story = {
   parameters: {
     pseudo: {
-      hover: '#hover',
-      active: '#active',
+      hover: '#hoverClose1',
+      active: '#activeClose2',
     },
     controls: {
       disable: true,
     },
   },
   render: (args) => (
-    <div style={{ display: 'flex', gap: '20px' }}>
-      <div>
+    <div style={stylesFlex}>
+      <div style={stylesFlexColumn}>
         <h4>Hover</h4>
-        <IconButton aria-label="Close" id="hover" {...args}>
+        <IconButton aria-label="Close" id="hoverClose1" {...args}>
           <Icons.Close />
         </IconButton>
       </div>
-      <div>
+      <div style={stylesFlexColumn}>
         <h4>Active</h4>
-        <IconButton aria-label="Close" id="active" {...args}>
+        <IconButton aria-label="Close" id="activeClose2" {...args}>
           <Icons.Close />
         </IconButton>
       </div>
@@ -62,12 +83,12 @@ export const SizesAndShapes: Story = {
     },
   },
   render: (args) => (
-    <div>
+    <div style={stylesFlexColumn}>
       <h2>Sizes and Shapes</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div style={stylesFlexColumn}>
         <h4>Circle</h4>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <div style={stylesFlexColumn}>
+          <div style={stylesFlex}>
             {sizes.map((size) => (
               <div key={size} style={{ border: '1px dashed pink' }}>
                 <IconButton aria-label="Close" size={size} shape="circle" tooltip={size} {...args}>
@@ -76,7 +97,7 @@ export const SizesAndShapes: Story = {
               </div>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <div style={stylesFlex}>
             {sizes.map((size) => (
               <div key={size}>
                 <IconButton aria-label="Close" size={size} shape="circle" tooltip={size} {...args}>
@@ -87,8 +108,8 @@ export const SizesAndShapes: Story = {
           </div>
         </div>
         <h4>Square</h4>
-        <div>
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+        <div style={stylesFlexColumn}>
+          <div style={stylesFlex}>
             {sizes.map((size) => (
               <div key={size} style={{ border: '1px dashed pink' }}>
                 <IconButton aria-label="Close" size={size} shape="square" tooltip={size} {...args}>
@@ -97,7 +118,7 @@ export const SizesAndShapes: Story = {
               </div>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <div style={stylesFlex}>
             {sizes.map((size) => (
               <div key={size}>
                 <IconButton aria-label="Close" size={size} shape="square" tooltip={size} {...args}>
