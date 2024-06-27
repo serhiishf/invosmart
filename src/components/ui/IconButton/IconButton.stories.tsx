@@ -18,6 +18,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 type ButtonSize = IconButtonProps['size'];
+
 const sizes: ButtonSize[] = ['xs', 's', 'm', 'l', 'xl', 'auto'];
 const stylesFlex: CSSProperties = {
   display: 'flex',
@@ -40,10 +41,15 @@ export const Default: Story = {
 
 export const SizeAuto: Story = {
   render: (args) => (
-    <div style={{ height: '100px' }}>
-      <IconButton aria-label="Close" size="auto" {...args}>
-        <Icons.Close />
-      </IconButton>
+    <div>
+      <div>
+        <h4>Parent styles width: 100px, height: 100px</h4>
+        <div style={{ height: '100px', width: '100px', border: '1px dashed pink' }}>
+          <IconButton aria-label="Close" size="auto" {...args}>
+            <Icons.Close />
+          </IconButton>
+        </div>
+      </div>
     </div>
   ),
 };
@@ -84,7 +90,7 @@ export const SizesAndShapes: Story = {
   },
   render: (args) => (
     <div style={stylesFlexColumn}>
-      <h2>Sizes and Shapes</h2>
+      <h3>Sizes and Shapes</h3>
       <div style={stylesFlexColumn}>
         <h4>Circle</h4>
         <div style={stylesFlexColumn}>
@@ -129,6 +135,48 @@ export const SizesAndShapes: Story = {
           </div>
         </div>
       </div>
+    </div>
+  ),
+};
+
+interface CustomArgs extends IconButtonProps {
+  parentWidth: string;
+  parentHeight: string;
+}
+
+export const SizeAutoBehavior: StoryObj<Meta<CustomArgs>> = {
+  argTypes: {
+    parentWidth: {
+      control: { type: 'text' },
+      defaultValue: '40px',
+      description: 'Width of the parent container',
+    },
+    parentHeight: {
+      control: { type: 'text' },
+      defaultValue: '40px',
+      description: 'Height of the parent container',
+    },
+  },
+  args: {
+    parentWidth: '100px',
+    parentHeight: '100px',
+  },
+  parameters: {},
+  render: (args) => (
+    <div
+      style={{
+        width: args.parentWidth,
+        height: args.parentHeight,
+        border: '1px dashed pink',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '20px',
+      }}
+    >
+      <IconButton aria-label="Close" size="auto" shape="circle" tooltip="auto" {...args}>
+        <Icons.Close />
+      </IconButton>
     </div>
   ),
 };
