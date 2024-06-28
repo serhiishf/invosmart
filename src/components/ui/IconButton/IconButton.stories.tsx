@@ -39,6 +39,14 @@ export const Default: Story = {
   ),
 };
 
+export const WithTooltip: Story = {
+  render: (args) => (
+    <IconButton aria-label="Close" {...args} tooltip="Close">
+      <Icons.Close />
+    </IconButton>
+  ),
+};
+
 export const SizeAuto: Story = {
   render: (args) => (
     <div>

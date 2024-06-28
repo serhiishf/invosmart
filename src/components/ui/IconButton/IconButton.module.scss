@@ -77,4 +77,8 @@
       display: none;
     }
   }
+
+  &__tooltipWrapZIndex {
+    z-index: $iconButtonZIndex;
+  }
 }

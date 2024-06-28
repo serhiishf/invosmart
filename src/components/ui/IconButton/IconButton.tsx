@@ -1,7 +1,9 @@
+import classNames from 'classnames';
+import { useState } from 'react';
+import { offset, shift, useHover, useInteractions, useFloating } from '@floating-ui/react';
 import styles from './IconButton.module.scss';
 import { IconButtonProps } from './types';
 import { Tooltip } from '../index';
-import classNames from 'classnames';
 
 function IconButton({
   tooltip,
@@ -11,6 +13,19 @@ function IconButton({
   shape = 'circle',
   ...rest
 }: IconButtonProps) {
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+
+  const { refs, floatingStyles, context } = useFloating({
+    placement: 'bottom',
+    strategy: 'absolute',
+    middleware: [shift(), offset(10)],
+    onOpenChange: setIsTooltipOpen,
+  });
+
+  const hover = useHover(context);
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
+
   return (
     <button
       className={classNames(
@@ -19,11 +34,19 @@ function IconButton({
         styles[`iconButton--shape-${shape}`]
       )}
       type={type}
+      ref={refs.setReference}
+      {...getReferenceProps()}
       {...rest}
     >
       {children}
-      {tooltip && (
-        <div className={styles.iconButton__tooltipWrap}>
+      {tooltip && isTooltipOpen && (
+        <div
+          ref={refs.setFloating}
+          style={floatingStyles}
+          className={styles['iconButton__tooltipWrapZIndex']}
+          {...getFloatingProps()}
+          /* className={styles.iconButton__tooltipWrap} */
+        >
           <Tooltip tooltipMessage={tooltip} />
         </div>
       )}
