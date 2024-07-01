@@ -4,6 +4,7 @@ import IconButton from './IconButton';
 import * as Icons from 'assets/icons';
 import { CSSProperties } from 'react';
 import { IconButtonProps } from './types';
+import { useState } from 'react';
 
 const meta = {
   title: 'components/UI/IconButton',
@@ -47,19 +48,41 @@ export const WithTooltip: Story = {
   ),
 };
 
-export const SizeAuto: Story = {
-  render: (args) => (
-    <div>
-      <div>
-        <h4>Parent styles width: 100px, height: 100px</h4>
-        <div style={{ height: '100px', width: '100px', border: '1px dashed pink' }}>
-          <IconButton aria-label="Close" size="auto" {...args}>
+const SizeAutoComponent = (args: IconButtonProps) => {
+  const [width, setWidth] = useState('100px');
+  const [height, setHeight] = useState('100px');
+
+  return (
+    <div style={stylesFlexColumn}>
+      <div style={stylesFlexColumn}>
+        <h4>
+          Parent styles: width: {width}, height: {height}
+        </h4>
+        <div style={{ height, width, border: '1px dashed pink' }}>
+          <IconButton aria-label="Close" size="auto" tooltip="Size: auto" {...args}>
             <Icons.Close />
           </IconButton>
         </div>
       </div>
+      <div style={stylesFlexColumn}>
+        You can change parent size here
+        <label>
+          width:
+          <input type="text" value={width} onChange={(e) => setWidth(e.target.value)} />
+          <span>;</span>
+        </label>
+        <label>
+          height:
+          <input type="text" value={height} onChange={(e) => setHeight(e.target.value)} />
+          <span>;</span>
+        </label>
+      </div>
     </div>
-  ),
+  );
+};
+
+export const SizeAuto: Story = {
+  render: (args) => <SizeAutoComponent {...args} />,
 };
 
 export const PseudoStates: Story = {

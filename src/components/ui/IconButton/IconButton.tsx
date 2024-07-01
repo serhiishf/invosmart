@@ -5,14 +5,14 @@ import styles from './IconButton.module.scss';
 import { IconButtonProps } from './types';
 import { Tooltip } from '../index';
 
-function IconButton({
+const IconButton = ({
   tooltip,
   children,
   type = 'button',
   size = 'm',
   shape = 'circle',
   ...rest
-}: IconButtonProps) {
+}: IconButtonProps) => {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
@@ -40,18 +40,16 @@ function IconButton({
     >
       {children}
       {tooltip && isTooltipOpen && (
-        <div
+        <Tooltip
+          tooltipMessage={tooltip}
           ref={refs.setFloating}
           style={floatingStyles}
           className={styles['iconButton__tooltipWrapZIndex']}
           {...getFloatingProps()}
-          /* className={styles.iconButton__tooltipWrap} */
-        >
-          <Tooltip tooltipMessage={tooltip} />
-        </div>
+        />
       )}
     </button>
   );
-}
+};
 
 export default IconButton;

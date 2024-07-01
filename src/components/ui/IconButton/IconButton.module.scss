@@ -63,21 +63,6 @@
     }
   }
 
-  &__tooltipWrap {
-    position: absolute;
-    width: max-content;
-    visibility: hidden;
-    opacity: 0;
-    top: calc(100% + 8px);
-    right: 50%;
-    transform: translateX(50%);
-    transition: all $iconButtonAnimation;
-    z-index: $iconButtonZIndex;
-    &:hover {
-      display: none;
-    }
-  }
-
   &__tooltipWrapZIndex {
     z-index: $iconButtonZIndex;
   }
