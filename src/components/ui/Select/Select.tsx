@@ -13,16 +13,17 @@ const Select = ({
   isSearchable = true,
   isClearable = true,
   hasExpandCollapseButton = true,
-  placeholder = 'Select city',
-  label = 'Default label',
+  placeholder,
+  label,
   options,
   topOptions,
   children,
+  initialValue,
 }: SelectProps) => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(initialValue?.label);
   const [isFocused, setIsFocused] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<OptionType | undefined>();
+  const [selectedOption, setSelectedOption] = useState(initialValue);
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentTopOptions, setCurrentTopOptions] = useState(topOptions);
   const [currentOptions, setCurrentOptions] = useState(options);

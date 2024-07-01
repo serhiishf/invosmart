@@ -12,7 +12,7 @@ interface BaseSelectProps {
   onChange?: (value: SelectOption | undefined) => void;
   placeholder?: string;
   label?: string;
-  initialValue?: string;
+  initialValue?: SelectOption;
   children?: React.ReactNode;
 }
 

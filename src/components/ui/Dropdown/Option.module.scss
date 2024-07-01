@@ -41,6 +41,8 @@
 
   &__checkmarkContainer {
     min-width: $gridBase * 3;
+    display: flex;
+    justify-content: center;
   }
 
   &__contentContainer {
