@@ -2,7 +2,7 @@ import styles from './FieldWrapper.module.scss';
 import classNames from 'classnames';
 import { FieldWrapperProps } from './types';
 
-function FieldWrapper({
+const FieldWrapper = ({
   label,
   children,
   isError,
@@ -12,7 +12,7 @@ function FieldWrapper({
   labelTargetId,
   helperText,
   helperTextPosition = 'left',
-}: FieldWrapperProps) {
+}: FieldWrapperProps) => {
   return (
     <>
       <div className={styles.fieldWrapper}>
@@ -63,6 +63,6 @@ function FieldWrapper({
       )}
     </>
   );
-}
+};
 
 export default FieldWrapper;

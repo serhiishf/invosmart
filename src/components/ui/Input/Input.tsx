@@ -7,7 +7,7 @@ import IconShowPassword from 'assets/icons/eye.svg?react';
 import IconHidePassword from 'assets/icons/eyeSlash.svg?react';
 import { useTranslation } from 'react-i18next';
 
-function Input({
+const Input = ({
   id,
   type = 'text',
   label,
@@ -18,7 +18,7 @@ function Input({
   helperText,
   isPasswordVisibleInitially,
   ...rest
-}: InputProps) {
+}: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(isPasswordVisibleInitially);
   const [currentInputType, setCurrentInputType] = useState(type);
@@ -105,6 +105,6 @@ function Input({
       </FieldWrapper>
     </div>
   );
-}
+};
 
 export default Input;

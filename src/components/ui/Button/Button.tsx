@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ButtonProps } from './types';
 import { Tooltip } from '../index';
 
-function Button({
+const Button = ({
   size = 'm',
   isFullWidth = false,
   tooltip,
@@ -15,7 +15,7 @@ function Button({
   Icon,
   label,
   ...rest
-}: ButtonProps) {
+}: ButtonProps) => {
   return (
     <button
       className={classNames(
@@ -44,6 +44,6 @@ function Button({
       )}
     </button>
   );
-}
+};
 
 export default Button;

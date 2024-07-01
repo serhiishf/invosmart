@@ -2,7 +2,7 @@ import styles from './Link.module.scss';
 import { LinkProps } from './types';
 import classNames from 'classnames';
 
-function Link({ label, href, target, isInternalLink = false, className, ...rest }: LinkProps) {
+const Link = ({ label, href, target, isInternalLink = false, className, ...rest }: LinkProps) => {
   return (
     <a
       href={href}
@@ -14,6 +14,6 @@ function Link({ label, href, target, isInternalLink = false, className, ...rest 
       {label}
     </a>
   );
-}
+};
 
 export default Link;

@@ -9,18 +9,16 @@ import IconDirectionArrow from 'assets/icons/directionCheck.svg?react';
 import IconClose from 'assets/icons/close.svg?react';
 import { MatchStrategy, filterOptions } from 'utils/searchUtils';
 
-function Select(props: SelectProps) {
-  const {
-    isSearchable = true,
-    isClearable = true,
-    hasExpandCollapseButton = true,
-    placeholder = 'Select city',
-    label = 'Default label',
-    options,
-    topOptions,
-    children,
-  }: SelectProps = props;
-
+const Select = ({
+  isSearchable = true,
+  isClearable = true,
+  hasExpandCollapseButton = true,
+  placeholder = 'Select city',
+  label = 'Default label',
+  options,
+  topOptions,
+  children,
+}: SelectProps) => {
   const [inputValue, setInputValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
@@ -242,6 +240,6 @@ function Select(props: SelectProps) {
       )}
     </div>
   );
-}
+};
 
 export default Select;
