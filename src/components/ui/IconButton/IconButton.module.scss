@@ -45,21 +45,23 @@
     }
   }
 
-  @media (pointer: fine) {
-    &:hover,
-    &:focus-visible {
-      background-color: $iconButtonBackgroundColorHover;
-      transition: all $iconButtonAnimation;
+  &__disabled {
+    cursor: auto;
+    background-color: transparent;
+    color: $iconButtonDisabledColor;
+  }
 
-      .iconButton__tooltipWrap {
-        visibility: visible;
-        opacity: 1;
+  @media (pointer: fine) {
+    &:not(.iconButton__disabled) {
+      &:hover,
+      &:focus-visible {
+        background-color: $iconButtonBackgroundColorHover;
         transition: all $iconButtonAnimation;
       }
-    }
-    &:active {
-      background-color: $iconButtonBackgroundColorActive;
-      transition: all $iconButtonAnimation;
+      &:active {
+        background-color: $iconButtonBackgroundColorActive;
+        transition: all $iconButtonAnimation;
+      }
     }
   }
 

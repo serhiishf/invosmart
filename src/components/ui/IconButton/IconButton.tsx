@@ -11,6 +11,7 @@ const IconButton = ({
   type = 'button',
   size = 'm',
   shape = 'circle',
+  disabled,
   ...rest
 }: IconButtonProps) => {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
@@ -33,9 +34,11 @@ const IconButton = ({
       className={classNames(
         styles.iconButton,
         styles[`iconButton--size-${size}`],
-        styles[`iconButton--shape-${shape}`]
+        styles[`iconButton--shape-${shape}`],
+        disabled && styles[`iconButton__disabled`]
       )}
       type={type}
+      disabled={disabled}
       ref={refs.setReference}
       {...getReferenceProps()}
       {...rest}

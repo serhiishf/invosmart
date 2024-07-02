@@ -68,6 +68,7 @@ $_color-grey-600: #979797;
 
 // rgba
 
+$_disabledColor: rgba(0, 0, 0, 0.26);
 $_boxShadowColor: rgba(0, 0, 0, 0.15);
 
 /*---Main colors----*/
@@ -161,6 +162,7 @@ $iconButtonBackgroundColorActive: $_color-light-800;
 $iconButtonAnimation: $animationDefault;
 $iconButtonZIndex: $z-index-tooltip;
 $iconButtonSquareBorderRadius: $border-radius-base;
+$iconButtonDisabledColor: $_disabledColor;
 
 /*----Tooltip */
 $tooltipBackground: $_color-dark-600;
