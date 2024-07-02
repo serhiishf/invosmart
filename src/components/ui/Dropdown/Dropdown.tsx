@@ -140,7 +140,7 @@ const Dropdown = (props: DropdownProps) => {
     });
   }, [optionFocusedIndex]);
 
-  const handlePointerDown = useCallback(
+  const handlePointerUp = useCallback(
     (event: React.PointerEvent, option: OptionType) => {
       const dataIndex = event.currentTarget.getAttribute('data-index');
       if (!dataIndex) return;
@@ -197,7 +197,7 @@ const Dropdown = (props: DropdownProps) => {
                   data-index={index}
                   ref={optionRefs.current[index]}
                   isFocused={index === optionFocusedIndex}
-                  onPointerDown={(event) => handlePointerDown(event, option)}
+                  onPointerUp={(event) => handlePointerUp(event, option)}
                   isSelected={isSelectedMarked ? isOptionSelected : false}
                   aria-selected={isOptionSelected}
                   backgroundPalette={
