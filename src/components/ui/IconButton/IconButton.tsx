@@ -22,7 +22,9 @@ const IconButton = ({
     onOpenChange: setIsTooltipOpen,
   });
 
-  const hover = useHover(context);
+  const hover = useHover(context, {
+    mouseOnly: true,
+  });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
 

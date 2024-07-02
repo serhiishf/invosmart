@@ -182,7 +182,7 @@ const Select = ({
                   ref={inputRef}
                   isReadOnlyMode={!isSearchable}
                   placeholder={currentPlaceholder}
-                  inputMode="none"
+                  inputMode="text"
                   role="combobox"
                   onFocus={() => setIsInputFocused(true)}
                   onBlur={() => setIsInputFocused(false)}
