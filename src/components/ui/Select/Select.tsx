@@ -155,7 +155,7 @@ const Select = ({
 
   return (
     <div
-      className={styles.select}
+      className={classNames(styles.select)}
       ref={selectRef}
       tabIndex={-1}
       onFocus={handleSelectFocus}

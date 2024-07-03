@@ -16,6 +16,7 @@ const Input = ({
   isError = false,
   PrefixIcon,
   helperText,
+  className,
   isPasswordVisibleInitially,
   ...rest
 }: InputProps) => {
@@ -52,7 +53,7 @@ const Input = ({
 
   return (
     <div
-      className={classNames(styles.input, styles['input--safetyTopPadding'])}
+      className={classNames(styles.input, styles['input--safetyTopPadding'], className)}
       id={id}
       data-testid="input-component"
     >

@@ -35,7 +35,7 @@ const IconButton = ({
         styles.iconButton,
         styles[`iconButton--size-${size}`],
         styles[`iconButton--shape-${shape}`],
-        disabled && styles[`iconButton__disabled`]
+        disabled && styles[`iconButton--disabled`]
       )}
       type={type}
       disabled={disabled}
