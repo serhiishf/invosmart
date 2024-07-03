@@ -11,12 +11,13 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     'storybook-addon-pseudo-states',
-    '@storybook/addon-mdx-gfm',
   ],
 
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
+
+  docs: { autodocs: true },
 };
 export default config;
