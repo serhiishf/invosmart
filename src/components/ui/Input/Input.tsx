@@ -29,6 +29,7 @@ const Input = ({
   const isDisplaySuffixContainer = type === 'password';
 
   const inputBaseId = useId();
+  const helperTextId = helperText ? `${inputBaseId}-helperText` : undefined;
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -62,6 +63,7 @@ const Input = ({
         disabled={disabled}
         labelTargetId={inputBaseId}
         helperText={helperText}
+        helperTextId={helperTextId}
       >
         <>
           {PrefixIcon && (
@@ -85,6 +87,7 @@ const Input = ({
           isError={isError}
           id={inputBaseId}
           className={styles['input__inputBase']}
+          aria-describedby={helperTextId}
           {...rest}
         />
         <>

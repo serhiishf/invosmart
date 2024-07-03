@@ -8,6 +8,8 @@ export interface FieldWrapperProps {
   labelTargetId?: string;
   helperText?: string;
   helperTextPosition?: 'left' | 'right';
+  helperTextId?: string;
+  width?: 'fullWidth' | 'fitContent';
   onFocus?: () => void;
   onBlur?: () => void;
   setIsError?: (error: boolean) => void;

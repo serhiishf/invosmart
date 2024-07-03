@@ -5,6 +5,7 @@
 
   &__inputBase {
     height: $inputHeightMobile;
+    width: 100%;
     @include for-size-up(desktop) {
       height: $inputHeightDesktop;
     }
