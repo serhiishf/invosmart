@@ -25,7 +25,11 @@ export const Default: Story = {};
 
 export const DefaultInteractions: Story = {
   args: {},
-
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
   render: (args) => <Input {...args} data-testid="default-input" />,
 
   play: async ({ canvasElement }) => {
@@ -52,6 +56,11 @@ export const PasswordInteractions: Story = {
     type: 'password',
     placeholder: 'Enter password',
     helperText: 'Helper text',
+  },
+  parameters: {
+    controls: {
+      disable: true,
+    },
   },
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -108,7 +117,11 @@ export const ErrorInteraction: Story = {
     isError: true,
     helperText: 'Helper text',
   },
-
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
   render: (args) => (
     <Input {...args} isError={true} placeholder="Error state" data-testid="emailError-input" />
   ),
@@ -138,7 +151,11 @@ export const ReadonlyModeInteraction: Story = {
     placeholder: 'Placeholder',
     readOnly: true,
   },
-
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
   render: (args) => <Input {...args} data-testid="readOnly-input" />,
 
   play: async ({ canvasElement }) => {
@@ -165,7 +182,11 @@ export const DisabledInteraction: Story = {
     placeholder: 'Placeholder',
     disabled: true,
   },
-
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
   render: (args) => <Input {...args} data-testid="dissabled-input" />,
 
   play: async ({ canvasElement }) => {
@@ -191,7 +212,11 @@ export const PrefixIconInteraction: Story = {
     placeholder: 'Placeholder',
     PrefixIcon: IconSearch,
   },
-
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
   render: (args) => <Input {...args} data-testid="prefixIcon-input" />,
 
   play: async ({ canvasElement }) => {
@@ -208,6 +233,9 @@ export const LongText: Story = {
   parameters: {
     chromatic: {
       viewports: [320, 1200],
+    },
+    controls: {
+      disable: true,
     },
   },
   render: () => (
