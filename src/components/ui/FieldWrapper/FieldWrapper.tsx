@@ -11,18 +11,12 @@ const FieldWrapper = ({
   isHoverable,
   labelTargetId,
   helperText,
-  width = 'fullWidth',
   helperTextPosition = 'left',
   helperTextId,
+  className,
 }: FieldWrapperProps) => {
   return (
-    <div
-      className={classNames(
-        styles.container,
-        width === 'fullWidth' && styles['container--fullWidth'],
-        width === 'fitContent' && styles['container--fitContent']
-      )}
-    >
+    <div className={classNames(className)}>
       <div className={styles.fieldWrapper}>
         {label && (
           <label
