@@ -3,7 +3,6 @@ export interface FieldWrapperProps extends React.HTMLAttributes<HTMLDivElement> 
   children: React.ReactElement | React.ReactElement[];
   isError?: boolean;
   isFocused?: boolean;
-  isHoverable?: boolean;
   disabled?: boolean;
   labelTargetId?: string;
   helperText?: string;

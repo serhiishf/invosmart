@@ -53,6 +53,10 @@
     background: $fieldWrapperBackgroundColor;
     transition: all $fieldWrapperAnimation;
     overflow: hidden;
+
+    &--disabled {
+      background-color: $fieldWrapperBackgroundColorDisabled;
+    }
   }
 
   &__fieldset {
@@ -84,22 +88,6 @@
     }
     &--disabled {
       border-color: $fieldWrapperBorderColorDissabled;
-      background-color: $fieldWrapperBackgroundColorDisabled;
-      opacity: 0.5;
-    }
-
-    &--isHoverable {
-      &:hover {
-        border-color: green;
-        color: red;
-        transition: all $fieldWrapperAnimation;
-      }
-    }
-    &--isHoverable:hover {
-      .fieldWrapper__fieldset {
-        border-color: green; 
-        transition: all $fieldWrapperAnimation;
-      }
     }
   }
 

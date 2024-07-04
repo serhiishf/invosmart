@@ -78,19 +78,22 @@ export const ComponentStates: Story = {
     controls: {
       disable: true,
     },
+    pseudo: {
+      hover: '#hoverFieldWrapper1',
+    },
   },
   render: (args) => (
     <div style={stylesFlexColumn}>
       <FieldWrapper
-        label="isError"
-        helperText="isError: true"
-        isError={true}
-        {...args}
-      ></FieldWrapper>
-      <FieldWrapper
         label="isFocused"
         helperText="isFocused: true"
         isFocused={true}
+        {...args}
+      ></FieldWrapper>
+      <FieldWrapper
+        label="isError"
+        helperText="isError: true"
+        isError={true}
         {...args}
       ></FieldWrapper>
       <FieldWrapper
@@ -100,11 +103,11 @@ export const ComponentStates: Story = {
         isError={true}
         {...args}
       ></FieldWrapper>
-      <FieldWrapper label="disabled" helperText="disabled: true" disabled {...args}></FieldWrapper>
       <FieldWrapper
-        label="isHoverable - behavior not implemented YAGNI"
-        helperText="isHoverable: true"
-        isHoverable={true}
+        label="disabled"
+        helperText="disabled: true, isError: true"
+        isError={true}
+        disabled
         {...args}
       ></FieldWrapper>
     </div>

@@ -8,7 +8,6 @@ const FieldWrapper = ({
   isError,
   isFocused,
   disabled,
-  isHoverable,
   labelTargetId,
   helperText,
   helperTextPosition = 'left',
@@ -31,14 +30,20 @@ const FieldWrapper = ({
             {label}
           </label>
         )}
-        <div className={styles.fieldWrapper__main}>{children}</div>
+        <div
+          className={classNames(
+            styles.fieldWrapper__main,
+            disabled && styles['fieldWrapper__main--disabled']
+          )}
+        >
+          {children}
+        </div>
         <fieldset
           className={classNames(
             styles.fieldWrapper__fieldset,
-            isError && styles['fieldWrapper__fieldset--isError'],
-            isFocused && styles['fieldWrapper__fieldset--isFocused'],
-            disabled && styles['fieldWrapper__fieldset--disabled'],
-            isHoverable && styles['fieldWrapper__fieldset--isHoverable']
+            isError && !disabled && styles['fieldWrapper__fieldset--isError'],
+            isFocused && !disabled && styles['fieldWrapper__fieldset--isFocused'],
+            disabled && styles['fieldWrapper__fieldset--disabled']
           )}
         >
           <legend
@@ -56,7 +61,7 @@ const FieldWrapper = ({
           id={helperTextId}
           className={classNames(
             styles.helperText,
-            isError && styles['helperText--isError'],
+            isError && !disabled && styles['helperText--isError'],
             helperTextPosition === 'left' && styles['helperText--left'],
             helperTextPosition === 'right' && styles['helperText--right']
           )}
