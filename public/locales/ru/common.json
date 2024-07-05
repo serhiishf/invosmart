@@ -1,6 +1,13 @@
 {
   "actions": {
     "show_password": "Показать пароль",
-    "hide_password": "Скрыть пароль"
+    "hide_password": "Скрыть пароль",
+    "clear": "Очистить",
+    "collapse": "Свернуть",
+    "expand": "Развернуть"
+  },
+  "status": {
+    "loading": "Загрузка...",
+    "no_options": "Нет вариантов"
   }
 }

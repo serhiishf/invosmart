@@ -102,7 +102,7 @@ $line-height-tall: 2;
 
 $z-index-below: -1;
 $z-index-default: 1;
-$z-index-dropdown: 1000;
+$z-index-list: 1000;
 $z-index-overlay: 2000;
 $z-index-modal: 3000;
 $z-index-tooltip: 4000;
@@ -147,7 +147,7 @@ $fieldWrapperHelperTextErrorColor: $_color-notice-error;
 
 /*---Input component---*/
 $inputAttentionIconColor: $_color-notice-error;
-$inputTooltipZIndex: $z-index-dropdown;
+$inputTooltipZIndex: $z-index-list;
 $inputStaticIconColor: $_color-grey-300;
 $inputAnimation: $animationDefault;
 $inputPasswordButtonColorDefault: $_color-grey-400;
@@ -222,17 +222,17 @@ $selectIconColorHover: $_color-dark-500;
 $selectDividerColor: $color-divider-grey;
 $selectPlaceholderColor: $_color-grey-500;
 $selectTooltipZIndex: $z-index-tooltip;
-$selectOptionsZIndex: $z-index-dropdown;
+$selectOptionsZIndex: $z-index-list;
 $selectControlMinHeightDesktop: $fieldMinHeightDesktop;
 $selectControlMinHeightMobile: $fieldMinHeightMobile;
 
-/* ---Dropdown */
-$dropdownBoxShadowColor: $_boxShadowColor;
-$dropdownBorderRadius: $border-radius-base;
-$dropdownBackgroundColorWhite: $color-white;
-$dropdownBackgroundColorGrey: $color-background;
-$dropdownPlaceholderColor: $_color-grey-400;
-$dropdownDividerColor: $color-divider-grey;
+/* ---List */
+$listBoxShadowColor: $_boxShadowColor;
+$listBorderRadius: $border-radius-base;
+$listBackgroundColorWhite: $color-white;
+$listBackgroundColorGrey: $color-background;
+$listPlaceholderColor: $_color-grey-400;
+$listDividerColor: $color-divider-grey;
 
 /* ---Option */
 $optionWhiteColor: $color-white;

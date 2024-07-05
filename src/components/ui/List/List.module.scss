@@ -1,21 +1,21 @@
-.dropdown {
+.list {
   max-height: 280px;
   width: 100%;
   max-width: 100%;
-  background-color: $dropdownBackgroundColorWhite;
-  border-radius: $dropdownBorderRadius;
-  border-bottom-left-radius: $dropdownBorderRadius;
-  border-bottom-right-radius: $dropdownBorderRadius;
+  background-color: $listBackgroundColorWhite;
+  border-radius: $listBorderRadius;
+  border-bottom-left-radius: $listBorderRadius;
+  border-bottom-right-radius: $listBorderRadius;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 15px 0 $dropdownBoxShadowColor;
+  box-shadow: 0 0 15px 0 $listBoxShadowColor;
 
   &--backgroundColor {
     &-grey {
-      background-color: $dropdownBackgroundColorGrey;
+      background-color: $listBackgroundColorGrey;
     }
     &-light {
-      background-color: $dropdownBackgroundColorWhite;
+      background-color: $listBackgroundColorWhite;
     }
   }
 
@@ -26,10 +26,10 @@
   &__placeholder {
     padding: calc($gridBase * 2) 0;
     text-align: center;
-    color: $dropdownPlaceholderColor;
+    color: $listPlaceholderColor;
   }
 
-  &__list {
+  &__ul {
     padding-top: calc($gridBase / 2);
     padding-bottom: calc($gridBase / 2);
     overflow-y: auto;
@@ -44,7 +44,7 @@
 
     &:after {
       content: '';
-      background-color: $dropdownDividerColor;
+      background-color: $listDividerColor;
       height: 100%;
       width: calc(100% - ($gridBase * 4));
       position: absolute;
@@ -54,7 +54,7 @@
   }
 
   &__childrenContainer {
-    border-top: 1px solid $dropdownDividerColor;
+    border-top: 1px solid $listDividerColor;
     padding-top: $gridBase * 2;
     padding-bottom: $gridBase * 2;
     display: flex;

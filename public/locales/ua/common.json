@@ -1,6 +1,13 @@
 {
   "actions": {
     "show_password": "Показати пароль",
-    "hide_password": "Приховати пароль"
+    "hide_password": "Приховати пароль",
+    "clear": "Очистити",
+    "collapse": "Згорнути",
+    "expand": "Розгорнути"
+  },
+  "status": {
+    "loading": "Завантаження...",
+    "no_options": "Немає варіантів"
   }
 }

@@ -1,6 +1,13 @@
 {
   "actions": {
     "show_password": "Show password",
-    "hide_password": "Hide password"
+    "hide_password": "Hide password",
+    "clear": "Clear",
+    "collapse": "Collapse",
+    "expand": "Expand"
+  },
+  "status": {
+    "loading": "Loading...",
+    "no_options": "No options"
   }
 }

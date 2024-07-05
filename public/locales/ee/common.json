@@ -1,6 +1,13 @@
 {
   "actions": {
     "show_password": "Näita parooli",
-    "hide_password": "Peida parool"
+    "hide_password": "Peida parool",
+    "clear": "Kustuta",
+    "collapse": "Ahenda",
+    "expand": "Laienda"
+  },
+  "status": {
+    "loading": "Laadimine...",
+    "no_options": "Valikud puuduvad"
   }
 }

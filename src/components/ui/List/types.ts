@@ -20,7 +20,7 @@ export interface OptionProps extends OptionType, React.HTMLAttributes<HTMLLIElem
   textOverflow?: TextOverflow;
 }
 
-interface BaseDropdownProps {
+interface BaseListProps {
   children?: React.ReactNode;
   isLoading?: boolean;
   isHeightUnlimited?: boolean;
@@ -36,14 +36,14 @@ interface BaseDropdownProps {
   onOptionSelect: (selectedOption: OptionType) => void;
 }
 
-interface DropdownWithoutTopProps extends BaseDropdownProps {
+interface ListWithoutTopProps extends BaseListProps {
   options?: OptionProps[];
   topOptions?: never;
 }
 
-interface DropdownWithTopProps extends BaseDropdownProps {
+interface ListWithTopProps extends BaseListProps {
   options?: OptionProps[];
   topOptions?: OptionProps[];
 }
 
-export type DropdownProps = DropdownWithoutTopProps | DropdownWithTopProps;
+export type ListProps = ListWithoutTopProps | ListWithTopProps;

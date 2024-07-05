@@ -1,11 +1,11 @@
 import { useEffect, useState, useId } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import { FieldWrapper, InputBase, IconButton } from '../';
 import { InputProps } from './types';
 import styles from './Input.module.scss';
 import IconShowPassword from 'assets/icons/eye.svg?react';
 import IconHidePassword from 'assets/icons/eyeSlash.svg?react';
-import { useTranslation } from 'react-i18next';
 
 const Input = ({
   id,
@@ -26,7 +26,9 @@ const Input = ({
 
   const { t } = useTranslation();
   const IconButtonContent = isPasswordVisible ? IconHidePassword : IconShowPassword;
-  const tooltip = isPasswordVisible ? t('actions.hide_password') : t('actions.show_password');
+  const tooltipPasswordButton = isPasswordVisible
+    ? t('actions.hide_password')
+    : t('actions.show_password');
   const isDisplaySuffixContainer = type === 'password';
 
   const inputBaseId = useId();
@@ -97,7 +99,11 @@ const Input = ({
               {type === 'password' && (
                 <div className={classNames(styles.input__passwordButtonContainer)}>
                   <div className={classNames(styles.input__passwordButtonWrap)}>
-                    <IconButton onClick={handlePasswordButton} tooltip={tooltip} size="auto">
+                    <IconButton
+                      onClick={handlePasswordButton}
+                      tooltip={tooltipPasswordButton}
+                      size="auto"
+                    >
                       <IconButtonContent className={styles.input__passwordButtonIcon} />
                     </IconButton>
                   </div>

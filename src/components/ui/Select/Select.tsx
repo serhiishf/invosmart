@@ -1,10 +1,11 @@
 import { useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import { OptionType } from 'types/common';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
 import { KeyboardKey } from 'constants/keyboard';
-import { FieldWrapper, InputBase, IconButton, Dropdown } from '..';
+import { FieldWrapper, InputBase, IconButton, List } from '..';
 import IconDirectionArrow from 'assets/icons/directionCheck.svg?react';
 import IconClose from 'assets/icons/close.svg?react';
 import { MatchStrategy, filterOptions } from 'utils/searchUtils';
@@ -29,12 +30,15 @@ const Select = ({
   const [currentOptions, setCurrentOptions] = useState(options);
   const [keyEvent, setKeyEvent] = useState({ key: '', timeStamp: 0 });
 
+  const { t } = useTranslation();
+  const tooltipClearButton = t('actions.clear');
+  const toggleSelectTooltip = isExpanded ? t('actions.collapse') : t('actions.expand');
+
   const selectRef = useRef<HTMLDivElement>(null);
   const suffixContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const currentPlaceholder = !inputValue && !selectedOption?.value ? placeholder : '';
-  const toggleSelectTooltip = isExpanded ? 'TRANSLATE Collapse' : 'TRANSLATE Expand';
 
   const handleSelectFocus = (event: React.FocusEvent<Element>) => {
     // Ignore initial focus event to prevent duplicate handling.
@@ -163,7 +167,7 @@ const Select = ({
       onKeyDown={handleKeyDown}
     >
       <div className={styles.select__controlContainer}>
-        <FieldWrapper isFocused={isFocused} isHoverable={!isFocused} label={label}>
+        <FieldWrapper isFocused={isFocused} label={label}>
           <div
             className={classNames(
               styles.select__control,
@@ -198,7 +202,7 @@ const Select = ({
                 <div className={styles.select__buttonContainer}>
                   {(inputValue || selectedOption?.value) && (
                     <div className={styles.select__buttonWrap}>
-                      <IconButton tooltip="TRANSLATE Clear" onClick={handleClearButtonClick}>
+                      <IconButton tooltip={tooltipClearButton} onClick={handleClearButtonClick}>
                         <IconClose className={styles.select__iconClose} />
                       </IconButton>
                     </div>
@@ -228,7 +232,7 @@ const Select = ({
       </div>
       {isExpanded && (
         <div className={classNames(styles.select__options)}>
-          <Dropdown
+          <List
             options={currentOptions}
             topOptions={currentTopOptions}
             keyEvent={keyEvent}
@@ -236,7 +240,7 @@ const Select = ({
             selectedValue={selectedOption?.value}
           >
             {children}
-          </Dropdown>
+          </List>
         </div>
       )}
     </div>

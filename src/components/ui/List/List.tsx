@@ -8,15 +8,16 @@ import React, {
   useCallback,
 } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import { findMatchByIncreasingDepth, MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { KeyboardKey } from 'constants/keyboard';
-import { DropdownProps, OptionTheme } from './types';
+import { ListProps, OptionTheme } from './types';
 import { OptionType } from 'types/common';
-import styles from './Dropdown.module.scss';
+import styles from './List.module.scss';
 import Option from './Option';
 
-const Dropdown = (props: DropdownProps) => {
+const List = (props: ListProps) => {
   const {
     children,
     isLoading = false,
@@ -33,7 +34,7 @@ const Dropdown = (props: DropdownProps) => {
     componentTheme = ComponentTheme.Grey,
     onOptionSelect,
     selectedValue,
-  }: DropdownProps = props;
+  }: ListProps = props;
 
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -46,8 +47,9 @@ const Dropdown = (props: DropdownProps) => {
     return [...(topOptions ?? []), ...(options ?? [])];
   }, [options, topOptions]);
 
-  const loadingMessage = 'TRANSLATE Is loading...';
-  const noOptionsMessage = 'TRANSLATE No options';
+  const { t } = useTranslation();
+  const loadingMessage = t('status.loading');
+  const noOptionsMessage = t('status.no_options');
 
   const handleArrowKeyPress = useCallback(
     (key: string) => {
@@ -154,23 +156,23 @@ const Dropdown = (props: DropdownProps) => {
   return (
     <div
       className={classNames(
-        styles.dropdown,
-        isHeightUnlimited && styles['dropdown--isHeightUnlimited'],
-        styles[`dropdown--backgroundColor-${componentTheme}`]
+        styles.list,
+        isHeightUnlimited && styles['list--isHeightUnlimited'],
+        styles[`list--backgroundColor-${componentTheme}`]
       )}
       onKeyDown={(event) => handleKeyDown(event.key, event)}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
       {(options?.length === 0 || isLoading) && (
-        <div className={styles.dropdown__placeholder}>
+        <div className={styles.list__placeholder}>
           {isLoading && loadingMessage}
           {options?.length === 0 && !isLoading && noOptionsMessage}
         </div>
       )}
       {options && !isLoading && (
         <ul
-          className={styles.dropdown__list}
+          className={styles.list__ul}
           role={isMenu ? 'menu' : 'listbox'}
           aria-label={ariaLabel}
           onMouseDown={(event) => {
@@ -206,15 +208,15 @@ const Dropdown = (props: DropdownProps) => {
                       : OptionTheme.OnLightBackground
                   }
                 />
-                {isBoundary && <li className={styles.dropdown__divider} key="divider"></li>}
+                {isBoundary && <li className={styles.list__divider} key="divider"></li>}
               </React.Fragment>
             );
           })}
         </ul>
       )}
-      {children && <div className={styles.dropdown__childrenContainer}>{children}</div>}
+      {children && <div className={styles.list__childrenContainer}>{children}</div>}
     </div>
   );
 };
 
-export default Dropdown;
+export default List;
