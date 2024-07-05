@@ -53,6 +53,7 @@ const List = (props: ListProps) => {
 
   const handleArrowKeyPress = useCallback(
     (key: string) => {
+      if (combinedOptions.length === 0) return;
       switch (key) {
         case KeyboardKey.ArrowUp:
           setOptionFocusedIndex((prevIndex) => {
@@ -73,6 +74,7 @@ const List = (props: ListProps) => {
 
   const handleEnterKeyPress = useCallback(
     (key: string) => {
+      if (!optionFocusedIndex) return;
       if (key !== KeyboardKey.Enter) return;
       if (optionFocusedIndex === -1) return;
       onOptionSelect(combinedOptions[optionFocusedIndex]);
