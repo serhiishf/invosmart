@@ -8,10 +8,6 @@ const meta = {
   args: {
     onOptionSelect: fn(),
   },
-  argTypes: {
-    isLoading: { control: 'boolean' },
-    isMenu: { control: 'text' },
-  },
 } satisfies Meta<typeof List>;
 
 export default meta;
