@@ -236,7 +236,7 @@ const Select = ({
             options={currentOptions}
             topOptions={currentTopOptions}
             keyEvent={keyEvent}
-            onOptionSelect={handleOptionSelect}
+            onListItemSelect={handleOptionSelect}
             selectedValue={selectedOption?.value}
           >
             {children}

@@ -12,10 +12,10 @@ import { useTranslation } from 'react-i18next';
 import { findMatchByIncreasingDepth, MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { KeyboardKey } from 'constants/keyboard';
-import { ListProps, OptionTheme } from './types';
+import { ListProps, ListItemTheme } from './types';
 import { OptionType } from 'types/common';
 import styles from './List.module.scss';
-import Option from './Option';
+import ListItem from './ListItem';
 
 const List = (props: ListProps) => {
   const {
@@ -32,7 +32,7 @@ const List = (props: ListProps) => {
     typedMatchStrategy = MatchStrategy.StartWord,
     ariaLabel,
     componentTheme = ComponentTheme.Grey,
-    onOptionSelect,
+    onListItemSelect,
     selectedValue,
   }: ListProps = props;
 
@@ -74,12 +74,12 @@ const List = (props: ListProps) => {
 
   const handleEnterKeyPress = useCallback(
     (key: string) => {
-      if (!optionFocusedIndex) return;
+      if (!optionFocusedIndex && optionFocusedIndex !== 0) return;
       if (key !== KeyboardKey.Enter) return;
       if (optionFocusedIndex === -1) return;
-      onOptionSelect(combinedOptions[optionFocusedIndex]);
+      onListItemSelect(combinedOptions[optionFocusedIndex]);
     },
-    [optionFocusedIndex, combinedOptions, onOptionSelect]
+    [optionFocusedIndex, combinedOptions, onListItemSelect]
   );
 
   useEffect(() => {
@@ -150,9 +150,9 @@ const List = (props: ListProps) => {
       if (!dataIndex) return;
       const index = parseInt(dataIndex, 10);
       setOptionFocusedIndex(index);
-      onOptionSelect(option);
+      onListItemSelect(option);
     },
-    [onOptionSelect]
+    [onListItemSelect]
   );
 
   return (
@@ -190,7 +190,7 @@ const List = (props: ListProps) => {
             const isOptionSelected = option.value === selectedValue;
             return (
               <React.Fragment key={uniqueKey}>
-                <Option
+                <ListItem
                   tabIndex={index === optionFocusedIndex ? 0 : -1}
                   label={option.label}
                   value={option.value}
@@ -206,11 +206,11 @@ const List = (props: ListProps) => {
                   aria-selected={isOptionSelected}
                   backgroundPalette={
                     componentTheme === ComponentTheme.Grey
-                      ? OptionTheme.OnGreyBackground
-                      : OptionTheme.OnLightBackground
+                      ? ListItemTheme.OnGreyBackground
+                      : ListItemTheme.OnLightBackground
                   }
                 />
-                {isBoundary && <li className={styles.list__divider} key="divider"></li>}
+                {isBoundary && <hr className={styles.list__divider} key="divider" />}
               </React.Fragment>
             );
           })}

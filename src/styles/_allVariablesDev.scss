@@ -234,13 +234,13 @@ $listBackgroundColorGrey: $color-background;
 $listPlaceholderColor: $_color-grey-400;
 $listDividerColor: $color-divider-grey;
 
-/* ---Option */
-$optionWhiteColor: $color-white;
-$optionLightColor: $_color-light-150;
-$optionBackgroundColorActive: $_color-blue-500;
-$optionBackgroundColorHover: $_color-blue-600;
-$optionColorGreyBlue: $_color-dark-800;
-$optionMinHeightDesktop: $fieldMinHeightDesktop;
-$optionMinHeightMobile: $fieldMinHeightMobile;
-$optionMainPaddingRight: $gridBase * 3;
-$optionAnimation: $animationShort;
+/* ---ListItem */
+$listItemWhiteColor: $color-white;
+$listItemLightColor: $_color-light-150;
+$listItemBackgroundColorActive: $_color-blue-500;
+$listItemBackgroundColorHover: $_color-blue-600;
+$listItemColorGreyBlue: $_color-dark-800;
+$listItemMinHeightDesktop: $fieldMinHeightDesktop;
+$listItemMinHeightMobile: $fieldMinHeightMobile;
+$listItemMainPaddingRight: $gridBase * 3;
+$listItemAnimation: $animationShort;

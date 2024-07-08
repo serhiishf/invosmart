@@ -3,10 +3,10 @@ import { fn } from '@storybook/test';
 import List from './List';
 
 const meta = {
-  title: 'components/UI/List',
+  title: 'components/UI/List/List',
   component: List,
   args: {
-    onOptionSelect: fn(),
+    onListItemSelect: fn(),
   },
 } satisfies Meta<typeof List>;
 

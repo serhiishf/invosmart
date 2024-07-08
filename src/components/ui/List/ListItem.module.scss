@@ -1,12 +1,12 @@
-.option {
-  min-height: $optionMinHeightMobile;
+.listItem {
+  min-height: $listItemMinHeightMobile;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
   user-select: none;
   padding-right: $gridBase * 3;
-  color: $optionColorGreyBlue;
+  color: $listItemColorGreyBlue;
 
   &:focus {
     outline: none;
@@ -16,24 +16,24 @@
     @media (pointer: fine) {
       &-onGreyBackground {
         &:hover {
-          background-color: $optionWhiteColor;
+          background-color: $listItemWhiteColor;
         }
 
         &:active,
         &-isFocused {
-          background-color: $optionLightColor;
-          transition: all $optionAnimation;
+          background-color: $listItemLightColor;
+          transition: all $listItemAnimation;
         }
       }
       &-onLightBackground {
         &:hover {
-          background-color: $optionBackgroundColorHover;
+          background-color: $listItemBackgroundColorHover;
         }
 
         &:active,
         &-isFocused {
-          background-color: $optionBackgroundColorActive;
-          transition: all $optionAnimation;
+          background-color: $listItemBackgroundColorActive;
+          transition: all $listItemAnimation;
         }
       }
     }
@@ -68,6 +68,6 @@
   }
 
   @include for-size-up(desktop) {
-    min-height: $optionMinHeightDesktop;
+    min-height: $listItemMinHeightDesktop;
   }
 }

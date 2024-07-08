@@ -2,7 +2,7 @@ import { MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { OptionType } from 'types/common';
 
-export enum OptionTheme {
+export enum ListItemTheme {
   OnGreyBackground = 'onGreyBackground',
   OnLightBackground = 'onLightBackground',
 }
@@ -12,10 +12,10 @@ type KeyEvent = {
   timeStamp: number;
 };
 
-export interface OptionProps extends OptionType, React.HTMLAttributes<HTMLLIElement> {
+export interface ListItemProps extends OptionType, React.HTMLAttributes<HTMLLIElement> {
   isDisabled?: boolean;
   isFocused?: boolean;
-  backgroundPalette?: OptionTheme;
+  backgroundPalette?: ListItemTheme;
   isSelected?: boolean;
   textOverflow?: TextOverflow;
 }
@@ -33,17 +33,17 @@ interface BaseListProps {
   ariaLabel?: string;
   componentTheme?: ComponentTheme;
   selectedValue?: string;
-  onOptionSelect: (selectedOption: OptionType) => void;
+  onListItemSelect: (selectedListItem: OptionType) => void;
 }
 
 interface ListWithoutTopProps extends BaseListProps {
-  options?: OptionProps[];
+  options?: ListItemProps[];
   topOptions?: never;
 }
 
 interface ListWithTopProps extends BaseListProps {
-  options?: OptionProps[];
-  topOptions?: OptionProps[];
+  options?: ListItemProps[];
+  topOptions?: ListItemProps[];
 }
 
 export type ListProps = ListWithoutTopProps | ListWithTopProps;

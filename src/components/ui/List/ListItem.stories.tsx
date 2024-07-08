@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import Option from './Option';
+import ListItem from './ListItem';
 
 const meta = {
-  title: 'components/UI/List-Option',
-  component: Option,
-  args: {
+  title: 'components/UI/List/ListItem',
+  component: ListItem,
+/*   args: {
     onClick: fn(),
-  },
+  }, */
   decorators: [
     (Story) => (
       <div style={{ border: '1px dashed pink' }}>
