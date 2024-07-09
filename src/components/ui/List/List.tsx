@@ -15,7 +15,7 @@ import { KeyboardKey } from 'constants/keyboard';
 import { ListProps, ListItemTheme } from './types';
 import { OptionType } from 'types/common';
 import styles from './List.module.scss';
-import ListItem from './ListItem';
+import ListItem from './ListItem/ListItem';
 
 const List = (props: ListProps) => {
   const {
@@ -145,7 +145,7 @@ const List = (props: ListProps) => {
   }, [optionFocusedIndex]);
 
   const handlePointerUp = useCallback(
-    (event: React.PointerEvent, option: OptionType) => {
+    (event: React.MouseEvent, option: OptionType) => {
       const dataIndex = event.currentTarget.getAttribute('data-index');
       if (!dataIndex) return;
       const index = parseInt(dataIndex, 10);
@@ -201,7 +201,7 @@ const List = (props: ListProps) => {
                   data-index={index}
                   ref={optionRefs.current[index]}
                   isFocused={index === optionFocusedIndex}
-                  onPointerUp={(event) => handlePointerUp(event, option)}
+                  onClick={(event) => handlePointerUp(event, option)}
                   isSelected={isSelectedMarked ? isOptionSelected : false}
                   aria-selected={isOptionSelected}
                   backgroundPalette={

@@ -13,7 +13,7 @@ type KeyEvent = {
 };
 
 export interface ListItemProps extends OptionType, React.HTMLAttributes<HTMLLIElement> {
-  isDisabled?: boolean;
+  disabled?: boolean;
   isFocused?: boolean;
   backgroundPalette?: ListItemTheme;
   isSelected?: boolean;

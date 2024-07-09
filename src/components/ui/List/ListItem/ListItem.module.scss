@@ -12,29 +12,35 @@
     outline: none;
   }
 
-  &--backgroundPalette {
+  &--disabled {
+    opacity: $listItemDisabledOpacity;
+    pointer-events: none;
+  }
+
+  &--backgroundPalette-onGreyBackground {
     @media (pointer: fine) {
-      &-onGreyBackground {
-        &:hover {
-          background-color: $listItemWhiteColor;
-        }
-
-        &:active,
-        &-isFocused {
-          background-color: $listItemLightColor;
-          transition: all $listItemAnimation;
-        }
+      &:not(.listItem--disabled):hover {
+        background-color: $listItemWhiteColor;
       }
-      &-onLightBackground {
-        &:hover {
-          background-color: $listItemBackgroundColorHover;
-        }
 
-        &:active,
-        &-isFocused {
-          background-color: $listItemBackgroundColorActive;
-          transition: all $listItemAnimation;
-        }
+      &:not(.listItem--disabled):active,
+      &:not(.listItem--disabled).listItem--isFocused {
+        background-color: $listItemLightColor;
+        transition: all $listItemAnimation;
+      }
+    }
+  }
+
+  &--backgroundPalette-onLightBackground {
+    @media (pointer: fine) {
+      &:not(.listItem--disabled):hover {
+        background-color: $listItemBackgroundColorHover;
+      }
+
+      &:not(.listItem--disabled):active,
+      &:not(.listItem--disabled).listItem--isFocused {
+        background-color: $listItemBackgroundColorActive;
+        transition: all $listItemAnimation;
       }
     }
   }

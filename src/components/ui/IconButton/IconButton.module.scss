@@ -52,7 +52,7 @@
   }
 
   @media (pointer: fine) {
-    &:not(.iconButton__disabled) {
+    &:not(.iconButton--disabled) {
       &:hover,
       &:focus-visible {
         background-color: $iconButtonBackgroundColorHover;

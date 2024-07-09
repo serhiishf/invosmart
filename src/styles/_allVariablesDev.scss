@@ -71,6 +71,8 @@ $_color-grey-600: #979797;
 $_disabledColor: rgba(0, 0, 0, 0.26);
 $_boxShadowColor: rgba(0, 0, 0, 0.15);
 
+$_disabledOpacity: 0.5;
+
 /*---Main colors----*/
 $color-background: $_color-light-200;
 $color-white: $_color-light-100;
@@ -244,3 +246,4 @@ $listItemMinHeightDesktop: $fieldMinHeightDesktop;
 $listItemMinHeightMobile: $fieldMinHeightMobile;
 $listItemMainPaddingRight: $gridBase * 3;
 $listItemAnimation: $animationShort;
+$listItemDisabledOpacity: $_disabledOpacity;

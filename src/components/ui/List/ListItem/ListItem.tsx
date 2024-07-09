@@ -1,24 +1,26 @@
 import { forwardRef, memo } from 'react';
 import classNames from 'classnames';
 import { TextOverflow } from 'constants/theme';
-import IconCheckmark from '../../../assets/icons/checkmark.svg?react';
+import IconCheckmark from 'assets/icons/checkmark.svg?react';
 import styles from './ListItem.module.scss';
-import { ListItemProps, ListItemTheme } from './types';
+import { ListItemProps, ListItemTheme } from '../types';
 
 const ListItem = forwardRef((props: ListItemProps, ref: React.Ref<HTMLLIElement>) => {
   const {
     label,
-    value,
     icon,
     isFocused = false,
     isSelected = false,
+    disabled = false,
     backgroundPalette = ListItemTheme.OnGreyBackground,
     textOverflow = TextOverflow.Wrap,
+    onClick,
     ...rest
   }: ListItemProps = props;
 
-  const handleOnClick = () => {
-    console.log('ListItem click');
+  const handleOnClick = (event: React.MouseEvent<HTMLLIElement>) => {
+    if (disabled || !onClick) return;
+    onClick(event);
   };
 
   return (
@@ -28,7 +30,8 @@ const ListItem = forwardRef((props: ListItemProps, ref: React.Ref<HTMLLIElement>
         styles.listItem,
         isSelected && styles['listItem--isSelected'],
         styles[`listItem--backgroundPalette-${backgroundPalette}`],
-        isFocused && styles[`listItem--backgroundPalette-${backgroundPalette}-isFocused`]
+        isFocused && styles[`listItem--isFocused`],
+        disabled && styles[`listItem--disabled`]
       )}
       onClick={handleOnClick}
       ref={ref}
