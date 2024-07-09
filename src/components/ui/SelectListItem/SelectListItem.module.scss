@@ -1,46 +1,46 @@
-.listItem {
-  min-height: $listItemMinHeightMobile;
+.selectListItem {
+  min-height: $selectListItemMinHeightMobile;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
   user-select: none;
   padding-right: $gridBase * 3;
-  color: $listItemColorGreyBlue;
+  color: $selectListItemColorGreyBlue;
 
   &:focus {
     outline: none;
   }
 
   &--disabled {
-    opacity: $listItemDisabledOpacity;
+    opacity: $selectListItemDisabledOpacity;
     pointer-events: none;
   }
 
   &--backgroundPalette-onGreyBackground {
     @media (pointer: fine) {
-      &:not(.listItem--disabled):hover {
-        background-color: $listItemWhiteColor;
+      &:not(.selectListItem--disabled):hover {
+        background-color: $selectListItemWhiteColor;
       }
 
-      &:not(.listItem--disabled):active,
-      &:not(.listItem--disabled).listItem--isFocused {
-        background-color: $listItemLightColor;
-        transition: all $listItemAnimation;
+      &:not(.selectListItem--disabled):active,
+      &:not(.selectListItem--disabled).selectListItem--isFocused {
+        background-color: $selectListItemLightColor;
+        transition: all $selectListItemAnimation;
       }
     }
   }
 
   &--backgroundPalette-onLightBackground {
     @media (pointer: fine) {
-      &:not(.listItem--disabled):hover {
-        background-color: $listItemBackgroundColorHover;
+      &:not(.selectListItem--disabled):hover {
+        background-color: $selectListItemBackgroundColorHover;
       }
 
-      &:not(.listItem--disabled):active,
-      &:not(.listItem--disabled).listItem--isFocused {
-        background-color: $listItemBackgroundColorActive;
-        transition: all $listItemAnimation;
+      &:not(.selectListItem--disabled):active,
+      &:not(.selectListItem--disabled).selectListItem--isFocused {
+        background-color: $selectListItemBackgroundColorActive;
+        transition: all $selectListItemAnimation;
       }
     }
   }
@@ -74,6 +74,6 @@
   }
 
   @include for-size-up(desktop) {
-    min-height: $listItemMinHeightDesktop;
+    min-height: $selectListItemMinHeightDesktop;
   }
 }

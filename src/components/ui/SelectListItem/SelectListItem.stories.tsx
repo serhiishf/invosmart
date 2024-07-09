@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import ListItem from './ListItem';
+import SelectListItem from './SelectListItem';
 
 const meta = {
-  title: 'components/UI/List/ListItem',
-  component: ListItem,
+  title: 'components/UI/SelectListItem',
+  component: SelectListItem,
   args: {
     onClick: fn(),
   },

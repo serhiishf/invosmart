@@ -5,7 +5,7 @@ import { OptionType } from 'types/common';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
 import { KeyboardKey } from 'constants/keyboard';
-import { FieldWrapper, InputBase, IconButton, List } from '..';
+import { FieldWrapper, InputBase, IconButton, SelectList } from '..';
 import IconDirectionArrow from 'assets/icons/directionCheck.svg?react';
 import IconClose from 'assets/icons/close.svg?react';
 import { MatchStrategy, filterOptions } from 'utils/searchUtils';
@@ -232,15 +232,15 @@ const Select = ({
       </div>
       {isExpanded && (
         <div className={classNames(styles.select__options)}>
-          <List
+          <SelectList
             options={currentOptions}
             topOptions={currentTopOptions}
             keyEvent={keyEvent}
-            onListItemSelect={handleOptionSelect}
+            onOptionSelect={handleOptionSelect}
             selectedValue={selectedOption?.value}
           >
             {children}
-          </List>
+          </SelectList>
         </div>
       )}
     </div>

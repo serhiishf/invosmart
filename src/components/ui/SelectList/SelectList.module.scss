@@ -1,21 +1,21 @@
-.list {
+.selectList {
   max-height: 280px;
   width: 100%;
   max-width: 100%;
-  background-color: $listBackgroundColorWhite;
-  border-radius: $listBorderRadius;
-  border-bottom-left-radius: $listBorderRadius;
-  border-bottom-right-radius: $listBorderRadius;
+  background-color: $selectListBackgroundColorWhite;
+  border-radius: $selectListBorderRadius;
+  border-bottom-left-radius: $selectListBorderRadius;
+  border-bottom-right-radius: $selectListBorderRadius;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 15px 0 $listBoxShadowColor;
+  box-shadow: 0 0 15px 0 $selectListBoxShadowColor;
 
   &--backgroundColor {
     &-grey {
-      background-color: $listBackgroundColorGrey;
+      background-color: $selectListBackgroundColorGrey;
     }
     &-light {
-      background-color: $listBackgroundColorWhite;
+      background-color: $selectListBackgroundColorWhite;
     }
   }
 
@@ -26,7 +26,7 @@
   &__placeholder {
     padding: calc($gridBase * 2) 0;
     text-align: center;
-    color: $listPlaceholderColor;
+    color: $selectListPlaceholderColor;
   }
 
   &__ul {
@@ -44,7 +44,7 @@
 
     &:after {
       content: '';
-      background-color: $listDividerColor;
+      background-color: $selectListDividerColor;
       height: 100%;
       width: calc(100% - ($gridBase * 4));
       position: absolute;
@@ -54,7 +54,7 @@
   }
 
   &__childrenContainer {
-    border-top: 1px solid $listDividerColor;
+    border-top: 1px solid $selectListDividerColor;
     padding-top: $gridBase * 2;
     padding-bottom: $gridBase * 2;
     display: flex;

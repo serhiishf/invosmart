@@ -12,10 +12,10 @@ import { useTranslation } from 'react-i18next';
 import { findMatchByIncreasingDepth, MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { KeyboardKey } from 'constants/keyboard';
-import { ListProps, ListItemTheme } from './types';
+import { ListProps } from './types';
 import { OptionType } from 'types/common';
-import styles from './List.module.scss';
-import ListItem from './ListItem/ListItem';
+import styles from './SelectList.module.scss';
+import { SelectListItem } from '../';
 
 const List = (props: ListProps) => {
   const {
@@ -25,20 +25,19 @@ const List = (props: ListProps) => {
     topOptions,
     textOverflow = TextOverflow.Wrap,
     isHeightUnlimited = false,
-    isMenu = true,
     keyEvent,
     initialSelected,
     isSelectedMarked = true,
     typedMatchStrategy = MatchStrategy.StartWord,
     ariaLabel,
     componentTheme = ComponentTheme.Grey,
-    onListItemSelect,
+    onOptionSelect,
     selectedValue,
   }: ListProps = props;
 
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const [optionFocusedIndex, setOptionFocusedIndex] = useState(initialSelected || isMenu ? -1 : 0);
+  const [optionFocusedIndex, setOptionFocusedIndex] = useState(initialSelected || 0);
 
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
   const lastHandledTimestamp = useRef<number | null>(null);
@@ -77,9 +76,9 @@ const List = (props: ListProps) => {
       if (!optionFocusedIndex && optionFocusedIndex !== 0) return;
       if (key !== KeyboardKey.Enter) return;
       if (optionFocusedIndex === -1) return;
-      onListItemSelect(combinedOptions[optionFocusedIndex]);
+      onOptionSelect(combinedOptions[optionFocusedIndex]);
     },
-    [optionFocusedIndex, combinedOptions, onListItemSelect]
+    [optionFocusedIndex, combinedOptions, onOptionSelect]
   );
 
   useEffect(() => {
@@ -150,32 +149,32 @@ const List = (props: ListProps) => {
       if (!dataIndex) return;
       const index = parseInt(dataIndex, 10);
       setOptionFocusedIndex(index);
-      onListItemSelect(option);
+      onOptionSelect(option);
     },
-    [onListItemSelect]
+    [onOptionSelect]
   );
 
   return (
     <div
       className={classNames(
-        styles.list,
-        isHeightUnlimited && styles['list--isHeightUnlimited'],
-        styles[`list--backgroundColor-${componentTheme}`]
+        styles.selectList,
+        isHeightUnlimited && styles['selectList--isHeightUnlimited'],
+        styles[`selectList--backgroundColor-${componentTheme}`]
       )}
       onKeyDown={(event) => handleKeyDown(event.key, event)}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
       {(options?.length === 0 || isLoading) && (
-        <div className={styles.list__placeholder}>
+        <div className={styles.selectList__placeholder}>
           {isLoading && loadingMessage}
           {options?.length === 0 && !isLoading && noOptionsMessage}
         </div>
       )}
       {options && !isLoading && (
         <ul
-          className={styles.list__ul}
-          role={isMenu ? 'menu' : 'listbox'}
+          className={styles.selectList__ul}
+          role={'listbox'}
           aria-label={ariaLabel}
           onMouseDown={(event) => {
             // Prevent focus loss on scroll area click, maintaining keyboard navigation.
@@ -190,14 +189,14 @@ const List = (props: ListProps) => {
             const isOptionSelected = option.value === selectedValue;
             return (
               <React.Fragment key={uniqueKey}>
-                <ListItem
+                <SelectListItem
                   tabIndex={index === optionFocusedIndex ? 0 : -1}
                   label={option.label}
                   value={option.value}
                   data-value={option.value}
                   icon={option.icon}
                   textOverflow={textOverflow}
-                  role={isMenu ? 'menuitem' : 'option'}
+                  role={'option'}
                   data-index={index}
                   ref={optionRefs.current[index]}
                   isFocused={index === optionFocusedIndex}
@@ -206,17 +205,17 @@ const List = (props: ListProps) => {
                   aria-selected={isOptionSelected}
                   backgroundPalette={
                     componentTheme === ComponentTheme.Grey
-                      ? ListItemTheme.OnGreyBackground
-                      : ListItemTheme.OnLightBackground
+                      ? 'onGreyBackground'
+                      : 'onLightBackground'
                   }
                 />
-                {isBoundary && <hr className={styles.list__divider} key="divider" />}
+                {isBoundary && <hr className={styles.selectList__divider} key="divider" />}
               </React.Fragment>
             );
           })}
         </ul>
       )}
-      {children && <div className={styles.list__childrenContainer}>{children}</div>}
+      {children && <div className={styles.selectList__childrenContainer}>{children}</div>}
     </div>
   );
 };

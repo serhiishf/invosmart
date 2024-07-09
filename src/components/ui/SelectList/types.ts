@@ -1,31 +1,18 @@
-import { MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
+import { MatchStrategy } from 'utils/searchUtils';
 import { OptionType } from 'types/common';
-
-export enum ListItemTheme {
-  OnGreyBackground = 'onGreyBackground',
-  OnLightBackground = 'onLightBackground',
-}
+import { SelectListItemProps } from '../SelectListItem/types';
 
 type KeyEvent = {
   key: string;
   timeStamp: number;
 };
 
-export interface ListItemProps extends OptionType, React.HTMLAttributes<HTMLLIElement> {
-  disabled?: boolean;
-  isFocused?: boolean;
-  backgroundPalette?: ListItemTheme;
-  isSelected?: boolean;
-  textOverflow?: TextOverflow;
-}
-
 interface BaseListProps {
   children?: React.ReactNode;
   isLoading?: boolean;
   isHeightUnlimited?: boolean;
   textOverflow?: TextOverflow;
-  isMenu?: boolean;
   keyEvent?: KeyEvent;
   initialSelected?: number;
   isSelectedMarked?: boolean;
@@ -33,17 +20,17 @@ interface BaseListProps {
   ariaLabel?: string;
   componentTheme?: ComponentTheme;
   selectedValue?: string;
-  onListItemSelect: (selectedListItem: OptionType) => void;
+  onOptionSelect: (selectedListItem: OptionType) => void;
 }
 
 interface ListWithoutTopProps extends BaseListProps {
-  options?: ListItemProps[];
+  options?: SelectListItemProps[];
   topOptions?: never;
 }
 
 interface ListWithTopProps extends BaseListProps {
-  options?: ListItemProps[];
-  topOptions?: ListItemProps[];
+  options?: SelectListItemProps[];
+  topOptions?: SelectListItemProps[];
 }
 
 export type ListProps = ListWithoutTopProps | ListWithTopProps;

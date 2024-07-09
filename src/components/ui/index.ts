@@ -6,4 +6,5 @@ export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as Button } from './Button/Button';
 export { default as Link } from './Link/Link';
 export { default as Select } from './Select/Select';
-export { default as List } from './List/List';
+export { default as SelectList } from './SelectList/SelectList';
+export { default as SelectListItem } from './SelectListItem/SelectListItem';

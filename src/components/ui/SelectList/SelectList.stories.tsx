@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import List from './List';
+import SelectList from './SelectList';
 
 const meta = {
-  title: 'components/UI/List/List',
-  component: List,
+  title: 'components/UI/SelectList',
+  component: SelectList,
   args: {
-    onListItemSelect: fn(),
+    onOptionSelect: fn(),
   },
-} satisfies Meta<typeof List>;
+} satisfies Meta<typeof SelectList>;
 
 export default meta;
 
