@@ -239,7 +239,7 @@ export const LongText: Story = {
     },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', background: 'red' }}>
       <Input label="Default" value={longText} />
       <Input label="Long helper Text" helperText={longText} />
       <Input label={longText} value="Long label text" />

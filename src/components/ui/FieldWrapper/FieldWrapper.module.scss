@@ -52,7 +52,6 @@
     box-sizing: border-box;
     background: $fieldWrapperBackgroundColor;
     transition: all $fieldWrapperAnimation;
-    overflow: hidden;
 
     &--disabled {
       background-color: $fieldWrapperBackgroundColorDisabled;

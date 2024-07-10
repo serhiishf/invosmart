@@ -33,7 +33,7 @@ const stylesFlexColumn: CSSProperties = {
 
 export const Default: Story = {
   render: (args) => (
-    <IconButton aria-label="Close" {...args}>
+    <IconButton aria-label="Close" tooltip="Close" {...args}>
       <Icons.Close />
     </IconButton>
   ),
@@ -42,14 +42,6 @@ export const Default: Story = {
 export const Disabled: Story = {
   render: (args) => (
     <IconButton aria-label="Close" disabled {...args}>
-      <Icons.Close />
-    </IconButton>
-  ),
-};
-
-export const WithTooltip: Story = {
-  render: (args) => (
-    <IconButton aria-label="Close" {...args} tooltip="Close">
       <Icons.Close />
     </IconButton>
   ),
