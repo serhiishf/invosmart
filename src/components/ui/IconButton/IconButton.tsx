@@ -1,6 +1,13 @@
 import classNames from 'classnames';
 import { useState } from 'react';
-import { offset, shift, useHover, useInteractions, useFloating } from '@floating-ui/react';
+import {
+  offset,
+  shift,
+  useHover,
+  useInteractions,
+  useFloating,
+  useFocus,
+} from '@floating-ui/react';
 import styles from './IconButton.module.scss';
 import { IconButtonProps } from './types';
 import { Tooltip } from '../index';
@@ -23,11 +30,16 @@ const IconButton = ({
     onOpenChange: setIsTooltipOpen,
   });
 
-  const hover = useHover(context, {
+  const hoverInteraction = useHover(context, {
     mouseOnly: true,
   });
 
-  const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
+  const focusInteraction = useFocus(context);
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    hoverInteraction,
+    focusInteraction,
+  ]);
 
   return (
     <button
