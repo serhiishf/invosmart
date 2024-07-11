@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import ReactCountryFlag from 'react-country-flag';
 import { textExamples, styleData } from 'constants/storybookData';
 import { TextOverflow } from 'constants/theme';
 import SelectListItem from './SelectListItem';
@@ -28,6 +29,44 @@ export const Selected: Story = {
     label: 'Tallinn',
     value: 'Tallinn',
     isSelected: true,
+    backgroundPalette: 'onLightBackground',
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    label: 'Estonia',
+    value: 'Estonia',
+    icon: (
+      <ReactCountryFlag
+        countryCode="EE"
+        style={{
+          fontSize: '1.5rem',
+          lineHeight: '1.5rem',
+        }}
+      />
+    ),
+    backgroundPalette: 'onLightBackground',
+    textOverflow: TextOverflow.Truncate,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    label: 'Estonia',
+    value: 'Estonia',
+    disabled: true,
+    icon: (
+      <ReactCountryFlag
+        countryCode="EE"
+        style={{
+          fontSize: '1.5rem',
+          lineHeight: '1.5rem',
+        }}
+      />
+    ),
+    backgroundPalette: 'onLightBackground',
+    textOverflow: TextOverflow.Truncate,
   },
 };
 
@@ -93,14 +132,6 @@ export const PseudoStates = {
       </div>
     </div>
   ),
-};
-
-export const WithIcon: Story = {
-  args: {
-    label: 'With icon',
-    value: 'with icon',
-    textOverflow: TextOverflow.Truncate,
-  },
 };
 
 export const LongText: Story = {
