@@ -224,6 +224,8 @@ export const PrefixIconInteraction: Story = {
     const canvas = within(canvasElement);
     const prefixIconInput = canvas.getByTestId('prefixIcon-input');
     await prefixIconInput.focus();
+    await userEvent.type(prefixIconInput, 'Some text');
+    expect(prefixIconInput).toHaveValue('Some text');
   },
 };
 
@@ -240,7 +242,7 @@ export const LongText: Story = {
   },
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <Input label="Default" value={longText} />
+      <Input label="Long value" value={longText} />
       <Input label="Long helper Text" helperText={longText} />
       <Input label={longText} value="Long label text" />
       <Input
