@@ -76,8 +76,18 @@ export const PseudoStates = {
       disable: true,
     },
     pseudo: {
-      hover: ['#onLightBackground1', '#onGreyBackground1'],
-      active: ['#onLightBackground2', '#onGreyBackground2'],
+      hover: [
+        '#onLightBackground1',
+        '#onGreyBackground1',
+        '#onLightBackground3',
+        '#onGreyBackground3',
+      ],
+      active: [
+        '#onLightBackground2',
+        '#onGreyBackground2',
+        '#onLightBackground4',
+        '#onGreyBackground4',
+      ],
     },
   },
   render: () => (
@@ -101,6 +111,28 @@ export const PseudoStates = {
             isFocused={true}
             value="isFocused: true"
             label="isFocused: true"
+            backgroundPalette="onLightBackground"
+            textOverflow={TextOverflow.Truncate}
+          />
+          <SelectListItem
+            disabled={true}
+            id="onLightBackground3"
+            value="hover + disabled"
+            label="hover + disabled"
+            backgroundPalette="onLightBackground"
+          />
+          <SelectListItem
+            disabled={true}
+            id="onLightBackground4"
+            value="active + disabled"
+            label="active + disabled"
+            backgroundPalette="onLightBackground"
+          />
+          <SelectListItem
+            disabled={true}
+            isFocused={true}
+            value="isFocused: true + disabled"
+            label="isFocused: true + disabled"
             backgroundPalette="onLightBackground"
             textOverflow={TextOverflow.Truncate}
           />
@@ -129,6 +161,30 @@ export const PseudoStates = {
           backgroundPalette="onGreyBackground"
           textOverflow={TextOverflow.Truncate}
         />
+        <SelectListItem
+          disabled={true}
+          id="onGreyBackground3"
+          value="hover + disabled"
+          label="hover + disabled"
+          backgroundPalette="onGreyBackground"
+          textOverflow={TextOverflow.Truncate}
+        />
+        <SelectListItem
+          disabled={true}
+          id="onGreyBackground4"
+          value="active + disabled"
+          label="active + disabled"
+          backgroundPalette="onGreyBackground"
+          textOverflow={TextOverflow.Truncate}
+        />
+        <SelectListItem
+          disabled={true}
+          isFocused={true}
+          value="isFocused: true + disabled"
+          label="isFocused: true + disabled"
+          backgroundPalette="onGreyBackground"
+          textOverflow={TextOverflow.Truncate}
+        />
       </div>
     </div>
   ),
@@ -138,6 +194,7 @@ export const LongText: Story = {
   args: {
     label: textExamples.longText,
     value: 'LongText',
+    backgroundPalette: 'onLightBackground',
   },
   parameters: {
     controls: {
