@@ -8,13 +8,12 @@ type KeyEvent = {
   timeStamp: number;
 };
 
-interface BaseListProps {
+interface BaseSelectListProps {
   children?: React.ReactNode;
   isLoading?: boolean;
   isHeightUnlimited?: boolean;
   textOverflow?: TextOverflow;
   keyEvent?: KeyEvent;
-  initialSelected?: number;
   isSelectedMarked?: boolean;
   typedMatchStrategy?: MatchStrategy;
   ariaLabel?: string;
@@ -23,14 +22,14 @@ interface BaseListProps {
   onOptionSelect: (selectedListItem: OptionType) => void;
 }
 
-interface ListWithoutTopProps extends BaseListProps {
+interface SelectListWithoutTopProps extends BaseSelectListProps {
   options?: SelectListItemProps[];
   topOptions?: never;
 }
 
-interface ListWithTopProps extends BaseListProps {
+interface SelectListWithTopProps extends BaseSelectListProps {
   options?: SelectListItemProps[];
   topOptions?: SelectListItemProps[];
 }
 
-export type ListProps = ListWithoutTopProps | ListWithTopProps;
+export type SelectListProps = SelectListWithoutTopProps | SelectListWithTopProps;

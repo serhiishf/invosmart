@@ -12,32 +12,29 @@ import { useTranslation } from 'react-i18next';
 import { findMatchByIncreasingDepth, MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { KeyboardKey } from 'constants/keyboard';
-import { ListProps } from './types';
+import { SelectListProps } from './types';
 import { OptionType } from 'types/common';
 import styles from './SelectList.module.scss';
 import { SelectListItem } from '../';
 
-const List = (props: ListProps) => {
-  const {
-    children,
-    isLoading = false,
-    options,
-    topOptions,
-    textOverflow = TextOverflow.Wrap,
-    isHeightUnlimited = false,
-    keyEvent,
-    initialSelected,
-    isSelectedMarked = true,
-    typedMatchStrategy = MatchStrategy.StartWord,
-    ariaLabel,
-    componentTheme = ComponentTheme.Grey,
-    onOptionSelect,
-    selectedValue,
-  }: ListProps = props;
-
+const SelectList = ({
+  children,
+  isLoading = false,
+  options,
+  topOptions,
+  textOverflow = TextOverflow.Wrap,
+  isHeightUnlimited = false,
+  keyEvent,
+  isSelectedMarked = true,
+  typedMatchStrategy = MatchStrategy.StartWord,
+  ariaLabel,
+  componentTheme = ComponentTheme.Grey,
+  onOptionSelect,
+  selectedValue,
+}: SelectListProps) => {
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const [optionFocusedIndex, setOptionFocusedIndex] = useState(initialSelected || 0);
+  const [optionFocusedIndex, setOptionFocusedIndex] = useState(0);
 
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
   const lastHandledTimestamp = useRef<number | null>(null);
@@ -220,4 +217,4 @@ const List = (props: ListProps) => {
   );
 };
 
-export default List;
+export default SelectList;
