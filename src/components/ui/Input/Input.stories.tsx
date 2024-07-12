@@ -36,7 +36,7 @@ export const DefaultInteractions: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const defaultInput = canvas.getByTestId('default-input');
-    await defaultInput.focus();
+    await userEvent.click(defaultInput);
     await userEvent.type(defaultInput, 'Typed in default input');
     expect(defaultInput).toHaveValue('Typed in default input');
   },
@@ -93,7 +93,7 @@ export const PasswordInteractions: Story = {
     const vissiblePassword = canvas.getByTestId('vissible-password');
     const toggleBtnFocused = canvas.getByTestId('toggle-button-focused');
     await userEvent.type(hiddenPasword, 'hidden password');
-    await vissiblePassword.focus();
+    await userEvent.click(vissiblePassword);
     await userEvent.type(vissiblePassword, 'Vissible password 123');
     await userEvent.tab();
     await userEvent.keyboard('[Enter]');
@@ -130,7 +130,7 @@ export const ErrorInteraction: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const inputEmailError = canvas.getByTestId('emailError-input');
-    await inputEmailError.focus();
+    await userEvent.click(inputEmailError);
     await userEvent.type(inputEmailError, 'Typed with error state');
     expect(inputEmailError).toHaveValue('Typed with error state');
   },
@@ -148,7 +148,7 @@ export const ReadonlyMode: Story = {
 export const ReadonlyModeInteraction: Story = {
   args: {
     label: 'Readonly mode interaction',
-    value: 'Try to type something',
+    value: 'Try type "test typing text" and change initial value',
     placeholder: 'Placeholder',
     readOnly: true,
   },
@@ -162,8 +162,8 @@ export const ReadonlyModeInteraction: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const readonlyInput = canvas.getByTestId('readOnly-input');
-    await userEvent.type(readonlyInput, 'Typed text');
-    expect(readonlyInput).toHaveValue('Try to type something');
+    await userEvent.type(readonlyInput, 'test typing text');
+    expect(readonlyInput).toHaveValue('Try type "test typing text" and change initial value');
   },
 };
 
@@ -193,7 +193,7 @@ export const DisabledInteraction: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const dissabledInput = canvas.getByTestId('dissabled-input');
-    await dissabledInput.focus();
+    await userEvent.click(dissabledInput);
     await userEvent.type(dissabledInput, 'Some text');
     expect(dissabledInput).toHaveValue('Disabled value');
   },
@@ -223,7 +223,7 @@ export const PrefixIconInteraction: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const prefixIconInput = canvas.getByTestId('prefixIcon-input');
-    await prefixIconInput.focus();
+    await userEvent.click(prefixIconInput);
     await userEvent.type(prefixIconInput, 'Some text');
     expect(prefixIconInput).toHaveValue('Some text');
   },

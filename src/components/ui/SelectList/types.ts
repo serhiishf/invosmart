@@ -2,13 +2,14 @@ import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { MatchStrategy } from 'utils/searchUtils';
 import { OptionType } from 'types/common';
 import { SelectListItemProps } from '../SelectListItem/types';
+import { HTMLAttributes } from 'react';
 
 type KeyEvent = {
   key: string;
   timeStamp: number;
 };
 
-interface BaseSelectListProps {
+interface BaseSelectListProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
   isLoading?: boolean;
   isHeightUnlimited?: boolean;
@@ -19,6 +20,7 @@ interface BaseSelectListProps {
   ariaLabel?: string;
   componentTheme?: ComponentTheme;
   selectedValue?: string;
+  isFocusable?: boolean;
   onOptionSelect: (selectedListItem: OptionType) => void;
 }
 

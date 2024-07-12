@@ -46,7 +46,7 @@ export const PlaceholderInteractions: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const inputBase = canvas.getByRole('textbox');
-    await inputBase.focus();
+    await userEvent.click(inputBase);
     await userEvent.type(inputBase, 'Typing');
     await expect(inputBase).toHaveValue('Typing');
   },

@@ -8,4 +8,9 @@ export const textExamples = {
 export const styleData: { [key: string]: CSSProperties } = {
   flexColumn: { display: 'flex', flexDirection: 'column', gap: '2rem' },
   flexRow: { display: 'flex', flexDirection: 'row', gap: '2rem' },
+  button: {
+    height: '40px',
+    padding: '10px',
+    border: '1px solid grey',
+  },
 };

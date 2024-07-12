@@ -31,6 +31,8 @@ const SelectList = ({
   componentTheme = ComponentTheme.Grey,
   onOptionSelect,
   selectedValue,
+  isFocusable = false,
+  ...rest
 }: SelectListProps) => {
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -161,6 +163,8 @@ const SelectList = ({
       onKeyDown={(event) => handleKeyDown(event.key, event)}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
+      tabIndex={isFocusable ? 0 : undefined}
+      {...rest}
     >
       {(options?.length === 0 || isLoading) && (
         <div className={styles.selectList__placeholder}>

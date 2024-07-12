@@ -1,18 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn, userEvent, within } from '@storybook/test';
+import { styleData } from 'constants/storybookData';
+import { useState } from 'react';
 import SelectList from './SelectList';
-
-const meta = {
-  title: 'components/UI/SelectList',
-  component: SelectList,
-  args: {
-    onOptionSelect: fn(),
-  },
-} satisfies Meta<typeof SelectList>;
-
-export default meta;
-
-type Story = StoryObj<typeof meta>;
 
 const estonianCitiesOptions = [
   { label: 'Tallinn', value: 'Tallinn' },
@@ -47,8 +37,62 @@ const estonianCitiesOptions = [
   { label: 'Kehra', value: 'Kehra' },
 ];
 
-export const Default: Story = {
+const meta = {
+  title: 'components/UI/SelectList',
+  component: SelectList,
   args: {
+    onOptionSelect: fn(),
     options: estonianCitiesOptions,
+  },
+} satisfies Meta<typeof SelectList>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
+
+export const NavigationInteractions: Story = {
+  args: {
+    isFocusable: true,
+  },
+
+  render: (args) => <SelectList {...args} data-testid="select-list" />,
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const selectList = canvas.getByTestId('select-list');
+    await userEvent.click(selectList);
+    await userEvent.keyboard('{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}');
+    await userEvent.keyboard('{ArrowUp}');
+  },
+};
+
+export const NavigationThroughProps: Story = {
+  render: function NavigationThroughPropsComponent(args) {
+    const [keyEvent, setKeyEvent] = useState({ key: '', timeStamp: 0 });
+
+    const handleKeyEvent = (key: string) => {
+      setKeyEvent({
+        key,
+        timeStamp: Date.now(),
+      });
+    };
+
+    return (
+      <div style={styleData.flexColumn}>
+        <button style={styleData.button} onClick={() => handleKeyEvent('ArrowUp')}>
+          ArrowUp
+        </button>
+        <button style={styleData.button} onClick={() => handleKeyEvent('ArrowDown')}>
+          ArrowDown
+        </button>
+        <h4>Props passed - keyEvent:</h4>
+        <div>
+          {keyEvent ? `key: ${keyEvent.key}, timeStamp: ${keyEvent.timeStamp}` : 'undefined'}
+        </div>
+        <SelectList {...args} keyEvent={keyEvent} />
+      </div>
+    );
   },
 };
