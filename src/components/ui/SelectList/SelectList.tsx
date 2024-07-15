@@ -36,14 +36,19 @@ const SelectList = ({
 }: SelectListProps) => {
   const [typedText, setTypedText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const [optionFocusedIndex, setOptionFocusedIndex] = useState(0);
-
-  const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
-  const lastHandledTimestamp = useRef<number | null>(null);
-
   const combinedOptions = useMemo(() => {
     return [...(topOptions ?? []), ...(options ?? [])];
   }, [options, topOptions]);
+
+  const indexSelectedValue = combinedOptions.findIndex((option) => option.value === selectedValue);
+
+  //TODO Check case when selectedValue - doesn`t exist in combinedOptions
+  const [optionFocusedIndex, setOptionFocusedIndex] = useState(
+    selectedValue ? indexSelectedValue : 0
+  );
+
+  const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
+  const lastHandledTimestamp = useRef<number | null>(null);
 
   const { t } = useTranslation();
   const loadingMessage = t('status.loading');

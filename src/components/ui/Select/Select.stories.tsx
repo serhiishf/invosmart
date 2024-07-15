@@ -75,7 +75,7 @@ export const Preselected: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
-    initialValue: { label: 'Kehra', value: 'Kehra' },
+    initialValue: { label: 'Saku', value: 'Saku' },
     topOptions: [
       { label: 'Otepää', value: 'Otepää' },
       { label: 'Tallinn', value: 'Tallinn' },

@@ -52,6 +52,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
+export const Preselected: Story = {
+  args: {
+    selectedValue: 'Kehra',
+  },
+};
+
 export const NavigationInteractions: Story = {
   args: {
     isFocusable: true,
