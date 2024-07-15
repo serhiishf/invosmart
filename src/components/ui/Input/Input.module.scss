@@ -1,0 +1,65 @@
+.input {
+  width: 100%;
+  padding: 8px;
+  height: fit-content;
+
+  &__inputBase {
+    height: $inputHeightMobile;
+    width: 100%;
+    @include for-size-up(desktop) {
+      height: $inputHeightDesktop;
+    }
+  }
+
+  &__prefixContainer {
+    padding-left: 16px;
+    padding-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__staticPrefixIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $inputStaticIconColor;
+  }
+
+  &__suffixContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 4px;
+    gap: 4px;
+  }
+
+  &__passwordButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__passwordButtonWrap {
+    color: $inputPasswordButtonColorDefault;
+    width: 42px;
+    transition: all $inputAnimation;
+    &:hover {
+      color: $inputPasswordButtonColorHover;
+      transition: all $inputAnimation;
+    }
+    &:active {
+      color: $inputPasswordButtonColorActive;
+    }
+    @include for-size-up(desktop) {
+      width: 34px;
+    }
+  }
+
+  &__passwordButtonIcon {
+    @include for-size-up(desktop) {
+      scale: 80%;
+    }
+  }
+}

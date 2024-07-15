@@ -1,0 +1,81 @@
+.selectListItem {
+  min-height: $selectListItemMinHeightMobile;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  user-select: none;
+  padding-right: $gridBase * 3;
+  color: $selectListItemColorGreyBlue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &--disabled {
+    opacity: $selectListItemDisabledOpacity;
+    pointer-events: none;
+  }
+
+  &--backgroundPalette-onGreyBackground {
+    @media (pointer: fine) {
+      &:not(.selectListItem--disabled):hover {
+        background-color: $selectListItemWhiteColor;
+      }
+
+      &:not(.selectListItem--disabled):active,
+      &:not(.selectListItem--disabled).selectListItem--isFocused {
+        background-color: $selectListItemLightColor;
+        transition: all $selectListItemAnimation;
+      }
+    }
+  }
+
+  &--backgroundPalette-onLightBackground {
+    @media (pointer: fine) {
+      &:not(.selectListItem--disabled):hover {
+        background-color: $selectListItemBackgroundColorHover;
+      }
+
+      &:not(.selectListItem--disabled):active,
+      &:not(.selectListItem--disabled).selectListItem--isFocused {
+        background-color: $selectListItemBackgroundColorActive;
+        transition: all $selectListItemAnimation;
+      }
+    }
+  }
+
+  &__checkmarkContainer {
+    min-width: $gridBase * 3;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__contentContainer {
+    display: flex;
+    gap: $gridBase * 1.5;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__label {
+    text-align: left;
+
+    &--truncate {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__iconContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  @include for-size-up(desktop) {
+    min-height: $selectListItemMinHeightDesktop;
+  }
+}

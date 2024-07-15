@@ -1,0 +1,182 @@
+@mixin buttonPalette($bgColor, $hoverBgColor, $activeBgColor, $color) {
+  background-color: $bgColor;
+  color: $color;
+
+  @media (pointer: fine) {
+    &:hover,
+    &:focus-visible {
+      background-color: $hoverBgColor;
+    }
+    &:active {
+      background-color: $activeBgColor;
+    }
+  }
+}
+
+.button {
+  display: flex;
+  gap: 16px;
+  height: auto;
+  padding-left: $buttonPaddingPrimary;
+  padding-right: $buttonPaddingPrimary;
+  border-radius: $buttonBorderRadiusPrimary;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+  font-family: $buttonFontFamily;
+  font-size: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  position: relative;
+  transition: background-color $buttonAnimation;
+
+  &--fullWidthMode {
+    width: 100%;
+  }
+
+  &__iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (pointer: fine) {
+    &:hover {
+      .button__tooltipWrap {
+        visibility: visible;
+        opacity: 1;
+        transition: all $buttonAnimation;
+      }
+    }
+  }
+
+  &__tooltipWrap {
+    position: absolute;
+    width: max-content;
+    visibility: hidden;
+    opacity: 0;
+    top: calc(100% + 8px);
+    right: 50%;
+    transform: translateX(50%);
+    transition: all $iconButtonAnimation;
+    z-index: $iconButtonZIndex;
+    &:hover {
+      display: none;
+    }
+  }
+
+  &--size {
+    &-xs {
+      min-height: 30px;
+      font-size: 14px;
+    }
+    &-s {
+      min-height: 40px;
+      font-size: 16px;
+    }
+    &-m {
+      min-height: 48px;
+      font-size: 16px;
+      padding-left: $buttonPaddingLarge;
+      padding-right: $buttonPaddingLarge;
+    }
+    &-l {
+      min-height: 56px;
+      font-size: 16px;
+      padding-left: $buttonPaddingLarge;
+      padding-right: $buttonPaddingLarge;
+    }
+    &-xl {
+      min-height: 60px;
+      font-size: 18px;
+      padding-left: $buttonPaddingLarge;
+      padding-right: $buttonPaddingLarge;
+      border-radius: $buttonBorderRadiusLarge;
+    }
+  }
+
+  &--fontWeight {
+    &-medium {
+      font-weight: 500;
+    }
+    &-semiBold {
+      font-weight: 600;
+    }
+  }
+
+  &--border {
+    border: solid 1px;
+  }
+
+  &--buttonPalette {
+    &-primary {
+      @include buttonPalette(
+        $buttonColorPrimary,
+        $buttonColorPrimaryHover,
+        $buttonColorPrimaryActive,
+        $buttonColorWhite
+      );
+    }
+
+    &-secondary {
+      @include buttonPalette(
+        $buttonColorSecondary,
+        $buttonColorSecondaryHover,
+        $buttonColorSecondaryActive,
+        $buttonColorPrimary
+      );
+    }
+
+    &-positive {
+      @include buttonPalette(
+        $buttonColorPositive,
+        $buttonColorPositiveHover,
+        $buttonColorPositiveActive,
+        $buttonColorWhite
+      );
+    }
+
+    &-transparentSecondary {
+      @include buttonPalette(
+        transparent,
+        $buttonColorTranspSecondaryHover,
+        $buttonColorTranspSecondaryActive,
+        $buttonColorPrimary
+      );
+    }
+
+    &-transparentPositive {
+      @include buttonPalette(
+        transparent,
+        $buttonColorTranspPositiveHover,
+        $buttonColorTranspPositiveActive,
+        $buttonColorPositive
+      );
+    }
+
+    &-transparentNegative {
+      @include buttonPalette(
+        transparent,
+        $buttonColorTranspNegativeHover,
+        $buttonColorTranspNegativeActive,
+        $buttonColorNegative
+      );
+    }
+
+    &-transparentNeutral {
+      @include buttonPalette(
+        transparent,
+        $buttonColorTranspNeutralHover,
+        $buttonColorTranspNeutralActive,
+        $buttonColorDark
+      );
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

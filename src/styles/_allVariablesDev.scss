@@ -1,0 +1,249 @@
+/* COLORS--------------------------------- */
+
+// Blue colors
+$_color-blue-100: #30a5e0;
+$_color-blue-200: #2197d1;
+$_color-blue-300: #0689c9;
+$_color-blue-400: #2684b3;
+$_color-blue-500: #c1e4f6;
+$_color-blue-600: #d6edf9;
+
+// Sky colors
+$_color-sky-100: #acdbf3;
+$_color-sky-200: #92cded;
+$_color-sky-300: #e1eef7;
+$_color-sky-400: #cee6f5;
+$_color-sky-500: #badef2;
+$_color-sky-600: #eaf6fc;
+$_color-sky-700: #e8f2f5;
+
+// Notification colors
+$_color-notice-error: #d32f2f;
+$_color-notice-warning: #ffb74e;
+$_color-notice-light: #f6e0e8;
+$_color-notice-neutral: #e1eef7;
+$_color-notice-success: #1ba261;
+$_color-notice-success-light: #72c49e;
+
+// Dark colors
+$_color-dark-900: #000000;
+$_color-dark-800: #252932;
+$_color-dark-700: #2e2f31;
+$_color-dark-600: #3b4548;
+$_color-dark-500: #4c5457;
+$_color-dark-400: #666666;
+
+// Light colors
+$_color-light-100: #ffffff;
+$_color-light-150: #fcfcfc;
+$_color-light-200: #f5f6fa;
+$_color-light-400: #efefef;
+$_color-light-500: #e9eaf0;
+$_color-light-600: #e9ecf0;
+$_color-light-700: #dee1e6;
+$_color-light-800: #d8dae3;
+$_color-light-900: #e0e4e6;
+
+//light blut colors:
+$_colorLightBlue100: #ebf2f8;
+
+// Green colors
+$_colorGreen400: #f5f8f9;
+$_colorGreen100: #eef8f3;
+$_colorGreen200: #b9e2ce;
+$_colorGreen500: #149457;
+$_colorGreen600: #0e844b;
+
+// Red Colors:
+$_colorRed100: #f6e7ee;
+$_colorRed200: #f6d8e2;
+
+// Grey colors
+$_color-grey-100: #b8c5cb;
+$_color-grey-200: #c2cacd;
+$_color-grey-300: #818e94;
+$_color-grey-400: #727779;
+$_color-grey-500: #979b9d;
+$_color-grey-600: #979797;
+
+// rgba
+
+$_disabledColor: rgba(0, 0, 0, 0.26);
+$_boxShadowColor: rgba(0, 0, 0, 0.15);
+
+$_disabledOpacity: 0.5;
+
+/*---Main colors----*/
+$color-background: $_color-light-200;
+$color-white: $_color-light-100;
+$color-error: $_color-notice-error;
+$color-success: $_color-notice-success;
+$color-text-dark: $_color-dark-700;
+$color-text-grey: $_color-grey-400;
+$color-text-grey-light: $_color-grey-500;
+$color-divider-grey: $_color-grey-200;
+
+/* FONTS--------------------------------- */
+
+$font-family-primary: 'Montserrat', sans-serif;
+$font-family-secondary: 'Roboto', sans-serif;
+
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.5rem; // 24px
+$font-size-2xl: 2rem; // 32px
+
+$line-height-none: 1;
+$line-height-short: 1.25;
+$line-height-base: 1.5;
+$line-height-tall: 2;
+
+/* Z-INDEX---------------------- */
+
+$z-index-below: -1;
+$z-index-default: 1;
+$z-index-dropdown: 1000;
+$z-index-overlay: 2000;
+$z-index-modal: 3000;
+$z-index-tooltip: 4000;
+$z-index-notification: 5000;
+
+// Default settings
+$border-radius-base: 6px;
+$gridBase: 8px;
+$fieldMinHeightDesktop: 40px;
+$fieldMinHeightMobile: 48px;
+
+/* ANIMATION--------------------- */
+$animationDefault: 0.3s ease;
+$animationShort: 0.15s ease;
+
+/* COMPONENTS---------------------------- */
+
+/*---Field Wrapper component---*/
+$fieldWrapperFont: $font-family-primary;
+$fieldWrapperFontSize: $font-size-xs;
+$fieldWrapperLabelColor: $_color-dark-400;
+$fieldWrapperLabelBackgroundColor: $color-white;
+$fieldWrapperLabelColorError: $_color-notice-error;
+$fieldWrapperLabelColorFocus: $_color-blue-100;
+$fieldWrapperLabelColorDissabled: $_color-grey-400;
+$fiedlWrapperLabelBackgroundColorReadonly: $_color-light-400;
+$fieldWrapperBorderColor: $_color-grey-200;
+$fieldWrapperBorderColorError: $_color-notice-error;
+$fieldWrapperBorderColorFocus: $_color-blue-100;
+$fieldWrapperBorderColorDissabled: $_color-light-900;
+$fieldWrapperBorderColorReadonly: $_color-light-900;
+$fieldWrapperBorderColorHover: $_color-grey-500;
+$fieldWrapperBorderRadius: $border-radius-base;
+$fieldWrapperBackgroundColor: $color-white;
+$fieldWrapperBackgroundColorDisabled: $_color-light-400;
+$fieldWrapperBackgroundColorReadonly: $_color-light-400;
+$fieldWrapperZIndexDefault: $z-index-default;
+$fieldWrapperZIndexBellow: $z-index-below;
+$fieldWrapperAnimation: $animationDefault;
+$fieldWrapperHelperTextColor: $_color-dark-400;
+$fieldWrapperHelperTextErrorColor: $_color-notice-error;
+
+/*---Input component---*/
+$inputAttentionIconColor: $_color-notice-error;
+$inputTooltipZIndex: $z-index-tooltip;
+$inputStaticIconColor: $_color-grey-300;
+$inputAnimation: $animationDefault;
+$inputPasswordButtonColorDefault: $_color-grey-400;
+$inputPasswordButtonColorHover: $_color-dark-500;
+$inputPasswordButtonColorActive: $_color-dark-700;
+$inputHeightDesktop: $fieldMinHeightDesktop;
+$inputHeightMobile: $fieldMinHeightMobile;
+
+/*----Icon-Button---*/
+$iconButtonBackgroundColorHover: $_color-light-500;
+$iconButtonBackgroundColorActive: $_color-light-800;
+$iconButtonAnimation: $animationDefault;
+$iconButtonZIndex: $z-index-tooltip;
+$iconButtonSquareBorderRadius: $border-radius-base;
+$iconButtonDisabledColor: $_disabledColor;
+
+/*----Tooltip */
+$tooltipBackground: $_color-dark-600;
+$tooltipTextColor: $color-white;
+$tooltipFontSize: 11px;
+$tooltipFontWeight: 600;
+$tooltipFont: $font-family-primary;
+
+/* ---InputBase */
+$inputBaseFontFamily: $font-family-primary;
+$inputBaseFontSize: $font-size-base;
+$inputBaseTextColor: $color-text-dark;
+$inputBasePlaceholderColor: $_color-grey-500;
+$inputBaseDisabledColor: $_color-grey-500;
+
+/* ---Button */
+$buttonPaddingPrimary: $gridBase * 2;
+$buttonPaddingLarge: $gridBase * 4;
+$buttonBorderRadiusPrimary: $border-radius-base;
+$buttonBorderRadiusLarge: 32px;
+$buttonFontFamily: $font-family-primary;
+$buttonColorPrimary: $_color-blue-100;
+$buttonColorPrimaryHover: $_color-blue-200;
+$buttonColorPrimaryActive: $_color-blue-300;
+$buttonColorPrimaryDissabled: $_color-sky-200;
+$buttonColorPositive: $_color-notice-success;
+$buttonColorPositiveHover: $_colorGreen500;
+$buttonColorPositiveActive: $_colorGreen600;
+$buttonColorNegative: $_color-notice-error;
+$buttonColorNeutral: $_color-grey-200;
+$buttonColorWhite: $color-white;
+$buttonColorDark: $_color-dark-700;
+$buttonColorSecondary: $_color-sky-300;
+$buttonColorSecondaryHover: $_color-sky-400;
+$buttonColorSecondaryActive: $_color-sky-500;
+$buttonColorSecondaryDissabled: $_colorLightBlue100;
+$buttonColorTranspSecondaryHover: $_color-sky-300;
+$buttonColorTranspSecondaryActive: $_color-sky-400;
+$buttonColorTranspPositiveHover: $_colorGreen100;
+$buttonColorTranspPositiveActive: $_colorGreen200;
+$buttonColorTranspNegativeHover: $_colorRed100;
+$buttonColorTranspNegativeActive: $_colorRed200;
+$buttonColorTranspNeutralHover: $_color-light-500;
+$buttonColorTranspNeutralActive: $_color-light-800;
+$buttonAnimation: $animationDefault;
+
+/* ---Link */
+$linkColor: $_color-blue-100;
+
+/* --- Select */
+$selectMinHeightDesktop: $fieldMinHeightDesktop;
+$selectMinHeightMobile: $fieldMinHeightMobile;
+$selectControlBorderRadius: $border-radius-base;
+$selectControlWhiteColor: $color-white;
+$selectIconColor: $_color-grey-400;
+$selectIconColorHover: $_color-dark-500;
+$selectDividerColor: $color-divider-grey;
+$selectPlaceholderColor: $_color-grey-500;
+$selectTooltipZIndex: $z-index-tooltip;
+$selectOptionsZIndex: $z-index-dropdown;
+$selectControlMinHeightDesktop: $fieldMinHeightDesktop;
+$selectControlMinHeightMobile: $fieldMinHeightMobile;
+
+/* ---List */
+$selectListBoxShadowColor: $_boxShadowColor;
+$selectListBorderRadius: $border-radius-base;
+$selectListBackgroundColorWhite: $color-white;
+$selectListBackgroundColorGrey: $color-background;
+$selectListPlaceholderColor: $_color-grey-400;
+$selectListDividerColor: $color-divider-grey;
+
+/* ---SelectListItem */
+$selectListItemWhiteColor: $color-white;
+$selectListItemLightColor: $_color-light-150;
+$selectListItemBackgroundColorActive: $_color-blue-500;
+$selectListItemBackgroundColorHover: $_color-blue-600;
+$selectListItemColorGreyBlue: $_color-dark-800;
+$selectListItemMinHeightDesktop: $fieldMinHeightDesktop;
+$selectListItemMinHeightMobile: $fieldMinHeightMobile;
+$selectListItemMainPaddingRight: $gridBase * 3;
+$selectListItemAnimation: $animationShort;
+$selectListItemDisabledOpacity: $_disabledOpacity;

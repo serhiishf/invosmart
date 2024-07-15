@@ -1,0 +1,11 @@
+.link {
+  color: $linkColor;
+  width: fit-content;
+
+  &:visited {
+    color: $linkColor;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}

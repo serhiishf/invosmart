@@ -1,0 +1,64 @@
+$_inputBasePaddingPrimary: 24px;
+$_inputBasePaddingCompact: 16px;
+$_inputBasePaddingMinimal: 8px;
+
+.inputBase {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  box-shadow: none;
+  font-family: $inputBaseFontFamily;
+  font-size: $inputBaseFontSize;
+  font-weight: 500;
+  color: $inputBaseTextColor;
+  background-color: transparent;
+  border: none;
+  &:disabled {
+    color: $inputBaseDisabledColor;
+  }
+
+  &--readOnlyMode {
+    caret-color: transparent;
+    cursor: default;
+  }
+
+  &::placeholder {
+    color: $inputBasePlaceholderColor;
+  }
+
+  &:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  &--paddingLeft {
+    &-none {
+      padding-left: 0;
+    }
+    &-default {
+      padding-left: $_inputBasePaddingPrimary;
+    }
+    &-moderate {
+      padding-left: $_inputBasePaddingCompact;
+    }
+    &-minimal {
+      padding-left: $_inputBasePaddingMinimal;
+    }
+  }
+
+  &--paddingRight {
+    &-none {
+      padding-right: 0;
+    }
+    &-default {
+      padding-right: $_inputBasePaddingPrimary;
+    }
+    &-moderate {
+      padding-right: $_inputBasePaddingCompact;
+    }
+    &-minimal {
+      padding-right: $_inputBasePaddingMinimal;
+    }
+  }
+}

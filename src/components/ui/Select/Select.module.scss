@@ -1,0 +1,95 @@
+.select {
+  width: 100%;
+  min-height: $selectControlMinHeightMobile;
+  position: relative;
+
+  @include for-size-up(desktop) {
+    min-height: $selectControlMinHeightDesktop;
+  }
+
+  &__controlContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+  }
+
+  &__control {
+    min-height: $selectMinHeightMobile;
+    border-radius: $selectControlBorderRadius;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+
+    &--isFocused {
+      cursor: default;
+    }
+
+    @include for-size-up(desktop) {
+      min-height: $selectMinHeightDesktop;
+    }
+  }
+
+  &__options {
+    position: absolute;
+    width: 100%;
+    max-width: 100%;
+    top: calc(100% + 4px);
+    z-index: $selectOptionsZIndex;
+  }
+
+  &__valueContainer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__inputContainer {
+    width: 100%;
+    input[readonly] {
+      cursor: pointer;
+    }
+  }
+
+  &__suffixContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__buttonContainer {
+    padding: 0 4px;
+  }
+
+  &__buttonWrap {
+    width: 42px;
+    color: $selectIconColor;
+    @include for-size-up(desktop) {
+      width: 34px;
+    }
+  }
+
+  &__iconDirectionArrow {
+    transition: 0.3s ease;
+    &--isExpanded {
+      transform: rotate(180deg);
+      transition: 0.3s ease;
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 80%;
+    background-color: $selectDividerColor;
+  }
+
+  &__iconContainer {
+    width: 42px;
+    color: $selectIconColor;
+    &:hover {
+      color: $selectIconColorHover;
+    }
+  }
+}
