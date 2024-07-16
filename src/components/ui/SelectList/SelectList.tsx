@@ -30,7 +30,7 @@ const SelectList = ({
   ariaLabel,
   componentTheme = ComponentTheme.Grey,
   onOptionSelect,
-  selectedValue,
+  selectedOption,
   isFocusable = false,
   ...rest
 }: SelectListProps) => {
@@ -40,11 +40,12 @@ const SelectList = ({
     return [...(topOptions ?? []), ...(options ?? [])];
   }, [options, topOptions]);
 
-  const indexSelectedValue = combinedOptions.findIndex((option) => option.value === selectedValue);
+  const indexSelectedValue = combinedOptions.findIndex(
+    (option) => option.value === selectedOption?.value
+  );
 
-  //TODO Check case when selectedValue - doesn`t exist in combinedOptions
   const [optionFocusedIndex, setOptionFocusedIndex] = useState(
-    selectedValue ? indexSelectedValue : 0
+    indexSelectedValue !== -1 ? indexSelectedValue : 0
   );
 
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
@@ -96,10 +97,6 @@ const SelectList = ({
     return () => clearTimeout(timer);
   }, [typedText, combinedOptions, typedMatchStrategy]);
 
-  useEffect(() => {
-    optionRefs.current = combinedOptions.map((_, i) => optionRefs.current[i] || createRef());
-  }, [combinedOptions]);
-
   const handleTypedText = useCallback(
     (key: string) => {
       setTypedText(typedText + key);
@@ -138,14 +135,29 @@ const SelectList = ({
     lastHandledTimestamp.current = keyEvent.timeStamp;
   }, [keyEvent, isFocused, handleKeyDown]);
 
+  const [isInitialized, setIsInitialized] = useState(false);
+
   useEffect(() => {
-    if (optionFocusedIndex < 0) return;
-    optionRefs.current[optionFocusedIndex].current?.scrollIntoView({
-      behavior: 'auto',
-      block: 'nearest',
-      inline: 'start',
-    });
-  }, [optionFocusedIndex]);
+    optionRefs.current = combinedOptions.map((_, i) => optionRefs.current[i] || createRef());
+    setIsInitialized(true);
+  }, [combinedOptions]);
+
+  useEffect(() => {
+    if (!isInitialized || optionFocusedIndex < 0) return;
+
+    const scrollToOption = () => {
+      const targetRef = optionRefs.current[optionFocusedIndex]?.current;
+      if (targetRef) {
+        targetRef.scrollIntoView({
+          behavior: 'auto',
+          block: 'nearest',
+          inline: 'start',
+        });
+      }
+    };
+
+    requestAnimationFrame(scrollToOption);
+  }, [isInitialized, optionFocusedIndex]);
 
   const handlePointerUp = useCallback(
     (event: React.MouseEvent, option: OptionType) => {
@@ -192,7 +204,7 @@ const SelectList = ({
             const keyPrefix = isTopOption ? 'top-' : 'general-';
             const uniqueKey = `${keyPrefix}${option.value}`;
             const isBoundary = topOptions && index === topOptions.length - 1;
-            const isOptionSelected = option.value === selectedValue;
+            const isOptionSelected = option.value === selectedOption?.value;
             return (
               <React.Fragment key={uniqueKey}>
                 <SelectListItem

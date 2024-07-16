@@ -237,7 +237,7 @@ const Select = ({
             topOptions={currentTopOptions}
             keyEvent={keyEvent}
             onOptionSelect={handleOptionSelect}
-            selectedValue={selectedOption?.value}
+            selectedOption={selectedOption}
           >
             {children}
           </SelectList>
