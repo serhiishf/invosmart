@@ -31,11 +31,9 @@ const SelectList = ({
   componentTheme = ComponentTheme.Grey,
   onOptionSelect,
   selectedOption,
-  isFocusable = false,
   ...rest
 }: SelectListProps) => {
   const [typedText, setTypedText] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
   const combinedOptions = useMemo(() => {
     return [...(topOptions ?? []), ...(options ?? [])];
   }, [options, topOptions]);
@@ -130,10 +128,10 @@ const SelectList = ({
   );
 
   useEffect(() => {
-    if (keyEvent?.timeStamp === lastHandledTimestamp.current || isFocused || !keyEvent) return;
+    if (keyEvent?.timeStamp === lastHandledTimestamp.current || !keyEvent) return;
     handleKeyDown(keyEvent.key);
     lastHandledTimestamp.current = keyEvent.timeStamp;
-  }, [keyEvent, isFocused, handleKeyDown]);
+  }, [keyEvent, handleKeyDown]);
 
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -177,10 +175,6 @@ const SelectList = ({
         isHeightUnlimited && styles['selectList--isHeightUnlimited'],
         styles[`selectList--backgroundColor-${componentTheme}`]
       )}
-      onKeyDown={(event) => handleKeyDown(event.key, event)}
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
-      tabIndex={isFocusable ? 0 : undefined}
       {...rest}
     >
       {(options?.length === 0 || isLoading) && (
@@ -194,6 +188,7 @@ const SelectList = ({
           className={styles.selectList__ul}
           role={'listbox'}
           aria-label={ariaLabel}
+          tabIndex={-1}
           onMouseDown={(event) => {
             // Prevent focus loss on scroll area click, maintaining keyboard navigation.
             event.preventDefault();
@@ -208,7 +203,6 @@ const SelectList = ({
             return (
               <React.Fragment key={uniqueKey}>
                 <SelectListItem
-                  tabIndex={index === optionFocusedIndex ? 0 : -1}
                   label={option.label}
                   value={option.value}
                   data-value={option.value}

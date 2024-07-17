@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn, userEvent, within } from '@storybook/test';
+import { fn, userEvent } from '@storybook/test';
 import { styleData, optionExamples } from 'constants/storybookData';
 import { useState } from 'react';
 import SelectList from './SelectList';
@@ -38,44 +38,20 @@ export const PreselectedWithTopOptions: Story = {
   },
 };
 
-export const NavigationInteractions: Story = {
+export const WithChildren: Story = {
   args: {
-    isFocusable: true,
-    selectedOption: oneOptionFromShortList,
-    topOptions: shortListOptions,
-  },
-
-  render: (args) => <SelectList {...args} data-testid="select-list" />,
-
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const selectList = canvas.getByTestId('select-list');
-    await userEvent.click(selectList);
-    await userEvent.keyboard('{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}');
-    await userEvent.keyboard('{ArrowUp}');
-  },
-};
-
-export const NavigationInteractionsWithChild: Story = {
-  args: {
-    isFocusable: true,
     selectedOption: oneOptionFromShortList,
     topOptions: shortListOptions,
     children: <button style={styleData.button}>Some children - button</button>,
   },
-
-  render: (args) => <SelectList {...args} data-testid="select-list" />,
-
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const selectList = canvas.getByTestId('select-list');
-    await userEvent.click(selectList);
-    await userEvent.keyboard('{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}');
-    await userEvent.keyboard('{ArrowUp}');
-  },
 };
 
 export const NavigationThroughProps: Story = {
+  args: {
+    selectedOption: oneOptionFromShortList,
+    topOptions: shortListOptions,
+    children: <button style={styleData.button}>Some children - button</button>,
+  },
   render: function NavigationThroughPropsComponent(args) {
     const [keyEvent, setKeyEvent] = useState({ key: '', timeStamp: 0 });
 
@@ -94,6 +70,43 @@ export const NavigationThroughProps: Story = {
         <button style={styleData.button} onClick={() => handleKeyEvent('ArrowDown')}>
           ArrowDown
         </button>
+        <h4>Props passed - keyEvent:</h4>
+        <div>
+          {keyEvent ? `key: ${keyEvent.key}, timeStamp: ${keyEvent.timeStamp}` : 'undefined'}
+        </div>
+        <SelectList {...args} keyEvent={keyEvent} />
+      </div>
+    );
+  },
+};
+
+export const NavigationThroughPropsInput: Story = {
+  args: {
+    selectedOption: oneOptionFromShortList,
+    topOptions: shortListOptions,
+    children: <button style={styleData.button}>Some children - button</button>,
+  },
+  render: function NavigationThroughPropsComponent(args) {
+    const [keyEvent, setKeyEvent] = useState<{ key: string; timeStamp: number }>({
+      key: '',
+      timeStamp: 0,
+    });
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      setKeyEvent({
+        key: event.key,
+        timeStamp: event.timeStamp,
+      });
+    };
+
+    return (
+      <div style={styleData.flexColumn}>
+        <input
+          type="text"
+          placeholder="Type here or press keys..."
+          onKeyDown={handleKeyDown}
+          style={{ marginBottom: '10px', padding: '5px', border: '1px solid #ccc' }}
+        />
         <h4>Props passed - keyEvent:</h4>
         <div>
           {keyEvent ? `key: ${keyEvent.key}, timeStamp: ${keyEvent.timeStamp}` : 'undefined'}

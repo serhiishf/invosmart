@@ -20,7 +20,6 @@ interface BaseSelectListProps extends HTMLAttributes<HTMLDivElement> {
   ariaLabel?: string;
   componentTheme?: ComponentTheme;
   selectedOption?: OptionType;
-  isFocusable?: boolean;
   onOptionSelect: (selectedListItem: OptionType) => void;
 }
 
