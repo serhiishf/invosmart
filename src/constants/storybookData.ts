@@ -40,8 +40,8 @@ export const optionExamples = {
       { label: 'Kehra', value: 'Kehra' },
     ],
     citiesShortList: [
-      { label: 'Tallinn', value: 'Tallinn' },
       { label: 'Elva', value: 'Elva' },
+      { label: 'Tallinn', value: 'Tallinn' },
       { label: 'Kehra', value: 'Kehra' },
     ],
     oneCityFromLongList: { label: 'Kuressaare', value: 'Kuressaare' },

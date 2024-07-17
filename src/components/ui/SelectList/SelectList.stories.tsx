@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn, userEvent } from '@storybook/test';
+import { fn, userEvent, within, waitFor } from '@storybook/test';
 import { styleData, optionExamples } from 'constants/storybookData';
 import { useState } from 'react';
 import SelectList from './SelectList';
@@ -31,13 +31,6 @@ export const Preselected: Story = {
   },
 };
 
-export const PreselectedWithTopOptions: Story = {
-  args: {
-    selectedOption: oneOptionFromShortList,
-    topOptions: shortListOptions,
-  },
-};
-
 export const WithChildren: Story = {
   args: {
     selectedOption: oneOptionFromShortList,
@@ -47,40 +40,6 @@ export const WithChildren: Story = {
 };
 
 export const NavigationThroughProps: Story = {
-  args: {
-    selectedOption: oneOptionFromShortList,
-    topOptions: shortListOptions,
-    children: <button style={styleData.button}>Some children - button</button>,
-  },
-  render: function NavigationThroughPropsComponent(args) {
-    const [keyEvent, setKeyEvent] = useState({ key: '', timeStamp: 0 });
-
-    const handleKeyEvent = (key: string) => {
-      setKeyEvent({
-        key,
-        timeStamp: Date.now(),
-      });
-    };
-
-    return (
-      <div style={styleData.flexColumn}>
-        <button style={styleData.button} onClick={() => handleKeyEvent('ArrowUp')}>
-          ArrowUp
-        </button>
-        <button style={styleData.button} onClick={() => handleKeyEvent('ArrowDown')}>
-          ArrowDown
-        </button>
-        <h4>Props passed - keyEvent:</h4>
-        <div>
-          {keyEvent ? `key: ${keyEvent.key}, timeStamp: ${keyEvent.timeStamp}` : 'undefined'}
-        </div>
-        <SelectList {...args} keyEvent={keyEvent} />
-      </div>
-    );
-  },
-};
-
-export const NavigationThroughPropsInput: Story = {
   args: {
     selectedOption: oneOptionFromShortList,
     topOptions: shortListOptions,
@@ -114,5 +73,54 @@ export const NavigationThroughPropsInput: Story = {
         <SelectList {...args} keyEvent={keyEvent} />
       </div>
     );
+  },
+};
+
+export const NavigationThroughPropsInteractions: Story = {
+  args: {
+    selectedOption: oneOptionFromShortList,
+    topOptions: shortListOptions,
+    children: <button style={styleData.button}>Some children - button</button>,
+  },
+  render: function NavigationThroughPropsComponent(args) {
+    const [keyEvent, setKeyEvent] = useState<{ key: string; timeStamp: number }>({
+      key: '',
+      timeStamp: 0,
+    });
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      setKeyEvent({
+        key: event.key,
+        timeStamp: event.timeStamp,
+      });
+    };
+
+    return (
+      <div style={styleData.flexColumn}>
+        <input
+          type="text"
+          placeholder="Type here or press keys..."
+          onKeyDown={handleKeyDown}
+          style={{ marginBottom: '10px', padding: '5px', border: '1px solid #ccc' }}
+          data-testid="input-props-keyEvent"
+        />
+        <h4>Props passed - keyEvent:</h4>
+        <div>
+          {keyEvent ? `key: ${keyEvent.key}, timeStamp: ${keyEvent.timeStamp}` : 'undefined'}
+        </div>
+        <SelectList {...args} keyEvent={keyEvent} />
+      </div>
+    );
+  },
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const inputPropsKeyEvent = canvas.getByTestId('input-props-keyEvent');
+    await userEvent.click(inputPropsKeyEvent);
+    await userEvent.type(inputPropsKeyEvent, 'kuress');
+    await userEvent.keyboard('{ArrowDown}');
+    await new Promise((resolve) => setTimeout(resolve, 1100));
+    await userEvent.type(inputPropsKeyEvent, 'elv');
+    await userEvent.keyboard('{ArrowUp}');
   },
 };
