@@ -95,8 +95,7 @@ const Select = ({
     const currentInputValue = e.target.value;
     setInputValue(currentInputValue);
     setIsExpanded(true);
-    console.log(currentInputValue, selectedOption?.label);
-    if (/* currentInputValue !== selectedOption?.label && */ options) {
+    if (options) {
       const filteredOptions = filterOptions(currentInputValue, options, MatchStrategy.AnyMatch);
       console.log('filter options');
       if (topOptions) {

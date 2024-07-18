@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import { styleData, optionExamples } from 'constants/storybookData';
 import Select from './Select';
 
 const meta = {
@@ -17,44 +18,23 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const estonianCitiesOptions = [
-  { label: 'Tallinn', value: 'Tallinn' },
-  { label: 'Tartu', value: 'Tartu' },
-  { label: 'Narva', value: 'Narva' },
-  { label: 'Pärnu', value: 'Pärnu' },
-  { label: 'Kohtla-Järve', value: 'Kohtla-Järve' },
-  { label: 'Viljandi', value: 'Viljandi' },
-  { label: 'Rakvere', value: 'Rakvere' },
-  { label: 'Sillamäe', value: 'Sillamäe' },
-  { label: 'Maardu', value: 'Maardu' },
-  { label: 'Kuressaare', value: 'Kuressaare' },
-  { label: 'Võru', value: 'Võru' },
-  { label: 'Valga', value: 'Valga' },
-  { label: 'Jõhvi', value: 'Jõhvi' },
-  { label: 'Haapsalu', value: 'Haapsalu' },
-  { label: 'Paide', value: 'Paide' },
-  { label: 'Keila', value: 'Keila' },
-  { label: 'Kiviõli', value: 'Kiviõli' },
-  { label: 'Türi', value: 'Türi' },
-  { label: 'Elva', value: 'Elva' },
-  { label: 'Saue', value: 'Saue' },
-  { label: 'Põlva', value: 'Põlva' },
-  { label: 'Tõrva', value: 'Tõrva' },
-  { label: 'Paldiski', value: 'Paldiski' },
-  { label: 'Laagri', value: 'Laagri' },
-  { label: 'Rapla', value: 'Rapla' },
-  { label: 'Jõgeva', value: 'Jõgeva' },
-  { label: 'Saku', value: 'Saku' },
-  { label: 'Mustvee', value: 'Mustvee' },
-  { label: 'Otepää', value: 'Otepää' },
-  { label: 'Kehra', value: 'Kehra' },
-];
+const longListOptions = optionExamples.withoutIcon.citiesLongList;
+const shortListOptions = optionExamples.withoutIcon.citiesShortList;
+const oneOptionFromLongList = optionExamples.withoutIcon.oneCityFromLongList;
+const oneOptionFromShortList = optionExamples.withoutIcon.oneCityFromShortList;
 
 export const Default: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
-    options: estonianCitiesOptions,
+    options: longListOptions,
+  },
+};
+
+export const WithoutOptions: Story = {
+  args: {
+    placeholder: 'Select city',
+    label: 'City',
   },
 };
 
@@ -67,7 +47,7 @@ export const WithPriorityOptions: Story = {
       { label: 'Tallinn', value: 'Tallinn' },
       { label: 'Kehra', value: 'Kehra' },
     ],
-    options: estonianCitiesOptions,
+    options: longListOptions,
   },
 };
 
@@ -75,12 +55,8 @@ export const Preselected: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
-    initialValue: { label: 'Saku', value: 'Saku' },
-    topOptions: [
-      { label: 'Otepää', value: 'Otepää' },
-      { label: 'Tallinn', value: 'Tallinn' },
-      { label: 'Kehra', value: 'Kehra' },
-    ],
-    options: estonianCitiesOptions,
+    initialValue: oneOptionFromLongList,
+    topOptions: shortListOptions,
+    options: longListOptions,
   },
 };

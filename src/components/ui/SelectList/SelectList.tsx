@@ -76,6 +76,7 @@ const SelectList = ({
 
   const handleEnterKeyPress = useCallback(
     (key: string) => {
+      if (combinedOptions.length === 0) return;
       if (!optionFocusedIndex && optionFocusedIndex !== 0) return;
       if (key !== KeyboardKey.Enter) return;
       if (optionFocusedIndex === -1) return;
