@@ -158,16 +158,18 @@ const SelectList = ({
     requestAnimationFrame(scrollToOption);
   }, [isInitialized, optionFocusedIndex]);
 
-  const handlePointerUp = useCallback(
-    (event: React.MouseEvent, option: OptionType) => {
-      const dataIndex = event.currentTarget.getAttribute('data-index');
-      if (!dataIndex) return;
-      const index = parseInt(dataIndex, 10);
-      setOptionFocusedIndex(index);
-      onOptionSelect(option);
-    },
-    [onOptionSelect]
-  );
+  const handleOnClick = (event: React.MouseEvent<HTMLUListElement>) => {
+    const target = event.target as HTMLElement;
+    const listItem = target.closest('li[data-index]');
+    if (listItem) {
+      const dataIndex = listItem.getAttribute('data-index');
+      if (dataIndex !== null) {
+        const index = parseInt(dataIndex, 10);
+        setOptionFocusedIndex(index);
+        onOptionSelect(combinedOptions[index]);
+      }
+    }
+  };
 
   return (
     <div
@@ -190,6 +192,7 @@ const SelectList = ({
           role={'listbox'}
           aria-label={ariaLabel}
           tabIndex={-1}
+          onClick={handleOnClick}
           onMouseDown={(event) => {
             // Prevent focus loss on scroll area click, maintaining keyboard navigation.
             event.preventDefault();
@@ -213,7 +216,7 @@ const SelectList = ({
                   data-index={index}
                   ref={optionRefs.current[index]}
                   isFocused={index === optionFocusedIndex}
-                  onClick={(event) => handlePointerUp(event, option)}
+/*                   onClick={(event) => handleOnClick(event, option)} */
                   isSelected={isSelectedMarked ? isOptionSelected : false}
                   aria-selected={isOptionSelected}
                   backgroundPalette={
