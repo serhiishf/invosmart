@@ -20,6 +20,7 @@ const Select = ({
   topOptions,
   children,
   initialValue,
+  isLoading,
 }: SelectProps) => {
   const [inputValue, setInputValue] = useState(initialValue?.label);
   const [isFocused, setIsFocused] = useState(false);
@@ -33,6 +34,7 @@ const Select = ({
   const { t } = useTranslation();
   const tooltipClearButton = t('actions.clear');
   const toggleSelectTooltip = isExpanded ? t('actions.collapse') : t('actions.expand');
+  const loadingText = t('status.loading');
 
   const selectRef = useRef<HTMLDivElement>(null);
   const suffixContainerRef = useRef<HTMLDivElement>(null);
@@ -237,6 +239,7 @@ const Select = ({
             keyEvent={keyEvent}
             onOptionSelect={handleOptionSelect}
             selectedOption={selectedOption}
+            isLoading={isLoading}
           >
             {children}
           </SelectList>

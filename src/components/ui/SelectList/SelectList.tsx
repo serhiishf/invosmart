@@ -13,7 +13,6 @@ import { findMatchByIncreasingDepth, MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
 import { KeyboardKey } from 'constants/keyboard';
 import { SelectListProps } from './types';
-import { OptionType } from 'types/common';
 import styles from './SelectList.module.scss';
 import { SelectListItem } from '../';
 
@@ -216,7 +215,7 @@ const SelectList = ({
                   data-index={index}
                   ref={optionRefs.current[index]}
                   isFocused={index === optionFocusedIndex}
-/*                   onClick={(event) => handleOnClick(event, option)} */
+                  /*                   onClick={(event) => handleOnClick(event, option)} */
                   isSelected={isSelectedMarked ? isOptionSelected : false}
                   aria-selected={isOptionSelected}
                   backgroundPalette={

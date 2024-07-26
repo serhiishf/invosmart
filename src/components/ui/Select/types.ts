@@ -7,6 +7,7 @@ type SelectOption = {
 interface BaseSelectProps {
   isSearchable?: boolean;
   isClearable?: boolean;
+  isLoading?: boolean;
   hasExpandCollapseButton?: boolean;
   value?: SelectOption;
   onChange?: (value: SelectOption | undefined) => void;
