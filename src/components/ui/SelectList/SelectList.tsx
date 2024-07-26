@@ -18,7 +18,6 @@ import { SelectListItem } from '../';
 
 const SelectList = ({
   children,
-  isLoading = false,
   options,
   topOptions,
   textOverflow = TextOverflow.Wrap,
@@ -30,6 +29,7 @@ const SelectList = ({
   componentTheme = ComponentTheme.Grey,
   onOptionSelect,
   selectedOption,
+  noOptionsMessage,
   ...rest
 }: SelectListProps) => {
   const [typedText, setTypedText] = useState('');
@@ -45,12 +45,14 @@ const SelectList = ({
     indexSelectedValue !== -1 ? indexSelectedValue : 0
   );
 
+  const noOptionsAvailable = !options || options.length === 0;
+
   const optionRefs = useRef<Array<RefObject<HTMLLIElement>>>([]);
   const lastHandledTimestamp = useRef<number | null>(null);
 
   const { t } = useTranslation();
-  const loadingMessage = t('status.loading');
-  const noOptionsMessage = t('status.no_options');
+  const noOptionsMessageDefault = t('status.no_options');
+  const placeholderMessage = noOptionsMessage || noOptionsMessageDefault;
 
   const handleArrowKeyPress = useCallback(
     (key: string) => {
@@ -179,13 +181,10 @@ const SelectList = ({
       )}
       {...rest}
     >
-      {(options?.length === 0 || isLoading) && (
-        <div className={styles.selectList__placeholder}>
-          {isLoading && loadingMessage}
-          {options?.length === 0 && !isLoading && noOptionsMessage}
-        </div>
+      {noOptionsAvailable && (
+        <div className={styles.selectList__placeholder}>{placeholderMessage}</div>
       )}
-      {options && !isLoading && (
+      {options && (
         <ul
           className={styles.selectList__ul}
           role={'listbox'}

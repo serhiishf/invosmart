@@ -11,7 +11,7 @@ type KeyEvent = {
 
 interface BaseSelectListProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
-  isLoading?: boolean;
+  noOptionsMessage?: string;
   isHeightUnlimited?: boolean;
   textOverflow?: TextOverflow;
   keyEvent?: KeyEvent;

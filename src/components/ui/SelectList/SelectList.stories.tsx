@@ -39,6 +39,19 @@ export const WithChildren: Story = {
   },
 };
 
+export const NoOptions: Story = {
+  args: {
+    options: undefined,
+  },
+};
+
+export const NoOptionsCustomMessage: Story = {
+  args: {
+    options: undefined,
+    noOptionsMessage: 'No options message through props',
+  },
+};
+
 export const NavigationThroughProps: Story = {
   args: {
     selectedOption: oneOptionFromShortList,

@@ -239,7 +239,7 @@ const Select = ({
             keyEvent={keyEvent}
             onOptionSelect={handleOptionSelect}
             selectedOption={selectedOption}
-            isLoading={isLoading}
+            noOptionsMessage={isLoading ? loadingText : undefined}
           >
             {children}
           </SelectList>
