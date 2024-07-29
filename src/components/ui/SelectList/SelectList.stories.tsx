@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn, userEvent, within } from '@storybook/test';
 import ReactCountryFlag from 'react-country-flag';
-import { allCountries, shortListCountries } from 'constants/countries';
+import { countries } from 'constants/countries';
 import { styleData, optionExamples } from 'constants/storybookData';
 import { useState } from 'react';
 import SelectList from './SelectList';
@@ -10,6 +10,61 @@ const longListOptions = optionExamples.withoutIcon.citiesLongList;
 const shortListOptions = optionExamples.withoutIcon.citiesShortList;
 const oneOptionFromLongList = optionExamples.withoutIcon.oneCityFromLongList;
 const oneOptionFromShortList = optionExamples.withoutIcon.oneCityFromShortList;
+
+const countriesOptions = [
+  {
+    value: 'EE',
+    label: 'Estonia',
+    icon: (
+      <ReactCountryFlag
+        countryCode="EE"
+        style={{
+          fontSize: '1.5rem',
+          lineHeight: '1.5rem',
+        }}
+      />
+    ),
+  },
+  {
+    value: 'LT',
+    label: 'Lithuania',
+    icon: (
+      <ReactCountryFlag
+        countryCode="LT"
+        style={{
+          fontSize: '1.5rem',
+          lineHeight: '1.5rem',
+        }}
+      />
+    ),
+  },
+  {
+    value: 'LV',
+    label: 'Latvia',
+    icon: (
+      <ReactCountryFlag
+        countryCode="LV"
+        style={{
+          fontSize: '1.5rem',
+          lineHeight: '1.5rem',
+        }}
+      />
+    ),
+  },
+  {
+    value: 'FI',
+    label: 'Finland',
+    icon: (
+      <ReactCountryFlag
+        countryCode="FI"
+        style={{
+          fontSize: '1.5rem',
+          lineHeight: '1.5rem',
+        }}
+      />
+    ),
+  },
+];
 
 const meta = {
   title: 'components/UI/SelectList',
@@ -51,6 +106,12 @@ export const NoOptionsCustomMessage: Story = {
   args: {
     options: undefined,
     noOptionsMessage: 'No options message through props',
+  },
+};
+
+export const OptionsWithIcon: Story = {
+  args: {
+    options: countriesOptions,
   },
 };
 

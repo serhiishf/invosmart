@@ -1,4 +1,11 @@
-export const allCountries = [
+interface CountryType {
+  code: string;
+  label: string;
+  phone: string;
+  suggested?: boolean;
+}
+
+export const countries: readonly CountryType[] = [
   { code: 'AD', label: 'Andorra', phone: '376' },
   {
     code: 'AE',
@@ -23,7 +30,6 @@ export const allCountries = [
     code: 'AU',
     label: 'Australia',
     phone: '61',
-    suggested: true,
   },
   { code: 'AW', label: 'Aruba', phone: '297' },
   { code: 'AX', label: 'Alland Islands', phone: '358' },
@@ -56,7 +62,6 @@ export const allCountries = [
     code: 'CA',
     label: 'Canada',
     phone: '1',
-    suggested: true,
   },
   {
     code: 'CC',
@@ -96,7 +101,6 @@ export const allCountries = [
     code: 'DE',
     label: 'Germany',
     phone: '49',
-    suggested: true,
   },
   { code: 'DJ', label: 'Djibouti', phone: '253' },
   { code: 'DK', label: 'Denmark', phone: '45' },
@@ -108,13 +112,13 @@ export const allCountries = [
   },
   { code: 'DZ', label: 'Algeria', phone: '213' },
   { code: 'EC', label: 'Ecuador', phone: '593' },
-  { code: 'EE', label: 'Estonia', phone: '372' },
+  { code: 'EE', label: 'Estonia', phone: '372', suggested: true },
   { code: 'EG', label: 'Egypt', phone: '20' },
   { code: 'EH', label: 'Western Sahara', phone: '212' },
   { code: 'ER', label: 'Eritrea', phone: '291' },
   { code: 'ES', label: 'Spain', phone: '34' },
   { code: 'ET', label: 'Ethiopia', phone: '251' },
-  { code: 'FI', label: 'Finland', phone: '358' },
+  { code: 'FI', label: 'Finland', phone: '358', suggested: true },
   { code: 'FJ', label: 'Fiji', phone: '679' },
   {
     code: 'FK',
@@ -131,7 +135,6 @@ export const allCountries = [
     code: 'FR',
     label: 'France',
     phone: '33',
-    suggested: true,
   },
   { code: 'GA', label: 'Gabon', phone: '241' },
   { code: 'GB', label: 'United Kingdom', phone: '44' },
@@ -191,7 +194,6 @@ export const allCountries = [
     code: 'JP',
     label: 'Japan',
     phone: '81',
-    suggested: true,
   },
   { code: 'KE', label: 'Kenya', phone: '254' },
   { code: 'KG', label: 'Kyrgyzstan', phone: '996' },
@@ -223,9 +225,9 @@ export const allCountries = [
   { code: 'LK', label: 'Sri Lanka', phone: '94' },
   { code: 'LR', label: 'Liberia', phone: '231' },
   { code: 'LS', label: 'Lesotho', phone: '266' },
-  { code: 'LT', label: 'Lithuania', phone: '370' },
+  { code: 'LT', label: 'Lithuania', phone: '370', suggested: true },
   { code: 'LU', label: 'Luxembourg', phone: '352' },
-  { code: 'LV', label: 'Latvia', phone: '371' },
+  { code: 'LV', label: 'Latvia', phone: '371', suggested: true },
   { code: 'LY', label: 'Libya', phone: '218' },
   { code: 'MA', label: 'Morocco', phone: '212' },
   { code: 'MC', label: 'Monaco', phone: '377' },
@@ -386,7 +388,6 @@ export const allCountries = [
     code: 'US',
     label: 'United States',
     phone: '1',
-    suggested: true,
   },
   { code: 'UY', label: 'Uruguay', phone: '598' },
   { code: 'UZ', label: 'Uzbekistan', phone: '998' },
@@ -421,11 +422,4 @@ export const allCountries = [
   { code: 'ZA', label: 'South Africa', phone: '27' },
   { code: 'ZM', label: 'Zambia', phone: '260' },
   { code: 'ZW', label: 'Zimbabwe', phone: '263' },
-];
-
-export const shortListCountries = [
-  { code: 'EE', label: 'Estonia', phone: '372' },
-  { code: 'LV', label: 'Latvia', phone: '371' },
-  { code: 'LT', label: 'Lithuania', phone: '370' },
-  { code: 'FI', label: 'Finland', phone: '358' },
 ];
