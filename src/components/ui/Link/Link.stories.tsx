@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { textExamples } from 'constants/storybookData';
+import { textExamples } from 'mocks/storybook/mockData';
 import Link from './Link';
 
 const meta = {

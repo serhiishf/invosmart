@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import ReactCountryFlag from 'react-country-flag';
-import { textExamples, styleData } from 'constants/storybookData';
+import { textExamples, styleData } from 'mocks/storybook/mockData';
 import { TextOverflow } from 'constants/theme';
 import SelectListItem from './SelectListItem';
 

@@ -1,4 +1,8 @@
 import { CSSProperties } from 'react';
+import ReactCountryFlag from 'react-country-flag';
+import { countries, CountryType } from 'constants/countries';
+
+const suggestedCountries = countries.filter((country) => country.suggested === true);
 
 export const textExamples = {
   longText:
@@ -47,6 +51,23 @@ export const optionExamples = {
     oneCityFromLongList: { label: 'Kuressaare', value: 'Kuressaare' },
     oneCityFromShortList: { label: 'Tallinn', value: 'Tallinn' },
   },
+  withIcon: {
+    allCountries: prepareCountryOptions(countries),
+    suggestedCountries: prepareCountryOptions(suggestedCountries),
+    oneCountry: {
+      value: 'FI',
+      label: 'Finland',
+      icon: (
+        <ReactCountryFlag
+          countryCode="FI"
+          style={{
+            fontSize: '1.5rem',
+            lineHeight: '1.5rem',
+          }}
+        />
+      ),
+    },
+  },
 };
 
 export const styleData: { [key: string]: CSSProperties } = {
@@ -58,3 +79,21 @@ export const styleData: { [key: string]: CSSProperties } = {
     border: '1px solid grey',
   },
 };
+
+function prepareCountryOptions(countries: readonly CountryType[]) {
+  return countries.map((country) => {
+    return {
+      label: country.label,
+      value: country.code,
+      icon: (
+        <ReactCountryFlag
+          countryCode={country.code.toLowerCase()}
+          style={{
+            fontSize: '1.5rem',
+            lineHeight: '1.5rem',
+          }}
+        />
+      ),
+    };
+  });
+}

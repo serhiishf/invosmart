@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn, userEvent, within, expect } from '@storybook/test';
 import Input from './Input';
-import { textExamples } from 'constants/storybookData';
+import { textExamples } from 'mocks/storybook/mockData';
 import { Search as IconSearch } from 'assets/icons/';
 import * as icons from 'assets/icons';
 

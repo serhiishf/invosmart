@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn, within, expect, userEvent } from '@storybook/test';
-import { textExamples } from 'constants/storybookData';
+import { textExamples } from 'mocks/storybook/mockData';
 import InputBase from './InputBase';
 
 const meta = {

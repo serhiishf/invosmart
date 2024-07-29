@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { CSSProperties } from 'react';
 import FieldWrapper from './FieldWrapper';
-import { textExamples } from 'constants/storybookData';
+import { textExamples } from 'mocks/storybook/mockData';
 
 const longText = textExamples.longText;
 

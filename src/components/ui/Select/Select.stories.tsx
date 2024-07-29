@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { styleData, optionExamples } from 'constants/storybookData';
+import { styleData, optionExamples } from 'mocks/storybook/mockData';
 import Select from './Select';
 
 const meta = {
