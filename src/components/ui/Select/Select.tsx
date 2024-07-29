@@ -21,6 +21,7 @@ const Select = ({
   children,
   initialValue,
   isLoading,
+  onChange,
 }: SelectProps) => {
   const [inputValue, setInputValue] = useState(initialValue?.label);
   const [isFocused, setIsFocused] = useState(false);
@@ -99,7 +100,6 @@ const Select = ({
     setIsExpanded(true);
     if (options) {
       const filteredOptions = filterOptions(currentInputValue, options, MatchStrategy.AnyMatch);
-      console.log('filter options');
       if (topOptions) {
         const filteredTopOptions = filterOptions(
           currentInputValue,
@@ -115,6 +115,9 @@ const Select = ({
       setSelectedOption(undefined);
       setCurrentOptions(options);
       setCurrentTopOptions(topOptions);
+    }
+    if (onChange) {
+      onChange(currentInputValue);
     }
   };
 

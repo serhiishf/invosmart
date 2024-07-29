@@ -10,7 +10,7 @@ interface BaseSelectProps {
   isLoading?: boolean;
   hasExpandCollapseButton?: boolean;
   value?: SelectOption;
-  onChange?: (value: SelectOption | undefined) => void;
+  onChange?: (value: string) => void;
   placeholder?: string;
   label?: string;
   initialValue?: SelectOption;
