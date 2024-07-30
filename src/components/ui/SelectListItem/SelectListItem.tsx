@@ -41,7 +41,7 @@ const SelectListItem = forwardRef((props: SelectListItemProps, ref: React.Ref<HT
         {isSelected && <IconCheckmark />}
       </div>
       <div className={styles.selectListItem__contentContainer}>
-        {icon && <div className={styles.selectListItem__iconContainer}>{icon}</div>}
+        {icon}
         <div
           className={classNames(
             styles.selectListItem__label,

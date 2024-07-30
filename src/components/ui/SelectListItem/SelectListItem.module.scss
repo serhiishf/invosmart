@@ -70,11 +70,6 @@
     }
   }
 
-  &__iconContainer {
-    display: flex;
-    align-items: center;
-  }
-
   @include for-size-up(desktop) {
     min-height: $selectListItemMinHeightDesktop;
   }
