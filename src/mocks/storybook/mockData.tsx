@@ -1,5 +1,4 @@
 import { CSSProperties } from 'react';
-import ReactCountryFlag from 'react-country-flag';
 import { countries, CountryType } from 'constants/countries';
 
 const suggestedCountries = countries.filter((country) => country.suggested === true);
@@ -58,12 +57,11 @@ export const optionExamples = {
       value: 'FI',
       label: 'Finland',
       icon: (
-        <ReactCountryFlag
-          countryCode="FI"
-          style={{
-            fontSize: '1.5rem',
-            lineHeight: '1.5rem',
-          }}
+        <img
+          loading="lazy"
+          srcSet={`https://flagcdn.com/w40/ee.png 2x`}
+          src={`https://flagcdn.com/w20/ee.png`}
+          alt=""
         />
       ),
     },
@@ -86,12 +84,11 @@ function prepareCountryOptions(countries: readonly CountryType[]) {
       label: country.label,
       value: country.code,
       icon: (
-        <ReactCountryFlag
-          countryCode={country.code.toLowerCase()}
-          style={{
-            fontSize: '1.5rem',
-            lineHeight: '1.5rem',
-          }}
+        <img
+          loading="lazy"
+          srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
+          src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
+          alt=""
         />
       ),
     };

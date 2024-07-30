@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import ReactCountryFlag from 'react-country-flag';
 import { textExamples, styleData } from 'mocks/storybook/mockData';
 import { TextOverflow } from 'constants/theme';
 import SelectListItem from './SelectListItem';
@@ -38,12 +37,11 @@ export const WithIcon: Story = {
     label: 'Estonia',
     value: 'Estonia',
     icon: (
-      <ReactCountryFlag
-        countryCode="EE"
-        style={{
-          fontSize: '1.5rem',
-          lineHeight: '1.5rem',
-        }}
+      <img
+        loading="lazy"
+        srcSet={`https://flagcdn.com/w40/ee.png 2x`}
+        src={`https://flagcdn.com/w20/ee.png`}
+        alt=""
       />
     ),
     backgroundPalette: 'onLightBackground',
@@ -57,12 +55,11 @@ export const Disabled: Story = {
     value: 'Estonia',
     disabled: true,
     icon: (
-      <ReactCountryFlag
-        countryCode="EE"
-        style={{
-          fontSize: '1.5rem',
-          lineHeight: '1.5rem',
-        }}
+      <img
+        loading="lazy"
+        srcSet={`https://flagcdn.com/w40/ee.png 2x`}
+        src={`https://flagcdn.com/w20/ee.png`}
+        alt=""
       />
     ),
     backgroundPalette: 'onLightBackground',

@@ -20,7 +20,6 @@
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.5.2",
     "react": "^18.2.0",
-    "react-country-flag": "^3.1.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.1",
     "react-router-dom": "^6.22.0"
@@ -32,7 +31,6 @@
     "@storybook/addon-interactions": "^8.1.11",
     "@storybook/addon-links": "^8.1.11",
     "@storybook/addon-mdx-gfm": "^8.1.11",
-    "@storybook/addon-onboarding": "^8.1.11",
     "@storybook/blocks": "^8.1.11",
     "@storybook/react": "^8.1.11",
     "@storybook/react-vite": "^8.1.11",
