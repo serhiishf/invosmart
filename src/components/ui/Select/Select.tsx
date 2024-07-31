@@ -64,10 +64,7 @@ const Select = ({
   };
 
   const handleSelectBlur = (event: React.FocusEvent<Element>) => {
-    if (
-      selectRef.current?.contains(event.relatedTarget) ||
-      event.target === document.activeElement
-    ) {
+    if (selectRef.current?.contains(event.relatedTarget)) {
       return;
     }
     setIsFocused(false);
@@ -196,7 +193,10 @@ const Select = ({
                     inputRef.current?.select();
                     setIsInputFocused(true);
                   }}
-                  onBlur={() => setIsInputFocused(false)}
+                  onBlur={() => {
+                    console.log('input blur');
+                    setIsInputFocused(false);
+                  }}
                   aria-expanded={isExpanded}
                   aria-haspopup="true"
                   aria-autocomplete="list"
