@@ -17,18 +17,18 @@ const Select = ({
   placeholder,
   label,
   options,
-  topOptions,
+  suggestedOptions,
   children,
-  initialValue,
+  initialOption,
   isLoading,
   onChange,
 }: SelectProps) => {
-  const [inputValue, setInputValue] = useState(initialValue?.label);
+  const [inputValue, setInputValue] = useState(initialOption?.label);
   const [isFocused, setIsFocused] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(initialValue);
+  const [selectedOption, setSelectedOption] = useState(initialOption);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [currentTopOptions, setCurrentTopOptions] = useState(topOptions);
+  const [currentTopOptions, setCurrentTopOptions] = useState(suggestedOptions);
   const [currentOptions, setCurrentOptions] = useState(options);
   const [keyEvent, setKeyEvent] = useState({ key: '', timeStamp: 0 });
 
@@ -73,7 +73,7 @@ const Select = ({
     setIsFocused(false);
     setIsExpanded(false);
     setCurrentOptions(options);
-    setCurrentTopOptions(topOptions);
+    setCurrentTopOptions(suggestedOptions);
     setInputValue(selectedOption?.label ?? '');
   };
 
@@ -81,7 +81,7 @@ const Select = ({
     setSelectedOption(undefined);
     setInputValue('');
     setCurrentOptions(options);
-    setCurrentTopOptions(topOptions);
+    setCurrentTopOptions(suggestedOptions);
     inputRef.current?.focus();
   };
 
@@ -100,10 +100,10 @@ const Select = ({
     setIsExpanded(true);
     if (options) {
       const filteredOptions = filterOptions(currentInputValue, options, MatchStrategy.AnyMatch);
-      if (topOptions) {
+      if (suggestedOptions) {
         const filteredTopOptions = filterOptions(
           currentInputValue,
-          topOptions,
+          suggestedOptions,
           MatchStrategy.AnyMatch
         );
         setCurrentTopOptions(filteredTopOptions);
@@ -114,7 +114,7 @@ const Select = ({
     if (currentInputValue === '') {
       setSelectedOption(undefined);
       setCurrentOptions(options);
-      setCurrentTopOptions(topOptions);
+      setCurrentTopOptions(suggestedOptions);
     }
     if (onChange) {
       onChange(currentInputValue);
@@ -192,7 +192,10 @@ const Select = ({
                   placeholder={currentPlaceholder}
                   inputMode={isSearchable ? 'text' : 'none'}
                   role="combobox"
-                  onFocus={() => setIsInputFocused(true)}
+                  onFocus={() => {
+                    inputRef.current?.select();
+                    setIsInputFocused(true);
+                  }}
                   onBlur={() => setIsInputFocused(false)}
                   aria-expanded={isExpanded}
                   aria-haspopup="true"
@@ -238,7 +241,7 @@ const Select = ({
         <div className={classNames(styles.select__options)}>
           <SelectList
             options={currentOptions}
-            topOptions={currentTopOptions}
+            suggestedOptions={currentTopOptions}
             keyEvent={keyEvent}
             onOptionSelect={handleOptionSelect}
             selectedOption={selectedOption}

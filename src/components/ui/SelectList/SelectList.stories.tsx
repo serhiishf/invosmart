@@ -8,9 +8,9 @@ const longListOptions = optionExamples.withoutIcon.citiesLongList;
 const shortListOptions = optionExamples.withoutIcon.citiesShortList;
 const oneOptionFromLongList = optionExamples.withoutIcon.oneCityFromLongList;
 const oneOptionFromShortList = optionExamples.withoutIcon.oneCityFromShortList;
-const allCountriesWithIcon = optionExamples.withIcon.allCountries;
-const suggestedCountries = optionExamples.withIcon.suggestedCountries;
-const oneCountry = optionExamples.withIcon.oneCountry;
+const optionsWithIcons = optionExamples.withIcon.allCountries;
+const suggestedOptionsWithIcons = optionExamples.withIcon.suggestedCountries;
+const oneOptionWithIcon = optionExamples.withIcon.oneCountry;
 
 const meta = {
   title: 'components/UI/SelectList',
@@ -27,9 +27,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
+export const SuggestedOptions: Story = {
+  args: {
+    suggestedOptions: shortListOptions,
+  },
+};
+
 export const Preselected: Story = {
   args: {
-    topOptions: shortListOptions,
+    suggestedOptions: shortListOptions,
     selectedOption: oneOptionFromLongList,
   },
 };
@@ -37,8 +43,8 @@ export const Preselected: Story = {
 export const WithChildren: Story = {
   args: {
     selectedOption: oneOptionFromShortList,
-    topOptions: shortListOptions,
-    children: <button style={styleData.button}>Some children - button</button>,
+    suggestedOptions: shortListOptions,
+    children: <button style={styleData.button}>Button - example children</button>,
   },
 };
 
@@ -51,22 +57,22 @@ export const NoOptions: Story = {
 export const NoOptionsCustomMessage: Story = {
   args: {
     options: undefined,
-    noOptionsMessage: 'No options message through props',
+    noOptionsMessage: 'No options - message through props',
   },
 };
 
 export const OptionsWithIcon: Story = {
   args: {
-    options: allCountriesWithIcon,
-    topOptions: suggestedCountries,
-    selectedOption: oneCountry,
+    options: optionsWithIcons,
+    suggestedOptions: suggestedOptionsWithIcons,
+    selectedOption: oneOptionWithIcon,
   },
 };
 
 export const NavigationThroughProps: Story = {
   args: {
     selectedOption: oneOptionFromShortList,
-    topOptions: shortListOptions,
+    suggestedOptions: shortListOptions,
     children: <button style={styleData.button}>Some children - button</button>,
   },
   render: function NavigationThroughPropsComponent(args) {
@@ -86,7 +92,7 @@ export const NavigationThroughProps: Story = {
       <div style={styleData.flexColumn}>
         <input
           type="text"
-          placeholder="Type here or press keys..."
+          placeholder="Type or press arrow/enter keys here..."
           onKeyDown={handleKeyDown}
           style={{ marginBottom: '10px', padding: '5px', border: '1px solid #ccc' }}
         />
@@ -103,7 +109,7 @@ export const NavigationThroughProps: Story = {
 export const NavigationThroughPropsInteractions: Story = {
   args: {
     selectedOption: oneOptionFromShortList,
-    topOptions: shortListOptions,
+    suggestedOptions: shortListOptions,
     children: <button style={styleData.button}>Some children - button</button>,
   },
   render: function NavigationThroughPropsComponent(args) {
@@ -123,7 +129,7 @@ export const NavigationThroughPropsInteractions: Story = {
       <div style={styleData.flexColumn}>
         <input
           type="text"
-          placeholder="Type here or press keys..."
+          placeholder="Type or press arrow/enter keys here..."
           onKeyDown={handleKeyDown}
           style={{ marginBottom: '10px', padding: '5px', border: '1px solid #ccc' }}
           data-testid="input-props-keyEvent"

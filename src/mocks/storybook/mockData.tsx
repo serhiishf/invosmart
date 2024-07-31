@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { countries, CountryType } from 'constants/countries';
+import { countries, CountryType } from 'mocks/shared/countries';
 
 const suggestedCountries = countries.filter((country) => country.suggested === true);
 
@@ -59,6 +59,7 @@ export const optionExamples = {
       icon: (
         <img
           loading="lazy"
+          style={{ width: '20px' }}
           srcSet={`https://flagcdn.com/w40/ee.png 2x`}
           src={`https://flagcdn.com/w20/ee.png`}
           alt=""
@@ -86,6 +87,7 @@ function prepareCountryOptions(countries: readonly CountryType[]) {
       icon: (
         <img
           loading="lazy"
+          style={{ width: '20px' }}
           srcSet={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png 2x`}
           src={`https://flagcdn.com/w20/${country.code.toLowerCase()}.png`}
           alt=""

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { styleData, optionExamples } from 'mocks/storybook/mockData';
+import { optionExamples } from 'mocks/storybook/mockData';
 import Select from './Select';
 
 const meta = {
@@ -22,6 +22,9 @@ const longListOptions = optionExamples.withoutIcon.citiesLongList;
 const shortListOptions = optionExamples.withoutIcon.citiesShortList;
 const oneOptionFromLongList = optionExamples.withoutIcon.oneCityFromLongList;
 const oneOptionFromShortList = optionExamples.withoutIcon.oneCityFromShortList;
+const optionsWithIcons = optionExamples.withIcon.allCountries;
+const suggestedOptionsWithIcons = optionExamples.withIcon.suggestedCountries;
+const oneOptionWithIcon = optionExamples.withIcon.oneCountry;
 
 export const Default: Story = {
   args: {
@@ -38,11 +41,11 @@ export const WithoutOptions: Story = {
   },
 };
 
-export const WithPriorityOptions: Story = {
+export const SuggestedOptions: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
-    topOptions: [
+    suggestedOptions: [
       { label: 'Otepää', value: 'Otepää' },
       { label: 'Tallinn', value: 'Tallinn' },
       { label: 'Kehra', value: 'Kehra' },
@@ -55,8 +58,18 @@ export const Preselected: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
-    initialValue: oneOptionFromLongList,
-    topOptions: shortListOptions,
+    initialOption: oneOptionFromLongList,
+    suggestedOptions: shortListOptions,
     options: longListOptions,
+  },
+};
+
+export const OptionsWithIcons: Story = {
+  args: {
+    placeholder: 'Select country',
+    label: 'Country',
+    initialOption: oneOptionWithIcon,
+    suggestedOptions: suggestedOptionsWithIcons,
+    options: optionsWithIcons,
   },
 };

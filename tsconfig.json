@@ -22,7 +22,8 @@
       "styles/*": ["styles/*"],
       "locales/*": ["locales/*"],
       "routers/*": ["routers/*"],
-      "config/*": ["config/*"]
+      "config/*": ["config/*"],
+      "mocks/*": ["mocks/*"]
     },
     "types": ["vitest/globals", "@testing-library/jest-dom"],
     "resolveJsonModule": true,

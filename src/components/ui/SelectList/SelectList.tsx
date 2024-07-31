@@ -19,7 +19,7 @@ import { SelectListItem } from '../';
 const SelectList = ({
   children,
   options,
-  topOptions,
+  suggestedOptions,
   textOverflow = TextOverflow.Wrap,
   isHeightUnlimited = false,
   keyEvent,
@@ -34,8 +34,8 @@ const SelectList = ({
 }: SelectListProps) => {
   const [typedText, setTypedText] = useState('');
   const combinedOptions = useMemo(() => {
-    return [...(topOptions ?? []), ...(options ?? [])];
-  }, [options, topOptions]);
+    return [...(suggestedOptions ?? []), ...(options ?? [])];
+  }, [options, suggestedOptions]);
 
   const indexSelectedValue = combinedOptions.findIndex(
     (option) => option.value === selectedOption?.value
@@ -197,10 +197,10 @@ const SelectList = ({
           }}
         >
           {combinedOptions.map((option, index) => {
-            const isTopOption = index < (topOptions?.length ?? 0);
+            const isTopOption = index < (suggestedOptions?.length ?? 0);
             const keyPrefix = isTopOption ? 'top-' : 'general-';
             const uniqueKey = `${keyPrefix}${option.value}`;
-            const isBoundary = topOptions && index === topOptions.length - 1;
+            const isBoundary = suggestedOptions && index === suggestedOptions.length - 1;
             const isOptionSelected = option.value === selectedOption?.value;
             return (
               <React.Fragment key={uniqueKey}>

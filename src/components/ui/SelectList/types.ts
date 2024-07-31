@@ -25,12 +25,12 @@ interface BaseSelectListProps extends HTMLAttributes<HTMLDivElement> {
 
 interface SelectListWithoutTopProps extends BaseSelectListProps {
   options?: SelectListItemProps[];
-  topOptions?: never;
+  suggestedOptions?: never;
 }
 
 interface SelectListWithTopProps extends BaseSelectListProps {
   options?: SelectListItemProps[];
-  topOptions?: SelectListItemProps[];
+  suggestedOptions?: SelectListItemProps[];
 }
 
 export type SelectListProps = SelectListWithoutTopProps | SelectListWithTopProps;

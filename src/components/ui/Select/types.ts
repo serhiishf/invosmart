@@ -13,18 +13,18 @@ interface BaseSelectProps {
   onChange?: (value: string) => void;
   placeholder?: string;
   label?: string;
-  initialValue?: SelectOption;
+  initialOption?: SelectOption;
   children?: React.ReactNode;
 }
 
 interface SelectPropsWithoutTopOptions extends BaseSelectProps {
   options?: SelectOption[];
-  topOptions?: never;
+  suggestedOptions?: never;
 }
 
 interface SelectPropsWithTopOptions extends BaseSelectProps {
   options: SelectOption[];
-  topOptions: SelectOption[];
+  suggestedOptions: SelectOption[];
 }
 
 export type SelectProps = SelectPropsWithoutTopOptions | SelectPropsWithTopOptions;
