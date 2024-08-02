@@ -34,6 +34,32 @@ export const Default: Story = {
   },
 };
 
+export const Preselected: Story = {
+  args: {
+    placeholder: 'Select city',
+    label: 'City',
+    initialOption: oneOptionFromLongList,
+    suggestedOptions: shortListOptions,
+    options: longListOptions,
+  },
+};
+
+export const PreselectedInteractions: Story = {
+  args: {
+    placeholder: 'Select city',
+    label: 'City',
+    initialOption: oneOptionFromLongList,
+    suggestedOptions: shortListOptions,
+    options: longListOptions,
+  },
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox');
+    await userEvent.click(select);
+  },
+};
+
 export const WithOptionsKeyboardInteractions: Story = {
   args: {
     placeholder: 'Select city',
@@ -86,23 +112,82 @@ export const ClearableSelectInteractions: Story = {
     const select = canvas.getByRole('combobox');
     await userEvent.click(select);
     await userEvent.type(select, 'kuress');
+    await userEvent.keyboard('{Tab}');
+    await userEvent.keyboard('{Enter}');
+    await userEvent.type(select, 'kehr');
   },
 };
 
-export const WithoutOptions: Story = {
+export const IsLoadingWithoutOptions: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
+    isLoading: true,
   },
 };
 
-export const Preselected: Story = {
+export const IsLoadingWithOptions: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
-    initialOption: oneOptionFromLongList,
-    suggestedOptions: shortListOptions,
     options: longListOptions,
+    isLoading: true,
+  },
+};
+
+export const IsLoadingWithOptionsPreselected: Story = {
+  args: {
+    placeholder: 'Select city',
+    label: 'City',
+    options: longListOptions,
+    isLoading: true,
+    initialOption: oneOptionFromLongList,
+  },
+};
+
+export const IsLoadingWithOptionsInteractions: Story = {
+  args: {
+    placeholder: 'Select city',
+    label: 'City',
+    options: longListOptions,
+    isLoading: true,
+  },
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox');
+    await userEvent.type(select, 'random text');
+  },
+};
+
+export const ClickOutsideInteractions: Story = {
+  args: {
+    placeholder: 'Select city',
+    label: 'City',
+    options: longListOptions,
+  },
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox');
+    await userEvent.type(select, 'Kehr');
+    await userEvent.click(document.body);
+  },
+};
+
+export const ClickOutsidePreselectedInteractions: Story = {
+  args: {
+    placeholder: 'Select city',
+    label: 'City',
+    options: longListOptions,
+    initialOption: oneOptionFromLongList,
+  },
+
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox');
+    await userEvent.type(select, 'Kehr');
+    await userEvent.click(document.body);
   },
 };
 
@@ -113,5 +198,35 @@ export const OptionsWithIcons: Story = {
     initialOption: oneOptionWithIcon,
     suggestedOptions: suggestedOptionsWithIcons,
     options: optionsWithIcons,
+  },
+};
+
+export const OptionsWithIconsInteractions: Story = {
+  args: {
+    placeholder: 'Select country',
+    label: 'Country',
+    initialOption: oneOptionWithIcon,
+    suggestedOptions: suggestedOptionsWithIcons,
+    options: optionsWithIcons,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox');
+    await userEvent.click(select);
+  },
+};
+
+export const ToggleButtonKeyboardInteractions: Story = {
+  args: {
+    placeholder: 'Select country',
+    label: 'Country',
+    initialOption: oneOptionWithIcon,
+    suggestedOptions: suggestedOptionsWithIcons,
+    options: optionsWithIcons,
+  },
+  play: async () => {
+    await userEvent.keyboard('{Tab}');
+    await userEvent.keyboard('{Tab}');
+    await userEvent.keyboard('{Enter}');
   },
 };
