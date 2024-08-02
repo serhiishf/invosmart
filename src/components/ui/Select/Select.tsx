@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { OptionType } from 'types/common';
 import styles from './Select.module.scss';
@@ -160,7 +160,7 @@ const Select = ({
 
   return (
     <div
-      className={classNames(styles.select)}
+      className={clsx(styles.select)}
       ref={selectRef}
       tabIndex={-1}
       onFocus={handleSelectFocus}
@@ -170,7 +170,7 @@ const Select = ({
       <div className={styles.select__controlContainer}>
         <FieldWrapper isFocused={isFocused} label={label}>
           <div
-            className={classNames(
+            className={clsx(
               styles.select__control,
               isFocused && styles['select__control--isFocused']
             )}
@@ -223,7 +223,7 @@ const Select = ({
                     <div className={styles.select__buttonWrap}>
                       <IconButton tooltip={toggleSelectTooltip} onClick={handleExpandedButton}>
                         <IconDirectionArrow
-                          className={classNames(
+                          className={clsx(
                             styles.select__iconDirectionArrow,
                             isExpanded && styles['select__iconDirectionArrow--isExpanded']
                           )}
@@ -238,7 +238,7 @@ const Select = ({
         </FieldWrapper>
       </div>
       {isExpanded && (
-        <div className={classNames(styles.select__options)}>
+        <div className={clsx(styles.select__options)}>
           <SelectList
             options={currentOptions}
             suggestedOptions={currentTopOptions}

@@ -1,5 +1,5 @@
 import { useEffect, useState, useId } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { FieldWrapper, InputBase, IconButton } from '../';
 import { InputProps } from './types';
@@ -55,7 +55,7 @@ const Input = ({
 
   return (
     <div
-      className={classNames(styles.input, styles['input--safetyTopPadding'], className)}
+      className={clsx(styles.input, styles['input--safetyTopPadding'], className)}
       id={id}
       data-testid="input-component"
     >
@@ -97,8 +97,8 @@ const Input = ({
           {isDisplaySuffixContainer && (
             <div className={styles.input__suffixContainer}>
               {type === 'password' && (
-                <div className={classNames(styles.input__passwordButtonContainer)}>
-                  <div className={classNames(styles.input__passwordButtonWrap)}>
+                <div className={clsx(styles.input__passwordButtonContainer)}>
+                  <div className={clsx(styles.input__passwordButtonWrap)}>
                     <IconButton
                       onClick={handlePasswordButton}
                       tooltip={tooltipPasswordButton}

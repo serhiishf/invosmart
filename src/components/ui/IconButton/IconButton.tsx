@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useState } from 'react';
 import {
   offset,
@@ -43,7 +43,7 @@ const IconButton = ({
 
   return (
     <button
-      className={classNames(
+      className={clsx(
         styles.iconButton,
         styles[`iconButton--size-${size}`],
         styles[`iconButton--shape-${shape}`],

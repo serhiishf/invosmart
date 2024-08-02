@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useCallback,
 } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { findMatchByIncreasingDepth, MatchStrategy } from 'utils/searchUtils';
 import { ComponentTheme, TextOverflow } from 'constants/theme';
@@ -174,7 +174,7 @@ const SelectList = ({
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         styles.selectList,
         isHeightUnlimited && styles['selectList--isHeightUnlimited'],
         styles[`selectList--backgroundColor-${componentTheme}`]

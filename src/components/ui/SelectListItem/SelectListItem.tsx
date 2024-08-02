@@ -1,5 +1,5 @@
 import { forwardRef, memo } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { TextOverflow } from 'constants/theme';
 import IconCheckmark from 'assets/icons/checkmark.svg?react';
 import styles from './SelectListItem.module.scss';
@@ -26,7 +26,7 @@ const SelectListItem = forwardRef((props: SelectListItemProps, ref: React.Ref<HT
   return (
     <li
       tabIndex={-1}
-      className={classNames(
+      className={clsx(
         styles.selectListItem,
         isSelected && styles['selectListItem--isSelected'],
         styles[`selectListItem--backgroundPalette-${backgroundPalette}`],
@@ -43,7 +43,7 @@ const SelectListItem = forwardRef((props: SelectListItemProps, ref: React.Ref<HT
       <div className={styles.selectListItem__contentContainer}>
         {icon}
         <div
-          className={classNames(
+          className={clsx(
             styles.selectListItem__label,
             styles[`selectListItem__label--${textOverflow}`]
           )}

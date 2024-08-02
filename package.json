@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.18",
-    "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
     "i18next": "^23.8.2",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.5.2",
@@ -60,7 +60,7 @@
     "prettier": "^3.2.4",
     "react-docgen-typescript": "^2.2.2",
     "sass": "^1.70.0",
-    "storybook": "^8.1.11",
+    "storybook": "^8.2.7",
     "storybook-addon-pseudo-states": "^3.1.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.12",

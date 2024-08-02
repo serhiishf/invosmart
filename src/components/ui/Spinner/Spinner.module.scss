@@ -1,0 +1,62 @@
+.spinner {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+
+@keyframes rotateCounterClockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; // To center the circle vertically
+}
+
+.arc {
+  box-sizing: border-box;
+  
+  &__big {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px white solid;
+    border-bottom: 4px #0689c9 solid;
+    position: absolute;
+    top: 50;
+    left: 50;
+  }
+
+  &__middle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 4px white solid;
+    border-bottom: 4px #30a5e0 solid;
+    position: absolute;
+    top: 50;
+    left: 50;
+  }
+
+  &__small {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px white solid;
+    border-bottom: 4px #67c6f4 solid;
+    position: absolute;
+    top: 50;
+    left: 50;
+  }
+}

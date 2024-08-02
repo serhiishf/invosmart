@@ -1,5 +1,5 @@
 import styles from './FieldWrapper.module.scss';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { FieldWrapperProps } from './types';
 
 const FieldWrapper = ({
@@ -15,12 +15,12 @@ const FieldWrapper = ({
   className,
 }: FieldWrapperProps) => {
   return (
-    <div className={classNames(className)}>
+    <div className={clsx(className)}>
       <div className={styles.fieldWrapper}>
         {label && (
           <label
             htmlFor={labelTargetId}
-            className={classNames(
+            className={clsx(
               styles.fieldWrapper__label,
               isError && styles['fieldWrapper__label--isError'],
               isFocused && styles['fieldWrapper__label--isFocused'],
@@ -31,7 +31,7 @@ const FieldWrapper = ({
           </label>
         )}
         <div
-          className={classNames(
+          className={clsx(
             styles.fieldWrapper__main,
             disabled && styles['fieldWrapper__main--disabled']
           )}
@@ -39,7 +39,7 @@ const FieldWrapper = ({
           {children}
         </div>
         <fieldset
-          className={classNames(
+          className={clsx(
             styles.fieldWrapper__fieldset,
             isError && !disabled && styles['fieldWrapper__fieldset--isError'],
             isFocused && !disabled && styles['fieldWrapper__fieldset--isFocused'],
@@ -47,7 +47,7 @@ const FieldWrapper = ({
           )}
         >
           <legend
-            className={classNames(
+            className={clsx(
               styles.fieldWrapper__legend,
               !label && styles['fieldWrapper__legend--hidden']
             )}
@@ -59,7 +59,7 @@ const FieldWrapper = ({
       {helperText && (
         <p
           id={helperTextId}
-          className={classNames(
+          className={clsx(
             styles.helperText,
             isError && !disabled && styles['helperText--isError'],
             helperTextPosition === 'left' && styles['helperText--left'],

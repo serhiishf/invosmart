@@ -1,5 +1,5 @@
 import styles from './Button.module.scss';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { ButtonProps } from './types';
 import { Tooltip } from '../index';
 
@@ -18,7 +18,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      className={classNames(
+      className={clsx(
         styles.button,
         styles[`button--size-${size}`],
         styles[`button--buttonPalette-${buttonPalette}`],

@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { forwardRef, useState, useEffect } from 'react';
 import styles from './InputBase.module.scss';
 import { InputBaseProps } from './types';
@@ -32,7 +32,7 @@ const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
 
     return (
       <input
-        className={classNames(
+        className={clsx(
           styles.inputBase,
           styles[`inputBase--paddingLeft-${paddingLeft}`],
           styles[`inputBase--paddingRight-${paddingRight}`],
