@@ -4,10 +4,15 @@ import { SpinnerProps } from './types';
 
 const Spinner = ({ variant = 'page' }: SpinnerProps) => {
   return (
-    <div className={clsx(styles[`spinner`])}>
-      <div className={clsx(styles.arc, styles.arc__big)}></div>
-      <div className={clsx(styles.arc, styles.arc__middle)}></div>
-      <div className={clsx(styles.arc, styles.arc__small)}></div>
+    <div className={clsx(styles.spinner, styles[`spinner--${variant}`])}>
+      {variant === 'page' && (
+        <>
+          <div className={clsx(styles.arc, styles[`arc--big`])}></div>
+          <div className={clsx(styles.arc, styles[`arc--middle`])}></div>
+          <div className={clsx(styles.arc, styles[`arc--small`])}></div>
+        </>
+      )}
+      {variant === 'inline' && <div className={clsx(styles.arc, styles[`arc--inline`])}></div>}
     </div>
   );
 };

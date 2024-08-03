@@ -7,6 +7,7 @@ $_color-blue-300: #0689c9;
 $_color-blue-400: #2684b3;
 $_color-blue-500: #c1e4f6;
 $_color-blue-600: #d6edf9;
+$_color-blue-700: #67c6f4;
 
 // Sky colors
 $_color-sky-100: #acdbf3;
@@ -228,7 +229,7 @@ $selectOptionsZIndex: $z-index-dropdown;
 $selectControlMinHeightDesktop: $fieldMinHeightDesktop;
 $selectControlMinHeightMobile: $fieldMinHeightMobile;
 
-/* ---List */
+/* ---SelectList */
 $selectListBoxShadowColor: $_boxShadowColor;
 $selectListBorderRadius: $border-radius-base;
 $selectListBackgroundColorWhite: $color-white;
@@ -247,3 +248,9 @@ $selectListItemMinHeightMobile: $fieldMinHeightMobile;
 $selectListItemMainPaddingRight: $gridBase * 3;
 $selectListItemAnimation: $animationShort;
 $selectListItemDisabledOpacity: $_disabledOpacity;
+
+/* ---Spinner */
+$spinnerInlineColor: $_color-grey-100;
+$spinnerBigArcColor: $_color-blue-300;
+$spinnerMiddleArcColor: $_color-blue-100;
+$spinnerSmallAcrColor: $_color-blue-700;

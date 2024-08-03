@@ -1,11 +1,21 @@
+$sizeInlineSpinner: 20px;
+$sizePageSpinner: 100px;
+
 .spinner {
-  width: 100px;
-  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   position: relative;
+
+  &--page {
+    width: $sizePageSpinner;
+    height: $sizePageSpinner;
+  }
+
+  &--inline {
+    width: $sizeInlineSpinner;
+    height: $sizeInlineSpinner;
+  }
 }
 
 @keyframes rotateCounterClockwise {
@@ -17,46 +27,39 @@
   }
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; // To center the circle vertically
-}
-
 .arc {
   box-sizing: border-box;
-  
-  &__big {
+  border-radius: 50%;
+  position: absolute;
+  border: 2px transparent solid;
+
+  &--big {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
-    border: 4px white solid;
-    border-bottom: 4px #0689c9 solid;
-    position: absolute;
-    top: 50;
-    left: 50;
+    border-bottom: 2px $spinnerBigArcColor solid;
+    animation: rotateCounterClockwise 2.5s linear infinite;
   }
 
-  &__middle {
+  &--middle {
     width: 90px;
     height: 90px;
-    border-radius: 50%;
-    border: 4px white solid;
-    border-bottom: 4px #30a5e0 solid;
-    position: absolute;
-    top: 50;
-    left: 50;
+    border-left: 2px $spinnerMiddleArcColor solid;
+    animation: rotateCounterClockwise 2s linear infinite;
   }
 
-  &__small {
+  &--small {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
-    border: 4px white solid;
-    border-bottom: 4px #67c6f4 solid;
-    position: absolute;
-    top: 50;
-    left: 50;
+    border-right: 2px $spinnerSmallAcrColor solid;
+    animation: rotateCounterClockwise 1.5s linear infinite;
+  }
+
+  &--inline {
+    width: $sizeInlineSpinner;
+    height: $sizeInlineSpinner;
+    border-top: 2px $spinnerInlineColor solid;
+    border-bottom: 2px $spinnerInlineColor solid;
+    border-right: 2px $spinnerInlineColor solid;
+    animation: rotateCounterClockwise 1s linear infinite;
   }
 }
