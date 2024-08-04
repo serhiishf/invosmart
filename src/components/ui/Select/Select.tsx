@@ -5,7 +5,7 @@ import { OptionType } from 'types/common';
 import styles from './Select.module.scss';
 import { SelectProps } from './types';
 import { KeyboardKey } from 'constants/keyboard';
-import { FieldWrapper, InputBase, IconButton, SelectList } from '..';
+import { FieldWrapper, InputBase, IconButton, SelectList, Spinner } from '..';
 import IconDirectionArrow from 'assets/icons/directionCheck.svg?react';
 import IconClose from 'assets/icons/close.svg?react';
 import { MatchStrategy, filterOptions } from 'utils/searchUtils';
@@ -205,31 +205,26 @@ const Select = ({
               </div>
             </div>
             <div className={styles.select__suffixContainer} ref={suffixContainerRef}>
-              {isClearable && isExpanded && (
-                <div className={styles.select__buttonContainer}>
-                  {(inputValue || selectedOption?.value) && (
-                    <div className={styles.select__buttonWrap}>
-                      <IconButton tooltip={tooltipClearButton} onClick={handleClearButtonClick}>
-                        <IconClose className={styles.select__iconClose} />
-                      </IconButton>
-                    </div>
-                  )}
+              {isLoading && <Spinner variant="inline" />}
+              {isClearable && isExpanded && (inputValue || selectedOption?.value) && (
+                <div className={styles.select__buttonWrap}>
+                  <IconButton tooltip={tooltipClearButton} onClick={handleClearButtonClick}>
+                    <IconClose className={styles.select__iconClose} />
+                  </IconButton>
                 </div>
               )}
               {hasExpandCollapseButton && (
                 <>
                   <div className={styles.select__divider}></div>
-                  <div className={styles.select__buttonContainer}>
-                    <div className={styles.select__buttonWrap}>
-                      <IconButton tooltip={toggleSelectTooltip} onClick={handleExpandedButton}>
-                        <IconDirectionArrow
-                          className={clsx(
-                            styles.select__iconDirectionArrow,
-                            isExpanded && styles['select__iconDirectionArrow--isExpanded']
-                          )}
-                        />
-                      </IconButton>
-                    </div>
+                  <div className={styles.select__buttonWrap}>
+                    <IconButton tooltip={toggleSelectTooltip} onClick={handleExpandedButton}>
+                      <IconDirectionArrow
+                        className={clsx(
+                          styles.select__iconDirectionArrow,
+                          isExpanded && styles['select__iconDirectionArrow--isExpanded']
+                        )}
+                      />
+                    </IconButton>
                   </div>
                 </>
               )}

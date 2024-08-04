@@ -8,3 +8,4 @@ export { default as Link } from './Link/Link';
 export { default as Select } from './Select/Select';
 export { default as SelectList } from './SelectList/SelectList';
 export { default as SelectListItem } from './SelectListItem/SelectListItem';
+export { default as Spinner } from './Spinner/Spinner';

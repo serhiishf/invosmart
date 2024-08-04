@@ -1,4 +1,4 @@
-$sizeInlineSpinner: 20px;
+$sizeInlineSpinner: 28px;
 $sizePageSpinner: 100px;
 
 .spinner {
@@ -55,8 +55,8 @@ $sizePageSpinner: 100px;
   }
 
   &--inline {
-    width: $sizeInlineSpinner;
-    height: $sizeInlineSpinner;
+    width: 20px;
+    height: 20px;
     border-top: 2px $spinnerInlineColor solid;
     border-bottom: 2px $spinnerInlineColor solid;
     border-right: 2px $spinnerInlineColor solid;
