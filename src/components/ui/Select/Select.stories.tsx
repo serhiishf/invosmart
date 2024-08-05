@@ -18,13 +18,19 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const longListOptions = optionExamples.withoutIcon.citiesLongList;
-const shortListOptions = optionExamples.withoutIcon.citiesShortList;
-const oneOptionFromLongList = optionExamples.withoutIcon.oneCityFromLongList;
-const oneOptionFromShortList = optionExamples.withoutIcon.oneCityFromShortList;
-const optionsWithIcons = optionExamples.withIcon.allCountries;
-const suggestedOptionsWithIcons = optionExamples.withIcon.suggestedCountries;
-const oneOptionWithIcon = optionExamples.withIcon.oneCountry;
+const {
+  withoutIcon: {
+    citiesLongList: longListOptions,
+    citiesShortList: shortListOptions,
+    oneCityFromLongList: oneOptionFromLongList,
+    personsWithDetails: OptionsWithDetails,
+  },
+  withIcon: {
+    allCountries: optionsWithIcons,
+    suggestedCountries: suggestedOptionsWithIcons,
+    oneCountry: oneOptionWithIcon,
+  },
+} = optionExamples;
 
 export const Default: Story = {
   args: {
@@ -41,6 +47,19 @@ export const Preselected: Story = {
     initialOption: oneOptionFromLongList,
     suggestedOptions: shortListOptions,
     options: longListOptions,
+  },
+};
+
+export const DetailedOptionsInteractions: Story = {
+  args: {
+    label: 'Customer',
+    placeholder: 'Select customer',
+    options: OptionsWithDetails,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const select = canvas.getByRole('combobox');
+    await userEvent.click(select);
   },
 };
 

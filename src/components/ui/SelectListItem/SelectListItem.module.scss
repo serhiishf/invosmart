@@ -57,17 +57,32 @@
     display: flex;
     gap: $gridBase * 1.5;
     align-items: center;
-    overflow: hidden;
+    min-width: 0;
+    flex: 1;
+  }
+  &__textContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+    min-width: 0;
+    flex: 1;
   }
 
   &__label {
-    text-align: left;
-
     &--truncate {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
+
+  &__details {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $selectListItemDetilsColor;
   }
 
   @include for-size-up(desktop) {

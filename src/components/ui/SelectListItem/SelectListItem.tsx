@@ -14,6 +14,7 @@ const SelectListItem = forwardRef((props: SelectListItemProps, ref: React.Ref<HT
     disabled = false,
     backgroundPalette = 'onGreyBackground',
     textOverflow = TextOverflow.Wrap,
+    details,
     onClick,
     ...rest
   }: SelectListItemProps = props;
@@ -42,13 +43,16 @@ const SelectListItem = forwardRef((props: SelectListItemProps, ref: React.Ref<HT
       </div>
       <div className={styles.selectListItem__contentContainer}>
         {icon}
-        <div
-          className={clsx(
-            styles.selectListItem__label,
-            styles[`selectListItem__label--${textOverflow}`]
-          )}
-        >
-          {label}
+        <div className={styles.selectListItem__textContent}>
+          <div
+            className={clsx(
+              styles.selectListItem__label,
+              styles[`selectListItem__label--${textOverflow}`]
+            )}
+          >
+            {label}
+          </div>
+          {details && <div className={styles.selectListItem__details}>{details}</div>}
         </div>
       </div>
     </li>

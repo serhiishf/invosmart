@@ -16,10 +16,28 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const icon = (
+  <img
+    loading="lazy"
+    srcSet={`https://flagcdn.com/w40/ee.png 2x`}
+    src={`https://flagcdn.com/w20/ee.png`}
+    alt=""
+  />
+);
+
 export const Default: Story = {
   args: {
     label: 'Tallinn',
     value: 'Tallinn',
+  },
+};
+
+export const Details: Story = {
+  args: {
+    label: 'Tallinn',
+    value: 'Tallinn',
+    details: 'Viru väljak 4-6, 10111',
+    backgroundPalette: 'onLightBackground',
   },
 };
 
@@ -32,20 +50,34 @@ export const Selected: Story = {
   },
 };
 
-export const WithIcon: Story = {
+export const Icon: Story = {
   args: {
     label: 'Estonia',
     value: 'Estonia',
-    icon: (
-      <img
-        loading="lazy"
-        srcSet={`https://flagcdn.com/w40/ee.png 2x`}
-        src={`https://flagcdn.com/w20/ee.png`}
-        alt=""
-      />
-    ),
+    icon: icon,
     backgroundPalette: 'onLightBackground',
     textOverflow: TextOverflow.Truncate,
+  },
+};
+
+export const IconAndSelected: Story = {
+  args: {
+    label: 'Estonia',
+    value: 'Estonia',
+    icon: icon,
+    backgroundPalette: 'onLightBackground',
+    textOverflow: TextOverflow.Truncate,
+    isSelected: true,
+  },
+};
+
+export const IconAndDetails: Story = {
+  args: {
+    label: 'Estonia',
+    value: 'Estonia',
+    icon: icon,
+    backgroundPalette: 'onLightBackground',
+    details: 'NATO member',
   },
 };
 
@@ -54,14 +86,7 @@ export const Disabled: Story = {
     label: 'Estonia',
     value: 'Estonia',
     disabled: true,
-    icon: (
-      <img
-        loading="lazy"
-        srcSet={`https://flagcdn.com/w40/ee.png 2x`}
-        src={`https://flagcdn.com/w20/ee.png`}
-        alt=""
-      />
-    ),
+    icon: icon,
     backgroundPalette: 'onLightBackground',
     textOverflow: TextOverflow.Truncate,
   },
@@ -204,10 +229,38 @@ export const LongText: Story = {
       <div style={styleData.flexColumn}>
         <h4>textOferflow: truncate</h4>
         <SelectListItem textOverflow={TextOverflow.Truncate} {...args} />
+        <SelectListItem
+          textOverflow={TextOverflow.Truncate}
+          details={textExamples.longText}
+          {...args}
+        />
+        <SelectListItem
+          textOverflow={TextOverflow.Truncate}
+          details={textExamples.longText}
+          isSelected
+          {...args}
+        />
+        <SelectListItem
+          textOverflow={TextOverflow.Truncate}
+          details={textExamples.longText}
+          icon={icon}
+          {...args}
+        />
+        <SelectListItem
+          textOverflow={TextOverflow.Truncate}
+          details={textExamples.longText}
+          isSelected
+          icon={icon}
+          {...args}
+        />
       </div>
       <div style={styleData.flexColumn}>
         <h4>textOferflow: default/wrap</h4>
         <SelectListItem {...args} />
+        <SelectListItem details={textExamples.longText} {...args} />
+        <SelectListItem details={textExamples.longText} isSelected {...args} />
+        <SelectListItem details={textExamples.longText} icon={icon} {...args} />
+        <SelectListItem details={textExamples.longText} isSelected icon={icon} {...args} />
       </div>
     </div>
   ),

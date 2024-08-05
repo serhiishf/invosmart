@@ -4,13 +4,20 @@ import { styleData, optionExamples } from 'mocks/storybook/mockData';
 import { useState } from 'react';
 import SelectList from './SelectList';
 
-const longListOptions = optionExamples.withoutIcon.citiesLongList;
-const shortListOptions = optionExamples.withoutIcon.citiesShortList;
-const oneOptionFromLongList = optionExamples.withoutIcon.oneCityFromLongList;
-const oneOptionFromShortList = optionExamples.withoutIcon.oneCityFromShortList;
-const optionsWithIcons = optionExamples.withIcon.allCountries;
-const suggestedOptionsWithIcons = optionExamples.withIcon.suggestedCountries;
-const oneOptionWithIcon = optionExamples.withIcon.oneCountry;
+const {
+  withoutIcon: {
+    citiesLongList: longListOptions,
+    citiesShortList: shortListOptions,
+    oneCityFromLongList: oneOptionFromLongList,
+    oneCityFromShortList: oneOptionFromShortList,
+    personsWithDetails: OptionsWithDetails,
+  },
+  withIcon: {
+    allCountries: optionsWithIcons,
+    suggestedCountries: suggestedOptionsWithIcons,
+    oneCountry: oneOptionWithIcon,
+  },
+} = optionExamples;
 
 const meta = {
   title: 'components/UI/SelectList',
@@ -33,6 +40,12 @@ export const SuggestedOptions: Story = {
   },
 };
 
+export const DetailisedOptions: Story = {
+  args: {
+    options: OptionsWithDetails,
+  },
+};
+
 export const Preselected: Story = {
   args: {
     suggestedOptions: shortListOptions,
@@ -40,7 +53,7 @@ export const Preselected: Story = {
   },
 };
 
-export const WithChildren: Story = {
+export const Children: Story = {
   args: {
     selectedOption: oneOptionFromShortList,
     suggestedOptions: shortListOptions,

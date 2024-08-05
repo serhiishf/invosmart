@@ -208,6 +208,7 @@ const SelectList = ({
                   label={option.label}
                   value={option.value}
                   data-value={option.value}
+                  details={option.details}
                   icon={option.icon}
                   textOverflow={textOverflow}
                   role={'option'}
