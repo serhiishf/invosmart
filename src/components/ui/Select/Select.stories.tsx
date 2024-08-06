@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn, userEvent, within } from '@storybook/test';
+import { fn, userEvent, within, expect } from '@storybook/test';
 import { optionExamples } from 'mocks/storybook/mockData';
 import Select from './Select';
 
@@ -79,7 +79,7 @@ export const PreselectedInteractions: Story = {
   },
 };
 
-export const WithOptionsKeyboardInteractions: Story = {
+export const OptionsKeyboardInteractions: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
@@ -89,10 +89,12 @@ export const WithOptionsKeyboardInteractions: Story = {
   play: async () => {
     await userEvent.keyboard('{Tab}');
     await userEvent.keyboard('{Enter}');
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{Enter}');
   },
 };
 
-export const WithoutOptionsClickInteractions: Story = {
+export const NoOptionsClickInteractions: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
@@ -105,7 +107,7 @@ export const WithoutOptionsClickInteractions: Story = {
   },
 };
 
-export const SuggestedOptionsToggleButtonInteractions: Story = {
+export const SuggestedOptionsAndToggleButtonInteractions: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
@@ -137,7 +139,7 @@ export const ClearableSelectInteractions: Story = {
   },
 };
 
-export const IsLoadingWithoutOptions: Story = {
+export const IsLoadingAndNoOptions: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
@@ -145,7 +147,7 @@ export const IsLoadingWithoutOptions: Story = {
   },
 };
 
-export const IsLoadingWithOptions: Story = {
+export const IsLoadingAndOptions: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
@@ -154,7 +156,7 @@ export const IsLoadingWithOptions: Story = {
   },
 };
 
-export const IsLoadingWithOptionsPreselected: Story = {
+export const IsLoadingAndOptionsPreselected: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
@@ -164,7 +166,7 @@ export const IsLoadingWithOptionsPreselected: Story = {
   },
 };
 
-export const IsLoadingWithOptionsInteractions: Story = {
+export const IsLoadingAndOptionsInteractions: Story = {
   args: {
     placeholder: 'Select city',
     label: 'City',
@@ -210,7 +212,7 @@ export const ClickOutsidePreselectedInteractions: Story = {
   },
 };
 
-export const OptionsWithIcons: Story = {
+export const OptionsWithIconsPreselected: Story = {
   args: {
     placeholder: 'Select country',
     label: 'Country',
@@ -220,7 +222,7 @@ export const OptionsWithIcons: Story = {
   },
 };
 
-export const OptionsWithIconsInteractions: Story = {
+export const OptionsWithIconsPreselectedInteractions: Story = {
   args: {
     placeholder: 'Select country',
     label: 'Country',
@@ -243,9 +245,15 @@ export const ToggleButtonKeyboardInteractions: Story = {
     suggestedOptions: suggestedOptionsWithIcons,
     options: optionsWithIcons,
   },
-  play: async () => {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const combobox = await canvas.getByRole('combobox');
+
     await userEvent.keyboard('{Tab}');
     await userEvent.keyboard('{Tab}');
+    await userEvent.keyboard('{Tab}');
+    expect(combobox).toHaveAttribute('aria-expanded', 'false');
     await userEvent.keyboard('{Enter}');
+    expect(combobox).toHaveAttribute('aria-expanded', 'true');
   },
 };

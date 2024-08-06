@@ -63,19 +63,6 @@
     position: relative;
   }
 
-  @keyframes clearButtonTransition {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  &__spinner {
-  }
-
   &__buttonWrap {
     width: 42px;
     color: $selectIconColor;
@@ -85,12 +72,13 @@
     }
   }
 
-  &__clearButtonWrap {
-    animation: clearButtonTransition 1s ease;
+  &__buttonIcon {
+    color: $selectIconColor;
   }
 
   &__iconDirectionArrow {
     transition: 0.3s ease;
+    color: $selectIconColor;
     &--isExpanded {
       transform: rotate(180deg);
       transition: 0.3s ease;

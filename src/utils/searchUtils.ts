@@ -74,6 +74,8 @@ export const filterOptions = (
 ) => {
   const patternRegExp = createSearchRegExp(phrase, matchStrategy);
   return options.filter((option) => {
-    return patternRegExp.test(option.label);
+    return (
+      patternRegExp.test(option.label) || (option?.details && patternRegExp.test(option.details))
+    );
   });
 };

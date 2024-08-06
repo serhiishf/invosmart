@@ -79,6 +79,7 @@ const Select = ({
     setInputValue('');
     setCurrentOptions(options);
     setCurrentTopOptions(suggestedOptions);
+    setIsExpanded(true);
     inputRef.current?.focus();
   };
 
@@ -205,11 +206,15 @@ const Select = ({
               </div>
             </div>
             <div className={styles.select__suffixContainer} ref={suffixContainerRef}>
-              {isLoading && <Spinner variant="inline" className={styles.select__spinner} />}
-              {isClearable && isExpanded && (inputValue || selectedOption?.value) && (
-                <div className={clsx(styles.select__buttonWrap, styles.select__clearButtonWrap)}>
-                  <IconButton tooltip={tooltipClearButton} onClick={handleClearButtonClick}>
-                    <IconClose className={styles.select__iconClose} />
+              {isLoading && <Spinner variant="inline" />}
+              {isClearable && (inputValue || selectedOption?.value) && (
+                <div className={clsx(styles.select__buttonWrap)}>
+                  <IconButton
+                    tooltip={tooltipClearButton}
+                    onClick={handleClearButtonClick}
+                    data-testid="clear-button"
+                  >
+                    <IconClose className={styles.select__buttonIcon} />
                   </IconButton>
                 </div>
               )}
@@ -217,9 +222,14 @@ const Select = ({
                 <>
                   <div className={styles.select__divider}></div>
                   <div className={styles.select__buttonWrap}>
-                    <IconButton tooltip={toggleSelectTooltip} onClick={handleExpandedButton}>
+                    <IconButton
+                      tooltip={toggleSelectTooltip}
+                      onClick={handleExpandedButton}
+                      data-testid="toggle-button"
+                    >
                       <IconDirectionArrow
                         className={clsx(
+                          styles.select__buttonIcon,
                           styles.select__iconDirectionArrow,
                           isExpanded && styles['select__iconDirectionArrow--isExpanded']
                         )}
