@@ -60,14 +60,33 @@
     gap: 4px;
     padding-left: 4px;
     padding-right: 4px;
+    position: relative;
+  }
+
+  @keyframes clearButtonTransition {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  &__spinner {
   }
 
   &__buttonWrap {
     width: 42px;
     color: $selectIconColor;
+    transition: transform 0.6s ease;
     @include for-size-up(desktop) {
       width: 34px;
     }
+  }
+
+  &__clearButtonWrap {
+    animation: clearButtonTransition 1s ease;
   }
 
   &__iconDirectionArrow {

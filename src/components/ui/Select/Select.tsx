@@ -205,9 +205,9 @@ const Select = ({
               </div>
             </div>
             <div className={styles.select__suffixContainer} ref={suffixContainerRef}>
-              {isLoading && <Spinner variant="inline" />}
+              {isLoading && <Spinner variant="inline" className={styles.select__spinner} />}
               {isClearable && isExpanded && (inputValue || selectedOption?.value) && (
-                <div className={styles.select__buttonWrap}>
+                <div className={clsx(styles.select__buttonWrap, styles.select__clearButtonWrap)}>
                   <IconButton tooltip={tooltipClearButton} onClick={handleClearButtonClick}>
                     <IconClose className={styles.select__iconClose} />
                   </IconButton>
