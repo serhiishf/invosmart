@@ -19,7 +19,7 @@
   height: auto;
   padding-left: $buttonPaddingPrimary;
   padding-right: $buttonPaddingPrimary;
-  border-radius: $buttonBorderRadiusPrimary;
+
   justify-content: center;
   align-items: center;
   width: fit-content;
@@ -92,7 +92,15 @@
       font-size: 18px;
       padding-left: $buttonPaddingLarge;
       padding-right: $buttonPaddingLarge;
-      border-radius: $buttonBorderRadiusLarge;
+    }
+  }
+
+  &--shape {
+    &-rounded {
+      border-radius: $buttonBorderRadiusRounded;
+    }
+    &-regular {
+      border-radius: $buttonBorderRadiusRegular;
     }
   }
 

@@ -5,6 +5,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   fontWeight?: 'semiBold' | 'medium';
   isBordered?: boolean;
   type?: 'submit' | 'reset' | 'button';
+  shape?: 'rounded' | 'regular';
   Icon?: React.FunctionComponent;
   label?: string;
   onClick?: () => void;

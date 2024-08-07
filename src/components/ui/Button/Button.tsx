@@ -14,6 +14,7 @@ const Button = ({
   type = 'button',
   Icon,
   label,
+  shape = 'regular',
   ...rest
 }: ButtonProps) => {
   return (
@@ -23,6 +24,7 @@ const Button = ({
         styles[`button--size-${size}`],
         styles[`button--buttonPalette-${buttonPalette}`],
         styles[`button--fontWeight-${fontWeight}`],
+        styles[`button--shape-${shape}`],
         isFullWidth && styles['button--fullWidthMode'],
         disabled && styles['button--disabled'],
         isBordered && styles['button--border']
