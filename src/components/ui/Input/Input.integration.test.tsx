@@ -70,12 +70,12 @@ describe('Input', () => {
 
   describe('initial with props', () => {
     it('should display the correct placeholder and label', () => {
-      render(<Input placeholder="Placeholder" label="Label text" />);
-      const input = screen.getByTestId('input-component');
-      const label = screen.getByText('Label text');
+      render(<Input placeholder="Placeholder example" label="Label text" />);
+      const inputByPlaceholderText = screen.getByPlaceholderText('Placeholder example');
+      const inputByLabelText = screen.getByLabelText('Label text');
 
-      expect(input).toBeInTheDocument();
-      expect(label).toBeInTheDocument();
+      expect(inputByPlaceholderText).toBeInTheDocument();
+      expect(inputByLabelText).toBeInTheDocument();
     });
 
     it('should render correctly password type input and toggle visibility', async () => {

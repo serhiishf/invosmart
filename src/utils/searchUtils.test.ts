@@ -330,6 +330,152 @@ describe('filterOptions', () => {
     );
   });
 
+  const optionsWithDetailsArray: OptionType[] = [
+    {
+      label: 'John Doe',
+      value: 'john_doe_01',
+      details: 'Email: john.doe@example.com, Phone: 123-456-7890, Address: 123 Maple St, New York',
+    },
+    {
+      label: 'Jane Smith',
+      value: 'jane_smith_02',
+      details:
+        'Email: jane.smith@example.com, Phone: 234-567-8901, Address: 456 Oak St, Los Angeles',
+    },
+    {
+      label: 'Alice Johnson',
+      value: 'alice_johnson_03',
+      details:
+        'Email: alice.johnson@example.com, Phone: 345-678-9012, Address: 789 Pine St, Chicago',
+    },
+    {
+      label: 'Bob Brown',
+      value: 'bob_brown_04',
+      details: 'Email: bob.brown@example.com, Phone: 456-789-0123, Address: 101 Cedar St, Houston',
+    },
+    {
+      label: 'Charlie Davis',
+      value: 'charlie_davis_05',
+      details:
+        'Email: charlie.davis@example.com, Phone: 567-890-1234, Address: 202 Birch St, Phoenix',
+    },
+    {
+      label: 'Emily Wilson',
+      value: 'emily_wilson_06',
+      details:
+        'Email: emily.wilson@example.com, Phone: 678-901-2345, Address: 303 Elm St, Philadelphia',
+    },
+    {
+      label: 'Frank Moore',
+      value: 'frank_moore_07',
+      details:
+        'Email: frank.moore@example.com, Phone: 789-012-3456, Address: 404 Ash St, San Antonio',
+    },
+    {
+      label: 'Grace Taylor',
+      value: 'grace_taylor_08',
+      details:
+        'Email: grace.taylor@example.com, Phone: 890-123-4567, Address: 505 Cherry St, San Diego',
+    },
+    {
+      label: 'Henry Lee',
+      value: 'henry_lee_09',
+      details: 'Email: henry.lee@example.com, Phone: 901-234-5678, Address: 606 Maple St, Dallas',
+    },
+    {
+      label: 'Isabella Harris',
+      value: 'isabella_harris_10',
+      details:
+        'Email: isabella.harris@example.com, Phone: 012-345-6789, Address: 707 Oak St, San Jose',
+    },
+    {
+      label: 'John Doe',
+      value: 'john_doe_11',
+      details: 'Email: johndoe11@example.com, Phone: 123-456-7899, Address: 111 Pine St, Austin',
+    },
+    {
+      label: 'Jane Smith',
+      value: 'jane_smith_12',
+      details:
+        'Email: janesmith12@example.com, Phone: 234-567-8909, Address: 222 Cedar St, Jacksonville',
+    },
+    {
+      label: 'Alice Johnson',
+      value: 'alice_johnson_13',
+      details:
+        'Email: alicejohnson13@example.com, Phone: 345-678-9019, Address: 333 Birch St, Fort Worth',
+    },
+    {
+      label: 'Bob Brown',
+      value: 'bob_brown_14',
+      details: 'Email: bobbrown14@example.com, Phone: 456-789-0129, Address: 444 Elm St, Columbus',
+    },
+    {
+      label: 'Charlie Davis',
+      value: 'charlie_davis_15',
+      details:
+        'Email: charliedavis15@example.com, Phone: 567-890-1239, Address: 555 Ash St, Charlotte',
+    },
+    {
+      label: 'Emily Wilson',
+      value: 'emily_wilson_16',
+      details:
+        'Email: emilywilson16@example.com, Phone: 678-901-2349, Address: 666 Cherry St, San Francisco',
+    },
+    {
+      label: 'Frank Moore',
+      value: 'frank_moore_17',
+      details:
+        'Email: frankmoore17@example.com, Phone: 789-012-3459, Address: 777 Maple St, Indianapolis',
+    },
+    {
+      label: 'Grace Taylor',
+      value: 'grace_taylor_18',
+      details:
+        'Email: gracetailor18@example.com, Phone: 890-123-4569, Address: 888 Oak St, Seattle',
+    },
+    {
+      label: 'Henry Lee',
+      value: 'henry_lee_19',
+      details: 'Email: henrylee19@example.com, Phone: 901-234-5679, Address: 999 Pine St, Denver',
+    },
+    {
+      label: 'Isabella Harris',
+      value: 'isabella_harris_20',
+      details:
+        'Email: isabellaharris20@example.com, Phone: 012-345-6780, Address: 1010 Cedar St, Washington',
+    },
+    {
+      label: 'Jack White',
+      value: 'jack_white_21',
+      details: 'Email: jack.white@example.com, Phone: 678-123-4560, Address: 1111 Birch St, Miami',
+    },
+  ];
+
+  describe('Behaviour options containing details, AnyMatch strategy', () => {
+    it('should return filtered options which contains only in details: "example.com"', () => {
+      expect(filterOptions('example.com', optionsWithDetailsArray, MatchStrategy.AnyMatch)).toEqual(
+        optionsWithDetailsArray
+      );
+    });
+    it('should return filtered options which contains in details and in label: "jack"', () => {
+      expect(filterOptions('jack', optionsWithDetailsArray, MatchStrategy.AnyMatch)).toEqual([
+        {
+          label: 'Jane Smith',
+          value: 'jane_smith_12',
+          details:
+            'Email: janesmith12@example.com, Phone: 234-567-8909, Address: 222 Cedar St, Jacksonville',
+        },
+        {
+          label: 'Jack White',
+          value: 'jack_white_21',
+          details:
+            'Email: jack.white@example.com, Phone: 678-123-4560, Address: 1111 Birch St, Miami',
+        },
+      ]);
+    });
+  });
+
   describe('Behavior with MatchStrategy.AnyMatch', () => {
     const anyMatchStrategy = MatchStrategy.AnyMatch;
 
