@@ -1,3 +1,5 @@
+import { TextOverflow } from 'constants/theme';
+
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   tooltip?: string;
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
@@ -6,10 +8,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   isBordered?: boolean;
   type?: 'submit' | 'reset' | 'button';
   shape?: 'rounded' | 'regular';
-  Icon?: React.FunctionComponent;
+  icon?: React.FunctionComponent;
   label?: string;
   onClick?: () => void;
   disabled?: boolean;
+  textOverflow?: TextOverflow;
   buttonPalette?:
     | 'primary'
     | 'secondary'

@@ -19,7 +19,6 @@
   height: auto;
   padding-left: $buttonPaddingPrimary;
   padding-right: $buttonPaddingPrimary;
-
   justify-content: center;
   align-items: center;
   width: fit-content;
@@ -28,8 +27,26 @@
   font-size: 15px;
   padding-top: 8px;
   padding-bottom: 8px;
+  box-sizing: border-box;
   position: relative;
   transition: background-color $buttonAnimation;
+  max-width: 100%;
+
+  &__text {
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+    &-truncate {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__tooltipWrapZIndex {
+    z-index: $buttonZIndex;
+  }
 
   &--fullWidthMode {
     width: 100%;
