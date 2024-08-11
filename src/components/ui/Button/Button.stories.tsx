@@ -282,6 +282,47 @@ export const PaleteAndStates: Story = {
             );
           })}
         </div>
+        <h3>border</h3>
+        <div style={styleData.flexColumn}>
+          {palleteNames.map((value) => {
+            return (
+              <div style={styleData.flexColumn} key={value}>
+                <h4>{value}</h4>
+                <div style={styleData.flexRow}>
+                  <Button isBordered buttonPalette={value} label={value} {...args}></Button>
+                  <Button
+                    isBordered
+                    buttonPalette={value}
+                    label={`${value} and hover`}
+                    id={`${value}Hover`}
+                    {...args}
+                  ></Button>
+                  <Button
+                    isBordered
+                    buttonPalette={value}
+                    label={`${value} and focus-visible`}
+                    id={`${value}Focus`}
+                    {...args}
+                  ></Button>
+                  <Button
+                    isBordered
+                    buttonPalette={value}
+                    label={`${value} and active`}
+                    id={`${value}Active`}
+                    {...args}
+                  ></Button>
+                  <Button
+                    isBordered
+                    buttonPalette={value}
+                    label={`${value} and dissabled`}
+                    disabled
+                    {...args}
+                  ></Button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   },
