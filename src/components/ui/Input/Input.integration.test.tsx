@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Input from './Input';
-import IconSearch from 'assets/icons/search.svg?react';
+import IconSearch from 'mocks/shared/icons/search.svg?react';
 
 vi.mock('react', async (importOriginal) => {
   const actual = await importOriginal();

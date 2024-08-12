@@ -3,8 +3,8 @@ import { fn, userEvent } from '@storybook/test';
 import Button from './Button';
 import { ButtonProps } from './types';
 import { textExamples, styleData } from 'mocks/storybook/mockData';
-import { Settings as IconPlaceholder } from 'assets/icons';
-import * as icons from 'assets/icons';
+import { Settings as IconPlaceholder } from 'mocks/shared/icons';
+import * as icons from 'mocks/shared/icons';
 import { TextOverflow } from 'constants/theme';
 
 const meta = {
