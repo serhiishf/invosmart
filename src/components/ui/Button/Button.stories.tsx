@@ -12,7 +12,7 @@ const meta = {
   component: Button,
   tags: ['autodocs'],
   argTypes: {
-    icon: {
+    startIcon: {
       options: ['None', ...Object.keys(icons)],
       mapping: { None: undefined, ...icons },
     },
@@ -27,13 +27,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
-    label: 'Button',
+    children: 'Button',
   },
 };
 
 export const FullWidth: Story = {
   args: {
-    label: 'Button',
+    children: 'Button',
     isFullWidth: true,
   },
 };
@@ -41,24 +41,26 @@ export const FullWidth: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    label: 'Button',
+    children: 'Button',
   },
 };
 
-export const LabelAndIcon: Story = {
+export const StartIconAndText: Story = {
   parameters: {
     controls: {
       disable: true,
     },
   },
   args: {
-    icon: IconPlaceholder,
+    startIcon: IconPlaceholder,
   },
 
   render: (args) => (
     <div style={styleData.flexColumn}>
-      <Button {...args} label="!isFullWidth" />
-      <Button {...args} label="isFullWidth" isFullWidth />
+      <Button {...args}>!isFullWidth</Button>
+      <Button {...args} isFullWidth>
+        isFullWidth
+      </Button>
     </div>
   ),
 };
@@ -70,14 +72,18 @@ export const FontWeight: Story = {
     },
   },
   args: {
-    icon: IconPlaceholder,
+    startIcon: IconPlaceholder,
   },
 
   render: (args) => (
     <div style={styleData.flexColumn}>
-      <Button label="default" {...args} />
-      <Button fontWeight="medium" label="medium" {...args} />
-      <Button fontWeight="semiBold" label="semiBold" {...args} />
+      <Button {...args}>default</Button>
+      <Button fontWeight="medium" {...args}>
+        medium
+      </Button>
+      <Button fontWeight="semiBold" {...args}>
+        semiBold
+      </Button>
     </div>
   ),
 };
@@ -89,23 +95,24 @@ export const Shape: Story = {
     },
   },
 
-  render: () => (
+  render: (args) => (
     <div style={styleData.flexColumn}>
-      <Button label="default" />
-      <Button label="regular" shape="regular" />
-      <Button label="rounded" shape="rounded" />
+      <Button {...args}>default</Button>
+      <Button shape="regular" {...args}>
+        regular
+      </Button>
+      <Button shape="rounded" {...args}>
+        rounded
+      </Button>
     </div>
   ),
 };
 
-export const LongLabel: Story = {
+export const LongText: Story = {
   parameters: {
     controls: {
       disable: true,
     },
-  },
-  args: {
-    label: textExamples.longText,
   },
 
   render: (args) => {
@@ -113,32 +120,42 @@ export const LongLabel: Story = {
       <div style={styleData.flexColumn}>
         <div style={styleData.flexColumn}>
           <h4>Default</h4>
-          <Button {...args}></Button>
+          <Button {...args}>{textExamples.longText}</Button>
         </div>
         <div style={styleData.flexColumn}>
           <h4>TextOverflow.Truncate</h4>
-          <Button {...args} textOverflow={TextOverflow.Truncate}></Button>
+          <Button textOverflow={TextOverflow.Truncate} {...args}>
+            {textExamples.longText}
+          </Button>
         </div>
         <div style={styleData.flexColumn}>
           <h4>TextOverflow.Wrap</h4>
-          <Button textOverflow={TextOverflow.Wrap} {...args}></Button>
+          <Button textOverflow={TextOverflow.Wrap} {...args}>
+            {textExamples.longText}
+          </Button>
         </div>
         <div style={styleData.flexColumn}>
           <h4>TextOverflow.Wrap and Icon</h4>
-          <Button {...args} textOverflow={TextOverflow.Wrap} icon={IconPlaceholder}></Button>
+          <Button textOverflow={TextOverflow.Wrap} startIcon={IconPlaceholder} {...args}>
+            {textExamples.longText}
+          </Button>
         </div>
         <div style={styleData.flexColumn}>
           <h4>TextOverflow.Wrap and Shape: rounded</h4>
-          <Button {...args} textOverflow={TextOverflow.Wrap} shape="rounded"></Button>
+          <Button textOverflow={TextOverflow.Wrap} shape="rounded" {...args}>
+            {textExamples.longText}
+          </Button>
         </div>
         <div style={styleData.flexColumn}>
           <h4>TextOverflow.Wrap, Shape: rounded and Icon</h4>
           <Button
-            {...args}
             textOverflow={TextOverflow.Wrap}
             shape="rounded"
-            icon={IconPlaceholder}
-          ></Button>
+            startIcon={IconPlaceholder}
+            {...args}
+          >
+            {textExamples.longText}
+          </Button>
         </div>
       </div>
     );
@@ -147,8 +164,8 @@ export const LongLabel: Story = {
 
 export const FocusInteractions: Story = {
   args: {
-    icon: IconPlaceholder,
-    label: 'Focus interaction',
+    startIcon: IconPlaceholder,
+    children: 'Focus interaction',
     tooltip: 'Settings',
   },
   play: async () => {
@@ -156,15 +173,10 @@ export const FocusInteractions: Story = {
   },
 };
 
-export const OnlyIconAndTooltipHoverInteractions: Story = {
-  parameters: {
-    controls: {
-      disable: true,
-    },
-  },
+export const OnlyStartIconAndTooltipHoverInteractions: Story = {
   args: {
-    icon: IconPlaceholder,
-    label: '',
+    startIcon: IconPlaceholder,
+    children: '',
     tooltip: 'Settings',
   },
   play: async ({ canvas }) => {
@@ -174,24 +186,30 @@ export const OnlyIconAndTooltipHoverInteractions: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: {
+    controls: {
+      disable: true,
+    },
+  },
   render: (args) => {
+    const sizes: ButtonProps['size'][] = ['xs', 's', 'm', 'l', 'xl'];
     return (
       <div style={styleData.flexColumn}>
         <h4>Shape - regular</h4>
         <div style={styleData.flexRow}>
-          <Button shape="regular" size="xs" label="Button size - xs" {...args}></Button>
-          <Button shape="regular" size="s" label="Button size - s" {...args}></Button>
-          <Button shape="regular" size="m" label="Button size - m" {...args}></Button>
-          <Button shape="regular" size="l" label="Button size - l" {...args}></Button>
-          <Button shape="regular" size="xl" label="Button size - xl" {...args}></Button>
+          {sizes.map((size) => (
+            <Button shape="regular" size={size} key={size} {...args}>
+              Button size - {size}
+            </Button>
+          ))}
         </div>
         <h4>Shape - rounded</h4>
         <div style={styleData.flexRow}>
-          <Button shape="rounded" size="xs" label="Button size - xs" {...args}></Button>
-          <Button shape="rounded" size="s" label="Button size - s" {...args}></Button>
-          <Button shape="rounded" size="m" label="Button size - m" {...args}></Button>
-          <Button shape="rounded" size="l" label="Button size - l" {...args}></Button>
-          <Button shape="rounded" size="xl" label="Button size - xl" {...args}></Button>
+          {sizes.map((size) => (
+            <Button shape="rounded" size={size} key={size} {...args}>
+              Button size - {size}
+            </Button>
+          ))}
         </div>
       </div>
     );
@@ -245,79 +263,75 @@ export const PaleteAndStates: Story = {
     ];
     return (
       <div style={styleData.flexColumn}>
-        <h3>No border</h3>
+        <h3>!isBordered</h3>
         <div style={styleData.flexColumn}>
           {palleteNames.map((value) => {
             return (
               <div style={styleData.flexColumn} key={value}>
                 <h4>{value}</h4>
                 <div style={styleData.flexRow}>
-                  <Button buttonPalette={value} label={value} {...args}></Button>
+                  <Button buttonPalette={value} {...args}>
+                    {value}
+                  </Button>
                   <Button
                     buttonPalette={value}
-                    label={`${value} and hover`}
                     id={`${value}Hover`}
                     {...args}
-                  ></Button>
+                  >{`${value} and hover`}</Button>
                   <Button
                     buttonPalette={value}
-                    label={`${value} and focus-visible`}
                     id={`${value}Focus`}
                     {...args}
-                  ></Button>
+                  >{`${value} and focus-visible`}</Button>
                   <Button
                     buttonPalette={value}
-                    label={`${value} and active`}
                     id={`${value}Active`}
                     {...args}
-                  ></Button>
+                  >{`${value} and active`}</Button>
                   <Button
                     buttonPalette={value}
-                    label={`${value} and dissabled`}
                     disabled
                     {...args}
-                  ></Button>
+                  >{`${value} and dissabled`}</Button>
                 </div>
               </div>
             );
           })}
         </div>
-        <h3>border</h3>
+        <h3>isBordered</h3>
         <div style={styleData.flexColumn}>
           {palleteNames.map((value) => {
             return (
               <div style={styleData.flexColumn} key={value}>
                 <h4>{value}</h4>
                 <div style={styleData.flexRow}>
-                  <Button isBordered buttonPalette={value} label={value} {...args}></Button>
+                  <Button isBordered buttonPalette={value} {...args}>
+                    {value}
+                  </Button>
                   <Button
                     isBordered
                     buttonPalette={value}
-                    label={`${value} and hover`}
                     id={`${value}Hover`}
                     {...args}
-                  ></Button>
+                  >{`${value} and hover`}</Button>
                   <Button
                     isBordered
                     buttonPalette={value}
-                    label={`${value} and focus-visible`}
                     id={`${value}Focus`}
                     {...args}
-                  ></Button>
+                  >{`${value} and focus-visible`}</Button>
                   <Button
                     isBordered
                     buttonPalette={value}
-                    label={`${value} and active`}
                     id={`${value}Active`}
                     {...args}
-                  ></Button>
+                  >{`${value} and active`}</Button>
                   <Button
                     isBordered
                     buttonPalette={value}
-                    label={`${value} and dissabled`}
                     disabled
                     {...args}
-                  ></Button>
+                  >{`${value} and dissabled`}</Button>
                 </div>
               </div>
             );

@@ -4,19 +4,23 @@ import Button from './Button';
 import { ButtonProps } from './types';
 
 describe('Button', () => {
-  it('should render correctly with default props (without label and icon)', () => {
-    render(<Button />);
+  it('should render correctly with default props (without text and icon)', () => {
+    render(<Button></Button>);
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
   });
 
-  it('should render correctly with icon, label and tooltip', () => {
+  it('should render correctly with text, icon and tooltip', () => {
     const MockIcon = () => <svg role="presentation" />;
-    render(<Button label="Button label" tooltip="Tooltip text" icon={MockIcon} />);
+    render(
+      <Button tooltip="Tooltip text" startIcon={MockIcon}>
+        Button text
+      </Button>
+    );
 
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
-    expect(screen.getByText('Button label')).toBeInTheDocument();
+    expect(screen.getByText('Button text')).toBeInTheDocument();
     expect(screen.getByRole('presentation')).toBeInTheDocument();
   });
 
@@ -30,7 +34,7 @@ describe('Button', () => {
     const types: ButtonProps['type'][] = ['button', 'submit', 'reset'];
 
     types.forEach((type) => {
-      render(<Button type={type} label="Button text" />);
+      render(<Button type={type}>Button text</Button>);
 
       const button = screen.getByRole('button');
       expect(button).toHaveAttribute('type', type);
@@ -38,6 +42,7 @@ describe('Button', () => {
       cleanup();
     });
   });
+
   it('should pass through standard and custom HTML attributes', () => {
     const testId = 'test-button';
     const attributes = {
@@ -65,7 +70,11 @@ describe('Button', () => {
 
   it('should be disabled when disabled prop is true', async () => {
     const handleClick = vitest.fn();
-    render(<Button disabled label="Disabled Button" onClick={handleClick} />);
+    render(
+      <Button disabled onClick={handleClick}>
+        Disabled Button
+      </Button>
+    );
     const button = screen.getByRole('button');
 
     expect(button).toBeDisabled();
@@ -76,7 +85,7 @@ describe('Button', () => {
 
   it('should call onClick handler when clicked', async () => {
     const handleClick = vitest.fn();
-    render(<Button onClick={handleClick} label="Click Me" />);
+    render(<Button onClick={handleClick}>Click Me</Button>);
     const button = screen.getByRole('button');
 
     await userEvent.click(button);

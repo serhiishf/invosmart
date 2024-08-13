@@ -22,10 +22,10 @@ const Button = ({
   buttonPalette = 'primary',
   disabled,
   type = 'button',
-  icon: Icon,
-  label,
+  startIcon: StartIcon,
   shape = 'regular',
   textOverflow = TextOverflow.Wrap,
+  children,
   ...rest
 }: ButtonProps) => {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
@@ -66,15 +66,20 @@ const Button = ({
       {...getReferenceProps()}
       {...rest}
     >
-      {Icon && (
+      {StartIcon && (
         <div className={styles.button__iconContainer}>
-          <Icon />
+          <StartIcon />
         </div>
       )}
-      {label && (
-        <span className={clsx(styles.button__text, styles[`button__text-${textOverflow}`])}>
-          {label}
-        </span>
+      {children && (
+        <div
+          className={clsx(
+            styles.button__childrenWraper,
+            styles[`button__childrenWraper-${textOverflow}`]
+          )}
+        >
+          {children}
+        </div>
       )}
       {tooltip && isTooltipOpen && (
         <Tooltip

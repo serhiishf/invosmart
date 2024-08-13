@@ -8,8 +8,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   isBordered?: boolean;
   type?: 'submit' | 'reset' | 'button';
   shape?: 'rounded' | 'regular';
-  icon?: React.FunctionComponent;
-  label?: string;
+  startIcon?: React.FunctionComponent;
   onClick?: () => void;
   disabled?: boolean;
   textOverflow?: TextOverflow;
