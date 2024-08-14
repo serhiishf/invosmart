@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import IconButton from './IconButton';
-import * as icons from 'mocks/shared/icons';
+import * as Icons from 'mocks/shared/icons';
 import { CSSProperties } from 'react';
 import { IconButtonProps } from './types';
 
