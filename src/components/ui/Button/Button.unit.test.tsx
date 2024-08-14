@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Button from './Button';
 import { ButtonProps } from './types';
@@ -11,7 +11,7 @@ describe('Button', () => {
       expect(button).toBeInTheDocument();
     });
 
-    it('should render correctly with text, icon and tooltip', () => {
+    it('should render correctly with text and startIcon', () => {
       const MockIcon = () => <svg role="presentation" />;
       render(
         <Button tooltip="Tooltip text" startIcon={MockIcon}>
@@ -23,6 +23,15 @@ describe('Button', () => {
       expect(button).toBeInTheDocument();
       expect(screen.getByText('Button text')).toBeInTheDocument();
       expect(screen.getByRole('presentation')).toBeInTheDocument();
+    });
+
+    it('should render correctly with tooltip', async () => {
+      render(<Button tooltip="Tooltip text">Button text</Button>);
+
+      const button = screen.getByRole('button');
+      expect(button).toBeInTheDocument();
+      await userEvent.hover(button);
+      await waitFor(() => expect(screen.getByText('Tooltip text')).toBeInTheDocument());
     });
 
     it('should have default type "button" when no type is specified', () => {

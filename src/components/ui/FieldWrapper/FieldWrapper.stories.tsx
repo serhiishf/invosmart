@@ -12,7 +12,7 @@ const meta = {
     children: (
       <div
         style={{
-          padding: '40px',
+          padding: '20px',
         }}
       >
         Content inside
@@ -33,7 +33,7 @@ const stylesFlexColumn: CSSProperties = {
 
 export const Default: Story = {};
 
-export const WithLabelAndHelperText: Story = {
+export const LabelAndHelperText: Story = {
   args: {
     label: 'Label',
     helperText: 'Helper text',
