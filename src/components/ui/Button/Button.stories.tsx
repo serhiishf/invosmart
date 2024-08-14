@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn, userEvent } from '@storybook/test';
+import { fn, userEvent, expect } from '@storybook/test';
 import Button from './Button';
 import { ButtonProps } from './types';
 import { textExamples, styleData } from 'mocks/storybook/mockData';
@@ -168,8 +168,11 @@ export const FocusInteractions: Story = {
     children: 'Focus interaction',
     tooltip: 'Settings',
   },
-  play: async () => {
+  play: async ({ canvas }) => {
+    const button = canvas.getByRole('button');
     await userEvent.keyboard('{Tab}');
+
+    expect(button).toHaveFocus();
   },
 };
 
