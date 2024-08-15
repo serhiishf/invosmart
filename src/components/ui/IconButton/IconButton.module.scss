@@ -51,10 +51,14 @@
     color: $iconButtonDisabledColor;
   }
 
-  @media (pointer: fine) {
-    &:not(.iconButton--disabled) {
-      &:hover,
-      &:focus-visible {
+  &:not(.iconButton--disabled) {
+    &:focus-visible {
+      background-color: $iconButtonBackgroundColorHover;
+      transition: all $iconButtonAnimation;
+    }
+
+    @media (pointer: fine) {
+      &:hover {
         background-color: $iconButtonBackgroundColorHover;
         transition: all $iconButtonAnimation;
       }

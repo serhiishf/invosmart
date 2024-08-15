@@ -223,7 +223,15 @@ export const optionExamples = {
 
 export const styleData: { [key: string]: CSSProperties } = {
   flexColumn: { display: 'flex', flexDirection: 'column', gap: '2rem' },
+  flexColumnLargeGap: { display: 'flex', flexDirection: 'column', gap: '3rem' },
+  flexColumnRegularGap: { display: 'flex', flexDirection: 'column', gap: '2rem' },
+  flexColumnSmallGap: { display: 'flex', flexDirection: 'column', gap: '1rem' },
+
   flexRow: { display: 'flex', flexDirection: 'row', gap: '2rem' },
+  flexRowLargeGap: { display: 'flex', flexDirection: 'row', gap: '3rem' },
+  flexRowRegularGap: { display: 'flex', flexDirection: 'row', gap: '2rem' },
+  flexRowSmallGap: { display: 'flex', flexDirection: 'row', gap: '1rem' },
+
   button: {
     height: '40px',
     padding: '10px',

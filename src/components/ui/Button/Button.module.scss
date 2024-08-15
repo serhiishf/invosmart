@@ -2,9 +2,12 @@
   background-color: $bgColor;
   color: $color;
 
+  &:focus-visible {
+    background-color: $hoverBgColor;
+  }
+
   @media (pointer: fine) {
-    &:hover,
-    &:focus-visible {
+    &:hover {
       background-color: $hoverBgColor;
     }
     &:active {
