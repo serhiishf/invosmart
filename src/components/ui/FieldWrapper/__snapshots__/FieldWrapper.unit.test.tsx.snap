@@ -1,0 +1,72 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldWrapper > Snapshots tests > should match the snapshot with default state - no passing props 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <div
+      class="_fieldWrapper_3d96c9"
+    >
+      <div
+        class="_fieldWrapper__main_3d96c9"
+      >
+        <input />
+      </div>
+      <fieldset
+        class="_fieldWrapper__fieldset_3d96c9"
+      >
+        <legend
+          class="_fieldWrapper__legend_3d96c9 _fieldWrapper__legend--hidden_3d96c9"
+        >
+          <span
+            class="_fieldWrapper__legend-span_3d96c9"
+          />
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldWrapper > Snapshots tests > should match the snapshot with label, helper text and input 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <div
+      class="_fieldWrapper_3d96c9"
+    >
+      <label
+        class="_fieldWrapper__label_3d96c9"
+      >
+        Test Label
+      </label>
+      <div
+        class="_fieldWrapper__main_3d96c9"
+      >
+        <input />
+      </div>
+      <fieldset
+        class="_fieldWrapper__fieldset_3d96c9"
+      >
+        <legend
+          class="_fieldWrapper__legend_3d96c9"
+        >
+          <span
+            class="_fieldWrapper__legend-span_3d96c9"
+          >
+            Test Label
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+    <p
+      class="_helperText_3d96c9 _helperText--left_3d96c9"
+      role="note"
+    >
+      Helper Text
+    </p>
+  </div>
+</DocumentFragment>
+`;

@@ -4,7 +4,7 @@ import Button from './Button';
 import { ButtonProps } from './types';
 
 describe('Button', () => {
-  describe('Functional Tests', () => {
+  describe('Functional tests', () => {
     it('should render correctly with default props (without text and icon)', () => {
       render(<Button></Button>);
       const button = screen.getByRole('button');
@@ -114,7 +114,7 @@ describe('Button', () => {
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
   });
-  describe('Snapshots Tests', () => {
+  describe('Snapshots tests', () => {
     it('should match the snapshot with default props', () => {
       const { asFragment } = render(<Button>Default Button</Button>);
       expect(asFragment()).toMatchSnapshot();

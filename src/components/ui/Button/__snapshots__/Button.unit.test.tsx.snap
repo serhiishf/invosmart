@@ -1,41 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Button > Snapshots Tests > should match the snapshot for different sizes and shapes 1`] = `
-<DocumentFragment>
-  <button
-    class="_button_50c219 _button--size-s_50c219 _button--buttonPalette-primary_50c219 _button--fontWeight-semiBold_50c219 _button--shape-regular_50c219"
-    type="button"
-  >
-    <div
-      class="_button__childrenWraper_50c219 _button__childrenWraper-wrap_50c219"
-    >
-      Small Button
-    </div>
-  </button>
-  <button
-    class="_button_50c219 _button--size-m_50c219 _button--buttonPalette-primary_50c219 _button--fontWeight-semiBold_50c219 _button--shape-rounded_50c219"
-    type="button"
-  >
-    <div
-      class="_button__childrenWraper_50c219 _button__childrenWraper-wrap_50c219"
-    >
-      Medium Rounded Button
-    </div>
-  </button>
-  <button
-    class="_button_50c219 _button--size-l_50c219 _button--buttonPalette-primary_50c219 _button--fontWeight-semiBold_50c219 _button--shape-regular_50c219"
-    type="button"
-  >
-    <div
-      class="_button__childrenWraper_50c219 _button__childrenWraper-wrap_50c219"
-    >
-      Large Regular Button
-    </div>
-  </button>
-</DocumentFragment>
-`;
-
-exports[`Button > Snapshots Tests > should match the snapshot when disabled 1`] = `
+exports[`Button > Snapshots tests > should match the snapshot when disabled 1`] = `
 <DocumentFragment>
   <button
     class="_button_50c219 _button--size-m_50c219 _button--buttonPalette-primary_50c219 _button--fontWeight-semiBold_50c219 _button--shape-regular_50c219 _button--disabled_50c219"
@@ -51,7 +16,7 @@ exports[`Button > Snapshots Tests > should match the snapshot when disabled 1`] 
 </DocumentFragment>
 `;
 
-exports[`Button > Snapshots Tests > should match the snapshot with an icon and tooltip 1`] = `
+exports[`Button > Snapshots tests > should match the snapshot with an icon and tooltip 1`] = `
 <DocumentFragment>
   <button
     class="_button_50c219 _button--size-m_50c219 _button--buttonPalette-primary_50c219 _button--fontWeight-semiBold_50c219 _button--shape-regular_50c219"
@@ -73,7 +38,7 @@ exports[`Button > Snapshots Tests > should match the snapshot with an icon and t
 </DocumentFragment>
 `;
 
-exports[`Button > Snapshots Tests > should match the snapshot with default props 1`] = `
+exports[`Button > Snapshots tests > should match the snapshot with default props 1`] = `
 <DocumentFragment>
   <button
     class="_button_50c219 _button--size-m_50c219 _button--buttonPalette-primary_50c219 _button--fontWeight-semiBold_50c219 _button--shape-regular_50c219"

@@ -12,10 +12,12 @@ const FieldWrapper = ({
   helperText,
   helperTextPosition = 'left',
   helperTextId,
+  helperTextRole = 'note',
   className,
+  ...rest
 }: FieldWrapperProps) => {
   return (
-    <div className={clsx(className)}>
+    <div className={clsx(className)} {...rest}>
       <div className={styles.fieldWrapper}>
         {label && (
           <label
@@ -65,6 +67,7 @@ const FieldWrapper = ({
             helperTextPosition === 'left' && styles['helperText--left'],
             helperTextPosition === 'right' && styles['helperText--right']
           )}
+          role={helperTextRole}
         >
           {helperText}
         </p>

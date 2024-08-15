@@ -8,6 +8,7 @@ export interface FieldWrapperProps extends React.HTMLAttributes<HTMLDivElement> 
   helperText?: string;
   helperTextPosition?: 'left' | 'right';
   helperTextId?: string;
+  helperTextRole?: 'note' | 'status' | 'alert';
   onFocus?: () => void;
   onBlur?: () => void;
   setIsError?: (error: boolean) => void;
