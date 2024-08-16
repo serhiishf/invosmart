@@ -17,10 +17,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-type ButtonSize = IconButtonProps['size'];
-
-const sizes: ButtonSize[] = ['xs', 's', 'm', 'l', 'xl', 'auto'];
-
 const IconClose = Icons.Close;
 
 export const Default: Story = {
@@ -55,10 +51,12 @@ export const TooltipFocusInteractions: Story = {
 };
 
 export const TooltipHoverInteractions: Story = {
-  // This story tests the tooltip behavior when hovering over the button.
-  // Due to the use of `@media (pointer: fine)` in the component's styles,
-  // the hover-related background changes are not reflected in this test environment.
-  // The visual hover effect will only be visible when using a real mouse in a browser.
+  /*
+   * This story tests the tooltip behavior when hovering over the button.
+   * Due to the use of `@media (pointer: fine)` in the component's styles,
+   * the hover-related background changes are not reflected in this test environment.
+   * The visual hover effect will only be visible when using a real mouse in a browser.
+   */
   render: (args) => (
     <IconButton aria-label="Close" tooltip="Close" {...args}>
       <IconClose />
@@ -99,27 +97,35 @@ export const PseudoStates: Story = {
   ),
 };
 
+type ButtonSize = IconButtonProps['size'];
+
+const sizes: ButtonSize[] = ['auto', 'xs', 's', 'm', 'l', 'xl'];
+const hoverArrayId: () => string[] = () => {
+  return sizes.flatMap((size) => [`#${size}CircleHover`, `#${size}SquareHover`]);
+};
+
 export const SizesAndShapes: Story = {
   parameters: {
     controls: {
       disable: true,
     },
     pseudo: {
-      hover: '#hoverClose1',
-      active: '#activeClose2',
+      hover: hoverArrayId(),
     },
   },
   render: (args) => (
     <div style={styleData.flexColumn}>
       <h3>Sizes and Shapes</h3>
       <div style={styleData.flexColumn}>
-        <h4>Circle</h4>
-        <div style={styleData.flexColumn}>
+        <h3>Circle</h3>
+        <div style={styleData.flexColumnSmallGap}>
+          <h4>Pseudo hover state</h4>
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
-              <div key={size} style={{ border: '1px dashed pink' }}>
+              <div key={size} style={styleData.flexColumnSmallGap}>
+                <h5>{size}</h5>
                 <IconButton
-                  id="#hoverClose1"
+                  id={`${size}CircleHover`}
                   aria-label="Close"
                   size={size}
                   shape="circle"
@@ -141,12 +147,21 @@ export const SizesAndShapes: Story = {
             ))}
           </div>
         </div>
-        <h4>Square</h4>
-        <div style={styleData.flexColumn}>
+        <h3>Square</h3>
+        <div style={styleData.flexColumnSmallGap}>
+          <h4>Pseudo hover state</h4>
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
-              <div key={size} style={{ border: '1px dashed pink' }}>
-                <IconButton aria-label="Close" size={size} shape="square" tooltip={size} {...args}>
+              <div key={size} style={styleData.flexColumnSmallGap}>
+                <h5>{size}</h5>
+                <IconButton
+                  id={`${size}SquareHover`}
+                  aria-label="Close"
+                  size={size}
+                  shape="square"
+                  tooltip={size}
+                  {...args}
+                >
                   <IconClose />
                 </IconButton>
               </div>
