@@ -137,6 +137,7 @@ export const SizesAndShapes: Story = {
               </div>
             ))}
           </div>
+          <h4>Default state</h4>
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
               <div key={size}>
@@ -167,6 +168,7 @@ export const SizesAndShapes: Story = {
               </div>
             ))}
           </div>
+          <h4>Default state</h4>
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
               <div key={size}>
@@ -188,37 +190,13 @@ interface CustomArgs extends IconButtonProps {
 }
 
 export const SizeAutoBehavior: StoryObj<Meta<CustomArgs>> = {
-  argTypes: {
-    parentWidth: {
-      control: { type: 'text' },
-      defaultValue: '40px',
-      description: 'Width of the parent container',
-    },
-    parentHeight: {
-      control: { type: 'text' },
-      defaultValue: '40px',
-      description: 'Height of the parent container',
-    },
-  },
-  args: {
-    parentWidth: '100px',
-    parentHeight: '100px',
-  },
-  parameters: {},
   render: (args) => (
-    <div
-      style={{
-        width: args.parentWidth,
-        height: args.parentHeight,
-        border: '1px dashed pink',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: '20px',
-      }}
-    >
+    <div style={styleData.flexRow}>
       <IconButton aria-label="Close" size="auto" shape="circle" tooltip="auto" {...args}>
-        <IconClose />
+        <IconClose style={{ background: 'red' }} />
+      </IconButton>
+      <IconButton aria-label="Close" size="auto" shape="circle" tooltip="auto" {...args}>
+        <IconClose style={{ background: 'red', width: '100px' }} />
       </IconButton>
     </div>
   ),
