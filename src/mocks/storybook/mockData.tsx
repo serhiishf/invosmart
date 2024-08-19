@@ -228,6 +228,7 @@ export const styleData: { [key: string]: CSSProperties } = {
   flexColumnSmallGap: { display: 'flex', flexDirection: 'column', gap: '1rem' },
 
   flexRow: { display: 'flex', flexDirection: 'row', gap: '2rem' },
+  flexRowCenter: { display: 'flex', flexDirection: 'row', gap: '2rem', alignItems: 'center' },
   flexRowLargeGap: { display: 'flex', flexDirection: 'row', gap: '3rem' },
   flexRowRegularGap: { display: 'flex', flexDirection: 'row', gap: '2rem' },
   flexRowSmallGap: { display: 'flex', flexDirection: 'row', gap: '1rem' },
@@ -256,3 +257,18 @@ function prepareCountryOptions(countries: readonly CountryType[]) {
     };
   });
 }
+
+interface PseudoStateIdOptions {
+  baseId: string | (string | undefined)[];
+  omitHash?: boolean;
+  prefix?: string | string[];
+}
+
+export const generatePseudoStateIds = ({ baseId, prefix, omitHash }: PseudoStateIdOptions) => {
+  const baseIdArray = Array.isArray(baseId) ? baseId : [baseId];
+  const prefixArray = Array.isArray(prefix) ? prefix : [prefix];
+
+  return baseIdArray.flatMap((id) =>
+    prefixArray.map((pref) => `${omitHash ? '' : '#'}${pref}${id}`)
+  );
+};

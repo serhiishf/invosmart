@@ -3,7 +3,7 @@ import { fn, userEvent, expect } from '@storybook/test';
 import IconButton from './IconButton';
 import * as Icons from 'mocks/shared/icons';
 import { IconButtonProps } from './types';
-import { styleData } from 'mocks/storybook/mockData';
+import { styleData, generatePseudoStateIds } from 'mocks/storybook/mockData';
 
 const meta = {
   title: 'components/UI/IconButton',
@@ -99,10 +99,7 @@ export const PseudoStates: Story = {
 
 type ButtonSize = IconButtonProps['size'];
 
-const sizes: ButtonSize[] = ['auto', 'xs', 's', 'm', 'l', 'xl'];
-const hoverArrayId: () => string[] = () => {
-  return sizes.flatMap((size) => [`#${size}CircleHover`, `#${size}SquareHover`]);
-};
+const sizes: ButtonSize[] = ['xs', 's', 'm', 'l', 'xl', undefined];
 
 export const SizesAndShapes: Story = {
   parameters: {
@@ -110,7 +107,7 @@ export const SizesAndShapes: Story = {
       disable: true,
     },
     pseudo: {
-      hover: hoverArrayId(),
+      hover: generatePseudoStateIds({ baseId: sizes, prefix: ['CircleHover', 'SquareHover'] }),
     },
   },
   render: (args) => (
@@ -123,13 +120,13 @@ export const SizesAndShapes: Story = {
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
               <div key={size} style={styleData.flexColumnSmallGap}>
-                <h5>{size}</h5>
+                <h5>{size ? size : 'default'}</h5>
                 <IconButton
-                  id={`${size}CircleHover`}
+                  id={`CircleHover${size}`}
                   aria-label="Close"
                   size={size}
                   shape="circle"
-                  tooltip={size}
+                  tooltip={size ? size : 'default'}
                   {...args}
                 >
                   <IconClose />
@@ -141,7 +138,13 @@ export const SizesAndShapes: Story = {
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
               <div key={size}>
-                <IconButton aria-label="Close" size={size} shape="circle" tooltip={size} {...args}>
+                <IconButton
+                  aria-label="Close"
+                  size={size}
+                  shape="circle"
+                  tooltip={size ? size : 'default'}
+                  {...args}
+                >
                   <IconClose />
                 </IconButton>
               </div>
@@ -154,13 +157,13 @@ export const SizesAndShapes: Story = {
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
               <div key={size} style={styleData.flexColumnSmallGap}>
-                <h5>{size}</h5>
+                <h5>{size ? size : 'default'}</h5>
                 <IconButton
-                  id={`${size}SquareHover`}
+                  id={`SquareHover${size}`}
                   aria-label="Close"
                   size={size}
                   shape="square"
-                  tooltip={size}
+                  tooltip={size ? size : 'default'}
                   {...args}
                 >
                   <IconClose />
@@ -172,7 +175,13 @@ export const SizesAndShapes: Story = {
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
               <div key={size}>
-                <IconButton aria-label="Close" size={size} shape="square" tooltip={size} {...args}>
+                <IconButton
+                  aria-label="Close"
+                  size={size}
+                  shape="square"
+                  tooltip={size ? size : 'default'}
+                  {...args}
+                >
                   <IconClose />
                 </IconButton>
               </div>
@@ -180,24 +189,6 @@ export const SizesAndShapes: Story = {
           </div>
         </div>
       </div>
-    </div>
-  ),
-};
-
-interface CustomArgs extends IconButtonProps {
-  parentWidth: string;
-  parentHeight: string;
-}
-
-export const SizeAutoBehavior: StoryObj<Meta<CustomArgs>> = {
-  render: (args) => (
-    <div style={styleData.flexRow}>
-      <IconButton aria-label="Close" size="auto" shape="circle" tooltip="auto" {...args}>
-        <IconClose style={{ background: 'red' }} />
-      </IconButton>
-      <IconButton aria-label="Close" size="auto" shape="circle" tooltip="auto" {...args}>
-        <IconClose style={{ background: 'red', width: '100px' }} />
-      </IconButton>
     </div>
   ),
 };

@@ -8,6 +8,11 @@
   transition: all $iconButtonAnimation;
   position: relative;
   padding: 5px;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 1.2;
+  min-width: 1rem;
+  min-height: 1rem;
 
   &--size {
     &-xs {
@@ -29,13 +34,6 @@
     &-xl {
       height: 2.875rem;
       width: 2.875rem;
-    }
-    &-auto {
-      height: fit-content;
-      width: fit-content;
-      max-width: 100%;
-      max-height: 100%;
-      aspect-ratio: auto 1 / 1;
     }
   }
 
