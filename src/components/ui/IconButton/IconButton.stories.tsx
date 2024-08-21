@@ -35,6 +35,19 @@ export const Disabled: Story = {
   ),
 };
 
+export const TextPseudoHover: Story = {
+  parameters: {
+    pseudo: {
+      hover: '#hoverText1',
+    },
+  },
+  render: (args) => (
+    <IconButton aria-label="Close" tooltip="Close" id="hoverText1" {...args}>
+      FK
+    </IconButton>
+  ),
+};
+
 export const TooltipFocusInteractions: Story = {
   render: (args) => (
     <IconButton aria-label="Close" tooltip="Close" {...args}>

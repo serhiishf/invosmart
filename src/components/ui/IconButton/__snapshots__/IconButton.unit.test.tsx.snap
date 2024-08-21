@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`IconButton > Snapshots tests > should match the snapshot when disabled 1`] = `
+<DocumentFragment>
+  <button
+    class="_iconButton_137f22 _iconButton--size-m_137f22 _iconButton--shape-circle_137f22 _iconButton--disabled_137f22"
+    disabled=""
+    type="button"
+  >
+    BT
+  </button>
+</DocumentFragment>
+`;
+
+exports[`IconButton > Snapshots tests > should match the snapshot with an icon and tooltip 1`] = `
+<DocumentFragment>
+  <button
+    class="_iconButton_137f22 _iconButton--size-m_137f22 _iconButton--shape-circle_137f22"
+    type="button"
+  >
+    <svg
+      role="presentation"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`IconButton > Snapshots tests > should match the snapshot with default props 1`] = `
+<DocumentFragment>
+  <button
+    class="_iconButton_137f22 _iconButton--size-m_137f22 _iconButton--shape-circle_137f22"
+    type="button"
+  >
+    BT
+  </button>
+</DocumentFragment>
+`;
