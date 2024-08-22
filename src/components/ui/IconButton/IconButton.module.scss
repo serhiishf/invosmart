@@ -1,5 +1,5 @@
 .iconButton {
-  aspect-ratio: auto 1 / 1;
+  aspect-ratio: 1 / 1;
   cursor: pointer;
   background-color: transparent;
   display: inline-flex;
@@ -13,31 +13,34 @@
   line-height: 1.2;
   min-width: 1rem;
   min-height: 1rem;
+  max-width: 100%;
+  max-height: 100%;
+  font-weight: 800;
 
   &--size {
     &-xs {
-      height: 1.5rem;
-      width: 1.5rem;
+      height: $iconButtonSizeXS;
+      width: $iconButtonSizeXS;
       font-size: 0.75rem;
     }
     &-s {
-      height: 1.875rem;
-      width: 1.875rem;
+      height: $iconButtonSizeS;
+      width: $iconButtonSizeS;
       font-size: 0.75rem;
     }
     &-m {
-      height: 2.125rem;
-      width: 2.125rem;
+      height: $iconButtonSizeM;
+      width: $iconButtonSizeM;
       font-size: 1rem;
     }
     &-l {
-      height: 2.375rem;
-      width: 2.375rem;
+      height: $iconButtonSizeL;
+      width: $iconButtonSizeL;
       font-size: 1rem;
     }
     &-xl {
-      height: 2.875rem;
-      width: 2.875rem;
+      height: $iconButtonSizeXL;
+      width: $iconButtonSizeXL;
       font-size: 1.25rem;
     }
   }

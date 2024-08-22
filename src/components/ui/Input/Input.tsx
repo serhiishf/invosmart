@@ -101,8 +101,8 @@ const Input = ({
                   <div className={clsx(styles.input__passwordButtonWrap)}>
                     <IconButton
                       onClick={handlePasswordButton}
+                      size="m"
                       tooltip={tooltipPasswordButton}
-                      size="auto"
                     >
                       <IconButtonContent className={styles.input__passwordButtonIcon} />
                     </IconButton>

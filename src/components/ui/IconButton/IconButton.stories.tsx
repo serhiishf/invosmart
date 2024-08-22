@@ -120,7 +120,10 @@ export const SizesAndShapes: Story = {
       disable: true,
     },
     pseudo: {
-      hover: generatePseudoStateIds({ baseId: sizes, prefix: ['CircleHover', 'SquareHover'] }),
+      hover: generatePseudoStateIds({
+        baseId: sizes,
+        prefix: ['CircleHover', 'SquareHover', 'CircleHoverAndLetter'],
+      }),
     },
   },
   render: (args) => (
@@ -163,6 +166,41 @@ export const SizesAndShapes: Story = {
               </div>
             ))}
           </div>
+          <h4>Pseudo hover state with letters</h4>
+          <div style={styleData.flexRow}>
+            {sizes.map((size) => (
+              <div key={size} style={styleData.flexColumnSmallGap}>
+                <h5>{size ? size : 'default'}</h5>
+                <IconButton
+                  id={`CircleHoverAndLetter${size}`}
+                  aria-label="Close"
+                  size={size}
+                  shape="circle"
+                  tooltip={size ? size : 'default'}
+                  {...args}
+                >
+                  FL
+                </IconButton>
+              </div>
+            ))}
+          </div>
+          <h4>Default state with letters</h4>
+          <div style={styleData.flexRow}>
+            {sizes.map((size) => (
+              <div key={size} style={styleData.flexColumnSmallGap}>
+                <h5>{size ? size : 'default'}</h5>
+                <IconButton
+                  aria-label="Close"
+                  size={size}
+                  shape="circle"
+                  tooltip={size ? size : 'default'}
+                  {...args}
+                >
+                  FL
+                </IconButton>
+              </div>
+            ))}
+          </div>
         </div>
         <h3>Square</h3>
         <div style={styleData.flexColumnSmallGap}>
@@ -200,6 +238,49 @@ export const SizesAndShapes: Story = {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const ResponsiveToParentSize: Story = {
+  parameters: {
+    controls: {
+      disable: true,
+    },
+    pseudo: {
+      hover: ['#hoverDecreasing', '#hoverDefault'],
+    },
+  },
+  render: (args) => (
+    <div style={styleData.flexRow}>
+      <div style={styleData.flexColumnSmallGap}>
+        <h4>Parent Smaller than Component</h4>
+        <div
+          style={{ width: '24px', height: '24px', overflow: 'hidden', border: '1px solid orange' }}
+        >
+          <IconButton aria-label="Close" tooltip="Close" id="hoverDecreasing" {...args}>
+            <IconClose />
+          </IconButton>
+        </div>
+      </div>
+
+      <div style={styleData.flexColumnSmallGap}>
+        <h4>Parent Larger than Component</h4>
+        <div style={{ width: '300px', height: '300px', border: '1px solid orange' }}>
+          <IconButton aria-label="Close" tooltip="Close" id="hoverDefault" {...args}>
+            <IconClose />
+          </IconButton>
+        </div>
+      </div>
+
+      <div style={styleData.flexColumnSmallGap}>
+        <h4>Parent without fixed size</h4>
+        <div style={{ border: '1px solid orange' }}>
+          <IconButton aria-label="Close" tooltip="Close" id="hoverDefault" {...args}>
+            <IconClose />
+          </IconButton>
         </div>
       </div>
     </div>

@@ -83,6 +83,7 @@ $color-text-dark: $_color-dark-700;
 $color-text-grey: $_color-grey-400;
 $color-text-grey-light: $_color-grey-500;
 $color-divider-grey: $_color-grey-200;
+$color-fallback: $_color-grey-300;
 
 /* FONTS--------------------------------- */
 
@@ -167,6 +168,11 @@ $iconButtonAnimation: $animationDefault;
 $iconButtonZIndex: $z-index-tooltip;
 $iconButtonSquareBorderRadius: $border-radius-base;
 $iconButtonDisabledColor: $_disabledColor;
+$iconButtonSizeXS: 24px;
+$iconButtonSizeS: 32px;
+$iconButtonSizeM: 40px;
+$iconButtonSizeL: 48px;
+$iconButtonSizeXL: 56px;
 
 /*----Tooltip */
 $tooltipBackground: $_color-dark-600;
