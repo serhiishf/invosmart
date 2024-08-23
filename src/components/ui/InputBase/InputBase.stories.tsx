@@ -6,13 +6,6 @@ import InputBase from './InputBase';
 const meta = {
   title: 'components/UI/InputBase',
   component: InputBase,
-  decorators: [
-    (Story) => (
-      <div style={{ border: '1px dashed pink' }}>
-        <Story />
-      </div>
-    ),
-  ],
   tags: ['autodocs'],
   args: {
     onChange: fn(),
@@ -22,9 +15,24 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
 export const Default: Story = {};
 
 export const InitialValue: Story = {
+  args: {
+    placeholder: 'Placeholder',
+    value: 'Value',
+  },
+};
+
+export const InitialValueAndOutline: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ border: '1px dashed orange' }}>
+        <Story />
+      </div>
+    ),
+  ],
   args: {
     placeholder: 'Placeholder',
     value: 'Value',

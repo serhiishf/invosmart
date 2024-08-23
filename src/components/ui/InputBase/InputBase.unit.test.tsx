@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import InputBase from './InputBase';
 
 describe('InputBase', () => {
-  describe('default Initialization', () => {
+  describe('Functional tests', () => {
     it('should render correctly with default props', () => {
       render(<InputBase />);
       const input = screen.getByRole('textbox');
@@ -25,13 +25,6 @@ describe('InputBase', () => {
       expect(input).toHaveValue('typed text');
     });
 
-    it('should match the snapshot with default props', () => {
-      const { asFragment } = render(<InputBase />);
-      expect(asFragment()).toMatchSnapshot();
-    });
-  });
-
-  describe('initialization with props', () => {
     it('should render empty input with placeholder', () => {
       render(<InputBase placeholder="Some placeholder" />);
       const input = screen.getByRole('textbox');
@@ -81,6 +74,13 @@ describe('InputBase', () => {
       expect(input).toBeDisabled();
       await userEvent.type(input, 'Some text');
       expect(input).not.toHaveValue();
+    });
+  });
+
+  describe('Snapshots tests', () => {
+    it('should match the snapshot with default props', () => {
+      const { asFragment } = render(<InputBase />);
+      expect(asFragment()).toMatchSnapshot();
     });
 
     it('should match the snapshot when isReadOnlyMode is true', () => {
