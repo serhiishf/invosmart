@@ -2,10 +2,22 @@
   color: $linkColor;
   width: fit-content;
 
+  &--underline {
+    &-none {
+      text-decoration: none;
+    }
+
+    &-hover {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &-always {
+      text-decoration: underline;
+    }
+  }
+
   &:visited {
     color: $linkColor;
-  }
-  &:hover {
-    text-decoration: underline;
   }
 }
