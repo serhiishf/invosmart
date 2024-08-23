@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import styles from './Spinner.module.scss';
 import { SpinnerProps } from './types';
 
-const Spinner = ({ variant = 'page', className }: SpinnerProps) => {
+const Spinner = ({ variant = 'page', className, ...rest }: SpinnerProps) => {
   return (
-    <div className={clsx(styles.spinner, styles[`spinner--${variant}`], className)}>
+    <div className={clsx(styles.spinner, styles[`spinner--${variant}`], className)} {...rest}>
       {variant === 'page' && (
         <>
           <div className={clsx(styles.arc, styles[`arc--big`])}></div>

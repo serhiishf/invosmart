@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Spinner > Snapshots tests > should matches snapshot for default variant 1`] = `
+<div>
+  <div
+    class="_spinner_788fe0 _spinner--page_788fe0"
+  >
+    <div
+      class="_arc_788fe0 _arc--big_788fe0"
+    />
+    <div
+      class="_arc_788fe0 _arc--middle_788fe0"
+    />
+    <div
+      class="_arc_788fe0 _arc--small_788fe0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Spinner > Snapshots tests > should matches snapshot for inline variant 1`] = `
+<div>
+  <div
+    class="_spinner_788fe0 _spinner--inline_788fe0"
+  >
+    <div
+      class="_arc_788fe0 _arc--inline_788fe0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Spinner > Snapshots tests > should matches snapshot for page variant 1`] = `
+<div>
+  <div
+    class="_spinner_788fe0 _spinner--page_788fe0"
+  >
+    <div
+      class="_arc_788fe0 _arc--big_788fe0"
+    />
+    <div
+      class="_arc_788fe0 _arc--middle_788fe0"
+    />
+    <div
+      class="_arc_788fe0 _arc--small_788fe0"
+    />
+  </div>
+</div>
+`;

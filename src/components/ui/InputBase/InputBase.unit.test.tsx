@@ -75,6 +75,30 @@ describe('InputBase', () => {
       await userEvent.type(input, 'Some text');
       expect(input).not.toHaveValue();
     });
+
+    it('should apply standard HTML properties and custom class names correctly', () => {
+      render(
+        <InputBase
+          aria-label="Custom Input"
+          type="email"
+          maxLength={50}
+          className="customClassname"
+        />
+      );
+      const input = screen.getByLabelText('Custom Input');
+
+      expect(input).toHaveAttribute('type', 'email');
+      expect(input).toHaveAttribute('maxLength', '50');
+      expect(input).toHaveClass('customClassname');
+      expect(input).toHaveAttribute('aria-label', 'Custom Input');
+    });
+
+    it('should apply custom HTML attributes correctly', () => {
+      render(<InputBase data-testid="custom-input" data-custom-attr="customValue" />);
+      const input = screen.getByTestId('custom-input');
+
+      expect(input).toHaveAttribute('data-custom-attr', 'customValue');
+    });
   });
 
   describe('Snapshots tests', () => {
