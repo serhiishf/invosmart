@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Link > should matches the snapshot with label="Example link" and href="http://example.com" 1`] = `
+exports[`Link > Snapshots tests > should matches the snapshot with label="Example link" and href="http://example.com" 1`] = `
 <DocumentFragment>
   <a
     class="_link_1f0167 _link--underline-hover_1f0167"
@@ -11,7 +11,7 @@ exports[`Link > should matches the snapshot with label="Example link" and href="
 </DocumentFragment>
 `;
 
-exports[`Link > should mathces the snapshot with classname passed in props 1`] = `
+exports[`Link > Snapshots tests > should mathces the snapshot with classname passed in props 1`] = `
 <DocumentFragment>
   <a
     class="_link_1f0167 _link--underline-hover_1f0167 additionalClassName"

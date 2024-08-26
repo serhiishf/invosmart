@@ -15,6 +15,13 @@ export const Default: Story = {
   args: {
     children: 'Example link',
     href: 'https://example.com',
+  },
+};
+
+export const TargetBlank: Story = {
+  args: {
+    children: 'Example link',
+    href: 'https://example.com',
     target: '_blank',
   },
 };

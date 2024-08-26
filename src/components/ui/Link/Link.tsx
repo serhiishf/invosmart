@@ -1,6 +1,7 @@
 import styles from './Link.module.scss';
 import { LinkProps } from './types';
 import clsx from 'clsx';
+import IconExternalLink from 'assets/icons/externalLink.svg?react';
 
 const Link = ({
   href,
@@ -20,6 +21,7 @@ const Link = ({
       {...rest}
     >
       {children}
+      {target === '_blank' && <span>{<IconExternalLink />}</span>}
     </a>
   );
 };
