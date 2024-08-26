@@ -16,3 +16,23 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 );
 
 export default Tooltip;
+
+/* const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+
+const { refs, floatingStyles, context } = useFloating({
+  placement: 'bottom',
+  strategy: 'absolute',
+  middleware: [shift(), offset(10)],
+  onOpenChange: setIsTooltipOpen,
+});
+
+const hoverInteraction = useHover(context, {
+  mouseOnly: true,
+});
+
+const focusInteraction = useFocus(context);
+
+const { getReferenceProps, getFloatingProps } = useInteractions([
+  hoverInteraction,
+  focusInteraction,
+]); */

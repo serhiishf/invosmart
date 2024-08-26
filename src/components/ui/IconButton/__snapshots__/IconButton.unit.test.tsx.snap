@@ -12,7 +12,7 @@ exports[`IconButton > Snapshots tests > should match the snapshot when disabled 
 </DocumentFragment>
 `;
 
-exports[`IconButton > Snapshots tests > should match the snapshot with an icon and tooltip 1`] = `
+exports[`IconButton > Snapshots tests > should match the snapshot with an icon 1`] = `
 <DocumentFragment>
   <button
     class="_iconButton_137f22 _iconButton--size-m_137f22 _iconButton--shape-circle_137f22"

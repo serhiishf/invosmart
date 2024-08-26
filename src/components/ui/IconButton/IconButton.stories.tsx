@@ -21,7 +21,7 @@ const IconClose = Icons.Close;
 
 export const Default: Story = {
   render: (args) => (
-    <IconButton aria-label="Close" tooltip="Close" {...args}>
+    <IconButton aria-label="Close" {...args}>
       <IconClose />
     </IconButton>
   ),
@@ -42,15 +42,15 @@ export const TextPseudoHover: Story = {
     },
   },
   render: (args) => (
-    <IconButton aria-label="Close" tooltip="Close" id="hoverText1" {...args}>
+    <IconButton aria-label="Close" id="hoverText1" {...args}>
       FK
     </IconButton>
   ),
 };
 
-export const TooltipFocusInteractions: Story = {
+export const FocusInteractions: Story = {
   render: (args) => (
-    <IconButton aria-label="Close" tooltip="Close" {...args}>
+    <IconButton aria-label="Close" {...args}>
       <IconClose />
     </IconButton>
   ),
@@ -60,25 +60,6 @@ export const TooltipFocusInteractions: Story = {
     await userEvent.keyboard('{Tab}');
 
     expect(button).toHaveFocus();
-  },
-};
-
-export const TooltipHoverInteractions: Story = {
-  /*
-   * This story tests the tooltip behavior when hovering over the button.
-   * Due to the use of `@media (pointer: fine)` in the component's styles,
-   * the hover-related background changes are not reflected in this test environment.
-   * The visual hover effect will only be visible when using a real mouse in a browser.
-   */
-  render: (args) => (
-    <IconButton aria-label="Close" tooltip="Close" {...args}>
-      <IconClose />
-    </IconButton>
-  ),
-
-  play: async ({ canvas }) => {
-    const button = canvas.getByRole('button');
-    await userEvent.hover(button);
   },
 };
 
@@ -142,7 +123,6 @@ export const SizesAndShapes: Story = {
                   aria-label="Close"
                   size={size}
                   shape="circle"
-                  tooltip={size ? size : 'default'}
                   {...args}
                 >
                   <IconClose />
@@ -154,13 +134,7 @@ export const SizesAndShapes: Story = {
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
               <div key={size}>
-                <IconButton
-                  aria-label="Close"
-                  size={size}
-                  shape="circle"
-                  tooltip={size ? size : 'default'}
-                  {...args}
-                >
+                <IconButton aria-label="Close" size={size} shape="circle" {...args}>
                   <IconClose />
                 </IconButton>
               </div>
@@ -176,7 +150,6 @@ export const SizesAndShapes: Story = {
                   aria-label="Close"
                   size={size}
                   shape="circle"
-                  tooltip={size ? size : 'default'}
                   {...args}
                 >
                   FL
@@ -189,13 +162,7 @@ export const SizesAndShapes: Story = {
             {sizes.map((size) => (
               <div key={size} style={styleData.flexColumnSmallGap}>
                 <h5>{size ? size : 'default'}</h5>
-                <IconButton
-                  aria-label="Close"
-                  size={size}
-                  shape="circle"
-                  tooltip={size ? size : 'default'}
-                  {...args}
-                >
+                <IconButton aria-label="Close" size={size} shape="circle" {...args}>
                   FL
                 </IconButton>
               </div>
@@ -214,7 +181,6 @@ export const SizesAndShapes: Story = {
                   aria-label="Close"
                   size={size}
                   shape="square"
-                  tooltip={size ? size : 'default'}
                   {...args}
                 >
                   <IconClose />
@@ -226,13 +192,7 @@ export const SizesAndShapes: Story = {
           <div style={styleData.flexRow}>
             {sizes.map((size) => (
               <div key={size}>
-                <IconButton
-                  aria-label="Close"
-                  size={size}
-                  shape="square"
-                  tooltip={size ? size : 'default'}
-                  {...args}
-                >
+                <IconButton aria-label="Close" size={size} shape="square" {...args}>
                   <IconClose />
                 </IconButton>
               </div>
@@ -260,7 +220,7 @@ export const ResponsiveToParentSize: Story = {
         <div
           style={{ width: '24px', height: '24px', overflow: 'hidden', border: '1px solid orange' }}
         >
-          <IconButton aria-label="Close" tooltip="Close" id="hoverDecreasing" {...args}>
+          <IconButton aria-label="Close" id="hoverDecreasing" {...args}>
             <IconClose />
           </IconButton>
         </div>
@@ -269,7 +229,7 @@ export const ResponsiveToParentSize: Story = {
       <div style={styleData.flexColumnSmallGap}>
         <h4>Parent Larger than Component</h4>
         <div style={{ width: '300px', height: '300px', border: '1px solid orange' }}>
-          <IconButton aria-label="Close" tooltip="Close" id="hoverDefault" {...args}>
+          <IconButton aria-label="Close" id="hoverDefault" {...args}>
             <IconClose />
           </IconButton>
         </div>
@@ -278,7 +238,7 @@ export const ResponsiveToParentSize: Story = {
       <div style={styleData.flexColumnSmallGap}>
         <h4>Parent without fixed size</h4>
         <div style={{ border: '1px solid orange' }}>
-          <IconButton aria-label="Close" tooltip="Close" id="hoverDefault" {...args}>
+          <IconButton aria-label="Close" id="hoverDefault" {...args}>
             <IconClose />
           </IconButton>
         </div>

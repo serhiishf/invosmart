@@ -166,29 +166,12 @@ export const FocusInteractions: Story = {
   args: {
     startIcon: IconPlaceholder,
     children: 'Focus interaction',
-    tooltip: 'Settings',
   },
   play: async ({ canvas }) => {
     const button = canvas.getByRole('button');
     await userEvent.keyboard('{Tab}');
 
     expect(button).toHaveFocus();
-  },
-};
-
-export const OnlyStartIconAndTooltipHoverInteractions: Story = {
-  // This story tests the tooltip behavior when hovering over the button.
-  // Due to the use of `@media (pointer: fine)` in the component's styles,
-  // the hover-related background changes are not reflected in this test environment.
-  // The visual hover effect will only be visible when using a real mouse in a browser.
-  args: {
-    startIcon: IconPlaceholder,
-    children: '',
-    tooltip: 'Settings',
-  },
-  play: async ({ canvas }) => {
-    const button = canvas.getByRole('button');
-    await userEvent.hover(button);
   },
 };
 

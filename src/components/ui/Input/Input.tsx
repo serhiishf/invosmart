@@ -99,11 +99,7 @@ const Input = ({
               {type === 'password' && (
                 <div className={clsx(styles.input__passwordButtonContainer)}>
                   <div className={clsx(styles.input__passwordButtonWrap)}>
-                    <IconButton
-                      onClick={handlePasswordButton}
-                      size="m"
-                      tooltip={tooltipPasswordButton}
-                    >
+                    <IconButton onClick={handlePasswordButton} size="m">
                       <IconButtonContent className={styles.input__passwordButtonIcon} />
                     </IconButton>
                   </div>

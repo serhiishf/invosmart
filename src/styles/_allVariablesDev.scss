@@ -165,7 +165,6 @@ $inputHeightMobile: $fieldMinHeightMobile;
 $iconButtonBackgroundColorHover: $_color-light-500;
 $iconButtonBackgroundColorActive: $_color-light-800;
 $iconButtonAnimation: $animationDefault;
-$iconButtonZIndex: $z-index-tooltip;
 $iconButtonSquareBorderRadius: $border-radius-base;
 $iconButtonDisabledColor: $_disabledColor;
 $iconButtonSizeXS: 24px;
@@ -219,7 +218,6 @@ $buttonColorTranspNegativeActive: $_colorRed200;
 $buttonColorTranspNeutralHover: $_color-light-500;
 $buttonColorTranspNeutralActive: $_color-light-800;
 $buttonAnimation: $animationDefault;
-$buttonZIndex: $z-index-tooltip;
 
 /* ---Link */
 $linkColor: $_color-blue-100;

@@ -1,7 +1,6 @@
 import { TextOverflow } from 'constants/theme';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  tooltip?: string;
   size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   isFullWidth?: boolean;
   fontWeight?: 'semiBold' | 'medium';

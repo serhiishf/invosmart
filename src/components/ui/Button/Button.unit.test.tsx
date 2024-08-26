@@ -1,4 +1,5 @@
-import { render, screen, cleanup, waitFor } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
+import { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import Button from './Button';
 import { ButtonProps } from './types';
@@ -13,42 +14,12 @@ describe('Button', () => {
 
     it('should render correctly with text and startIcon', () => {
       const MockIcon = () => <svg role="presentation" />;
-      render(
-        <Button tooltip="Tooltip text" startIcon={MockIcon}>
-          Button text
-        </Button>
-      );
+      render(<Button startIcon={MockIcon}>Button text</Button>);
 
       const button = screen.getByRole('button');
       expect(button).toBeInTheDocument();
       expect(screen.getByText('Button text')).toBeInTheDocument();
       expect(screen.getByRole('presentation')).toBeInTheDocument();
-    });
-
-    it('should render tooltip on hover', async () => {
-      render(<Button tooltip="Tooltip text">Button text</Button>);
-
-      const button = screen.getByRole('button');
-      expect(button).toBeInTheDocument();
-      expect(screen.queryByText('Tooltip text')).not.toBeInTheDocument();
-      await userEvent.hover(button);
-      await waitFor(() => expect(screen.getByText('Tooltip text')).toBeInTheDocument());
-    });
-
-    it('should render tooltip on focus - ALERT: THIS TEST EXISTS BUT DOES NOT FULLY VERIFY THE EXPECTED BEHAVIOR DUE TO focus-visible LIMITATIONS', async () => {
-      render(<Button tooltip="Tooltip text">Button text</Button>);
-
-      const button = screen.getByRole('button');
-      expect(button).toBeInTheDocument();
-      expect(screen.queryByText('Tooltip text')).not.toBeInTheDocument();
-      await userEvent.keyboard('{Tab}');
-      expect(button).toHaveFocus();
-      /*
-       * Cannot verify tooltip visibility because the Tooltip uses the floating-ui library,
-       * which relies on focus-visible. Unfortunately, focus-visible cannot be reliably simulated
-       * in the current test environment. This test case is left incomplete.
-       */
-      /* await waitFor(() => expect(screen.queryByText('Tooltip text')).toBeInTheDocument()); */
     });
 
     it('should have default type "button" when no type is specified', () => {
@@ -59,13 +30,11 @@ describe('Button', () => {
 
     it('should apply the correct type attribute to the button', () => {
       const types: ButtonProps['type'][] = ['button', 'submit', 'reset'];
-
       types.forEach((type) => {
         render(<Button type={type}>Button text</Button>);
 
         const button = screen.getByRole('button');
         expect(button).toHaveAttribute('type', type);
-
         cleanup();
       });
     });
@@ -130,6 +99,14 @@ describe('Button', () => {
       await userEvent.keyboard('{Enter}');
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
+
+    it('should forwards "ref" to the button element', () => {
+      const ref = createRef<HTMLButtonElement>();
+      render(<Button ref={ref}>Click me</Button>);
+
+      expect(ref.current).not.toBeNull();
+      expect(ref.current?.tagName).toBe('BUTTON');
+    });
   });
 
   describe('Snapshots tests', () => {
@@ -138,13 +115,9 @@ describe('Button', () => {
       expect(asFragment()).toMatchSnapshot();
     });
 
-    it('should match the snapshot with an icon and tooltip', () => {
+    it('should match the snapshot with an icon', () => {
       const MockIcon = () => <svg role="presentation" />;
-      const { asFragment } = render(
-        <Button tooltip="Tooltip text" startIcon={MockIcon}>
-          Button with Icon
-        </Button>
-      );
+      const { asFragment } = render(<Button startIcon={MockIcon}>Button with Icon</Button>);
       expect(asFragment()).toMatchSnapshot();
     });
 

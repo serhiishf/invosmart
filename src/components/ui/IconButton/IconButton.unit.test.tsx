@@ -1,4 +1,5 @@
-import { render, screen, cleanup, waitFor } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
+import { createRef } from 'react';
 import userEvent from '@testing-library/user-event';
 import IconButton from './IconButton';
 import { IconButtonProps } from './types';
@@ -32,32 +33,6 @@ describe('IconButton', () => {
       expect(screen.getByRole('presentation')).toBeInTheDocument();
     });
 
-    it('should render tooltip on hover', async () => {
-      render(<IconButton tooltip="Tooltip text">BT</IconButton>);
-
-      const button = screen.getByRole('button');
-      expect(button).toBeInTheDocument();
-      expect(screen.queryByText('Tooltip text')).not.toBeInTheDocument();
-      await userEvent.hover(button);
-      await waitFor(() => expect(screen.getByText('Tooltip text')).toBeInTheDocument());
-    });
-
-    it('should render tooltip on focus - ALERT: THIS TEST EXISTS BUT DOES NOT FULLY VERIFY THE EXPECTED BEHAVIOR DUE TO focus-visible LIMITATIONS', async () => {
-      render(<IconButton tooltip="Tooltip text">BT</IconButton>);
-
-      const button = screen.getByRole('button');
-      expect(button).toBeInTheDocument();
-      expect(screen.queryByText('Tooltip text')).not.toBeInTheDocument();
-      await userEvent.keyboard('{Tab}');
-      expect(button).toHaveFocus();
-      /*
-       * Cannot verify tooltip visibility because the Tooltip uses the floating-ui library,
-       * which relies on focus-visible. Unfortunately, focus-visible cannot be reliably simulated
-       * in the current test environment. This test case is left incomplete.
-       */
-      /* await waitFor(() => expect(screen.queryByText('Tooltip text')).toBeInTheDocument()); */
-    });
-
     it('should have default type "button" when no type is specified', () => {
       render(<IconButton>Click me</IconButton>);
       const button = screen.getByRole('button');
@@ -89,7 +64,6 @@ describe('IconButton', () => {
       };
 
       render(<IconButton {...attributes}>BT</IconButton>);
-
       const button = screen.getByTestId(testId);
 
       // Check standard attributes
@@ -137,6 +111,14 @@ describe('IconButton', () => {
       await userEvent.keyboard('{Enter}');
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
+
+    it('should forwards "ref" to the button element', () => {
+      const ref = createRef<HTMLButtonElement>();
+      render(<IconButton ref={ref}>Click me</IconButton>);
+
+      expect(ref.current).not.toBeNull();
+      expect(ref.current?.tagName).toBe('BUTTON');
+    });
   });
 
   describe('Snapshots tests', () => {
@@ -145,10 +127,10 @@ describe('IconButton', () => {
       expect(asFragment()).toMatchSnapshot();
     });
 
-    it('should match the snapshot with an icon and tooltip', () => {
+    it('should match the snapshot with an icon', () => {
       const MockIcon = () => <svg role="presentation" />;
       const { asFragment } = render(
-        <IconButton tooltip="Tooltip text">
+        <IconButton>
           <MockIcon />
         </IconButton>
       );
