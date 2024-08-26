@@ -31,7 +31,7 @@ describe('Link', () => {
       expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
-    it('should override rel="noopener noreferrer" when target is "_blank" and passed noopener separetly', () => {
+    it('should override rel="noopener noreferrer" when target is "_blank" and passed rel separately', () => {
       render(
         <Link href="http://example.com" target="_blank" rel="noopener">
           Not internal link
@@ -86,6 +86,15 @@ describe('Link', () => {
     it('should mathces the snapshot with classname passed in props', () => {
       const { asFragment } = render(
         <Link href="http://example.com" className="additionalClassName">
+          Example link
+        </Link>
+      );
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should mathces the snapshot with classname passed in props', () => {
+      const { asFragment } = render(
+        <Link href="http://example.com" className="additionalClassName" target="_blank">
           Example link
         </Link>
       );
