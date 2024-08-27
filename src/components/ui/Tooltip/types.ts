@@ -1,6 +1,7 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, ReactElement } from 'react';
 
 export interface TooltipProps extends HTMLAttributes<HTMLDivElement> {
-  message: string;
+  title: string;
   className?: never;
+  children: ReactElement;
 }

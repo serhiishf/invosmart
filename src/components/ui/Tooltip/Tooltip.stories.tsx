@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { textExamples } from 'mocks/storybook/mockData';
 import Tooltip from './Tooltip';
@@ -7,7 +8,7 @@ const meta = {
   title: 'components/UI/Tooltip',
   component: Tooltip,
   args: {
-    message: 'Tooltip',
+    title: 'Tooltip',
   },
 } satisfies Meta<typeof Tooltip>;
 
@@ -20,7 +21,7 @@ const longText = textExamples.longText;
 
 export const LongText: Story = {
   args: {
-    message: longText,
+    title: longText,
   },
 
   render: (args) => (
@@ -33,6 +34,29 @@ export const LongText: Story = {
 export const Buttons: Story = {
   args: {
     children: <Button isFullWidth={false}>Button</Button>,
-    message: 'Tooltip message',
+    title: 'Tooltip message',
+  },
+
+  render: function Anonimous(args) {
+    const buttonRef = useRef(null);
+    useEffect(() => {
+      console.log(buttonRef);
+    });
+    return (
+      <div>
+        <Tooltip {...args}>
+          <Button isFullWidth={false} ref={buttonRef} onFocus={() => console.log('FOCUSS')}>
+            Button
+          </Button>
+        </Tooltip>
+        <Tooltip {...args}>
+          <Button isFullWidth={true}>Button</Button>
+        </Tooltip>
+        <Tooltip {...args}>
+          <>tesd</>
+        </Tooltip>
+        <div title="title" style={{ width: '50px', height: '50px', background: 'red' }}></div>
+      </div>
+    );
   },
 };

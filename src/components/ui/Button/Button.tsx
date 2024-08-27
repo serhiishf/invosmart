@@ -45,14 +45,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </div>
         )}
         {children && (
-          <div
+          <span
             className={clsx(
               styles.button__childrenWraper,
               styles[`button__childrenWraper-${textOverflow}`]
             )}
           >
             {children}
-          </div>
+          </span>
         )}
       </button>
     );

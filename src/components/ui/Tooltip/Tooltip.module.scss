@@ -1,12 +1,5 @@
 .tooltip {
-  position: relative;
-  background-color: red;
-  display: inline-block; 
-  min-width: 0; 
-  max-width: 100%;
-
-  &__message {
-    position: relative;
+/*     position: relative; */
     width: max-content;
     max-width: 260px;
     height: auto;
@@ -17,7 +10,6 @@
     font-size: $tooltipFontSize;
     font-weight: $tooltipFontWeight;
     padding: 8px 12px;
-  }
 }
 
 /* 

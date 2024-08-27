@@ -7,11 +7,11 @@ exports[`Button > Snapshots tests > should match the snapshot when disabled 1`] 
     disabled=""
     type="button"
   >
-    <div
+    <span
       class="_button__childrenWraper_50c219 _button__childrenWraper-wrap_50c219"
     >
       Disabled Button
-    </div>
+    </span>
   </button>
 </DocumentFragment>
 `;
@@ -29,11 +29,11 @@ exports[`Button > Snapshots tests > should match the snapshot with an icon 1`] =
         role="presentation"
       />
     </div>
-    <div
+    <span
       class="_button__childrenWraper_50c219 _button__childrenWraper-wrap_50c219"
     >
       Button with Icon
-    </div>
+    </span>
   </button>
 </DocumentFragment>
 `;
@@ -44,11 +44,11 @@ exports[`Button > Snapshots tests > should match the snapshot with default props
     class="_button_50c219 _button--size-m_50c219 _button--buttonPalette-primary_50c219 _button--fontWeight-semiBold_50c219 _button--shape-regular_50c219"
     type="button"
   >
-    <div
+    <span
       class="_button__childrenWraper_50c219 _button__childrenWraper-wrap_50c219"
     >
       Default Button
-    </div>
+    </span>
   </button>
 </DocumentFragment>
 `;
