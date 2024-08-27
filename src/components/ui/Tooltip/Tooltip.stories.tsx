@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { textExamples } from 'mocks/storybook/mockData';
 import Tooltip from './Tooltip';
+import { Button, IconButton } from 'components/ui';
 
 const meta = {
   title: 'components/UI/Tooltip',
   component: Tooltip,
   args: {
-    tooltipMessage: 'Tooltip',
+    message: 'Tooltip',
   },
 } satisfies Meta<typeof Tooltip>;
 
@@ -19,6 +20,19 @@ const longText = textExamples.longText;
 
 export const LongText: Story = {
   args: {
-    tooltipMessage: longText,
+    message: longText,
+  },
+
+  render: (args) => (
+    <Tooltip {...args}>
+      <div></div>
+    </Tooltip>
+  ),
+};
+
+export const Buttons: Story = {
+  args: {
+    children: <Button isFullWidth={false}>Button</Button>,
+    message: 'Tooltip message',
   },
 };

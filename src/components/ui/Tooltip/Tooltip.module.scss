@@ -1,15 +1,23 @@
 .tooltip {
   position: relative;
-  width: max-content;
-  max-width: 260px;
-  height: auto;
-  overflow-wrap: break-word;
-  background-color: $tooltipBackground;
-  color: $tooltipTextColor;
-  border-radius: $border-radius-base;
-  font-size: $tooltipFontSize;
-  font-weight: $tooltipFontWeight;
-  padding: 8px 12px;
+  background-color: red;
+  display: inline-block; 
+  min-width: 0; 
+  max-width: 100%;
+
+  &__message {
+    position: relative;
+    width: max-content;
+    max-width: 260px;
+    height: auto;
+    overflow-wrap: break-word;
+    background-color: $tooltipBackground;
+    color: $tooltipTextColor;
+    border-radius: $border-radius-base;
+    font-size: $tooltipFontSize;
+    font-weight: $tooltipFontWeight;
+    padding: 8px 12px;
+  }
 }
 
 /* 
