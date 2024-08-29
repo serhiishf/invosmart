@@ -6,21 +6,27 @@ import React from 'react';
  * @returns {React.Ref|null} - Returns the ref if it exists in the node's props, otherwise null.
  */
 
-export default function getReactNodeRef<T>(
-  element: React.ReactNode
-): React.RefObject<T> | ((instance: T | null) => void) | string | null {
+type RefType<T> = React.RefObject<T> | ((instance: T | null) => void) | null;
+
+function isValidRef<T>(ref: unknown): ref is RefType<T> {
+  return ref === null || typeof ref === 'function' || (typeof ref === 'object' && 'current' in ref);
+}
+
+export default function getReactNodeRef<T>(element: React.ReactNode): RefType<T> {
   if (!element || !React.isValidElement(element)) {
     return null;
   }
 
-  // Check if `ref` exists in props and is one of the expected types
-  const ref = element.props.ref;
-  if (typeof ref === 'function' || typeof ref === 'string' || ref instanceof Object) {
-    console.log(ref, typeof ref, ref instanceof Object);
-    return ref as React.RefObject<T> | ((instance: T | null) => void) | string;
+  // 'ref' is passed as prop in React 19, whereas 'ref' is directly attached to children in older versions
+  if (element.props.propertyIsEnumerable('ref') && isValidRef(element.props.ref)) {
+    return element.props.ref as RefType<T>;
   }
 
-  // Handle cases where `ref` is not in `props` but potentially exists in `element`
   // @ts-expect-error element.ref is not explicitly typed in ReactElement, but valid here
-  return element.ref as React.RefObject<T> | ((instance: T | null) => void) | null;
+  if (isValidRef(element.ref)) {
+    // @ts-expect-error element.ref is not explicitly typed in ReactElement, but valid here
+    return element.ref as RefType<T>;
+  }
+
+  return null;
 }
