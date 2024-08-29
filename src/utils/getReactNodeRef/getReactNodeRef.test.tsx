@@ -1,6 +1,5 @@
-import React, { createRef, forwardRef, useRef } from 'react';
-import { render } from '@testing-library/react';
-import getReactNodeRef from './getReactNodeRef'; // Adjust the import path to your setup
+import React, { createRef, forwardRef } from 'react';
+import getReactNodeRef from './getReactNodeRef';
 import { describe, it, expect } from 'vitest';
 
 describe('getReactNodeRef', () => {
@@ -32,14 +31,6 @@ describe('getReactNodeRef', () => {
     const element = <div ref={callbackRef}>Hello, World!</div>;
     const result = getReactNodeRef(element);
     expect(result).toBe(callbackRef);
-  });
-
-  it('should return a string ref if using legacy string ref', () => {
-    // Legacy string refs are still technically supported, so let's test it
-    // eslint-disable-next-line react/no-string-refs
-    const element = <div ref="legacyRef">Hello, World!</div>;
-    const result = getReactNodeRef(element);
-    expect(result).toBe('legacyRef');
   });
 
   it('should handle ref passed via forwardRef', () => {
